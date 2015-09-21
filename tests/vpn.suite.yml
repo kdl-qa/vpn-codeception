@@ -1,0 +1,16 @@
+#class_name: VpnTester
+#modules:
+#    enabled:
+#        - \Helper\Vpn
+class_name: VpnTester
+modules:
+    enabled:
+        - WebDriver:
+            restart: false
+            url: 'http://vpn.ua'
+            browser: 'chrome'
+            window_size: 'maximize'
+        - REST:
+            url: http://vpn.ua/api/v1
+            depends: PhpBrowser
+        - \Helper\Api
