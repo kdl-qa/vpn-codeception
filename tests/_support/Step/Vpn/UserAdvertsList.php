@@ -16,10 +16,15 @@ class UserAdvertsList extends \VpnTester
     public function newFlatAdvertContains()
     {
         $I=$this;
-        $I->amOnPage('/user/adverts');
+        $I->amOnPage(AdvertsList::$URL);
         $I->waitForElement(AdvertsList::$firstListAdvert);
         $I->see(Flat::category, AdvertsList::$firstListAdvert);
-        //Flat::categoryType1,Flat::city, Flat::street, Flat::houseNumber, Flat::flatNumber]);
+        $I->see(Flat::categoryType1, AdvertsList::$firstListAdvert);
+        $I->see(Flat::city, AdvertsList::$firstListAdvert);
+        $I->see(Flat::street, AdvertsList::$firstListAdvert);
+        $I->see(Flat::houseNumber, AdvertsList::$firstListAdvert);
+        $I->see(Flat::$currentFlatNumber, AdvertsList::$firstListAdvert);
+
     }
 
 }

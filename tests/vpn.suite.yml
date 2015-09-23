@@ -7,10 +7,10 @@ modules:
     enabled:
         - WebDriver:
             restart: false
-            url: 'http://vpn.ua'
+            url: 'http://uhome.co'
             browser: 'chrome'
             window_size: 'maximize'
         - REST:
-            url: http://vpn.ua/api/v1
+            url: http://uhome.co/api/v1
             depends: PhpBrowser
         - \Helper\Api

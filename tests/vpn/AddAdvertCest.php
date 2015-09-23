@@ -7,12 +7,12 @@ use \Data\Flat;
 
 class AddAdvertCest
 {
-//    public function _before(VpnTester $I)
-//    {
-//        $I->login();
+    public function _before(VpnTester $I)
+    {
+        $I->apiAgencyLogin();
 //        $I->amOnPage('/new-advert/step1');
 //        $I->waitForElement(AddAdvert::$yandexMap);
-//    }
+    }
 
     public function createAdvertWithApi(VpnTester $I)
     {
@@ -35,6 +35,7 @@ class AddAdvertCest
         $I->fillInFlatAdvertCheckboxes();
         $I->uploadFlatAdvertImage();
         $I->fillInOwnerContactsData();
+//        $I->pauseExecution();
         $I->clickCreateAdvertButton();
         $I->acceptModal();
         $listSteps->newFlatAdvertContains();

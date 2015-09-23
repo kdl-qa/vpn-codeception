@@ -130,14 +130,14 @@ class Advert extends \VpnTester
         $I->click(AddAdvert::$operationTypeSell);
         $I->fillField(AddAdvert::$advertDescription, Flat::descriptionFlatSell);
         $I->fillField(AddAdvert::$price, Flat::priceFlatSell);
-        $I->click(AddAdvert::$month);
-        $I->fillField(AddAdvert::$typeMonth, Flat::month);
+//        $I->click(AddAdvert::$month);
+//        $I->fillField(AddAdvert::$typeMonth, Flat::month);
         $I->click(AddAdvert::$auction);
-        $I->fillField(AddAdvert::$date,Flat::date);
-        $I->click(AddAdvert::$month);
-        $I->fillField(AddAdvert::$typeMonth,Flat::month);
-        $I->click(AddAdvert::$chooseFirstRow);
-        $I->fillField(AddAdvert::$year, Flat::year);
+//        $I->fillField(AddAdvert::$date, Flat::date);
+//        $I->click(AddAdvert::$month);
+//        $I->fillField(AddAdvert::$typeMonth, Flat::month);
+//        $I->click(AddAdvert::$chooseFirstRow);
+//        $I->fillField(AddAdvert::$year, Flat::year);
         $I->click(AddAdvert::$market);
         $I->fillField(AddAdvert::$typeMarket, Flat::market);
         $I->click(AddAdvert::$chooseFirstRow);
@@ -187,7 +187,7 @@ class Advert extends \VpnTester
     {
         $I = $this;
         $I->click(AddAdvert::$createAdvertButton);
-        $I->wait(2);
+        $I->wait(1);
     }
 
 

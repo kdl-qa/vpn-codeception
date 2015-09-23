@@ -1,11 +1,11 @@
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml" lang="en" ng-controller="rootController as root" class="ng-scope"><head><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}</style>
 	<base href="/" />
-	<title ng-bind="root.page.title" class="ng-binding"></title>
+	<title ng-bind="root.page.title" class="ng-binding">Мои объявления | Neru.com.ua</title>
 	<meta charset="UTF-8" />
 	<meta name="fragment" content="!" />
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
-	<meta name="robots" content="" />
+	<meta name="robots" content="noindex, nofollow" />
 	<link rel="icon" type="image/png" href="favicon.png" />
 	<!-- ngIf: root.page.canonicalLink -->
 
@@ -84,7 +84,7 @@
 .ymaps-2-1-29-node-size-parent-style{visibility:hidden!important;position:absolute;overflow:hidden;width:0;height:0;display:block;zoom:1!important}.ymaps-2-1-29-node-size-parent-pane-style{visibility:hidden!important;position:relative;overflow:visible;display:block;zoom:1!important}.ymaps-2-1-29-node-size-node-style{position:absolute!important;overflow:hidden!important;overflow-x:hidden!important;overflow-y:hidden!important;zoom:1!important;display:block!important}.ymaps-2-1-29-node-size-w3c-box-model-test{width:100px!important;border-left-width:10px!important;overflow:hidden!important;overflow-x:hidden!important;overflow-y:hidden!important}.ymaps-2-1-29-node-size-paddings-test{width:0!important;height:0!important;border-width:0!important;border-top-width:0!important;border-right-width:0!important;border-bottom-width:0!important;border-left-width:0!important;overflow:hidden!important;overflow-x:hidden!important;overflow-y:hidden!important;display:block!important}.ymaps-2-1-29-node-size-no-scrolls-test{position:absolute!important;display:block!important;left:0!important;top:0!important;width:100px!important;height:100px!important;overflow:hidden!important;overflow-x:hidden!important;overflow-y:hidden!important;visibility:visible!important}.ymaps-2-1-29-node-size-scrolls-test{overflow:scroll!important;overflow-x:scroll!important;overflow-y:scroll!important}
 /**/
 </style></head>
-<body class="long">
+<body class="grey">
 
 	<header>
 		<div class="container">
@@ -92,6 +92,7 @@
 				<!-- ngIf: root.mainAgency.logo.path -->
 				<ul class="list-unstyled list-inline">
 					<li><a ui-sref="search" ng-click="root.clearStorage()" rel="nofollow" href="/search">	Поиск</a>			</li>
+					<li><a ui-sref="info({name: 'about'})" href="/info/about">									О проекте</a>		</li>
 					<li><a ui-sref="info({name: 'help'})" href="/info/help">									Помощь по сайту</a>	</li>
 					<li><a ui-sref="info({name: 'contacts'})" href="/info/contacts">								Контакты</a>		</li>
 					<li><a id="jira_feedback_header">										Обратная связь</a>	</li>
@@ -106,17 +107,19 @@
 				<!-- ngIf: root.auth --><div ng-if="root.auth" class="userPanel ng-scope">
 					<div class="userTitle" ng-class="{active: root.opened}" ng-click="root.userMenuOpen($event)">
 						<div class="imageWrapper">
-							<!-- ngIf: root.avatar --><img ng-src="//vpn.ua/uploads/thumbnail/user_avatar/14/42/41/90/84/1442419084.4751442419084.jpeg" alt="Андрей Сорокин" ng-if="root.avatar" class="ng-scope" src="//vpn.ua/uploads/thumbnail/user_avatar/14/42/41/90/84/1442419084.4751442419084.jpeg" /><!-- end ngIf: root.avatar -->
+							<!-- ngIf: root.avatar --><img ng-src="//uhome.co/uploads/thumbnail/user_avatar/14/42/82/52/39/1442825239.14551442825239.jpeg" alt="Андрей Сорокин" ng-if="root.avatar" class="ng-scope" src="//uhome.co/uploads/thumbnail/user_avatar/14/42/82/52/39/1442825239.14551442825239.jpeg" /><!-- end ngIf: root.avatar -->
 							<!-- ngIf: !root.avatar -->
 						</div>
 					</div>
 					<ul class="userLinks list-unstyled">
-						<li>									<a ui-sref="profile.edit" href="/user/edit-profile">Мой профиль</a>			</li>
-						<!-- ngIf: root.userAccessLevel > 1 --><li ng-if="root.userAccessLevel &gt; 1" class="ng-scope">	<a ui-sref="profile.adverts" href="/user/adverts">Мои объявления</a>			</li><!-- end ngIf: root.userAccessLevel > 1 -->
-						<li>									<a ui-sref="profile.groups" href="/user/lists-of-adverts">Мои группы объявлений</a>	</li>
-						<!-- ngIf: root.userAccessLevel == 3 --><li ng-if="root.userAccessLevel == 3" class="ng-scope">	<a ui-sref="profile.agents" href="/user/agents">Мои агенты недвижимости</a></li><!-- end ngIf: root.userAccessLevel == 3 -->
-						<!-- ngIf: root.userAccessLevel == 3 --><li ng-if="root.userAccessLevel == 3" class="ng-scope">	<a ui-sref="profile.services" href="/user/edit-services">Услуги агентства</a>		</li><!-- end ngIf: root.userAccessLevel == 3 -->
-						<li>									<a ng-click="root.logout()">Выход</a>					</li>
+						<!-- ngIf: root.userAccessLevel < 3 -->
+						<!-- ngIf: root.userAccessLevel == 3 --><li ng-if="root.userAccessLevel == 3" class="ng-scope">	<a ui-sref="profile.edit" href="/user/edit-profile">Профиль агентства</a>				</li><!-- end ngIf: root.userAccessLevel == 3 -->
+						<!-- ngIf: root.userAccessLevel == 2 -->
+						<!-- ngIf: root.userAccessLevel == 3 --><li ng-if="root.userAccessLevel == 3" class="ng-scope">	<a ui-sref="profile.adverts" href="/user/adverts">Объявления агентства</a>			</li><!-- end ngIf: root.userAccessLevel == 3 -->
+						<!-- ngIf: root.userAccessLevel > 1 --><li ng-if="root.userAccessLevel &gt; 1" class="ng-scope">	<a ui-sref="profile.groups" href="/user/lists-of-adverts">Мои группы объявлений</a>			</li><!-- end ngIf: root.userAccessLevel > 1 -->
+						<!-- ngIf: root.userAccessLevel == 3 --><li ng-if="root.userAccessLevel == 3" class="ng-scope">	<a ui-sref="profile.agents" href="/user/agents">Сотрудники агентства</a>			</li><!-- end ngIf: root.userAccessLevel == 3 -->
+						<!-- ngIf: root.userAccessLevel == 3 --><li ng-if="root.userAccessLevel == 3" class="ng-scope">	<a ui-sref="profile.services" href="/user/edit-services">Услуги агентства</a>				</li><!-- end ngIf: root.userAccessLevel == 3 -->
+						<li>									<a ng-click="root.logout()">Выход</a>							</li>
 					</ul>
 				</div><!-- end ngIf: root.auth -->
 			</nav>
@@ -124,250 +127,197 @@
 	</header>
 
 
-	<!-- uiView:  --><div class="main_container ng-scope" ui-view=""><div class="SEOBlock ng-scope">
-	<article class="container">
-		<h1 ng-bind-html="ctrl.SEO.homepageH1" class="ng-binding"></h1>
-		<div ng-bind-html="ctrl.SEO.homepageContent" class="ng-binding"></div>
-	</article>
+	<!-- uiView:  --><div class="main_container ng-scope" ui-view=""><div class="pageHeader ng-scope">
+	<h1 class="container ng-binding">Мои объявления</h1>
 </div>
-
-
-<div class="pageHeader home ng-scope">
-	<h1 class="container">
-		<form novalidate="" ng-submit="ctrl.fastSearch()" class="ng-pristine ng-valid">
-			<dl class="homeFastFilter">
-				<dt>Раздел</dt>
-				<dd>
-					<div class="ui-select-container ui-select-bootstrap dropdown ng-valid" ng-class="{open: $select.open}" ng-model="ctrl.filters.operation" ng-change="ctrl.categoryChange()"><div class="ui-select-match" ng-hide="$select.open" ng-disabled="$select.disabled" ng-class="{'btn-default-focus':$select.focus}"><span tabindex="-1" class="btn btn-default form-control ui-select-toggle" aria-label="Select box activate" ng-disabled="$select.disabled" ng-click="$select.activate()" style="outline: 0;"><span ng-show="$select.isEmpty()" class="ui-select-placeholder text-muted ng-binding ng-hide"></span> <span ng-hide="$select.isEmpty()" class="ui-select-match-text pull-left" ng-class="{'ui-select-allow-clear': $select.allowClear &amp;&amp; !$select.isEmpty()}" ng-transclude=""><span class="ng-binding ng-scope">Аренда</span></span> <i class="caret pull-right" ng-click="$select.toggle($event)"></i> <a ng-show="$select.allowClear &amp;&amp; !$select.isEmpty()" aria-label="Select box clear" style="margin-right: 10px" ng-click="$select.clear($event)" class="btn btn-xs btn-link pull-right ng-hide"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i></a></span></div><input type="text" autocomplete="off" tabindex="-1" aria-expanded="true" aria-label="Select box" aria-owns="ui-select-choices-17" aria-activedescendant="ui-select-choices-row-17-0" class="form-control ui-select-search ng-pristine ng-untouched ng-valid ng-hide" placeholder="" ng-model="$select.search" ng-show="$select.searchEnabled &amp;&amp; $select.open" /><ul class="ui-select-choices ui-select-choices-content dropdown-menu ng-scope" role="listbox" ng-show="$select.items.length &gt; 0" repeat="item in ctrl.operationList | filter: $select.search"><li class="ui-select-choices-group" id="ui-select-choices-17"><div class="divider ng-hide" ng-show="$select.isGrouped &amp;&amp; $index &gt; 0"></div><div ng-show="$select.isGrouped" class="ui-select-choices-group-label dropdown-header ng-binding ng-hide" ng-bind="$group.name"></div><!-- ngRepeat: item in $select.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $select.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $select.items --></li></ul><ui-select-single></ui-select-single><input ng-disabled="$select.disabled" class="ui-select-focusser ui-select-offscreen ng-scope" type="text" id="focusser-17" aria-label="Select box focus" aria-haspopup="true" role="button" /></div>
-				</dd>
-			</dl>
-			<dl class="homeFastFilter">
-				<dt>Вид недвижимости</dt>
-				<dd>
-					<div class="ui-select-container ui-select-bootstrap dropdown ng-valid" ng-class="{open: $select.open}" ng-model="ctrl.filters.categoryType"><div class="ui-select-match" ng-hide="$select.open" ng-disabled="$select.disabled" ng-class="{'btn-default-focus':$select.focus}" placeholder="Любой"><span tabindex="-1" class="btn btn-default form-control ui-select-toggle" aria-label="Select box activate" ng-disabled="$select.disabled" ng-click="$select.activate()" style="outline: 0;"><span ng-show="$select.isEmpty()" class="ui-select-placeholder text-muted ng-binding">Любой</span> <span ng-hide="$select.isEmpty()" class="ui-select-match-text pull-left ng-hide" ng-class="{'ui-select-allow-clear': $select.allowClear &amp;&amp; !$select.isEmpty()}" ng-transclude=""><span class="ng-binding ng-scope"></span></span> <i class="caret pull-right" ng-click="$select.toggle($event)"></i> <a ng-show="$select.allowClear &amp;&amp; !$select.isEmpty()" aria-label="Select box clear" style="margin-right: 10px" ng-click="$select.clear($event)" class="btn btn-xs btn-link pull-right ng-hide"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i></a></span></div><input type="text" autocomplete="off" tabindex="-1" aria-expanded="true" aria-label="Select box" aria-owns="ui-select-choices-18" aria-activedescendant="ui-select-choices-row-18-0" class="form-control ui-select-search ng-pristine ng-untouched ng-valid ng-hide" placeholder="Любой" ng-model="$select.search" ng-show="$select.searchEnabled &amp;&amp; $select.open" /><ul class="ui-select-choices ui-select-choices-content dropdown-menu ng-scope" role="listbox" ng-show="$select.items.length &gt; 0" group-by="'categoryName'" repeat="item in ctrl.categoryTypeList | filter: $select.search"><!-- ngRepeat: $group in $select.groups --><li class="ui-select-choices-group ng-scope" id="ui-select-choices-18" ng-repeat="$group in $select.groups"><div class="divider ng-hide" ng-show="$select.isGrouped &amp;&amp; $index &gt; 0"></div><div ng-show="$select.isGrouped" class="ui-select-choices-group-label dropdown-header ng-binding" ng-bind="$group.name">Квартиры и комнаты</div><!-- ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --></li><!-- end ngRepeat: $group in $select.groups --><li class="ui-select-choices-group ng-scope" id="ui-select-choices-18" ng-repeat="$group in $select.groups"><div class="divider" ng-show="$select.isGrouped &amp;&amp; $index &gt; 0"></div><div ng-show="$select.isGrouped" class="ui-select-choices-group-label dropdown-header ng-binding" ng-bind="$group.name">Дома и дачи</div><!-- ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --></li><!-- end ngRepeat: $group in $select.groups --><li class="ui-select-choices-group ng-scope" id="ui-select-choices-18" ng-repeat="$group in $select.groups"><div class="divider" ng-show="$select.isGrouped &amp;&amp; $index &gt; 0"></div><div ng-show="$select.isGrouped" class="ui-select-choices-group-label dropdown-header ng-binding" ng-bind="$group.name">Земельные участки</div><!-- ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --></li><!-- end ngRepeat: $group in $select.groups --><li class="ui-select-choices-group ng-scope" id="ui-select-choices-18" ng-repeat="$group in $select.groups"><div class="divider" ng-show="$select.isGrouped &amp;&amp; $index &gt; 0"></div><div ng-show="$select.isGrouped" class="ui-select-choices-group-label dropdown-header ng-binding" ng-bind="$group.name">Коммерческая недвижимость</div><!-- ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $group.items --></li><!-- end ngRepeat: $group in $select.groups --></ul><ui-select-single></ui-select-single><input ng-disabled="$select.disabled" class="ui-select-focusser ui-select-offscreen ng-scope" type="text" id="focusser-18" aria-label="Select box focus" aria-haspopup="true" role="button" /></div>
-				</dd>
-			</dl>
-			<dl class="homeFastFilter">
-				<dt>Область или город</dt>
-				<dd>
-					<div class="vpn-region-select ng-valid" ng-model="ctrl.filters.address" rs-title="Выберите область" rs-placeholder="Выберите область или город" rs-region-change-link="Изменить область" rs-region-select-link="Искать по всей области">
-	<div class="vpn-rs-select">
-		<div class="vpn-rs-placeholder ng-binding" ng-hide="select.region.id  &amp;&amp;  !opened">Выберите область или город</div>
-		<div class="vpn-rs-value ng-hide" ng-show="select.region.id  &amp;&amp;  !opened">
-			<span class="ng-binding"></span>
-			<span ng-show="select.city.id" class="ng-binding ng-hide">, </span>
-		</div>
-	</div>
-	<div class="vpn-rs-container ng-hide" ng-show="opened">
-		<div class="vpn-rs-title ng-binding" ng-hide="select.region.id">Выберите область</div>
-		<div class="vpn-rs-city-options ng-hide" ng-show="select.region.id">
-			<div class="vpn-rs-back"><a class="ng-binding">Изменить область</a></div>
-			<div class="vpn-rs-done"><a class="ng-binding">Искать по всей области</a></div>
-		</div>
-		<ul class="vpn-rs-select-list list-unstyled">
-			<!-- ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b4593" class="ng-binding">Черкасская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b4594" class="ng-binding">Винницкая область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b4595" class="ng-binding">Волынская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b4596" class="ng-binding">Днепропетровская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b4597" class="ng-binding">Донецкая область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b4598" class="ng-binding">Житомирская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b4599" class="ng-binding">Закарпатская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b459a" class="ng-binding">Запорожская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b459b" class="ng-binding">Ивано-Франковская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b459c" class="ng-binding">Киевская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b459d" class="ng-binding">Кировоградская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b459e" class="ng-binding">Луганская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b459f" class="ng-binding">Львовская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b45a0" class="ng-binding">Николаевская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b45a1" class="ng-binding">Одесская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b45a2" class="ng-binding">Полтавская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b45a3" class="ng-binding">Ровенская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b45a4" class="ng-binding">Сумская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b45a5" class="ng-binding">Тернопольская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b45a6" class="ng-binding">Харьковская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b45a7" class="ng-binding">Херсонская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b45a8" class="ng-binding">Хмельницкая область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b45a9" class="ng-binding">Черниговская область</span>
-			</li><!-- end ngRepeat: item in source --><li ng-repeat="item in source" ng-class="{active: select.city.id == item.id}" class="ng-scope">
-				<span data-id="55f99189d69b5a8f268b45aa" class="ng-binding">Черновицкая область</span>
-			</li><!-- end ngRepeat: item in source -->
+<div class="breadCrumbs ng-scope">
+	<div class="container">
+		<ul class="list-unstyled list-inline">
+			<li><a ui-sref="home" href="/">			Главная</a></li>
+			<li><a ui-sref="profile.edit" href="/user/edit-profile">	Личный кабинет</a></li>
+			<li class="ng-binding">Мои объявления</li>
 		</ul>
+		<div class="breadCrumbsControl">
+			<!-- ngIf: profile.addGroupBttn -->
+			<!-- ngIf: profile.addAgentBttn -->
+		</div>
 	</div>
 </div>
-				</dd>
-			</dl>
-			<dl class="homeFastFilter">
-				<dt>Цена</dt>
-				<dd>
-					<input type="text" class="minPrice ng-pristine ng-untouched ng-valid" placeholder="От" ng-model="ctrl.filters.minPrice" ui-event="{ keydown: 'ctrl.keydownCallback($event)', change: 'ctrl.changeCallback(\'minPrice\')' }" />
-					<input type="text" class="maxPrice ng-pristine ng-untouched ng-valid" placeholder="До" ng-model="ctrl.filters.maxPrice" ui-event="{ keydown: 'ctrl.keydownCallback($event)', change: 'ctrl.changeCallback(\'maxPrice\')' }" />
-					<div class="currency ui-select-container ui-select-bootstrap dropdown ng-valid" ng-class="{open: $select.open}" ng-model="ctrl.filters.currency"><div class="ui-select-match" ng-hide="$select.open" ng-disabled="$select.disabled" ng-class="{'btn-default-focus':$select.focus}"><span tabindex="-1" class="btn btn-default form-control ui-select-toggle" aria-label="Select box activate" ng-disabled="$select.disabled" ng-click="$select.activate()" style="outline: 0;"><span ng-show="$select.isEmpty()" class="ui-select-placeholder text-muted ng-binding ng-hide"></span> <span ng-hide="$select.isEmpty()" class="ui-select-match-text pull-left" ng-class="{'ui-select-allow-clear': $select.allowClear &amp;&amp; !$select.isEmpty()}" ng-transclude=""><span class="ng-binding ng-scope">$</span></span> <i class="caret pull-right" ng-click="$select.toggle($event)"></i> <a ng-show="$select.allowClear &amp;&amp; !$select.isEmpty()" aria-label="Select box clear" style="margin-right: 10px" ng-click="$select.clear($event)" class="btn btn-xs btn-link pull-right ng-hide"><i class="glyphicon glyphicon-remove" aria-hidden="true"></i></a></span></div><input type="text" autocomplete="off" tabindex="-1" aria-expanded="true" aria-label="Select box" aria-owns="ui-select-choices-19" aria-activedescendant="ui-select-choices-row-19-0" class="form-control ui-select-search ng-pristine ng-untouched ng-valid ng-hide" placeholder="" ng-model="$select.search" ng-show="$select.searchEnabled &amp;&amp; $select.open" /><ul class="ui-select-choices ui-select-choices-content dropdown-menu ng-scope" role="listbox" ng-show="$select.items.length &gt; 0" repeat="item in ctrl.currencyList | filter: $select.search"><li class="ui-select-choices-group" id="ui-select-choices-19"><div class="divider ng-hide" ng-show="$select.isGrouped &amp;&amp; $index &gt; 0"></div><div ng-show="$select.isGrouped" class="ui-select-choices-group-label dropdown-header ng-binding ng-hide" ng-bind="$group.name"></div><!-- ngRepeat: item in $select.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $select.items --><!-- ngIf: $select.open --><!-- end ngRepeat: item in $select.items --></li></ul><ui-select-single></ui-select-single><input ng-disabled="$select.disabled" class="ui-select-focusser ui-select-offscreen ng-scope" type="text" id="focusser-19" aria-label="Select box focus" aria-haspopup="true" role="button" /></div>
-				</dd>
-			</dl>
-			<dl class="homeFastFilter">
-				<dt> </dt>
-				<dd>
-					<button type="submit" class="yellow">Поиск</button>
-				</dd>
-			</dl>
-		</form>
-	</h1>
-</div>
 
 
-<div class="container home ng-scope">
+<div class="container profile ng-scope">
 	<div class="sidebar">
-		<ul class="sideLinkBlock list-unstyled">
-			<div>Недвижимость в <a ui-sref="landingCity({city: 'cherkassy'})" href="/cherkassy">Черкассах</a></div>
-			<li><a ui-sref="landingCategory({city: 'cherkassy', category: ctrl.const.realtyTypes.flat})" href="/cherkassy/flats">Квартиры и комнаты</a></li>
-			<li><a ui-sref="landingCategory({city: 'cherkassy', category: ctrl.const.realtyTypes.house})" href="/cherkassy/houses">Дома и дачи</a></li>
-			<li><a ui-sref="landingCategory({city: 'cherkassy', category: ctrl.const.realtyTypes.parcel})" href="/cherkassy/parcels">Земельные участки</a></li>
-			<li><a ui-sref="landingCategory({city: 'cherkassy', category: ctrl.const.realtyTypes.commertion})" href="/cherkassy/commercial-property">Коммерческая недвижимость</a></li>
+		<ul class="sidebarMenu">
+			<!-- ngIf: root.userAccessLevel != 3 -->
+			<!-- ngIf: root.userAccessLevel == 3 --><li ng-if="root.userAccessLevel == 3" class="ng-scope">
+				<a ui-sref-active="active" ui-sref="profile.edit" href="/user/edit-profile">Профиль агентства</a>
+			</li><!-- end ngIf: root.userAccessLevel == 3 -->
+			<li>
+				<a ui-sref-active="active" ui-sref="profile.changePass" href="/user/change-password">Изменение пароля</a>
+			</li>
+			<!-- ngIf: root.userAccessLevel == 2  ||  root.userAccessLevel == 9 -->
+			<!-- ngIf: root.userAccessLevel == 3 --><li ng-if="root.userAccessLevel == 3" class="ng-scope">
+				<a ui-sref-active="active" ui-sref="profile.adverts" class="active" href="/user/adverts">Объявления агентства</a>
+			</li><!-- end ngIf: root.userAccessLevel == 3 -->
+			<!-- ngIf: root.userAccessLevel != 1 --><li ng-if="root.userAccessLevel != 1" class="ng-scope">
+				<a ui-sref-active="active" ui-sref="profile.groups" href="/user/lists-of-adverts">Мои группы объявлений</a>
+			</li><!-- end ngIf: root.userAccessLevel != 1 -->
+			<!-- ngIf: root.userAccessLevel == 3 --><li ng-if="root.userAccessLevel == 3" class="ng-scope">
+				<a ui-sref-active="active" ui-sref="profile.agents" href="/user/agents">Сотрудники агентства</a>
+			</li><!-- end ngIf: root.userAccessLevel == 3 -->
+			<!-- ngIf: root.userAccessLevel == 3 --><li ng-if="root.userAccessLevel == 3" class="ng-scope">
+				<a ui-sref-active="active" ui-sref="profile.services" href="/user/edit-services">Услуги агентства</a>
+			</li><!-- end ngIf: root.userAccessLevel == 3 -->
 		</ul>
+	</div>
 
-		<ul class="sideLinkBlock list-unstyled">
-			<div>Клиентам</div>
-			<li><a ui-sref="info({name: 'about'})" rel="nofollow" href="/info/about">Изучайте только интересные вам предложения</a></li>
-			<li><a ui-sref="info({name: 'about'})" rel="nofollow" href="/info/about">Узнайте адрес объекта недвижимости, как только откроете его профиль</a></li>
-			<li><a ui-sref="info({name: 'about'})" rel="nofollow" href="/info/about">Заключайте только безопасные сделки</a></li>
-			<li><a ui-sref="info({name: 'about'})" rel="nofollow" href="/info/about">Пользуйтесь возможностями ресурса бесплатно</a></li>
-		</ul>
 
-		<ul class="sideLinkBlock list-unstyled">
-			<div>Агентствам недвижимости и риэлторам</div>
-			<li><a ui-sref="info({name: 'about'})" rel="nofollow" href="/info/about">Получайте новых клиентов и повышайте продажи</a></li>
-			<li><a ui-sref="info({name: 'about'})" rel="nofollow" href="/info/about">Создайте сайт вашего агентства без дополнительных затрат</a></li>
-			<li><a ui-sref="info({name: 'about'})" rel="nofollow" href="/info/about">Сделайте предложение клиенту одной ссылкой</a></li>
-			<li><a ui-sref="info({name: 'about'})" rel="nofollow" href="/info/about">Публикуйте неограниченное количество объявлений</a></li>
-			<li><a ui-sref="info({name: 'about'})" rel="nofollow" href="/info/about">Управляйте своими объявлениями и агентами удаленно</a></li>
-			<li><a ui-sref="info({name: 'about'})" rel="nofollow" href="/info/about">Пользуйтесь ресурсом бесплатно</a></li>
-		</ul>
+	<!-- uiView:  --><div class="afterSidebar ng-scope" ui-view=""><div ng-controller="userAdvertsController as ctrl" class="no-bg myAdverts ng-scope">
+	<form class="filter ng-pristine ng-valid" novalidate="" ng-submit="ctrl.useFilter()">
+		<dl>
+			<dt></dt>
+			<dd>
+				<input type="text" name="filterText" ng-model="ctrl.text" class="ng-pristine ng-untouched ng-valid" />
+			</dd>
+		</dl>
+		<dl>
+			<dt></dt>
+			<dd>
+				<button type="submit" class="blue">Искать</button>
+			</dd>
+		</dl>
+	</form>
 
-		<ul class="sideLinkBlock list-unstyled">
-			<div>Частным продавцам и арендодателям</div>
-			<li><a ui-sref="info({name: 'about'})" rel="nofollow" href="/info/about">Продавайте и сдавайте в аренду любую недвижимость</a></li>
-			<li><a ui-sref="info({name: 'about'})" rel="nofollow" href="/info/about">Заключайте безопасные сделки</a></li>
-			<li><a ui-sref="info({name: 'about'})" rel="nofollow" href="/info/about">Размещайте объявления и продавайте недвижимость бесплатно</a></li>
-			<li><a ui-sref="info({name: 'about'})" rel="nofollow" href="/info/about">Добавляйте сколько угодно объявлений</a></li>
-		</ul>
-
-		<div class="currencyRate">
-			<div class="title ng-binding">Курс валют на </div>
-			<div class="contant">
-				<ul>
-					<li class="info">Валюта</li>
-					<li class="info">Покупка</li>
-					<li class="info">Продажа</li>
-				</ul>
-				<!-- ngRepeat: item in ctrl.rateList -->
-				<ul>
-					<li class="info last">
-						Курс валют предоставил <a href="https://privatbank.ua" target="_blank" rel="nofollow">PrivatBank.ua</a>
-					</li>
-				</ul>
+	<!-- ngIf: ctrl.adverts.length --><ul class="annList users ng-scope" ng-if="ctrl.adverts.length">
+		<!-- ngRepeat: advert in ctrl.adverts --><li class="advert ng-scope" ng-repeat="advert in ctrl.adverts">
+			<div class="annHeader">
+				<div class="annTitle">
+					<a ui-sref="advert({city: advert.realty.address.city.latinName, category: advert.realty.category.type , advertId: advert.id})" class="ng-binding" href="/cherkassy/flats/55fff136d69b5af52c8b456a">Продается 3-комнатная Квартира в Черкассах (Черкасская область)</a>
+				</div>
+				<div class="annStatus">
+					<span class="status preModeration">На премодерации</span>
+				</div>
 			</div>
-		</div>
-	</div>
-	<div class="afterSidebar">
-		<!-- ngIf: ctrl.operationLast.type == ctrl.const.operationTypes.rent -->
-		<!-- ngIf: ctrl.operationLast.type == ctrl.const.operationTypes.sale --><p ng-if="ctrl.operationLast.type == ctrl.const.operationTypes.sale" class="ng-scope">Новые объявления о продаже и <a class="dottedLink" rel="nofollow" ng-click="ctrl.changeOperationLast(ctrl.const.operationTypes.rent)">аренде</a> недвижимости</p><!-- end ngIf: ctrl.operationLast.type == ctrl.const.operationTypes.sale -->
+			<div class="annBody">
+				<div class="annContent">
+					<ul>
+						<li>
+							<span class="paramName">Категория и вид: </span>
+							<span class="paramValue ng-binding">Квартиры и комнаты. Квартира</span>
+						</li>
+						<li>
+							<span class="paramName">Адрес: </span>
+							<span class="paramValue ng-binding">
+								Черкасская область,
+								г. Черкассы<!-- ngIf: advert.realty.address.street --><span ng-if="advert.realty.address.street" class="ng-binding ng-scope">,
+								Крещатик улица</span><!-- end ngIf: advert.realty.address.street --><!-- ngIf: advert.realty.address.houseNumber --><span ng-if="advert.realty.address.houseNumber" class="ng-binding ng-scope">,
+								д. 200</span><!-- end ngIf: advert.realty.address.houseNumber --><!-- ngIf: advert.realty.address.flatNumber --><span ng-if="advert.realty.address.flatNumber" class="ng-binding ng-scope">,
+								кв. 78</span><!-- end ngIf: advert.realty.address.flatNumber -->
+							</span>
+						</li>
+						<li>
+							<span class="paramName">Тип: </span>
+							<span class="paramValue ng-binding">Продажа</span>
+						</li>
+						<!-- ngIf: profile.isAgency --><li ng-if="profile.isAgency" class="ng-scope">
+							<span class="paramName">Автор: </span>
+							<span class="paramValue ng-binding">Андрей Сорокин</span>
+						</li><!-- end ngIf: profile.isAgency -->
+					</ul>
+				</div>
+			</div>
+			<div class="annFooter">
+				<a ui-sref="editAdvert({advertID: advert.id})" class="annAction" href="/user/adverts/55fff136d69b5af52c8b456a/edit">Редактировать</a>
+				<!-- ngIf: advert.status == 1 -->
+			</div>
+		</li><!-- end ngRepeat: advert in ctrl.adverts --><li class="advert ng-scope" ng-repeat="advert in ctrl.adverts">
+			<div class="annHeader">
+				<div class="annTitle">
+					<a ui-sref="advert({city: advert.realty.address.city.latinName, category: advert.realty.category.type , advertId: advert.id})" class="ng-binding" href="/cherkassy/flats/55fff0cdd69b5afe198b456a">Продается 3-комнатная Квартира в Черкассах (Черкасская область)</a>
+				</div>
+				<div class="annStatus">
+					<span class="status preModeration">На премодерации</span>
+				</div>
+			</div>
+			<div class="annBody">
+				<div class="annContent">
+					<ul>
+						<li>
+							<span class="paramName">Категория и вид: </span>
+							<span class="paramValue ng-binding">Квартиры и комнаты. Квартира</span>
+						</li>
+						<li>
+							<span class="paramName">Адрес: </span>
+							<span class="paramValue ng-binding">
+								Черкасская область,
+								г. Черкассы<!-- ngIf: advert.realty.address.street --><span ng-if="advert.realty.address.street" class="ng-binding ng-scope">,
+								Крещатик улица</span><!-- end ngIf: advert.realty.address.street --><!-- ngIf: advert.realty.address.houseNumber --><span ng-if="advert.realty.address.houseNumber" class="ng-binding ng-scope">,
+								д. 200</span><!-- end ngIf: advert.realty.address.houseNumber --><!-- ngIf: advert.realty.address.flatNumber --><span ng-if="advert.realty.address.flatNumber" class="ng-binding ng-scope">,
+								кв. 77</span><!-- end ngIf: advert.realty.address.flatNumber -->
+							</span>
+						</li>
+						<li>
+							<span class="paramName">Тип: </span>
+							<span class="paramValue ng-binding">Продажа</span>
+						</li>
+						<!-- ngIf: profile.isAgency --><li ng-if="profile.isAgency" class="ng-scope">
+							<span class="paramName">Автор: </span>
+							<span class="paramValue ng-binding">Андрей Сорокин</span>
+						</li><!-- end ngIf: profile.isAgency -->
+					</ul>
+				</div>
+			</div>
+			<div class="annFooter">
+				<a ui-sref="editAdvert({advertID: advert.id})" class="annAction" href="/user/adverts/55fff0cdd69b5afe198b456a/edit">Редактировать</a>
+				<!-- ngIf: advert.status == 1 -->
+			</div>
+		</li><!-- end ngRepeat: advert in ctrl.adverts --><li class="advert ng-scope" ng-repeat="advert in ctrl.adverts">
+			<div class="annHeader">
+				<div class="annTitle">
+					<a ui-sref="advert({city: advert.realty.address.city.latinName, category: advert.realty.category.type , advertId: advert.id})" class="ng-binding" href="/cherkassy/flats/55ffd7c5d69b5a273d8b4567">Продается 3-комнатная Квартира в Черкассах (Черкасская область)</a>
+				</div>
+				<div class="annStatus">
+					<span class="status published">Опубликовано</span>
+				</div>
+			</div>
+			<div class="annBody">
+				<div class="annContent">
+					<ul>
+						<li>
+							<span class="paramName">Категория и вид: </span>
+							<span class="paramValue ng-binding">Квартиры и комнаты. Квартира</span>
+						</li>
+						<li>
+							<span class="paramName">Адрес: </span>
+							<span class="paramValue ng-binding">
+								Черкасская область,
+								г. Черкассы<!-- ngIf: advert.realty.address.street --><span ng-if="advert.realty.address.street" class="ng-binding ng-scope">,
+								Крещатик улица</span><!-- end ngIf: advert.realty.address.street --><!-- ngIf: advert.realty.address.houseNumber --><span ng-if="advert.realty.address.houseNumber" class="ng-binding ng-scope">,
+								д. 31</span><!-- end ngIf: advert.realty.address.houseNumber --><!-- ngIf: advert.realty.address.flatNumber --><span ng-if="advert.realty.address.flatNumber" class="ng-binding ng-scope">,
+								кв. 23</span><!-- end ngIf: advert.realty.address.flatNumber -->
+							</span>
+						</li>
+						<li>
+							<span class="paramName">Тип: </span>
+							<span class="paramValue ng-binding">Продажа</span>
+						</li>
+						<!-- ngIf: profile.isAgency --><li ng-if="profile.isAgency" class="ng-scope">
+							<span class="paramName">Автор: </span>
+							<span class="paramValue ng-binding">Андрей Сорокин</span>
+						</li><!-- end ngIf: profile.isAgency -->
+					</ul>
+				</div>
+			</div>
+			<div class="annFooter">
+				<a ui-sref="editAdvert({advertID: advert.id})" class="annAction" href="/user/adverts/55ffd7c5d69b5a273d8b4567/edit">Редактировать</a>
+				<!-- ngIf: advert.status == 1 --><a ui-sref="unpublishAdvert({advertID: advert.id})" class="red ng-scope" ng-if="advert.status == 1" href="/user/adverts/55ffd7c5d69b5a273d8b4567/request-to-unpublish">Снять с публикации</a><!-- end ngIf: advert.status == 1 -->
+			</div>
+		</li><!-- end ngRepeat: advert in ctrl.adverts -->
+	</ul><!-- end ngIf: ctrl.adverts.length -->
+	<!-- ngIf: !ctrl.adverts.length -->
 
-		<ul class="list-inline list-unstyled advertPreviewList">
-			<!-- ngRepeat: item in ctrl.lastList track by $index --><li ng-repeat="item in ctrl.lastList track by $index" class="ng-scope">
-				<a class="advertPreview" ui-sref="advert({city: item.realty.address.city.latinName, category: item.realty.category.type , advertId: item.id})" href="/cherkassy/houses/55faa55ad69b5a022a8b456d">
-					<div class="categoryType ng-binding">Дом</div>
-					<div class="imageWrap">
-						<!-- ngIf: item.images[0] --><img ng-if="item.images[0]" ng-src="//vpn.ua/uploads/thumbnail/adv_thumb_medium/14/42/48/96/87/1442489687.6051442489687.jpeg" data-image="//vpn.ua/uploads/thumbnail/adv_thumb_medium/14/42/48/96/87/1442489687.6051442489687.jpeg" alt="Продается Дом в Черкассах (Черкасская область)" class="ng-scope" src="//vpn.ua/uploads/thumbnail/adv_thumb_medium/14/42/48/96/87/1442489687.6051442489687.jpeg" /><!-- end ngIf: item.images[0] -->
-						<!-- ngIf: !item.images[0] -->
-						<!-- ngIf: item.currency.name == '$' --><div class="price ng-binding ng-scope" ng-if="item.currency.name == '$'">
-							123 $
-							<!-- ngIf: item.period -->
-							(2853.6 грн.
-							<!-- ngIf: item.period -->)
-						</div><!-- end ngIf: item.currency.name == '$' -->
-						<!-- ngIf: item.currency.name == 'грн.' -->
-					</div>
-					<div class="area">
-						<!-- ngIf: item.realty.category.type != ctrl.const.realtyTypes.parcel --><span ng-if="item.realty.category.type != ctrl.const.realtyTypes.parcel" class="ng-binding ng-scope">3 комнаты</span><!-- end ngIf: item.realty.category.type != ctrl.const.realtyTypes.parcel -->
-						<span class="ng-binding">123 кв. метра</span>
-					</div>
-					<div class="address ng-binding">
-						Черкассы<!-- ngIf: item.realty.address.street --><span ng-if="item.realty.address.street" class="ng-binding ng-scope">,
-						ул. 700-летия Черкасс площадь</span><!-- end ngIf: item.realty.address.street --><!-- ngIf: item.realty.address.houseNumber -->
-					</div>
-				</a>
-			</li><!-- end ngRepeat: item in ctrl.lastList track by $index --><li ng-repeat="item in ctrl.lastList track by $index" class="ng-scope">
-				<a class="advertPreview" ui-sref="advert({city: item.realty.address.city.latinName, category: item.realty.category.type , advertId: item.id})" href="/cherkassy/flats/55faa406d69b5a7c748b4572">
-					<div class="categoryType ng-binding">Квартира</div>
-					<div class="imageWrap">
-						<!-- ngIf: item.images[0] --><img ng-if="item.images[0]" ng-src="//vpn.ua/uploads/thumbnail/adv_thumb_medium/14/42/48/93/46/1442489346.88051442489346.jpeg" data-image="//vpn.ua/uploads/thumbnail/adv_thumb_medium/14/42/48/93/46/1442489346.88051442489346.jpeg" alt="Продается 3-комнатная Квартира в Черкассах (Черкасская область)" class="ng-scope" src="//vpn.ua/uploads/thumbnail/adv_thumb_medium/14/42/48/93/46/1442489346.88051442489346.jpeg" /><!-- end ngIf: item.images[0] -->
-						<!-- ngIf: !item.images[0] -->
-						<!-- ngIf: item.currency.name == '$' --><div class="price ng-binding ng-scope" ng-if="item.currency.name == '$'">
-							45121 $
-							<!-- ngIf: item.period -->
-							(1046807.2 грн.
-							<!-- ngIf: item.period -->)
-						</div><!-- end ngIf: item.currency.name == '$' -->
-						<!-- ngIf: item.currency.name == 'грн.' -->
-					</div>
-					<div class="area">
-						<!-- ngIf: item.realty.category.type != ctrl.const.realtyTypes.parcel --><span ng-if="item.realty.category.type != ctrl.const.realtyTypes.parcel" class="ng-binding ng-scope">3 комнаты</span><!-- end ngIf: item.realty.category.type != ctrl.const.realtyTypes.parcel -->
-						<span class="ng-binding">55 кв. метров</span>
-					</div>
-					<div class="address ng-binding">
-						Черкассы<!-- ngIf: item.realty.address.street --><span ng-if="item.realty.address.street" class="ng-binding ng-scope">,
-						ул. Крещатик улица</span><!-- end ngIf: item.realty.address.street --><!-- ngIf: item.realty.address.houseNumber -->
-					</div>
-				</a>
-			</li><!-- end ngRepeat: item in ctrl.lastList track by $index --><li ng-repeat="item in ctrl.lastList track by $index" class="ng-scope">
-				<a class="advertPreview" ui-sref="advert({city: item.realty.address.city.latinName, category: item.realty.category.type , advertId: item.id})" href="/cherkassy/flats/55faa2e2d69b5adf198b4569">
-					<div class="categoryType ng-binding">Квартира</div>
-					<div class="imageWrap">
-						<!-- ngIf: item.images[0] -->
-						<!-- ngIf: !item.images[0] --><img ng-if="!item.images[0]" ng-src="content/images/realty_gag.png" alt="Продается 2-комнатная Квартира в Черкассах (Черкасская область)" class="ng-scope" src="content/images/realty_gag.png" /><!-- end ngIf: !item.images[0] -->
-						<!-- ngIf: item.currency.name == '$' --><div class="price ng-binding ng-scope" ng-if="item.currency.name == '$'">
-							123123 $
-							<!-- ngIf: item.period -->
-							(2856453.6 грн.
-							<!-- ngIf: item.period -->)
-						</div><!-- end ngIf: item.currency.name == '$' -->
-						<!-- ngIf: item.currency.name == 'грн.' -->
-					</div>
-					<div class="area">
-						<!-- ngIf: item.realty.category.type != ctrl.const.realtyTypes.parcel --><span ng-if="item.realty.category.type != ctrl.const.realtyTypes.parcel" class="ng-binding ng-scope">2 комнаты</span><!-- end ngIf: item.realty.category.type != ctrl.const.realtyTypes.parcel -->
-						<span class="ng-binding">123 кв. метра</span>
-					</div>
-					<div class="address ng-binding">
-						Черкассы<!-- ngIf: item.realty.address.street --><span ng-if="item.realty.address.street" class="ng-binding ng-scope">,
-						ул. Котовского улица</span><!-- end ngIf: item.realty.address.street --><!-- ngIf: item.realty.address.houseNumber -->
-					</div>
-				</a>
-			</li><!-- end ngRepeat: item in ctrl.lastList track by $index -->
-		</ul>
-	</div>
+	<!-- ngIf: ctrl.page * ctrl.itemsPerPage < ctrl.totalItems -->
+</div></div>
 </div></div>
 
 
@@ -376,7 +326,6 @@
 			<div class="container">
 				<ul class="footerLinks list-unstyled">
 					<li><a ui-sref="search" ng-click="root.clearStorage()" rel="nofollow" href="/search">	Поиск объявлений			</a></li>
-					<li><a ui-sref="checkRealty" ng-click="root.clearStorage()" rel="nofollow" href="/new-advert/step1">	Добавить объявление			</a></li>
 					<li><a ui-sref="info({name: 'help'})" href="/info/help">											Помощь по сайту				</a></li>
 					<li><a ui-sref="info({name: 'contacts'})" href="/info/contacts">										Контакты					</a></li>
 				</ul>

@@ -108,11 +108,11 @@ class AddAdvert
     public static $period = '//dd/div/div/span';
     public static $typePeriod = '//dd/div/input[1]';
 //        public static $choosePeriod = "//a[@class='ui-select-choices-row-inner']";
-    public static $date = '//dd[3]/div/input[1]';
+    public static $date = '[ng-model="date.day"]';
     public static $month = '//dd[3]/div/div/div/span';
     public static $typeMonth = '//dd[3]/div/div/input[1]';
 //        public static $chooseDate = "//a[@class='ui-select-choices-row-inner']";
-    public static $year = '//dd[3]/div/input[2]';
+    public static $year = '[ng-model="date.year"]';
     public static $market = '//dd[4]/div/div/span';
     public static $typeMarket = '//dd[4]/div/input[1]';
 //        public static $chooseMarket = "a[@class='ui-select-choices-row-inner']";
