@@ -28,6 +28,7 @@ class Api extends \Codeception\Module
         }
     }
 
+
     function createAdvert($data = [])
     {
         $this->apiLogin();
@@ -56,6 +57,22 @@ class Api extends \Codeception\Module
 //        $this->restModule->haveHttpHeader('token', $token);
         $agencyToken = file_put_contents(codecept_data_dir('agency_token.json'), $token);
     }
+
+
+    function apiAgencyLogout()
+    {
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $agencyToken = $this->restModule->getResponseFromFile();
+        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
+        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->sendPOST('/logout');
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+
+    }
+
+    /*================================================ API LISTS =====================================================*/
 
     function getCountry()
     {
@@ -127,33 +144,182 @@ class Api extends \Codeception\Module
         $categories = $this->restModule->grabResponse();
         $this->debugSection('Cat ID', $categories);
         $file = file_put_contents(codecept_data_dir('categories.json'), $categories);
-        if ($id == 0)
-        {
-            $categories = $this->restModule->grabResponse();
-            $flatCatId = json_decode($categories)[0]->id;
-            $this->debugSection('Cat ID', $flatCatId);
-            return $flatCatId;
+        switch ($id) {
+            case 0:
+                $flatCatId = json_decode($categories)[0]->id;
+                $this->debugSection('Cat ID', $flatCatId);
+                return $flatCatId;
+                break;
+            case 1:
+                $houseCatId = json_decode($categories)[1]->id;
+                $this->debugSection('Cat ID', $houseCatId);
+                return $houseCatId;
+                break;
+            case 2:
+                $parcelCatId = json_decode($categories)[2]->id;
+                $this->debugSection('Cat ID', $parcelCatId);
+                return $parcelCatId;
+                break;
+            case 3:
+                $commercialCatId = json_decode($categories)[3]->id;
+                $this->debugSection('Cat ID', $commercialCatId);
+                return $commercialCatId;
+                break;
         }
-        if ($id == 1)
-        {
-            $categories = $this->restModule->grabResponse();
-            $houseCatId = json_decode($categories)[1]->id;
-            $this->debugSection('Cat ID', $houseCatId);
-            return $houseCatId;
+    }
+
+    function getFlatCategoryTypes($id)
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $flat = $this->getCategories(0);
+        $this->restModule->sendGET('/lists/category-types/'.$flat);
+        $cType = $this->restModule->grabResponse();
+        $this->debugSection('Flat Category Types', $cType);
+        $file = file_put_contents(codecept_data_dir('flat_types.json'), $cType);
+        switch ($id) {
+            case 0:
+                $flatCatId0 = json_decode($cType)[0]->id;
+                $this->debugSection('flatCatId0', $flatCatId0);
+                return $flatCatId0;
+                break;
+            case 1:
+                $flatCatId1 = json_decode($cType)[1]->id;
+                $this->debugSection('flatCatId1', $flatCatId1);
+                return $flatCatId1;
+                break;
         }
-        if ($id == 2)
-        {
-            $categories = $this->restModule->grabResponse();
-            $parcelCatId = json_decode($categories)[2]->id;
-            $this->debugSection('Cat ID', $parcelCatId);
-            return $parcelCatId;
+    }
+
+    function getHouseCategoryTypes($id)
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $house = $this->getCategories(1);
+        $this->restModule->sendGET('/lists/category-types/'.$house);
+        $cType = $this->restModule->grabResponse();
+        $this->debugSection('House Category Types', $cType);
+        $file = file_put_contents(codecept_data_dir('house_types.json'), $cType);
+        switch ($id) {
+            case 0:
+                $houseCatId0 = json_decode($cType)[0]->id;
+                $this->debugSection('houseCatId0', $houseCatId0);
+                return $houseCatId0;
+                break;
+            case 1:
+                $houseCatId1 = json_decode($cType)[1]->id;
+                $this->debugSection('houseCatId1', $houseCatId1);
+                return $houseCatId1;
+                break;
+            case 2:
+                $houseCatId2 = json_decode($cType)[2]->id;
+                $this->debugSection('houseCatId2', $houseCatId2);
+                return $houseCatId2;
+                break;
         }
-        if ($id == 3)
-        {
-            $categories = $this->restModule->grabResponse();
-            $commercialCatId = json_decode($categories)[3]->id;
-            $this->debugSection('Cat ID', $commercialCatId);
-            return $commercialCatId;
+    }
+
+    function getParcelCategoryTypes($id)
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $parcel = $this->getCategories(2);
+        $this->restModule->sendGET('/lists/category-types/'.$parcel);
+        $cType = $this->restModule->grabResponse();
+        $this->debugSection('Parcel Category Types', $cType);
+        $file = file_put_contents(codecept_data_dir('parcel_types.json'), $cType);
+        switch ($id) {
+            case 0:
+                $parcelCatId0 = json_decode($cType)[0]->id;
+                $this->debugSection('parcelCatId0', $parcelCatId0);
+                return $parcelCatId0;
+                break;
+            case 1:
+                $parcelCatId1 = json_decode($cType)[1]->id;
+                $this->debugSection('parcelCatId1', $parcelCatId1);
+                return $parcelCatId1;
+                break;
+            case 2:
+                $parcelCatId2 = json_decode($cType)[2]->id;
+                $this->debugSection('parcelCatId2', $parcelCatId2);
+                return $parcelCatId2;
+                break;
+            case 3:
+                $parcelCatId3 = json_decode($cType)[3]->id;
+                $this->debugSection('parcelCatId3', $parcelCatId3);
+                return $parcelCatId3;
+                break;
+            case 4:
+                $parcelCatId4 = json_decode($cType)[4]->id;
+                $this->debugSection('parcelCatId4', $parcelCatId4);
+                return $parcelCatId4;
+                break;
+        }
+    }
+
+function getCommercialCategoryTypes($id)
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $commerc = $this->getCategories(3);
+        $this->restModule->sendGET('/lists/category-types/'.$commerc);
+        $cType = $this->restModule->grabResponse();
+        $this->debugSection('Commercial Category Types', $cType);
+        $file = file_put_contents(codecept_data_dir('commercial_types.json'), $cType);
+        switch ($id) {
+            case 0:
+                $commercCatId0 = json_decode($cType)[0]->id;
+                $this->debugSection('commercCatId0', $commercCatId0);
+                return $commercCatId0;
+                break;
+            case 1:
+                $commercCatId1 = json_decode($cType)[1]->id;
+                $this->debugSection('commercCatId1', $commercCatId1);
+                return $commercCatId1;
+                break;
+            case 2:
+                $commercCatId2 = json_decode($cType)[2]->id;
+                $this->debugSection('commercCatId2', $commercCatId2);
+                return $commercCatId2;
+                break;
+            case 3:
+                $commercCatId3 = json_decode($cType)[3]->id;
+                $this->debugSection('commercCatId3', $commercCatId3);
+                return $commercCatId3;
+                break;
+            case 4:
+                $commercCatId4 = json_decode($cType)[4]->id;
+                $this->debugSection('commercCatId4', $commercCatId4);
+                return $commercCatId4;
+                break;
+            case 5:
+                $commercCatId5 = json_decode($cType)[5]->id;
+                $this->debugSection('commercCatId5', $commercCatId5);
+                return $commercCatId5;
+                break;
+            case 6:
+                $commercCatId6 = json_decode($cType)[6]->id;
+                $this->debugSection('commercCatId6', $commercCatId6);
+                return $commercCatId6;
+                break;
+            case 7:
+                $commercCatId7 = json_decode($cType)[7]->id;
+                $this->debugSection('commercCatId7', $commercCatId7);
+                return $commercCatId7;
+                break;
+            case 8:
+                $commercCatId8 = json_decode($cType)[8]->id;
+                $this->debugSection('commercCatId8', $commercCatId8);
+                return $commercCatId8;
+                break;
+            case 9:
+                $commercCatId9 = json_decode($cType)[9]->id;
+                $this->debugSection('commercCatId9', $commercCatId9);
+                return $commercCatId9;
+                break;
+            case 10:
+                $commercCatId10 = json_decode($cType)[10]->id;
+                $this->debugSection('commercCatId10', $commercCatId10);
+                return $commercCatId10;
+                break;
+
+
         }
     }
 
@@ -1097,7 +1263,18 @@ class Api extends \Codeception\Module
         }
     }
 
+    /*===================================================== API REALTY =============================================*/
 
+    function realtyFlatAdd()
+    {
+        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
+        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/realties/flats/add', ['category' => '']);
+        $wc = $this->restModule->grabResponse();
+
+
+    }
 
 
 }

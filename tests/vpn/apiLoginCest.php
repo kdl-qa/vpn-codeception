@@ -32,8 +32,16 @@ class apiLoginCest
 //        $I->getUnpublishReasons(0);
 //        $I->getWallMaterials(0);
 //        $I->getWaterHeatings(1);
-          $I->getWC(2);
-//          $I->();
+//          $I->getWC(2);
+//          $I->apiAgen$cyLogout();
+//        $I->getFlatCategoryTypes(1);
+//        $I->getHouseCategoryTypes(0);
+//        $I->getParcelCategoryTypes(4);
+        $I->getCommercialCategoryTypes(0);
+
+
+
+
 
 
 
