@@ -4,6 +4,7 @@ namespace Helper;
 // all public methods declared in helper class will be available in $I
 
 use Data\User;
+use Data\Flat;
 
 class Api extends \Codeception\Module
 {
@@ -1270,9 +1271,40 @@ function getCommercialCategoryTypes($id)
         $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPOST('/realties/flats/add', ['category' => '']);
-        $wc = $this->restModule->grabResponse();
+        $this->restModule->sendPOST('/realties/flats/add', ['category' => $this->getCategories(0),
+                                                            'categoryType' => $this->getFlatCategoryTypes(0),
+                                                            'region' => $this->getRegion(),
+                                                            'city' => $this->getCity(),
+                                                            'district' => $this->getDistrict(),
+                                                            'street' => $this->getStreet(),
+                                                            'houseNumber' => Flat::houseNumber,
+                                                            'flatNumber' => Flat::uniqueFlatNumber(),
+                                                            'latitude' => Flat::latitude,
+                                                            'longitude' => Flat::longitude,
+                                                            'roomCount' => Flat::roomCount,
+                                                            'wallMaterial' => $this->getWallMaterials(0),
+                                                            'area' => Flat::generalArea,
+                                                            'areaUnit' => $this->getAreaUnits(0),
+                                                            'livingArea' => Flat::livingArea,
+                                                            'kitchenArea' => Flat::kitchenArea,
+                                                            'floor' => Flat::floors,
+                                                            'floorNumber' => Flat::floorNumber,
+                                                            'buildYear' => Flat::buildYear,
+                                                            'wc' => $this->getWC(1),
+                                                            'balcony' => $this->getBalconies(1),
+                                                            'heating' => $this->getHeatings(0),
+                                                            'waterHeating' => $this->getWaterHeatings(1),
+                                                            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(1), $this->getNearObjects(5)]
+//                                                            'schema' =>
 
+                                                            ]);
+
+        $realtyFlat = $this->restModule->grabResponse();
+        $realtyFlatId = json_decode($realtyFlat)->id;
+        $file = file_put_contents(codecept_data_dir('realtyFlatId.json'), $realtyFlatId);
+        $this->debugSection('realtyFlatId', $realtyFlatId);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
 
     }
 

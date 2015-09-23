@@ -37,8 +37,8 @@ class apiLoginCest
 //        $I->getFlatCategoryTypes(1);
 //        $I->getHouseCategoryTypes(0);
 //        $I->getParcelCategoryTypes(4);
-        $I->getCommercialCategoryTypes(0);
-
+//        $I->getCommercialCategoryTypes(0);
+        $I->realtyFlatAdd();
 
 
 
