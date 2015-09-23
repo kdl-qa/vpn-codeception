@@ -1093,6 +1093,7 @@ class Api extends \Codeception\Module
                 $this->debugSection('wcId2', $wcId2);
                 return $wcId2;
                 break;
+
         }
     }
 
