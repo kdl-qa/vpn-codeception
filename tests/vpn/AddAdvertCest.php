@@ -9,16 +9,17 @@ class AddAdvertCest
 {
     public function _before(VpnTester $I)
     {
-        $I->apiAgencyLogin();
-//        $I->amOnPage('/new-advert/step1');
-//        $I->waitForElement(AddAdvert::$yandexMap);
+//        $I->apiAgencyLogin();
+        $I->login();
+        $I->amOnPage('/new-advert/step1');
+        $I->waitForElement(AddAdvert::$yandexMap);
     }
 
-    public function createAdvertWithApi(VpnTester $I)
-    {
-        $I->createAdvert();
-        $I->pauseExecution();
-    }
+//    public function createAdvertWithApi(VpnTester $I)
+//    {
+//        $I->createAdvert();
+//        $I->pauseExecution();
+//    }
 
     // tests
     public function addFlatSuccessfully(\Step\Vpn\Advert $I, \Step\Vpn\UserAdvertsList $listSteps)

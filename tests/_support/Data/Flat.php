@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: kdl
- * Date: 16.09.15
- * Time: 15:07
- */
 
 namespace Data;
 
@@ -12,8 +6,8 @@ namespace Data;
 class Flat
 {
     const category = 'Квартиры и комнаты';
-    const categoryType1 = 'Квартира';
-    const categoryType2 = 'Комната';
+    const categoryType0 = 'Квартира';
+    const categoryType1 = 'Комната';
     const region = 'Черкасская область';
     const city = 'Черкассы';
     const district = '700-летия';
@@ -63,5 +57,7 @@ class Flat
         file_put_contents(codecept_data_dir('flat_number.txt'), $number);
         return $number;
     }
+
+
 
 }

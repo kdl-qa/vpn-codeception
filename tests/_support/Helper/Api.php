@@ -5,6 +5,10 @@ namespace Helper;
 
 use Data\User;
 use Data\Flat;
+use Data\House;
+use Data\Parcel;
+use Data\Commercial;
+
 
 class Api extends \Codeception\Module
 {
@@ -125,13 +129,13 @@ class Api extends \Codeception\Module
         return $districtId;
     }
 
-    function getStreet()
+    function getStreet($id)
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $city = $this->getCity();
         $this->restModule->sendGET('/lists/streets/'.$city);
         $streets = $this->restModule->grabResponse();
-        $streetId = json_decode($streets)[0]->id;
+        $streetId = json_decode($streets)[$id]->id;
         $this->debugSection('Street ID', $streetId);
         $file = file_put_contents(codecept_data_dir('streets.json'), $streets);
         return $streetId;
@@ -700,7 +704,7 @@ function getCommercialCategoryTypes($id)
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendGET('/lists/area-units');
-        $areaUnits = $this->restModule->grabResponse();
+        $areaUnits = $this->restModule->grabResponse('$data.');
         $file = file_put_contents(codecept_data_dir('area_units.json'), $areaUnits);
         switch ($id)
         {
@@ -1272,37 +1276,143 @@ function getCommercialCategoryTypes($id)
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/flats/add', ['category' => $this->getCategories(0),
-                                                            'categoryType' => $this->getFlatCategoryTypes(0),
-                                                            'region' => $this->getRegion(),
-                                                            'city' => $this->getCity(),
-                                                            'district' => $this->getDistrict(),
-                                                            'street' => $this->getStreet(),
-                                                            'houseNumber' => Flat::houseNumber,
-                                                            'flatNumber' => Flat::uniqueFlatNumber(),
-                                                            'latitude' => Flat::latitude,
-                                                            'longitude' => Flat::longitude,
-                                                            'roomCount' => Flat::roomCount,
-                                                            'wallMaterial' => $this->getWallMaterials(0),
-                                                            'area' => Flat::generalArea,
-                                                            'areaUnit' => $this->getAreaUnits(0),
-                                                            'livingArea' => Flat::livingArea,
-                                                            'kitchenArea' => Flat::kitchenArea,
-                                                            'floor' => Flat::floors,
-                                                            'floorNumber' => Flat::floorNumber,
-                                                            'buildYear' => Flat::buildYear,
-                                                            'wc' => $this->getWC(1),
-                                                            'balcony' => $this->getBalconies(1),
-                                                            'heating' => $this->getHeatings(0),
-                                                            'waterHeating' => $this->getWaterHeatings(1),
-                                                            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(1), $this->getNearObjects(5)]
-//                                                            'schema' =>
-
-                                                            ]);
+            'categoryType' => $this->getFlatCategoryTypes(0),
+            'region' => $this->getRegion(),
+            'city' => $this->getCity(),
+            'district' => $this->getDistrict(),
+            'street' => $this->getStreet(32),
+            'houseNumber' => Flat::houseNumber,
+            'flatNumber' => Flat::uniqueFlatNumber(),
+            'latitude' => Flat::latitude,
+            'longitude' => Flat::longitude,
+            'roomCount' => Flat::roomCount,
+            'wallMaterial' => $this->getWallMaterials(0),
+            'area' => Flat::generalArea,
+            'areaUnit' => $this->getAreaUnits(0),
+            'livingArea' => Flat::livingArea,
+            'kitchenArea' => Flat::kitchenArea,
+            'floor' => Flat::floors,
+            'floorNumber' => Flat::floorNumber,
+            'buildYear' => Flat::buildYear,
+            'wc' => $this->getWC(1),
+            'balcony' => $this->getBalconies(1),
+            'heating' => $this->getHeatings(0),
+            'waterHeating' => $this->getWaterHeatings(1),
+            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(1), $this->getNearObjects(5)]
+//            'schema' =>
+        ]);
 
         $realtyFlat = $this->restModule->grabResponse();
         $realtyFlatId = json_decode($realtyFlat)->id;
         $file = file_put_contents(codecept_data_dir('realtyFlatId.json'), $realtyFlatId);
         $this->debugSection('realtyFlatId', $realtyFlatId);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+
+    }
+
+    function realtyHouseAdd()
+    {
+        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
+        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/realties/houses/add', ['category' => $this->getCategories(1),
+            'categoryType' => $this->getHouseCategoryTypes(0),
+            'region' => $this->getRegion(),
+            'city' => $this->getCity(),
+            'district' => $this->getDistrict(),
+            'street' => $this->getStreet(99),
+            'houseNumber' => House::uniqueHouseNumber(),
+            'latitude' => House::latitude,
+            'longitude' => House::longitude,
+            'roomCount' => House::roomCount,
+            'wallMaterial' => $this->getWallMaterials(0),
+            'area' => House::generalArea,
+            'areaUnit' => $this->getAreaUnits(0),
+            'livingArea' => House::livingArea,
+            'kitchenArea' => House::kitchenArea,
+            'landArea' => $this->getAreaUnits(1),
+            'floorNumber' => House::floorNumber,
+            'buildYear' => House::buildYear,
+            'wc' => $this->getWC(0),
+            'heating' => $this->getHeatings(0),
+            'waterHeating' => $this->getWaterHeatings(1),
+            'communication' => [$this->getCommunications(0), $this->getCommunications(3), $this->getCommunications(5)],
+            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(1), $this->getNearObjects(5)]
+//           'schema' =>
+        ]);
+
+        $realtyHouse = $this->restModule->grabResponse();
+        $realtyHouseId = json_decode($realtyHouse)->id;
+        $file = file_put_contents(codecept_data_dir('realtyHouseId.json'), $realtyHouseId);
+        $this->debugSection('realtyHouseId', $realtyHouseId);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+
+    }
+
+    function realtyParcelAdd()
+    {
+        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
+        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/realties/parcels/add', ['category' => $this->getCategories(2),
+            'categoryType' => $this->getParcelCategoryTypes(0),
+            'region' => $this->getRegion(),
+            'city' => $this->getCity(),
+            'district' => $this->getDistrict(),
+            'street' => $this->getStreet(66),
+            'cadastralNumber' => Parcel::uniqueCadastralNumber(),
+            'latitude' => Parcel::latitude,
+            'longitude' => Parcel::longitude,
+            'area' => Parcel::area,
+            'areaUnit' => $this->getAreaUnits(0),
+            'communication' => [$this->getCommunications(0), $this->getCommunications(6)],
+            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(3)]
+//           'schema' =>
+        ]);
+
+        $realtyParcel = $this->restModule->grabResponse();
+        $realtyParcelId = json_decode($realtyParcel)->id;
+        $file = file_put_contents(codecept_data_dir('realtyParcelId.json'), $realtyParcelId);
+        $this->debugSection('realtyParcelId', $realtyParcelId);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+    }
+
+    function realtyCommercialAdd()
+    {
+        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
+        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//           'schema' =>
+        $this->restModule->sendPOST('/realties/commercials/add', ['category' => $this->getCategories(3),
+            'categoryType' => $this->getCommercialCategoryTypes(0),
+            'region' => $this->getRegion(),
+            'city' => $this->getCity(),
+            'district' => $this->getDistrict(),
+            'street' => $this->getStreet(33),
+            'houseNumber' => Commercial::uniqueCommercialNumber(),
+            'latitude' => Commercial::latitude,
+            'longitude' => Commercial::longitude,
+            'area' => Commercial::generalArea,
+            'areaUnit' => $this->getAreaUnits(0),
+            'effectiveArea' => Commercial::effectiveArea,
+            'wallMaterial' => $this->getWallMaterials(0),
+            'roomCount' => Commercial::roomCount,
+            'floor' => Commercial::floor,
+            'floorNumber' => Commercial::floorNumber,
+            'buildYear' => Commercial::buildYear,
+            'wc' => $this->getWC(0),
+            'heating' => $this->getHeatings(0),
+            'waterHeating' => $this->getWaterHeatings(1),
+            'communication' => [$this->getCommunications(0), $this->getCommunications(2), $this->getCommunications(4)],
+        ]);
+
+        $realtyCommercial = $this->restModule->grabResponse();
+        $realtyCommercialId = json_decode($realtyCommercial)->id;
+        $file = file_put_contents(codecept_data_dir('realtyCommercialId.json'), $realtyCommercialId);
+        $this->debugSection('realtyCommercialId', $realtyCommercialId);
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
 

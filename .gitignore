@@ -1,2 +1,3 @@
 .idea
 .roboci
+.tests/_output/*
