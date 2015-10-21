@@ -16,28 +16,27 @@ class webUS13_editParcelSaleCest
         $I->uploadAdvImage();
     }
 
-    public function addParcelSellAdvert(/*\Helper\Api $I,*/ VpnTester $I)
+    public function addParcelRentAdvert(/*\Helper\Api $I,*/ VpnTester $I)
     {
-        $I->realtyParcelAdd();
+        $I->realtyParcelAddPlain();
         $I->apiAdvertParcelAddPlain();
         $I->apiAdminEditParcelAdvertPlain();
     }
 
-    public function editFlatSaleAdvert(\Step\Vpn\EditAdvert $I, \Step\Vpn\Advert $hi)
+    public function editParcelSaleAdvert(\Step\Vpn\EditAdvert $I, \Step\Vpn\Advert $he)
     {
         $I->loginAgency();
         $I->openEditParcelPage();
-//        $I->pauseExecution();
         $I->editParcelAdvert();
         $I->fillInEditParcelAdvertCheckboxes();
-        $hi->uploadFlatImage();
-        $hi->clickIamOwnerLink();
-        $hi->clickCreateAdvertButton();
-        $hi->acceptModal();
+        $he->uploadParcelImage();
+        $he->clickIamOwnerLink();
+        $he->clickCreateAdvertButton();
+        $he->acceptModal();
         $I->openAdvertPage();
     }
 
-    public function checkFlatRentAdvert(\Step\Vpn\EditAdvert $I)
+    public function checkParcelRentAdvert(\Step\Vpn\EditAdvert $I)
     {
         $I->checkEditedParcelProperties();
     }

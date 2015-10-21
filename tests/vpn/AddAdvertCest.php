@@ -1,6 +1,8 @@
 <?php
 use \VpnTester;
 use \Page\AddAdvert;
+use \Page\BackoffAdverts;
+use \Step\Vpn\AdminAdvert;
 use \Data\Flat;
 
 
@@ -10,36 +12,76 @@ class AddAdvertCest
     public function _before(VpnTester $I)
     {
 //        $I->apiAgencyLogin();
-        $I->login();
-        $I->amOnPage('/new-advert/step1');
-        $I->waitForElement(AddAdvert::$yandexMap);
+
+
+
+        $I->loginAgency();
     }
 
-//    public function createAdvertWithApi(VpnTester $I)
-//    {
-//        $I->createAdvert();
-//        $I->pauseExecution();
-//    }
+    public function createAdvertWithApi(Step\Vpn\UserAdvertsList $I)
+    {
+        $I->openUserAdvertsList();
+        $I->openFirstListAdvert();
+    }
 
     // tests
-    public function addFlatSuccessfully(\Step\Vpn\Advert $I, \Step\Vpn\UserAdvertsList $listSteps)
-    {
-        $I->fillInStandardFlatType();
-        $I->fillInStandardFlatAddress();
-        $I->click(AddAdvert::$step1_submit);
-        $I->seeInModal(AddAdvert::$step1PopUpTitle);
-        $I->acceptModal();
-        $I->fillInStandardFlatProperties();
-        $I->checkFlatObjectProperties();
-        $I->agreeFlatObjectProperties();
-        $I->fillInFlatAdvertProperties();
-        $I->fillInFlatAdvertCheckboxes();
-        $I->uploadFlatAdvertImage();
-        $I->fillInOwnerContactsData();
-//        $I->pauseExecution();
-        $I->clickCreateAdvertButton();
-        $I->acceptModal();
-        $listSteps->newFlatAdvertContains();
+//    public function webAdmLogin(VpnTester $I, \Step\Vpn\AdminAdvert $check)
+//    {
+//        $I->loginAdmin();
+//        $check->moderateAdvActive();
+//    }
+
+
+
+//
+//    public function admLogin(VpnTester $I)
+//    {
+//        $I->apiAdminLogin();
+//
+//    }
+//
+//    public function admLogout(VpnTester $I)
+//    {
+//        $I->apiAdminLogout();
+//
+//    }
+
+
+
+//    public function zxc(VpnTester $I)
+//    {
+//        $I->apiAgencyLogout();
+//        $I->apiAgencyLogin();
+//    }
+//
+//    public function asd(VpnTester $I)
+//    {
+//        $I->uploadUserAvatar();
+//        $I->uploadLogo();
+//        $I->uploadSchema();
+//        $I->uploadAdvImage();
+//
+//    }
+
+//    public function addFlatSuccessfully(\Step\Vpn\Advert $I, \Step\Vpn\UserAdvertsList $listSteps)
+//    {
+//
+//
+//        $I->fillInStandardFlatType();
+//        $I->fillInStandardFlatAddress();
+//        $I->seeInModal(AddAdvert::$step1PopUpTitle);
+//        $I->acceptModal();
+//        $I->fillInStandardFlatProperties();
+//        $I->checkFlatObjectPropertiesComplex();
+//        $I->agreeFlatObjectProperties();
+//        $I->fillInFlatAdvertPropertiesComplex();
+//        $I->fillInFlatAdvertCheckboxesComplex();
+//        $I->uploadFlatAdvertImage();
+//        $I->fillInOwnerContactsData();
+////        $I->pauseExecution();
+//        $I->clickCreateAdvertButton();
+//        $I->acceptModal();
+//        $listSteps->newFlatAdvertContains();
 
     // ----------------
 
@@ -66,7 +108,7 @@ class AddAdvertCest
 //        $I->wait(3);
 //        $I->see(Flat::category, 'html/body/div[1]/div[3]/div[2]/div/ul/li[1]'); //Flat::categoryType1,Flat::city, Flat::street, Flat::houseNumber, Flat::flatNumber]);
 
-    }
+//    }
 
 //    public function addRent(\Step\Vpn\Advert $I)
 //    {

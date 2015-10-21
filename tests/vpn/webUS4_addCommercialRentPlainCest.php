@@ -15,9 +15,6 @@ class webUS4_addCommercialRentPlainCest
         $I->checkCommercialObjectPropertiesPlain();
         $I->agreeObjectProperties();
         $I->fillInCommercialAdvertPropertiesPlain();
-        $I->fillInCommercialAdvertCheckboxesComplex();
-        $I->uploadCommercialImage();
-//        $I->fillInOwnerContactsData(); /*clickIamOwnerLink()*/
         $I->clickIamOwnerLink();
 
         $I->clickCreateAdvertButton();
@@ -32,11 +29,7 @@ class webUS4_addCommercialRentPlainCest
         $I->loginAgency();
         $list->openUserAdvertsList();
         $list->openFirstListAdvert();
-        $I->checkCommercialProperties();
+        $I->checkCommercialPropertiesPlain();
     }
 
-    // tests
-//    public function tryToTest(VpnTester $I)
-//    {
-//    }
 }

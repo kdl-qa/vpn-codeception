@@ -16,9 +16,9 @@ class webUS14_unpublishFlatDealFinishedCest
         $I->uploadAdvImage();
     }
 
-    public function addParcelSaleAdvert(/*\Helper\Api $I,*/ VpnTester $I)
+    public function addFlatSaleAdvert(/*\Helper\Api $I,*/ VpnTester $I)
     {
-        $I->realtyFlatAdd();
+        $I->realtyFlatAddPlain();
         $I->apiAdvertFlatAddComplex();
         $I->apiAdminEditFlatAdvertComplex();
     }

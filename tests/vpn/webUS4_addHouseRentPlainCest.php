@@ -1,12 +1,36 @@
 <?php
+use \VpnTester;
 
-/**
- * Created by PhpStorm.
- * User: kdl
- * Date: 12.10.15
- * Time: 9:16
- */
 class webUS4_addHouseRentPlainCest
 {
+    public function createAndModerateHouseAdvert(\Step\Vpn\Advert $I, \Step\Vpn\AdminAdvert $admin)
+    {
+        $I->loginAgency();
+
+        $I->fillInStandardHouseType();
+        $I->fillInHouseAddress();
+
+        $I->acceptModal();
+        $I->fillInHouseObjPropertiesPlain();
+        $I->checkHouseObjectPropertiesPlain();
+        $I->agreeObjectProperties();
+        $I->fillInHouseAdvertPropertiesPlain();
+        $I->clickIamOwnerLink();
+        $I->clickCreateAdvertButton();
+        $I->acceptModal();
+
+        $admin->loginAdmin();
+        $admin->moderateAdvActive();
+    }
+
+    public function checkNewFlatAdvert(\Step\Vpn\Advert $I, \Step\Vpn\UserAdvertsList $list)
+    {
+        $I->loginAgency();
+        $list->openUserAdvertsList();
+        $list->openFirstListAdvert();
+        $I->checkHousePropertiesPlain();
+
+    }
+
 
 }

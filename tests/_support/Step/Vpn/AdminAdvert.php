@@ -5,7 +5,7 @@ namespace Step\Vpn;
 use Page\BackoffAdverts;
 use \Data\Flat;
 
-class AdminAvert extends \VpnTester
+class AdminAdvert extends \VpnTester
 {
     public function moderateAdvActive()
     {
@@ -14,8 +14,9 @@ class AdminAvert extends \VpnTester
         $I->waitForElement(BackoffAdverts::$advListActionLink0);
         $I->click(BackoffAdverts::$advListActionLink0);
         $I->waitForElement(BackoffAdverts::$advEditStatus);
+        $I->wait(2);
         $I->click(BackoffAdverts::$advEditStatus);
-        $I->fillField(BackoffAdverts::$advEditStatus, Flat::status1);
+        $I->fillField('[ng-model="$select.search"]', /*Flat::status1*/'Опубликовано');
         $I->click(BackoffAdverts::$chooseFirstRow);
         $I->click(BackoffAdverts::$advEditSubmit);
 

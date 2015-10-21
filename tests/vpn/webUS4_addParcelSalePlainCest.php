@@ -1,5 +1,5 @@
 <?php
-use \VpnTester;
+
 
 class webUS4_addParcelSalePlainCest
 {
@@ -15,11 +15,7 @@ class webUS4_addParcelSalePlainCest
         $I->checkParcelObjectPropertiesPlain();
         $I->agreeObjectProperties();
         $I->fillInParcelAdvertPropertiesPlain();
-        $I->fillInParcelAdvertCheckboxesComplex();
-        $I->uploadParcelImage();
-//        $I->fillInOwnerContactsData(); /*clickIamOwnerLink()*/
         $I->clickIamOwnerLink();
-//        $I->pauseExecution();
         $I->clickCreateAdvertButton();
         $I->acceptModal();
 
@@ -32,12 +28,8 @@ class webUS4_addParcelSalePlainCest
         $I->loginAgency();
         $list->openUserAdvertsList();
         $list->openFirstListAdvert();
-        $I->checkParcelProperties();
+        $I->checkParcelPropertiesPlain();
 
     }
 
-    // tests
-//    public function tryToTest(VpnTester $I)
-//    {
-//    }
 }

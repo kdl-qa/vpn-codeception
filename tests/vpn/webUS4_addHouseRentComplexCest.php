@@ -11,15 +11,13 @@ class webUS4_addHouseRentComplexCest
         $I->fillInHouseAddress();
 
         $I->acceptModal();
-        $I->fillInHouseObjPropertiesPlain();
-        $I->checkHouseObjectProperties();
+        $I->fillInHouseObjPropertiesComplex();
+        $I->checkHouseObjectPropertiesComplex();
         $I->agreeObjectProperties();
-        $I->fillInHouseAdvertProperties();
-        $I->fillInHouseAdvertCheckboxes();
+        $I->fillInHouseAdvertPropertiesComplex();
+        $I->fillInHouseAdvertCheckboxesComplex();
         $I->uploadHouseImage();
-//        $I->fillInOwnerContactsData(); /*clickIamOwnerLink()*/
         $I->clickIamOwnerLink();
-//        $I->pauseExecution();
         $I->clickCreateAdvertButton();
         $I->acceptModal();
 
@@ -32,7 +30,7 @@ class webUS4_addHouseRentComplexCest
         $I->loginAgency();
         $list->openUserAdvertsList();
         $list->openFirstListAdvert();
-        $I->checkHouseProperties();
+        $I->checkHousePropertiesComplex();
 
     }
 

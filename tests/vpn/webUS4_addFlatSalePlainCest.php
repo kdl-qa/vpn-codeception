@@ -17,11 +17,7 @@ class webUS4_addFlatSalePlainCest
         $I->checkFlatObjectPropertiesPlain();
         $I->agreeObjectProperties();
         $I->fillInFlatAdvertPropertiesPlain();
-//        $I->fillInFlatAdvertCheckboxesComplex();
-//        $I->uploadFlatImage();
-//        $I->fillInOwnerContactsData(); /*clickIamOwnerLink()*/
         $I->clickIamOwnerLink();
-//        $I->pauseExecution();
         $I->clickCreateAdvertButton();
         $I->acceptModal();
 
@@ -39,8 +35,4 @@ class webUS4_addFlatSalePlainCest
 
     }
 
-    // tests
-//    public function tryToTest(VpnTester $I)
-//    {
-//    }
 }

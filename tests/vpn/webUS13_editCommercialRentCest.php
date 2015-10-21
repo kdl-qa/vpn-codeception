@@ -18,7 +18,7 @@ class webUS13_editCommercialRentCest
 
     public function addCommercialSaleAdvert(/*\Helper\Api $I,*/ VpnTester $I)
     {
-        $I->realtyCommercialAdd();
+        $I->realtyCommercialAddPlain();
         $I->apiAdvertCommercialAddPlain();
         $I->apiAdminEditCommercialAdvertPlain();
     }

@@ -1,27 +1,49 @@
 <?php
-use \VpnTester;
 use \Helper\Api;
+use Page\AdvertsList;
+use \Step\Vpn\UserAdvertsList;
+use \Data\Flat;
 
 class api_realtyAddFlatCest
 {
-    public function _before(VpnTester $I)
+    public function before(VpnTester $I)
     {
         $I->apiAgencyLogin();
+        $I->apiAdminLogin();
+//        $I->realtyFlatAddPlain();
+//        $I->realtyHouseAddPlain();
+//        $I->realtyParcelAddPlain();
+//        $I->realtyCommercialAddPlain();
+//        $I->advertFlatAdd();
+    }
+
+    public function uploadImages(VpnTester $I)
+    {
+        $I->uploadSchema();
+        $I->uploadLogo();
+        $I->uploadAdvImage();
+    }
+
+    public function addAdv(VpnTester $I)
+    {
         $I->realtyFlatAdd();
-        $I->realtyHouseAdd();
-        $I->realtyParcelAdd();
-        $I->realtyCommercialAdd();
-
+        $I->advertFlatAdd();
     }
 
+    public function editFlatAdvert(VpnTester $I)
+    {
+        $I->apiAdminEditFlatAdvert();
+    }
     // tests
-    public function realtySomeTest(VpnTester $I)
-    {
-
-    }
-
-    public function _after(VpnTester $I)
-    {
-    }
+//    public function checkCreatingAdvert(\Step\Vpn\Advert $I, \Step\Vpn\UserAdvertsList $listSteps)
+//    {
+//        $I->loginAgency();
+//        $listSteps->checkAdvFlatProperties();
+//
+//    }
+//
+//    public function _after(VpnTester $I)
+//    {
+//    }
 
 }

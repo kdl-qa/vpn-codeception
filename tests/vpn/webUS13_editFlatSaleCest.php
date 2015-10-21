@@ -3,16 +3,41 @@ use \VpnTester;
 
 class webUS13_editFlatSaleCest
 {
-    public function _before(VpnTester $I)
+    public function login(VpnTester $I)
     {
+        $I->apiAdminLogin();
+        $I->apiAgencyLogin();
     }
 
-    public function _after(VpnTester $I)
+    public function uploadImages(VpnTester $I)
     {
+        $I->uploadSchema();
+        $I->uploadLogo();
+        $I->uploadAdvImage();
     }
 
-    // tests
-    public function tryToTest(VpnTester $I)
+    public function addFlatSaleAdvert(/*\Helper\Api $I,*/ VpnTester $I)
     {
+        $I->realtyFlatAddComplex();
+        $I->apiAdvertFlatAddPlain();
+        $I->apiAdminEditFlatAdvertPlain();
+    }
+
+    public function editFlatSaleAdvert(\Step\Vpn\EditAdvert $I, \Step\Vpn\Advert $he)
+    {
+        $I->loginAgency();
+        $I->openEditFlatPage();
+        $I->editFlatAdvert();
+        $I->fillInEditFlatAdvertCheckboxes();
+        $he->uploadHouseImage();
+        $he->clickIamOwnerLink();
+        $he->clickCreateAdvertButton();
+        $he->acceptModal();
+        $I->openAdvertPage();
+    }
+
+    public function checkFlatRentAdvert(\Step\Vpn\EditAdvert $I)
+    {
+        $I->checkEditedFlatProperties();
     }
 }

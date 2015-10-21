@@ -11,7 +11,11 @@ namespace Data;
 
 class User
 {
-    static $agencyPass = 'L7KZXX';
     static $agencyEmail = 'support@uhome.ck.ua';
+    static $agencyPass = 'L7KZXX';
+
+    static $adminEmail = 'admin@neru.com.ua';
+    static $adminPass = 'YO$3M8Kg;@U9yfF';
+
 
 }

@@ -266,28 +266,10 @@ class AdmEditRealtyObject extends \VpnTester
         $I->click(AdmRealtyObject::$street);
         $I->fillField(AdmRealtyObject::$typeStreet, Parcel::editStreet);
         $I->click(AdmRealtyObject::$chooseStreet);
-//        $I->click(AdmRealtyObject::$cadastrNumber);
-//        $I->fillField(AdmRealtyObject::$cadastrNumber, Parcel::$currentCadastralNumber);
         $I->fillField(AdmRealtyObject::$cadastrNumber, Parcel::uniqueCadastralNumber());
         $I->fillField(AdmRealtyObject::$generalArea, Parcel::editGeneralArea);
         $I->click(AdmRealtyObject::$areaUnitField);
         $I->click(AdmRealtyObject::$areaUnit1);
-//        $I->click(AdmRealtyObject::$wallMaterialField);
-//        $I->click(AdmRealtyObject::$wallMaterial3);
-//        $I->fillField(AdmRealtyObject::$roomСount, House::editRoomCount);
-//        $I->fillField(AdmRealtyObject::$livingArea, House::editLivingArea);
-//        $I->fillField(AdmRealtyObject::$kitchenArea, House::editKitchenArea);
-//        $I->fillField(AdmRealtyObject::$landArea, House::editLandArea);
-//        $I->click(AdmRealtyObject::$landAreaUnit);
-//        $I->click(AdmRealtyObject::$areaUnit1);
-//        $I->fillField(AdmRealtyObject::$floors, House::editFloors);
-//        $I->fillField(AdmRealtyObject::$buildYear, House::editBuildYear);
-//        $I->click(AdmRealtyObject::$wcField);
-//        $I->click(AdmRealtyObject::$wc2);
-//        $I->click(AdmRealtyObject::$heatingField);
-//        $I->click(AdmRealtyObject::$heating3);
-//        $I->click(AdmRealtyObject::$waterHeatingField);
-//        $I->click(AdmRealtyObject::$waterHeat3);
 
         $I->click(AdmRealtyObject::$communication0);
         $I->click(AdmRealtyObject::$communication1);
@@ -309,9 +291,8 @@ class AdmEditRealtyObject extends \VpnTester
         $I->click(AdmRealtyObject::$nearObject8);
         $I->click(AdmRealtyObject::$nearObject9);
 
-        $I->attachFile(AdmRealtyObject::$schema, '/img/parcel_3.jpg');
-        $I->wait(5);
-//        $I->pauseExecution();
+        $I->attachFile(AdmRealtyObject::$schema, '/img/parcel_2.jpg');
+        $I->wait(4);
         $I->click(AdmRealtyObject::$submitBtn);
         $I->wait(1);
     }
@@ -321,7 +302,6 @@ class AdmEditRealtyObject extends \VpnTester
         $I=$this;
         $I->reloadPage();
         $I->waitForElement(AdmRealtyObject::$yandexMap);
-//        $I->seeInPageSource(AdmRealtyObject::$regionField,['value' => Lists::objStatus1]);
         $I->seeInPageSource(Parcel::region);
         $I->seeInPageSource(Parcel::city);
         $I->seeInPageSource(Parcel::editDistrict);
@@ -329,17 +309,6 @@ class AdmEditRealtyObject extends \VpnTester
         $I->seeElement(AdmRealtyObject::$cadastrNumber, ['value' => Parcel::$currentCadastralNumber]);
         $I->seeElement(AdmRealtyObject::$generalArea, ['value' => Parcel::editGeneralArea]);
         $I->seeInPageSource(Lists::areaUnit1);
-//        $I->seeInPageSource(Lists::wallMaterial3);
-//        $I->seeInPageSource(House::editRoomCount);
-//        $I->seeInPageSource(House::editLivingArea);
-//        $I->seeInPageSource(House::editKitchenArea);
-//        $I->seeInPageSource(House::editLandArea);
-//        $I->seeInPageSource(Lists::areaUnit1);
-//        $I->seeInPageSource(House::editFloors);
-//        $I->seeElement(AdmRealtyObject::$buildYear,['value' => House::editBuildYear]);
-//        $I->seeInPageSource(Lists::wc2);
-//        $I->seeInPageSource(Lists::heating3);
-//        $I->seeInPageSource(Lists::waterHeat3);
 
         $I->seeElement(AdmRealtyObject::$communication0);
         $I->seeElement(AdmRealtyObject::$communication1);
@@ -416,9 +385,8 @@ class AdmEditRealtyObject extends \VpnTester
         $I->click(AdmRealtyObject::$communication6);
         $I->click(AdmRealtyObject::$communication7);
 
-
         $I->attachFile(AdmRealtyObject::$schema, '/img/commerc_3.jpg');
-        $I->wait(1);
+        $I->wait(2);
         $I->click(AdmRealtyObject::$submitBtn);
         $I->wait(2);
     }

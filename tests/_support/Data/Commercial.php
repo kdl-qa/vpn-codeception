@@ -20,36 +20,73 @@ class Commercial
 
     const region = 'Черкасская область';
     const city = 'Черкассы';
-    const district = 'Центр';
-    const street = 'Шевченка улица';
-    const houseNumber = '208';
+    const district = 'Днепровский';
+    const street = 'Шевченко бульвар';
+//    const houseNumber = '208';
     const generalArea = '250';
-    const latitude = '49.44968';
-    const longitude = '32.04494';
-    const generalAreaUnit = 'Кв. метры';
-    const wallMaterial = 'Дерево и кирпич';
+    const latitude = '49.44188';
+    const longitude = '32.06402';
     const effectiveArea = '200';
-    const roomCount = '3';
-    const floor = '3';
-    const floorNumber = '5';
-    const buildYear = '1993';
+    const roomCount = '5';
+    const floor = '2';
+    const floorNumber = '1';
+    const buildYear = '2000';
     const wc = 'Раздельный';
     const heating = 'Централизованное';
     const waterHeating = 'Бойлер';
     const descriptionCommercialSell = 'Продается коммерческая недвижимость в тихом районе города. Недвижимость ремонта и вложений не требует. Рядом хорошая транспортная розвязка.';
-    const priceСommercialSell = '125400';
-    const currencyUA = 'грн.';
-    const currencyUS = '$';
+    const descriptionCommercialRent = 'Сдается в аренду коммерческая недвижимость в центре города. Недвижимость ремонта и вложений не требует. Рядом хорошая транспортная розвязка.';
+
+    const priceCommercialSell = '125400';
+    const priceCommercialRent = '25400';
+
+
     const periodDay = 'За день';
     const periodMonth = 'За месяц';
-    const date = '20';
-    const month = 'Октября';
-    const year = '2015';
+    const commission = '4';
+    const currencyUA = 'грн.';
+    const currencyUS = '$';
+    const date = '5';
+    const month = 'Января';
+    const year = '2016';
+    const availableFrom = '05.01.2016';
+    const apiAvailableFrom = '2016-01-05';
     const market = 'Вторичный';
     const repair = 'Косметический';
     const ownerName = 'Русо Туристо';
     const ownerContacts = 'tourist@mail.com; +380679638527';
 
+/*==========================================Edit Commercial=========================================*/
+
+    const editDescriptionCommercialSell = 'Edit. Продается коммерческая недвижимость в тихом районе города. Недвижимость ремонта и вложений не требует.';
+    const editDescriptionCommercialRent = 'Edit. Сдается в аренду коммерческая недвижимость в центре города. Рядом хорошая транспортная розвязка.';
+    const editCommission = '3.5';
+    const editPriceCommercialSell = '151000';
+    const editPriceCommercialRent = '29999';
+
+    const apiDistrict = '';
+    const apiStreet = '';
+
+    const editDistrict = 'Водоконал-Невского';
+    const editStreet = 'Ильина улица';
+    const editLatitude = '49.41815';
+    const editLongitude = '32.09172';
+    const editGeneralArea = '225';
+    const editRoomCount = '4';
+    const editEffectiveArea = '190';
+
+    const editFloor = '3';
+    const editFloorNumber = '2';
+    const editBuildYear = '1999';
+
+
+    const editDate = '15';
+    const editMonth = 'Февраля';
+    const editYear = '2016';
+    const editAvailableFrom = '15.02.2016';
+
+
+/*==========================================Common=========================================*/
 
     static $currentCommercialNumber;
 
