@@ -10,7 +10,6 @@ class webUS4_addHouseRentComplexCest
         $I->fillInStandardHouseType();
         $I->fillInHouseAddress();
 
-        $I->acceptModal();
         $I->fillInHouseObjPropertiesComplex();
         $I->checkHouseObjectPropertiesComplex();
         $I->agreeObjectProperties();

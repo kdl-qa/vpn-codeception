@@ -9,11 +9,6 @@ class adminUS10_editHouseObjectCest
         $I->apiAgencyLogin();
     }
 
-    public function uploadImages(VpnTester $I)
-    {
-        $I->uploadSchema();
-    }
-
     public function addHouseSaleAdvert(VpnTester $I)
     {
         $I->realtyHouseAddPlain();

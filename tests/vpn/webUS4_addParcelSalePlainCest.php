@@ -10,7 +10,6 @@ class webUS4_addParcelSalePlainCest
         $I->fillInStandardParcelType();
         $I->fillInParcelAddress();
 
-        $I->acceptModal();
         $I->fillInParcelObjPropertiesPlain();
         $I->checkParcelObjectPropertiesPlain();
         $I->agreeObjectProperties();

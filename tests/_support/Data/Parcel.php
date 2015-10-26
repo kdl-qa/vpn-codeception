@@ -59,6 +59,8 @@ class Parcel
     const editYear = '2016';
     const editAvailableFrom = '19.01.2016';
 
+    const editOwnerName = 'Ioan Ioan';
+    const editOwnerContacts = 'ioan@freeletter.me; +380671234567';
 
 
 

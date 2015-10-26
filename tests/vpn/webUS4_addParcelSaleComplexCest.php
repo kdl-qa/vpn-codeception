@@ -10,12 +10,12 @@ class webUS4_addParcelSaleComplexCest
         $I->fillInStandardParcelType();
         $I->fillInParcelAddress();
 
-        $I->acceptModal();
         $I->fillInParcelObjPropertiesComplex();
         $I->checkParcelObjectPropertiesComplex();
         $I->agreeObjectProperties();
         $I->fillInParcelAdvertPropertiesComplex();
         $I->fillInParcelAdvertCheckboxesComplex();
+        $I->uploadCommercialImage();
         $I->clickIamOwnerLink();
         $I->clickCreateAdvertButton();
         $I->acceptModal();
@@ -24,7 +24,7 @@ class webUS4_addParcelSaleComplexCest
         $admin->moderateAdvActive();
     }
 
-    public function checkNewFlatAdvert(\Step\Vpn\Advert $I, \Step\Vpn\UserAdvertsList $list)
+    public function checkNewParcelAdvert(\Step\Vpn\Advert $I, \Step\Vpn\UserAdvertsList $list)
     {
         $I->loginAgency();
         $list->openUserAdvertsList();

@@ -35,13 +35,13 @@ class AdvertsList
     public static $editAdvSubmit = 'button.blue';
 
     public static $chooseReason = '.reason span';
-    public static $upublishReason0 = '.unpublish-reason0';
-    public static $upublishReason1 = '.unpublish-reason1';
+    public static $upublishReason0 = '.cc-unpublish-reason0';
+    public static $upublishReason1 = '.cc-unpublish-reason1';
     public static $finalPrice = '#finalValue';
     public static $descriptionReason = '#description';
     public static $chooseCurrency = '.currency span';
-    public static $currencyUS = '.currency-type0';
-    public static $currencyUA = '.currency-type1';
+    public static $currencyUS = '.cc-currency-type0';
+    public static $currencyUA = '.cc-currency-type1';
     public static $unpublishSubmit = 'button.blue';
 
 

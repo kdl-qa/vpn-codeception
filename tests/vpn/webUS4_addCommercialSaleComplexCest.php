@@ -1,7 +1,7 @@
 <?php
 
 
-class webUS4_addCommercialRentComplexCest
+class webUS4_addCommercialSaleComplexCest
 {
     public function createAndModerateCommercialAdvert(\Step\Vpn\Advert $I, \Step\Vpn\AdminAdvert $admin)
     {
@@ -10,7 +10,6 @@ class webUS4_addCommercialRentComplexCest
         $I->fillInStandardCommercialType();
         $I->fillInCommercialAddress();
 
-        $I->acceptModal();
         $I->fillInCommercialObjPropertiesComplex();
         $I->checkCommercialObjectPropertiesComplex();
         $I->agreeObjectProperties();
@@ -18,7 +17,6 @@ class webUS4_addCommercialRentComplexCest
         $I->fillInCommercialAdvertCheckboxesComplex();
         $I->uploadCommercialImage();
         $I->clickIamOwnerLink();
-
         $I->clickCreateAdvertButton();
         $I->acceptModal();
 //

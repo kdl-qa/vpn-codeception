@@ -12,7 +12,6 @@ class webUS4_addFlatSalePlainCest
         $I->fillInStandardFlatType();
         $I->fillInFlatAddress();
 
-        $I->acceptModal();
         $I->fillInFlatObjPropertiesPlain();
         $I->checkFlatObjectPropertiesPlain();
         $I->agreeObjectProperties();

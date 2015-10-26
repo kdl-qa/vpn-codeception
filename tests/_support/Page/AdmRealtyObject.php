@@ -20,6 +20,7 @@ class AdmRealtyObject
 
     public static $districtField = '[ng-model="ctrl.realty.address.district"] span';
     public static $district24 = '.cc-district-name24';
+    public static $district23 = '.cc-district-name23';
     public static $district3 = '.cc-district-name3';
     public static $district7 = '.cc-district-name7';
 
@@ -117,12 +118,6 @@ class AdmRealtyObject
     public static $nearObject7 = '.cc-realty-near-objects7';
     public static $nearObject8 = '.cc-realty-near-objects8';
     public static $nearObject9 = '.cc-realty-near-objects9';
-//    public static $nearObject10 = '.cc-realty-near-objects10';
-//    public static $nearObject11 = '.cc-realty-near-objects11';
-//    public static $nearObject12 = '.cc-realty-near-objects12';
-//    public static $nearObject13 = '.cc-realty-near-objects13';
-//    public static $nearObject14 = '.cc-realty-near-objects14';
-//    public static $nearObject15 = '.cc-realty-near-objects15';
 
     public static $checkedNearObject0 = '[checked="checked"].cc-realty-near-objects0';
     public static $checkedNearObject1 = '[checked="checked"].cc-realty-near-objects1';
@@ -134,12 +129,6 @@ class AdmRealtyObject
     public static $checkedNearObject7 = '[checked="checked"].cc-realty-near-objects7';
     public static $checkedNearObject8 = '[checked="checked"].cc-realty-near-objects8';
     public static $checkedNearObject9 = '[checked="checked"].cc-realty-near-objects9';
-//    public static $checkedNearObject10 = '[checked="checked"].cc-realty-near-objects10';
-//    public static $checkedNearObject11 = '[checked="checked"].cc-realty-near-objects11';
-//    public static $checkedNearObject12 = '[checked="checked"].cc-realty-near-objects12';
-//    public static $checkedNearObject13 = '[checked="checked"].cc-realty-near-objects13';
-//    public static $checkedNearObject14 = '[checked="checked"].cc-realty-near-objects14';
-//    public static $checkedNearObject15 = '[checked="checked"].cc-realty-near-objects15';
 
     public static $schema = '#image';
     public static $removeSchema = '.remove';

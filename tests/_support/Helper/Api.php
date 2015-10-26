@@ -549,7 +549,7 @@ function getCommercialCategoryTypes($id) //0..10
             'balcony' => $this->getBalconies(1),
             'heating' => $this->getHeatings(1),
             'waterHeating' => $this->getWaterHeatings(1),
-            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(1), $this->getNearObjects(5)],
+            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(1), $this->getNearObjects(2), $this->getNearObjects(3), $this->getNearObjects(4), $this->getNearObjects(5), $this->getNearObjects(6), $this->getNearObjects(7)],
             'schema' => $schema
         ]);
 
@@ -684,8 +684,8 @@ function getCommercialCategoryTypes($id) //0..10
             'longitude' => Parcel::longitude,
             'area' => Parcel::generalArea,
             'areaUnit' => $this->getAreaUnits(1),
-            'communication' => [$this->getCommunications(0), $this->getCommunications(6)],
-            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(3)],
+            'communication' => [$this->getCommunications(0), $this->getCommunications(1), $this->getCommunications(2), $this->getCommunications(3), $this->getCommunications(4), $this->getCommunications(5), $this->getCommunications(6), $this->getCommunications(7)],
+            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(1), $this->getNearObjects(2), $this->getNearObjects(3), $this->getNearObjects(4), $this->getNearObjects(5), $this->getNearObjects(6), $this->getNearObjects(7), $this->getNearObjects(8), $this->getNearObjects(9)],
             'schema' => $schema
         ]);
 
@@ -707,6 +707,7 @@ function getCommercialCategoryTypes($id) //0..10
             'categoryType' => $this->getCommercialCategoryTypes(0),
             'region' => $this->getRegion(0),
             'city' => $this->getCity(4),
+            'district' => $this->getDistrict(22),
             'street' => $this->getStreet(97),
             'houseNumber' => Commercial::uniqueCommercialNumber(),
             'latitude' => Commercial::latitude,
@@ -716,7 +717,7 @@ function getCommercialCategoryTypes($id) //0..10
             'effectiveArea' => Commercial::effectiveArea,
             'wallMaterial' => $this->getWallMaterials(0),
             'roomCount' => Commercial::roomCount,
-            'floor' => Commercial::floor,
+            'floor' => Commercial::floors,
             'floorNumber' => Commercial::floorNumber,
             'wc' => $this->getWC(0),
             'heating' => $this->getHeatings(0),
@@ -725,7 +726,7 @@ function getCommercialCategoryTypes($id) //0..10
 
         $realtyCommercial = $this->restModule->grabResponse();
         $realtyCommercialId = json_decode($realtyCommercial)->id;
-        $file = file_put_contents(codecept_data_dir('realtyCommercialId.json'), $realtyCommercialId);
+        file_put_contents(codecept_data_dir('realtyCommercialId.json'), $realtyCommercialId);
         $this->debugSection('realtyCommercialId', $realtyCommercialId);
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
@@ -751,52 +752,44 @@ function getCommercialCategoryTypes($id) //0..10
             'effectiveArea' => Commercial::effectiveArea,
             'wallMaterial' => $this->getWallMaterials(0),
             'roomCount' => Commercial::roomCount,
-            'floor' => Commercial::floor,
+            'floor' => Commercial::floors,
             'floorNumber' => Commercial::floorNumber,
             'buildYear' => Commercial::buildYear,
-            'wc' => $this->getWC(0),
+            'wc' => $this->getWC(2),
             'heating' => $this->getHeatings(2),
             'waterHeating' => $this->getWaterHeatings(2),
-            'communication' => [$this->getCommunications(0), $this->getCommunications(2), $this->getCommunications(4)],
+            'communication' => [$this->getCommunications(0), $this->getCommunications(1), $this->getCommunications(2), $this->getCommunications(3), $this->getCommunications(4), $this->getCommunications(5), $this->getCommunications(6), $this->getCommunications(7)],
             'schema' => $schema
         ]);
 
         $realtyCommercial = $this->restModule->grabResponse();
         $realtyCommercialId = json_decode($realtyCommercial)->id;
-        $file = file_put_contents(codecept_data_dir('realtyCommercialId.json'), $realtyCommercialId);
+        file_put_contents(codecept_data_dir('realtyCommercialId.json'), $realtyCommercialId);
         $this->debugSection('realtyCommercialId', $realtyCommercialId);
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
     }
 
-    /*===============================================ADVERT API===============================================================*/
+/*===============================================ADVERT API===============================================================*/
 
     function apiAdvertFlatAddPlain()
     {
         $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $realtyFlatId = file_get_contents(codecept_data_dir('realtyFlatId.json'));
-        $images = file_get_contents(codecept_data_dir('images_id.json'));
 
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/flats/add/'.$realtyFlatId, [
-            'operationType' => $this->getOperationType(1),
+            'operationType' => $this->getOperationType(0),
             'description' => Flat::descriptionFlatSell,
             'price' => Flat::priceFlatSell,
             'currency' => $this->getCurrency(0),
-//            'period' => ,
-//            'auction' => true,
             'commission' => Flat::commission,
             'availableFrom' => Flat::apiAvailableFrom,
             'marketType' => $this->getMarketType(0),
-//            'repair' => $this->getRepairs(0),
-//            'bedsCount' => Flat::beds,
-//            'furniture' => [$this->getFurnitures(0), $this->getFurnitures(5)],
-//            'appliances' => [$this->getAppliances(1), $this->getAppliances(2), $this->getAppliances(4)],
-//            'additionally' => [$this->getFlatAdditionals(3), $this->getFlatAdditionals(5), $this->getFlatAdditionals(11)],
+            'repair' => $this->getRepairs(0),
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName
-//            'images' => json_decode($images, true)
         ]);
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
@@ -815,7 +808,7 @@ function getCommercialCategoryTypes($id) //0..10
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/flats/add/'.$realtyFlatId, [
-            'operationType' => $this->getOperationType(1),
+            'operationType' => $this->getOperationType(0),
             'description' => Flat::descriptionFlatSell,
             'price' => Flat::priceFlatSell,
             'currency' => $this->getCurrency(0),
@@ -850,7 +843,7 @@ function getCommercialCategoryTypes($id) //0..10
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/houses/add/'.$realtyHouseId, [
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationType(1),
             'period' => $this->getPeriod(1),
             'price' => House::priceHouseRent,
             'currency' => $this->getCurrency(1),
@@ -877,7 +870,7 @@ function getCommercialCategoryTypes($id) //0..10
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/houses/add/'.$realtyHouseId, [
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationType(1),
             'period' => $this->getPeriod(1),
             'price' => House::priceHouseRent,
             'currency' => $this->getCurrency(1),
@@ -910,18 +903,14 @@ function getCommercialCategoryTypes($id) //0..10
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/parcels/add/'.$realtyParcelId, [
-            'operationType' => $this->getOperationType(1),
+            'operationType' => $this->getOperationType(0),
             'description' => Parcel::descriptionParcelSell,
             'price' => Parcel::priceParcelSell,
             'currency' => $this->getCurrency(0),
-//            'period' => ,
-//            'auction' => true,
             'commission' => Parcel::commission,
             'availableFrom' => Parcel::apiAvailableFrom,
-//            'additionally' => [$this->getParcelAdditionals(3), $this->getParcelAdditionals(5), $this->getParcelAdditionals(11)],
             'ownerContacts' => Parcel::ownerContacts,
             'ownerName' => Parcel::ownerName
-//            'images' => json_decode($images, true)
         ]);
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
@@ -940,7 +929,7 @@ function getCommercialCategoryTypes($id) //0..10
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/parcels/add/'.$realtyParcelId, [
-            'operationType' => $this->getOperationType(1),
+            'operationType' => $this->getOperationType(0),
             'description' => Parcel::descriptionParcelSell,
             'price' => Parcel::priceParcelSell,
             'currency' => $this->getCurrency(0),
@@ -956,7 +945,6 @@ function getCommercialCategoryTypes($id) //0..10
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
         $advertParcel = $this->restModule->grabResponse();
-//        print_r($advertParcel);exit;
         $advParcelId = json_decode($advertParcel)->id;
         file_put_contents(codecept_data_dir('advertParcelId.json'), $advParcelId);
         $this->debugSection('advertParcelId', $advParcelId);
@@ -971,19 +959,15 @@ function getCommercialCategoryTypes($id) //0..10
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/commercials/add/'.$realtyCommercialId, [
-            'operationType' => $this->getOperationType(1),
+            'operationType' => $this->getOperationType(0),
             'description' => Commercial::descriptionCommercialSell,
             'price' => Commercial::priceCommercialSell,
             'currency' => $this->getCurrency(0),
-//            'period' => $this->getPeriod(1),
-//            'auction' => true,
             'commission' => Commercial::commission,
             'availableFrom' => Commercial::apiAvailableFrom,
-//            'repair' => $this->getRepairs(0),
-//            'additionally' => [$this->getCommercialAdditionals(3), $this->getCommercialAdditionals(5), $this->getCommercialAdditionals(11)],
+            'repair' => $this->getRepairs(0),
             'ownerContacts' => Commercial::ownerContacts,
             'ownerName' => Commercial::ownerName
-//            'images' => json_decode($images, true)
         ]);
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
@@ -1002,7 +986,7 @@ function getCommercialCategoryTypes($id) //0..10
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/Commercials/add/'.$realtyCommercialId, [
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationType(1),
             'description' => Commercial::descriptionCommercialRent,
             'price' => Commercial::priceCommercialRent,
             'currency' => $this->getCurrency(1),
@@ -1019,7 +1003,6 @@ function getCommercialCategoryTypes($id) //0..10
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
         $advertCommercial = $this->restModule->grabResponse();
-//        print_r($advertCommercial);exit;
         $advCommercialId = json_decode($advertCommercial)->id;
         $file = file_put_contents(codecept_data_dir('advertCommercialId.json'), $advCommercialId);
         $this->debugSection('advertCommercialId', $advCommercialId);
@@ -1051,16 +1034,12 @@ function getCommercialCategoryTypes($id) //0..10
             'description' => Flat::descriptionFlatSell,
             'price' => Flat::priceFlatSell,
             'currency' => $this->getCurrency(0),
-//            'period' => ,
             'auction' => true,
             'commission' => Flat::commission,
             'availableFrom' => Flat::apiAvailableFrom,
             'marketType' => $this->getMarketType(0),
             'repair' => $this->getRepairs(0),
             'bedsCount' => Flat::beds,
-//            'furniture' => [$this->getFurnitures(0), $this->getFurnitures(7)],
-//            'appliances' => [$this->getAppliances(0), $this->getAppliances(7), $this->getAppliances(4)],
-//            'additionally' => [$this->getFlatAdditionals(0), $this->getFlatAdditionals(15)],
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName,
             'images' => json_decode($images, true)
@@ -1086,11 +1065,10 @@ function getCommercialCategoryTypes($id) //0..10
             'status' => 1,
             'userId' => $userId,
             'realtyId' => $realtyFlatId,
-            'operationType' => $this->getOperationType(1),
+            'operationType' => $this->getOperationType(0),
             'description' => Flat::descriptionFlatSell,
             'price' => Flat::priceFlatSell,
             'currency' => $this->getCurrency(0),
-//            'period' => ,
             'auction' => true,
             'commission' => Flat::commission,
             'availableFrom' => Flat::apiAvailableFrom,
@@ -1125,20 +1103,16 @@ function getCommercialCategoryTypes($id) //0..10
             'status' => 1,
             'userId' => $userId,
             'realtyId' => $realtyHouseId,
-            'operationType' => $this->getOperationType(1),
+            'operationType' => $this->getOperationType(0),
             'description' => House::descriptionHouseSell,
             'price' => House::priceHouseSell,
             'currency' => $this->getCurrency(0),
-//            'period' => ,
             'auction' => true,
             'commission' => House::commission,
             'availableFrom' => Flat::apiAvailableFrom,
             'marketType' => $this->getMarketType(0),
             'repair' => $this->getRepairs(0),
             'bedsCount' => Flat::beds,
-//            'furniture' => [$this->getFurnitures(0), $this->getFurnitures(7)],
-//            'appliances' => [$this->getAppliances(0), $this->getAppliances(7), $this->getAppliances(4)],
-//            'additionally' => [$this->getFlatAdditionals(0), $this->getFlatAdditionals(15)],
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName,
             'images' => json_decode($images, true)
@@ -1167,12 +1141,11 @@ function getCommercialCategoryTypes($id) //0..10
             'status' => 1,
             'userId' => $userId,
             'realtyId' => $realtyParcelId,
-            'operationType' => $this->getOperationType(1),
+            'operationType' => $this->getOperationType(0),
             'description' => Parcel::descriptionParcelSell,
             'price' => Parcel::priceParcelSell,
             'currency' => $this->getCurrency(0),
-//            'period' => ,
-//            'auction' => true,
+            'auction' => true,
             'commission' => Parcel::commission,
             'availableFrom' => Parcel::apiAvailableFrom,
 //            'additionally' => [$this->getParcelAdditionals(0), $this->getParcelAdditionals(15)],
@@ -1204,19 +1177,15 @@ function getCommercialCategoryTypes($id) //0..10
             'status' => 1,
             'userId' => $userId,
             'realtyId' => $realtyCommercialId,
-            'operationType' => $this->getOperationType(1),
+            'operationType' => $this->getOperationType(0),
             'description' => Commercial::descriptionCommercialSell,
             'price' => Commercial::priceCommercialSell,
             'currency' => $this->getCurrency(0),
-//            'period' => ,
             'auction' => true,
             'commission' => Commercial::commission,
             'availableFrom' => Commercial::apiAvailableFrom,
-//            'repair' => $this->getRepairs(0),
-//            'additionally' => [$this->getCommercialAdditionals(0), $this->getCommercialAdditionals(15)],
             'ownerContacts' => Commercial::ownerContacts,
             'ownerName' => Commercial::ownerName,
-//            'images' => json_decode($images, true)
         ]);
         $this->restModule->seeResponseCodeIs(200);
         $this->restModule->seeResponseIsJson();

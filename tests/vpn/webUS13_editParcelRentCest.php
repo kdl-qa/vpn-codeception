@@ -1,7 +1,7 @@
 <?php
 use \VpnTester;
 
-class webUS13_editParcelSaleCest
+class webUS13_editParcelRentCest
 {
     public function login(VpnTester $I)
     {
@@ -16,14 +16,14 @@ class webUS13_editParcelSaleCest
         $I->uploadAdvImage();
     }
 
-    public function addParcelRentAdvert(/*\Helper\Api $I,*/ VpnTester $I)
+    public function addParcelRentAdvert(VpnTester $I)
     {
-        $I->realtyParcelAddPlain();
+        $I->realtyParcelAddComplex();
         $I->apiAdvertParcelAddPlain();
         $I->apiAdminEditParcelAdvertPlain();
     }
 
-    public function editParcelSaleAdvert(\Step\Vpn\EditAdvert $I, \Step\Vpn\Advert $he)
+    public function editParcelRentAdvert(\Step\Vpn\EditAdvert $I, \Step\Vpn\Advert $he)
     {
         $I->loginAgency();
         $I->openEditParcelPage();
@@ -36,7 +36,7 @@ class webUS13_editParcelSaleCest
         $I->openAdvertPage();
     }
 
-    public function checkParcelRentAdvert(\Step\Vpn\EditAdvert $I)
+    public function checkParcelSaleAdvert(\Step\Vpn\EditAdvert $I)
     {
         $I->checkEditedParcelProperties();
     }

@@ -27,28 +27,24 @@ class EditAdvert extends \VpnTester
         $I=$this;
         $I->click(AdvertsList::$editAdvTab);
 
-        $I->click(AddAdvert::$editOperationType0);
-        $I->fillField(AddAdvert::$advertDescription, Flat::editDescriptionFlatRent);
+        $I->click(AddAdvert::$editOTRent);
+        $I->fillField(AddAdvert::$advDescription, Flat::editDescriptionFlatRent);
         $I->fillField(AddAdvert::$price, Flat::editPriceFlatRent);
-        $I->click(AddAdvert::$currency);
-        $I->fillField(AddAdvert::$typeCurrency, Flat::currencyUA);
-        $I->click(AddAdvert::$chooseFirstRow);
+        $I->click(AddAdvert::$currencyField);
+        $I->click(AddAdvert::$currencyUA);
         $I->click(AddAdvert::$auction);
         $I->doubleClick(AddAdvert::$date);
         $I->pressKey(AddAdvert::$date, WebDriverKeys::DELETE);
         $I->fillField(AddAdvert::$date, Flat::editDate);
-        $I->click(AddAdvert::$month);
-        $I->fillField(AddAdvert::$typeMonth, Flat::editMonth);
-        $I->click(AddAdvert::$chooseFirstRow);
+        $I->click(AddAdvert::$monthField);
+        $I->click(AddAdvert::$month11);
         $I->doubleClick(AddAdvert::$year);
         $I->pressKey(AddAdvert::$year, WebDriverKeys::DELETE);
         $I->fillField(AddAdvert::$year, Flat::editYear);
         $I->click(AddAdvert::$editMarket);
-        $I->fillField(AddAdvert::$editTypeMarket, Flat::market1);
-        $I->click(AddAdvert::$chooseFirstRow);
-        $I->click(AddAdvert::$repair);
-        $I->fillField(AddAdvert::$typeRepair, Lists::repair2);
-        $I->click(AddAdvert::$chooseFirstRow);
+        $I->click(AddAdvert::$market1);
+        $I->click(AddAdvert::$repairField);
+        $I->click(AddAdvert::$repair2);
         $I->doubleClick(AddAdvert::$bedsCount);
         $I->fillField(AddAdvert::$bedsCount, Flat::editBeds);
     }
@@ -74,22 +70,22 @@ class EditAdvert extends \VpnTester
         $I->click(AddAdvert::$appliance6);
         $I->click(AddAdvert::$appliance7);
 
-        $I->click(AddAdvert::$additionalFlat0);
-        $I->click(AddAdvert::$additionalFlat1);
-        $I->click(AddAdvert::$additionalFlat2);
-        $I->click(AddAdvert::$additionalFlat3);
-        $I->click(AddAdvert::$additionalFlat4);
-        $I->click(AddAdvert::$additionalFlat5);
-        $I->click(AddAdvert::$additionalFlat6);
-        $I->click(AddAdvert::$additionalFlat7);
-        $I->click(AddAdvert::$additionalFlat8);
-        $I->click(AddAdvert::$additionalFlat9);
-        $I->click(AddAdvert::$additionalFlat10);
-        $I->click(AddAdvert::$additionalFlat11);
-        $I->click(AddAdvert::$additionalFlat12);
-        $I->click(AddAdvert::$additionalFlat13);
-        $I->click(AddAdvert::$additionalFlat14);
-        $I->click(AddAdvert::$additionalFlat15);
+        $I->click(AddAdvert::$additional0);
+        $I->click(AddAdvert::$additional1);
+        $I->click(AddAdvert::$additional2);
+        $I->click(AddAdvert::$additional3);
+        $I->click(AddAdvert::$additional4);
+        $I->click(AddAdvert::$additional5);
+        $I->click(AddAdvert::$additional6);
+        $I->click(AddAdvert::$additional7);
+        $I->click(AddAdvert::$additional8);
+        $I->click(AddAdvert::$additional9);
+        $I->click(AddAdvert::$additional10);
+        $I->click(AddAdvert::$additional11);
+        $I->click(AddAdvert::$additional12);
+        $I->click(AddAdvert::$additional13);
+        $I->click(AddAdvert::$additional14);
+        $I->click(AddAdvert::$additional15);
     }
 
     public function openAdvertPage()
@@ -107,7 +103,6 @@ class EditAdvert extends \VpnTester
         $I = $this;
 //        $I->amOnPage();
 //        $I->click(AdvertsList::$advInfoTab);
-//        $I->click(AdvertsList::adv)
         $I->waitForElement(AdvPage::$advInfoGallery);
 //        $I->see(Flat::priceFlatSell, AdvPage::$advInfoPrice);
         $I->see(Flat::editAvailableFrom, AdvPage::$advInfoAvailableFrom);
@@ -120,7 +115,7 @@ class EditAdvert extends \VpnTester
         $I->see(Flat::editDescriptionFlatRent,AdvPage::$advInfoDescription);
         $I->seeElement(AdvPage::$advInfoGallery);
         $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
-        $I->seeElement(AdvPage::$advInfoSocialButtons);
+//        $I->seeElement(AdvPage::$advInfoSocialButtons);
         $I->click(AdvPage::$advPropsTab);
         $I->see(Flat::category, AdvPage::$advPropsTable);
         $I->see(Flat::categoryType0, AdvPage::$advPropsTable);
@@ -201,29 +196,23 @@ class EditAdvert extends \VpnTester
         $I=$this;
         $I->click(AdvertsList::$editAdvTab);
 
-        $I->click(AddAdvert::$editOperationType0);
-        $I->fillField(AddAdvert::$advertDescription, House::editDescriptionHouseSell);
+        $I->click(AddAdvert::$editOTSell);
+        $I->fillField(AddAdvert::$advDescription, House::editDescriptionHouseSell);
         $I->fillField(AddAdvert::$price, House::editPriceHouseSell);
-        $I->click(AddAdvert::$currency);
-        $I->fillField(AddAdvert::$typeCurrency, House::currencyUS);
-        $I->click(AddAdvert::$chooseFirstRow);
+        $I->click(AddAdvert::$currencyField);
+        $I->click(AddAdvert::$currencyUS);
         $I->click(AddAdvert::$auction);
         $I->fillField(AddAdvert::$commission, House::editCommission);
         $I->doubleClick(AddAdvert::$date);
         $I->pressKey(AddAdvert::$date, WebDriverKeys::DELETE);
         $I->fillField(AddAdvert::$date, House::editDate);
-        $I->click(AddAdvert::$month);
-        $I->fillField(AddAdvert::$typeMonth, House::editMonth);
-        $I->click(AddAdvert::$chooseFirstRow);
+        $I->click(AddAdvert::$monthField);
+        $I->click(AddAdvert::$month11);
         $I->doubleClick(AddAdvert::$year);
         $I->pressKey(AddAdvert::$year, WebDriverKeys::DELETE);
         $I->fillField(AddAdvert::$year, House::editYear);
-//        $I->click(AddAdvert::$editMarket);
-//        $I->fillField(AddAdvert::$editTypeMarket, Flat::market1);
-//        $I->click(AddAdvert::$chooseFirstRow);
-        $I->click(AddAdvert::$repair);
-        $I->fillField(AddAdvert::$typeRepair, Lists::repair1);
-        $I->click(AddAdvert::$chooseFirstRow);
+        $I->click(AddAdvert::$repairField);
+        $I->click(AddAdvert::$repair1);
     }
 
     public function fillInEditHouseAdvertCheckboxes()
@@ -247,42 +236,31 @@ class EditAdvert extends \VpnTester
         $I->click(AddAdvert::$appliance6);
         $I->click(AddAdvert::$appliance7);
 
-        $I->click(AddAdvert::$additionalHouse0);
-        $I->click(AddAdvert::$additionalHouse1);
-        $I->click(AddAdvert::$additionalHouse2);
-        $I->click(AddAdvert::$additionalHouse3);
-        $I->click(AddAdvert::$additionalHouse4);
-        $I->click(AddAdvert::$additionalHouse5);
-        $I->click(AddAdvert::$additionalHouse6);
-        $I->click(AddAdvert::$additionalHouse7);
-        $I->click(AddAdvert::$additionalHouse8);
-        $I->click(AddAdvert::$additionalHouse9);
-        $I->click(AddAdvert::$additionalHouse10);
-        $I->click(AddAdvert::$additionalHouse11);
-        $I->click(AddAdvert::$additionalHouse12);
-        $I->click(AddAdvert::$additionalHouse13);
-        $I->click(AddAdvert::$additionalHouse14);
-        $I->click(AddAdvert::$additionalHouse15);
+        $I->click(AddAdvert::$additional0);
+        $I->click(AddAdvert::$additional1);
+        $I->click(AddAdvert::$additional2);
+        $I->click(AddAdvert::$additional3);
+        $I->click(AddAdvert::$additional4);
+        $I->click(AddAdvert::$additional5);
+        $I->click(AddAdvert::$additional6);
+        $I->click(AddAdvert::$additional7);
+        $I->click(AddAdvert::$additional8);
+        $I->click(AddAdvert::$additional9);
+        $I->click(AddAdvert::$additional10);
+        $I->click(AddAdvert::$additional11);
+        $I->click(AddAdvert::$additional12);
+        $I->click(AddAdvert::$additional13);
+        $I->click(AddAdvert::$additional14);
+        $I->click(AddAdvert::$additional15);
     }
 
-//    public function openAdvertPage()
-//    {
-//        $I=$this;
-//        $I->executeJS('window.scrollTo(0,0);');
-//        $I->click(AdvertsList::$advInfoTab);
-//        $I->waitForElement(AdvertsList::$advInfoLink);
-//        $I->click(AdvertsList::$advInfoLink);
-//        $I->wait(3);
-//    }
 
     public function checkEditedHouseProperties() //webUS-6
     {
         $I = $this;
 //        $I->amOnPage();
 //        $I->click(AdvertsList::$advInfoTab);
-//        $I->click(AdvertsList::adv)
         $I->waitForElement(AdvPage::$advInfoGallery);
-//        $I->see(Flat::priceFlatSell, AdvPage::$advInfoPrice);
         $I->see(House::editCommission, AdvPage::$advInfoPrice);
         $I->see(House::editAvailableFrom, AdvPage::$advInfoAvailableFrom);
         $I->see(House::generalArea, AdvPage::$advInfoMainProps);
@@ -293,7 +271,7 @@ class EditAdvert extends \VpnTester
         $I->see(House::editDescriptionHouseSell,AdvPage::$advInfoDescription);
         $I->seeElement(AdvPage::$advInfoGallery);
         $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
-        $I->seeElement(AdvPage::$advInfoSocialButtons);
+//        $I->seeElement(AdvPage::$advInfoSocialButtons);
         $I->click(AdvPage::$advPropsTab);
         $I->see(House::category, AdvPage::$advPropsTable);
         $I->see(House::categoryType0, AdvPage::$advPropsTable);
@@ -305,7 +283,6 @@ class EditAdvert extends \VpnTester
         $I->see(House::livingArea, AdvPage::$advPropsTable);
         $I->see(House::kitchenArea, AdvPage::$advPropsTable);
         $I->see(House::roomCount, AdvPage::$advPropsTable);
-        $I->see(House::editBeds, AdvPage::$advPropsTable);
         $I->see(House::floors, AdvPage::$advPropsTable);
         $I->see(House::buildYear, AdvPage::$advPropsTable);
         $I->see(Lists::wc0, AdvPage::$advPropsTable);
@@ -379,20 +356,18 @@ class EditAdvert extends \VpnTester
         $I=$this;
         $I->click(AdvertsList::$editAdvTab);
 
-        $I->click(AddAdvert::$editOperationType0);
-        $I->fillField(AddAdvert::$advertDescription, Parcel::editDescriptionParcelSell);
+        $I->click(AddAdvert::$editOTSell);
+        $I->fillField(AddAdvert::$advDescription, Parcel::editDescriptionParcelSell);
         $I->fillField(AddAdvert::$price, Parcel::editPriceParcelSell);
-        $I->click(AddAdvert::$currency);
-        $I->fillField(AddAdvert::$typeCurrency, Parcel::currencyUS);
-        $I->click(AddAdvert::$chooseFirstRow);
+        $I->click(AddAdvert::$currencyField);
+        $I->click(AddAdvert::$currencyUS);
         $I->click(AddAdvert::$auction);
         $I->fillField(AddAdvert::$commission, Parcel::editCommission);
         $I->doubleClick(AddAdvert::$date);
         $I->pressKey(AddAdvert::$date, WebDriverKeys::DELETE);
         $I->fillField(AddAdvert::$date, Parcel::editDate);
-        $I->click(AddAdvert::$month);
-        $I->fillField(AddAdvert::$typeMonth, Parcel::editMonth);
-        $I->click(AddAdvert::$chooseFirstRow);
+        $I->click(AddAdvert::$monthField);
+        $I->click(AddAdvert::$month0);
         $I->doubleClick(AddAdvert::$year);
         $I->pressKey(AddAdvert::$year, WebDriverKeys::DELETE);
         $I->fillField(AddAdvert::$year, Parcel::editYear);
@@ -401,18 +376,18 @@ class EditAdvert extends \VpnTester
     public function fillInEditParcelAdvertCheckboxes()
     {
         $I=$this;
-        $I->click(AddAdvert::$additionalParcel0);
-        $I->click(AddAdvert::$additionalParcel1);
-        $I->click(AddAdvert::$additionalParcel2);
-        $I->click(AddAdvert::$additionalParcel3);
-        $I->click(AddAdvert::$additionalParcel4);
-        $I->click(AddAdvert::$additionalParcel5);
-        $I->click(AddAdvert::$additionalParcel6);
-        $I->click(AddAdvert::$additionalParcel7);
-        $I->click(AddAdvert::$additionalParcel8);
-        $I->click(AddAdvert::$additionalParcel9);
-        $I->click(AddAdvert::$additionalParcel10);
-        $I->click(AddAdvert::$additionalParcel11);
+        $I->click(AddAdvert::$additional0);
+        $I->click(AddAdvert::$additional1);
+        $I->click(AddAdvert::$additional2);
+        $I->click(AddAdvert::$additional3);
+        $I->click(AddAdvert::$additional4);
+        $I->click(AddAdvert::$additional5);
+        $I->click(AddAdvert::$additional6);
+        $I->click(AddAdvert::$additional7);
+        $I->click(AddAdvert::$additional8);
+        $I->click(AddAdvert::$additional9);
+        $I->click(AddAdvert::$additional10);
+        $I->click(AddAdvert::$additional11);
     }
     
 
@@ -421,9 +396,7 @@ class EditAdvert extends \VpnTester
         $I = $this;
 //        $I->amOnPage();
 //        $I->click(AdvertsList::$advInfoTab);
-//        $I->click(AdvertsList::adv)
         $I->waitForElement(AdvPage::$advInfoGallery);
-//        $I->see(Flat::priceFlatSell, AdvPage::$advInfoPrice);
         $I->see(Parcel::editCommission, AdvPage::$advInfoPrice);
         $I->see(Parcel::editAvailableFrom, AdvPage::$advInfoAvailableFrom);
         $I->see(Parcel::generalArea, AdvPage::$advInfoMainProps);
@@ -431,7 +404,7 @@ class EditAdvert extends \VpnTester
         $I->see(Parcel::editDescriptionParcelSell,AdvPage::$advInfoDescription);
         $I->seeElement(AdvPage::$advInfoGallery);
         $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
-        $I->seeElement(AdvPage::$advInfoSocialButtons);
+//        $I->seeElement(AdvPage::$advInfoSocialButtons);
         $I->click(AdvPage::$advPropsTab);
         $I->see(Parcel::category, AdvPage::$advPropsTable);
         $I->see(Parcel::categoryType0, AdvPage::$advPropsTable);
@@ -442,11 +415,23 @@ class EditAdvert extends \VpnTester
         $I->see(Parcel::generalArea, AdvPage::$advPropsTable);
 
         $I->see(Lists::communication0, AdvPage::$advPropsTable);
+        $I->see(Lists::communication1, AdvPage::$advPropsTable);
+        $I->see(Lists::communication2, AdvPage::$advPropsTable);
+        $I->see(Lists::communication3, AdvPage::$advPropsTable);
+        $I->see(Lists::communication4, AdvPage::$advPropsTable);
+        $I->see(Lists::communication5, AdvPage::$advPropsTable);
         $I->see(Lists::communication6, AdvPage::$advPropsTable);
-
+        $I->see(Lists::communication7, AdvPage::$advPropsTable);
         $I->see(Lists::nearObject0, AdvPage::$advPropsTable);
+        $I->see(Lists::nearObject1, AdvPage::$advPropsTable);
+        $I->see(Lists::nearObject2, AdvPage::$advPropsTable);
         $I->see(Lists::nearObject3, AdvPage::$advPropsTable);
-
+        $I->see(Lists::nearObject4, AdvPage::$advPropsTable);
+        $I->see(Lists::nearObject5, AdvPage::$advPropsTable);
+        $I->see(Lists::nearObject6, AdvPage::$advPropsTable);
+        $I->see(Lists::nearObject7, AdvPage::$advPropsTable);
+        $I->see(Lists::nearObject8, AdvPage::$advPropsTable);
+        $I->see(Lists::nearObject9, AdvPage::$advPropsTable);
         $I->see(Lists::additionalParcel0, AdvPage::$advPropsTable);
         $I->see(Lists::additionalParcel1, AdvPage::$advPropsTable);
         $I->see(Lists::additionalParcel2, AdvPage::$advPropsTable);
@@ -478,46 +463,39 @@ class EditAdvert extends \VpnTester
         $I=$this;
         $I->click(AdvertsList::$editAdvTab);
 
-        $I->click(AddAdvert::$editOperationType1);
-        $I->fillField(AddAdvert::$advertDescription, Commercial::editDescriptionCommercialRent);
+        $I->click(AddAdvert::$editOTRent);
+        $I->fillField(AddAdvert::$advDescription, Commercial::editDescriptionCommercialRent);
         $I->fillField(AddAdvert::$price, Commercial::editPriceCommercialRent);
-        $I->click(AddAdvert::$currency);
-        $I->fillField(AddAdvert::$typeCurrency, Commercial::currencyUA);
-        $I->click(AddAdvert::$chooseFirstRow);
-        $I->click(AddAdvert::$period);
-        $I->fillField(AddAdvert::$typePeriod, Lists::period1);
-        $I->click(AddAdvert::$chooseFirstRow);
+        $I->click(AddAdvert::$currencyField);
+        $I->click(AddAdvert::$currencyUA);
+        $I->click(AddAdvert::$periodField);
+        $I->click(AddAdvert::$editPeriodMonth);
         $I->click(AddAdvert::$auction);
         $I->fillField(AddAdvert::$commission, Commercial::editCommission);
         $I->doubleClick(AddAdvert::$date);
         $I->pressKey(AddAdvert::$date, WebDriverKeys::DELETE);
         $I->fillField(AddAdvert::$date, Commercial::editDate);
-        $I->click(AddAdvert::$month);
-        $I->fillField(AddAdvert::$typeMonth, Commercial::editMonth);
-        $I->click(AddAdvert::$chooseFirstRow);
+        $I->click(AddAdvert::$monthField);
+        $I->click(AddAdvert::$month1);
         $I->doubleClick(AddAdvert::$year);
         $I->pressKey(AddAdvert::$year, WebDriverKeys::DELETE);
         $I->fillField(AddAdvert::$year, Commercial::editYear);
-//        $I->click(AddAdvert::$editMarket);
-//        $I->fillField(AddAdvert::$editTypeMarket, Flat::market1);
-//        $I->click(AddAdvert::$chooseFirstRow);
-        $I->click(AddAdvert::$repair);
-        $I->fillField(AddAdvert::$typeRepair, Lists::repair0);
-        $I->click(AddAdvert::$chooseFirstRow);
+        $I->click(AddAdvert::$repairField);
+        $I->click(AddAdvert::$repair0);
     }
 
     public function fillInEditCommercialAdvertCheckboxes()
     {
         $I = $this;
 
-        $I->click(AddAdvert::$additionalCommercial0);
-        $I->click(AddAdvert::$additionalCommercial1);
-        $I->click(AddAdvert::$additionalCommercial2);
-        $I->click(AddAdvert::$additionalCommercial3);
-        $I->click(AddAdvert::$additionalCommercial4);
-        $I->click(AddAdvert::$additionalCommercial5);
-        $I->click(AddAdvert::$additionalCommercial6);
-        $I->click(AddAdvert::$additionalCommercial7);
+        $I->click(AddAdvert::$additional0);
+        $I->click(AddAdvert::$additional1);
+        $I->click(AddAdvert::$additional2);
+        $I->click(AddAdvert::$additional3);
+        $I->click(AddAdvert::$additional4);
+        $I->click(AddAdvert::$additional5);
+        $I->click(AddAdvert::$additional6);
+        $I->click(AddAdvert::$additional7);
     }
 
     public function checkEditedCommercialProperties() //webUS-6
@@ -525,21 +503,19 @@ class EditAdvert extends \VpnTester
         $I = $this;
 //        $I->amOnPage();
 //        $I->click(AdvertsList::$advInfoTab);
-//        $I->click(AdvertsList::adv)
         $I->waitForElement(AdvPage::$advInfoGallery);
-//        $I->see(Flat::priceFlatSell, AdvPage::$advInfoPrice);
-        $I->see(Commercial::editCommission, AdvPage::$advInfoPrice);
         $I->see(Commercial::editAvailableFrom, AdvPage::$advInfoAvailableFrom);
+        $I->see(Commercial::editCommission, AdvPage::$advInfoPrice);
         $I->see(Commercial::generalArea, AdvPage::$advInfoMainProps);
         $I->see(Commercial::roomCount, AdvPage::$advInfoMainProps);
         $I->see(Lists::wallMaterial0, AdvPage::$advInfoMainProps);
-        $I->see(Commercial::floor, AdvPage::$advInfoMainProps);
+        $I->see(Commercial::floors, AdvPage::$advInfoMainProps);
         $I->see(Commercial::floorNumber, AdvPage::$advInfoMainProps);
         $I->seeElement(AdvPage::$advPropsLink);
         $I->see(Commercial::editDescriptionCommercialRent,AdvPage::$advInfoDescription);
         $I->seeElement(AdvPage::$advInfoGallery);
         $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
-        $I->seeElement(AdvPage::$advInfoSocialButtons);
+//        $I->seeElement(AdvPage::$advInfoSocialButtons);
         $I->click(AdvPage::$advPropsTab);
         $I->see(Commercial::category, AdvPage::$advPropsTable);
         $I->see(Commercial::categoryType0, AdvPage::$advPropsTable);
@@ -550,16 +526,19 @@ class EditAdvert extends \VpnTester
         $I->see(Commercial::generalArea, AdvPage::$advPropsTable);
         $I->see(Commercial::effectiveArea, AdvPage::$advPropsTable);
         $I->see(Commercial::roomCount, AdvPage::$advPropsTable);
-        $I->see(Commercial::buildYear, AdvPage::$advPropsTable);
-        $I->see(Lists::wc0, AdvPage::$advPropsTable);
+        $I->see(Lists::wc2, AdvPage::$advPropsTable);
         $I->see(Lists::heating2, AdvPage::$advPropsTable);
         $I->see(Lists::waterHeat2, AdvPage::$advPropsTable);
         $I->see(Lists::repair0, AdvPage::$advPropsTable);
 
         $I->see(Lists::communication0, AdvPage::$advPropsTable);
+        $I->see(Lists::communication1, AdvPage::$advPropsTable);
         $I->see(Lists::communication2, AdvPage::$advPropsTable);
+        $I->see(Lists::communication3, AdvPage::$advPropsTable);
         $I->see(Lists::communication4, AdvPage::$advPropsTable);
-
+        $I->see(Lists::communication5, AdvPage::$advPropsTable);
+        $I->see(Lists::communication6, AdvPage::$advPropsTable);
+        $I->see(Lists::communication7, AdvPage::$advPropsTable);
 
         $I->see(Lists::additionalCommercial0, AdvPage::$advPropsTable);
         $I->see(Lists::additionalCommercial1, AdvPage::$advPropsTable);

@@ -71,11 +71,6 @@ class AdmEditRealtyObject extends \VpnTester
         $I->click(AdmRealtyObject::$nearObject8);
         $I->click(AdmRealtyObject::$nearObject9);
 
-//        $I->seeElement(AdmRealtyObject::$removeSchema);
-//        $I->click(AdmRealtyObject::$removeSchema);
-//        $I->waitForElement(AdmRealtyObject::$schema);
-//        $I->attachFile(AdmRealtyObject::$schema, '/img/flat_2.jpg');
-//        $I->wait(2);
         $I->attachFile(AdmRealtyObject::$schema, '/img/flat_2.jpg');
         $I->wait(1);
 
@@ -294,7 +289,7 @@ class AdmEditRealtyObject extends \VpnTester
         $I->attachFile(AdmRealtyObject::$schema, '/img/parcel_2.jpg');
         $I->wait(4);
         $I->click(AdmRealtyObject::$submitBtn);
-        $I->wait(1);
+        $I->wait(2);
     }
 
     public function checkEditParcelObject()

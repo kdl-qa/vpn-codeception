@@ -28,7 +28,9 @@ class Commercial
     const longitude = '32.06402';
     const effectiveArea = '200';
     const roomCount = '5';
-    const floor = '2';
+    const roomCountDefault = '5';
+
+    const floors = '2';
     const floorNumber = '1';
     const buildYear = '2000';
     const wc = 'Раздельный';
@@ -64,11 +66,12 @@ class Commercial
     const editPriceCommercialSell = '151000';
     const editPriceCommercialRent = '29999';
 
-    const apiDistrict = '';
-    const apiStreet = '';
+    const apiDistrict = 'Район Д';
+    const apiStreet = 'Калинина улица';
 
-    const editDistrict = 'Водоконал-Невского';
+    const editDistrict = 'Водоканал-Невского';
     const editStreet = 'Ильина улица';
+
     const editLatitude = '49.41815';
     const editLongitude = '32.09172';
     const editGeneralArea = '225';

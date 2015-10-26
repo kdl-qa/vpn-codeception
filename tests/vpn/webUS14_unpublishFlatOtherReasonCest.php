@@ -12,11 +12,10 @@ class webUS14_unpublishFlatOtherReasonCest
     public function uploadImages(VpnTester $I)
     {
         $I->uploadSchema();
-        $I->uploadLogo();
         $I->uploadAdvImage();
     }
 
-    public function addFlatSaleAdvert(/*\Helper\Api $I,*/ VpnTester $I)
+    public function addFlatSaleAdvert(VpnTester $I)
     {
         $I->realtyFlatAddPlain();
         $I->apiAdvertFlatAddComplex();

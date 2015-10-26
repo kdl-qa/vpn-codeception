@@ -11,7 +11,6 @@ class webUS4_addFlatSaleComplexCest
         $I->fillInStandardFlatType();
         $I->fillInFlatAddress();
 
-        $I->acceptModal();
         $I->fillInFlatObjPropertiesComplex();
         $I->checkFlatObjectPropertiesComplex();
         $I->agreeObjectProperties();

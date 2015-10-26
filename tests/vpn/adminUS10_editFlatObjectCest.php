@@ -9,11 +9,6 @@ class adminUS10_editFlatObjectCest
         $I->apiAgencyLogin();
     }
 
-    public function uploadImages(VpnTester $I)
-    {
-        $I->uploadSchema();
-    }
-
     public function addFlatObject(VpnTester $I)
     {
         $I->realtyFlatAddPlain();

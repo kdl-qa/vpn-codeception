@@ -16,7 +16,7 @@ class webUS13_editFlatSaleCest
         $I->uploadAdvImage();
     }
 
-    public function addFlatSaleAdvert(/*\Helper\Api $I,*/ VpnTester $I)
+    public function addFlatSaleAdvert( VpnTester $I)
     {
         $I->realtyFlatAddComplex();
         $I->apiAdvertFlatAddPlain();

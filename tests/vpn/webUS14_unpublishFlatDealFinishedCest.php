@@ -11,8 +11,6 @@ class webUS14_unpublishFlatDealFinishedCest
 
     public function uploadImages(VpnTester $I)
     {
-        $I->uploadSchema();
-        $I->uploadLogo();
         $I->uploadAdvImage();
     }
 

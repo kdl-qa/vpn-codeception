@@ -10,7 +10,6 @@ class webUS4_addHouseRentPlainCest
         $I->fillInStandardHouseType();
         $I->fillInHouseAddress();
 
-        $I->acceptModal();
         $I->fillInHouseObjPropertiesPlain();
         $I->checkHouseObjectPropertiesPlain();
         $I->agreeObjectProperties();

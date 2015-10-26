@@ -10,7 +10,6 @@ class webUS4_addCommercialRentPlainCest
         $I->fillInStandardCommercialType();
         $I->fillInCommercialAddress();
 
-        $I->acceptModal();
         $I->fillInCommercialObjPropertiesPlain();
         $I->checkCommercialObjectPropertiesPlain();
         $I->agreeObjectProperties();
@@ -24,7 +23,7 @@ class webUS4_addCommercialRentPlainCest
         $admin->moderateAdvActive();
     }
 
-    public function checkNewFlatAdvert(\Step\Vpn\Advert $I, \Step\Vpn\UserAdvertsList $list)
+    public function checkNewCommercialAdvert(\Step\Vpn\Advert $I, \Step\Vpn\UserAdvertsList $list)
     {
         $I->loginAgency();
         $list->openUserAdvertsList();
