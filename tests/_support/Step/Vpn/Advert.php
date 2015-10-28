@@ -13,7 +13,6 @@ class Advert extends \VpnTester
         $I->click(AddAdvert::$flatCategory);
         $I->click(AddAdvert::$category_type);
         $I->click(AddAdvert::$catTypeFlat);
-
     }
 
 
