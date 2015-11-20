@@ -26,13 +26,13 @@ class api_realtyAddFlatCest
 
     public function addAdv(VpnTester $I)
     {
-        $I->realtyFlatAdd();
-        $I->advertFlatAdd();
+        $I->realtyFlatAddPlain();
+        $I->apiAdvertFlatAddPlain();
     }
 
     public function editFlatAdvert(VpnTester $I)
     {
-        $I->apiAdminEditFlatAdvert();
+        $I->apiAdminEditFlatAdvertComplex();
     }
     // tests
 //    public function checkCreatingAdvert(\Step\Vpn\Advert $I, \Step\Vpn\UserAdvertsList $listSteps)

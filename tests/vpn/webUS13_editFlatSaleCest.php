@@ -12,7 +12,7 @@ class webUS13_editFlatSaleCest
     public function uploadImages(VpnTester $I)
     {
         $I->uploadSchema();
-        $I->uploadLogo();
+//        $I->uploadLogo();
         $I->uploadAdvImage();
     }
 

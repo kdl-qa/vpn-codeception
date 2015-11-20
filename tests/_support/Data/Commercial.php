@@ -95,9 +95,9 @@ class Commercial
 
     static function uniqueCommercialNumber()
     {
-        if (self::$currentCommercialNumber) {
-            return self::$currentCommercialNumber;
-        }
+//        if (self::$currentCommercialNumber) {
+//            return self::$currentCommercialNumber;
+//        }
         $constFileName = codecept_data_dir('commercial_number.txt');
         $number = trim(file_get_contents($constFileName));
         $number++;

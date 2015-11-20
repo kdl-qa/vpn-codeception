@@ -45,10 +45,12 @@ class AddAdvert
 
 
     public static $regionField = '[ng-model="ctrl.realty.address.region"] span';
+    public static $typeRegion = '[ng-model="ctrl.realty.address.region"] input';
     public static $region0 = '.cc-region-name0';
 
     public static $cityField = '[ng-model="ctrl.realty.address.city"] span';
-    public static $chooseCity = '.cc-city-name4'; //cherkassy (dynamic vocabulary);
+    public static $typeCity = '[ng-model="ctrl.realty.address.city"] input';
+    public static $chooseCity = '.cc-city-name0'; //cherkassy (dynamic vocabulary);
 
     public static $district = '[ng-model="ctrl.realty.address.district"] span';
     public static $typeDistrict = '[ng-model="ctrl.realty.address.district"] input';

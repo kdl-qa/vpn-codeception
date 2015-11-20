@@ -14,3 +14,5 @@ modules:
             url: http://uhome.co/api/v1
             depends: PhpBrowser
         - \Helper\Api
+
+#        - \Helper\ApiRegion
