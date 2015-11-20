@@ -12,7 +12,6 @@ class webUS13_editHouseRentCest
     public function uploadImages(VpnTester $I)
     {
         $I->uploadSchema();
-        $I->uploadLogo();
         $I->uploadAdvImage();
     }
 

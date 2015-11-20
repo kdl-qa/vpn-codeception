@@ -647,7 +647,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/realties/flats/add', [
             'category' => $this->getCategories(0),
             'categoryType' => $this->getFlatCategoryTypes(0),
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
 //            'district' => $this->getDistrict(23),
             'street' => $this->getStreet(32),
@@ -691,9 +691,9 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/realties/flats/add', [
             'category' => $this->getCategories(0),
             'categoryType' => $this->getFlatCategoryTypes(0),
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
-            'district' => $this->getDistrict(23),
+            'district' => $this->getDistrict(21),
             'street' => $this->getStreet(32),
             'houseNumber' => Flat::houseNumber,
             'flatNumber' => Flat::uniqueFlatNumber(),
@@ -735,7 +735,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/realties/flats/check', [
             'category' => $this->getCategories(0),
             'categoryType' => $this->getFlatCategoryTypes(0),
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
             'street' => $this->getStreet(32),
             'houseNumber' => Flat::houseNumber,
@@ -759,7 +759,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/realties/flats/validate', [
             'category' => $this->getCategories(0),
             'categoryType' => $this->getFlatCategoryTypes(0),
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
             'district' => $this->getDistrict(23),
             'street' => $this->getStreet(32),
@@ -825,7 +825,7 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPUT('/realties/flats/edit/'.$realtyFlatID, [
             'status' => 1,
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
             'district' => $this->getDistrict(0),
             'street' => $this->getStreet(0),
@@ -886,7 +886,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/realties/houses/add', [
             'category' => $this->getCategories(1),
             'categoryType' => $this->getHouseCategoryTypes(0),
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
             'street' => $this->getStreet(94),
             'houseNumber' => House::uniqueHouseNumber(),
@@ -922,7 +922,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/realties/houses/add', [
             'category' => $this->getCategories(1),
             'categoryType' => $this->getHouseCategoryTypes(0),
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
             'district' => $this->getDistrict(2),
             'street' => $this->getStreet(94),
@@ -965,7 +965,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/realties/houses/check', [
             'category' => $this->getCategories(1),
             'categoryType' => $this->getHouseCategoryTypes(0),
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
             'street' => $this->getStreet(94),
             'houseNumber' => House::$currentHouseNumber
@@ -984,7 +984,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/realties/houses/validate', [
             'category' => $this->getCategories(1),
             'categoryType' => $this->getHouseCategoryTypes(0),
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
             'district' => $this->getDistrict(2),
             'street' => $this->getStreet(94),
@@ -1049,7 +1049,7 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPUT('/realties/houses/edit/'.$realtyHouseID, [
             'status' => 1,
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
             'street' => $this->getStreet(21),
             'houseNumber' => House::uniqueHouseNumber(),
@@ -1109,7 +1109,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/realties/parcels/add', [
             'category' => $this->getCategories(2),
             'categoryType' => $this->getParcelCategoryTypes(0),
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
 //            'district' => $this->getDistrict(7),
 //            'street' => $this->getStreet(32),
@@ -1139,7 +1139,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/realties/parcels/add', [
             'category' => $this->getCategories(2),
             'categoryType' => $this->getParcelCategoryTypes(0),
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
             'district' => $this->getDistrict(7),
             'street' => $this->getStreet(32),
@@ -1190,7 +1190,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/realties/parcels/validate', [
             'category' => $this->getCategories(2),
             'categoryType' => $this->getParcelCategoryTypes(0),
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
             'district' => $this->getDistrict(7),
             'street' => $this->getStreet(32),
@@ -1232,7 +1232,7 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPUT('/realties/parcels/edit/'.$realtyParcelID, [
             'status' => 1,
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
             'district' => $this->getDistrict(7),
             'street' => $this->getStreet(21),
@@ -1282,9 +1282,9 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/realties/commercials/add', [
             'category' => $this->getCategories(3),
             'categoryType' => $this->getCommercialCategoryTypes(0),
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
-            'district' => $this->getDistrict(22),
+            'district' => $this->getDistrict(20),
             'street' => $this->getStreet(97),
             'houseNumber' => Commercial::uniqueCommercialNumber(),
             'latitude' => Commercial::latitude,
@@ -1318,9 +1318,9 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/realties/commercials/add', [
             'category' => $this->getCategories(3),
             'categoryType' => $this->getCommercialCategoryTypes(0),
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
-            'district' => $this->getDistrict(22),
+            'district' => $this->getDistrict(20),
             'street' => $this->getStreet(97),
             'houseNumber' => Commercial::uniqueCommercialNumber(),
             'latitude' => Commercial::latitude,
@@ -1356,7 +1356,7 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/commercials/check', ['category' => $this->getCategories(3),
             'categoryType' => $this->getCommercialCategoryTypes(0),
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
             'street' => $this->getStreet(97),
             'houseNumber' => Commercial::$currentCommercialNumber
@@ -1375,7 +1375,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/realties/commercials/validate', [
             'category' => $this->getCategories(3),
             'categoryType' => $this->getCommercialCategoryTypes(0),
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
             'district' => $this->getDistrict(22),
             'street' => $this->getStreet(97),
@@ -1434,7 +1434,7 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPUT('/realties/commercials/edit/'.$realtyCommercialID, [
             'status' => 1,
-            'region' => $this->getRegion(0),
+            'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
             'district' => $this->getDistrict(2),
             'street' => $this->getStreet(94),
@@ -1727,7 +1727,6 @@ class Api extends \Codeception\Module
         $file = file_put_contents(codecept_data_dir('advertCommercialId.json'), $advCommercialId);
         $this->debugSection('advertCommercialId', $advCommercialId);
     }
-
 
 
 /*=======================================================Admin API============================================================*/
