@@ -4,6 +4,7 @@ use \VpnTester;
 class webUS13_editAdvertsCest
 {
 /*=========================================dependencies=========================================*/
+   //todo this cest shouldn't launched 1st!!! (cos Images)
     protected function login(VpnTester $I)
     {
         $I->apiAdminLogin();

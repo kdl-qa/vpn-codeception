@@ -58,11 +58,9 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/login', ['email'=> User::$agencyEmail, 'password' => User::$agencyPass]);
         $usrData = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('agency_data.json'), $usrData);
-//        $token = $this->restModule->grabDataFromResponseByJsonPath('$.token');
         $token = json_decode($usrData)->token;
         $this->debugSection('New Token', $token);
-//        $this->restModule->haveHttpHeader('token', $token);
-        $agencyToken = file_put_contents(codecept_data_dir('agency_token.json'), $token);
+        file_put_contents(codecept_data_dir('agency_token.json'), $token);
     }
 
 
@@ -84,8 +82,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/admin/login', ['email'=> User::$adminEmail, 'password' => User::$adminPass]);
         $token = $this->restModule->grabDataFromResponseByJsonPath('$.token');
         $this->debugSection('New Token', $token);
-//        $this->restModule->haveHttpHeader('token', $token);
-        $adminToken = file_put_contents(codecept_data_dir('admin_token.json'), $token);
+        file_put_contents(codecept_data_dir('admin_token.json'), $token);
     }
 
     function apiAdminLogout()
@@ -99,7 +96,7 @@ class Api extends \Codeception\Module
     }
 
 
-    /*================================================ API LISTS =====================================================*/
+    /*================================================ API LISTS ==================================================*/
 
     function getCountry()
     {
@@ -107,9 +104,8 @@ class Api extends \Codeception\Module
         $this->restModule->sendGET('/lists/countries');
         $country = $this->restModule->grabResponse();
         $countryId = json_decode($country)[0]->id;
-//        $countryId = $this->restModule->grabDataFromResponseByJsonPath('$.[0].id');
         $this->debugSection('Country ID', $countryId);
-        $c = file_put_contents(codecept_data_dir('countries.json'), $country);
+        file_put_contents(codecept_data_dir('countries.json'), $country);
         return $countryId;
 
 
@@ -497,7 +493,7 @@ class Api extends \Codeception\Module
         return $wcId;
     }
 
-/*======================================================== API REALTY ===================================================*/
+/*======================================================== API REALTY ==================================*/
 
     /*=================================== COMMON =================================*/
 
@@ -1336,7 +1332,14 @@ class Api extends \Codeception\Module
             'wc' => $this->getWC(2),
             'heating' => $this->getHeatings(2),
             'waterHeating' => $this->getWaterHeatings(2),
-            'communication' => [$this->getCommunications(0), $this->getCommunications(1), $this->getCommunications(2), $this->getCommunications(3), $this->getCommunications(4), $this->getCommunications(5), $this->getCommunications(6), $this->getCommunications(7)],
+            'communication' => [$this->getCommunications(0),
+                $this->getCommunications(1),
+                $this->getCommunications(2),
+                $this->getCommunications(3),
+                $this->getCommunications(4),
+                $this->getCommunications(5),
+                $this->getCommunications(6),
+                $this->getCommunications(7)],
             'schema' => $schema
         ]);
 
@@ -1482,7 +1485,7 @@ class Api extends \Codeception\Module
         $this->restModule->seeHttpHeader('Content-Type', 'application/json');
     }
 
-/*=============================================== ADVERT API ===============================================================*/
+/*=============================================== ADVERT API =============================================*/
 
     /*========================================= FLATS =========================================*/
     function apiAdvertFlatAddPlain()
@@ -1729,9 +1732,9 @@ class Api extends \Codeception\Module
     }
 
 
-/*=======================================================Admin API============================================================*/
+/*=======================================================Admin API=============================================*/
 
-    /*=====================================================Edit Advert=========================================================*/
+    /*=====================================================Edit Advert=========================================*/
 
     function apiAdminEditFlatAdvertPlain()
     {
@@ -1794,9 +1797,38 @@ class Api extends \Codeception\Module
             'marketType' => $this->getMarketType(0),
             'repair' => $this->getRepairs(0),
             'bedsCount' => Flat::beds,
-            'furniture' => [$this->getFurnitures(0), $this->getFurnitures(1), $this->getFurnitures(2), $this->getFurnitures(3), $this->getFurnitures(4), $this->getFurnitures(5), $this->getFurnitures(6), $this->getFurnitures(7)],
-            'appliances' => [$this->getAppliances(0), $this->getAppliances(1), $this->getAppliances(2), $this->getAppliances(3), $this->getAppliances(4), $this->getAppliances(5), $this->getAppliances(6), $this->getAppliances(7)],
-            'additionally' => [$this->getFlatAdditionals(0), $this->getFlatAdditionals(1), $this->getFlatAdditionals(2), $this->getFlatAdditionals(3), $this->getFlatAdditionals(4), $this->getFlatAdditionals(5), $this->getFlatAdditionals(6), $this->getFlatAdditionals(7), $this->getFlatAdditionals(8), $this->getFlatAdditionals(9), $this->getFlatAdditionals(10), $this->getFlatAdditionals(11), $this->getFlatAdditionals(12), $this->getFlatAdditionals(13), $this->getFlatAdditionals(14), $this->getFlatAdditionals(15)],
+            'furniture' => [$this->getFurnitures(0),
+                $this->getFurnitures(1),
+                $this->getFurnitures(2),
+                $this->getFurnitures(3),
+                $this->getFurnitures(4),
+                $this->getFurnitures(5),
+                $this->getFurnitures(6),
+                $this->getFurnitures(7)],
+            'appliances' => [$this->getAppliances(0),
+                $this->getAppliances(1),
+                $this->getAppliances(2),
+                $this->getAppliances(3),
+                $this->getAppliances(4),
+                $this->getAppliances(5),
+                $this->getAppliances(6),
+                $this->getAppliances(7)],
+            'additionally' => [$this->getFlatAdditionals(0),
+                $this->getFlatAdditionals(1),
+                $this->getFlatAdditionals(2),
+                $this->getFlatAdditionals(3),
+                $this->getFlatAdditionals(4),
+                $this->getFlatAdditionals(5),
+                $this->getFlatAdditionals(6),
+                $this->getFlatAdditionals(7),
+                $this->getFlatAdditionals(8),
+                $this->getFlatAdditionals(9),
+                $this->getFlatAdditionals(10),
+                $this->getFlatAdditionals(11),
+                $this->getFlatAdditionals(12),
+                $this->getFlatAdditionals(13),
+                $this->getFlatAdditionals(14),
+                $this->getFlatAdditionals(15)],
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName,
             'images' => json_decode($images, true)
@@ -1914,7 +1946,7 @@ class Api extends \Codeception\Module
         $this->debugSection('advertCommercialId', $advCommercialId);
     }
 
-  /*=======================================================Image API============================================================*/
+  /*=======================================================Image API================================================*/
 
     function uploadUserAvatar()
     {
@@ -2008,7 +2040,7 @@ class Api extends \Codeception\Module
         $this->debugSection('advertsID', $images);
     }
 
-/*==========================================================ADMIN API==============================================================*/
+/*==========================================================ADMIN API================================================*/
 
 
 
