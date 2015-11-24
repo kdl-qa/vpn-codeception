@@ -1485,7 +1485,59 @@ class Api extends \Codeception\Module
         $this->restModule->seeHttpHeader('Content-Type', 'application/json');
     }
 
+
 /*=============================================== ADVERT API =============================================*/
+
+    /*========================================= COMMON =========================================*/
+    function apiGetLastSaleAdverts()
+    {
+        $cityID = json_decode(file_get_contents(codecept_data_dir().'cities.json'))[4]->id;
+        $operationTypeSale = json_decode(file_get_contents(codecept_data_dir().'operation_types.json'))[0]->id;
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/get-announcements/last/'.$operationTypeSale.'/1/24/'.$cityID);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'total' => 'integer',
+            'count' => 'integer',
+            'page' => 'integer',
+            'data' => 'array'
+        ]);
+    }
+
+    function apiGetLastRentAdverts()
+    {
+        $cityID = json_decode(file_get_contents(codecept_data_dir().'cities.json'))[4]->id;
+        $operationTypeRent = json_decode(file_get_contents(codecept_data_dir().'operation_types.json'))[1]->id;
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/get-announcements/last/'.$operationTypeRent.'/1/24/'.$cityID);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'total' => 'integer',
+            'count' => 'integer',
+            'page' => 'integer',
+            'data' => 'array'
+        ]);
+    }
+
+    function apiGetAgencyAdverts()
+    {
+        //todo: you also can do adverts sort by text of description (add to the end of url - ?text=test)
+
+        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
+        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/profiles/announcements/1/24');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'total' => 'integer',
+            'count' => 'integer',
+            'page' => 'integer',
+            'data' => 'array'
+        ]);
+    }
 
     /*========================================= FLATS =========================================*/
     function apiAdvertFlatAddPlain()
@@ -1551,6 +1603,17 @@ class Api extends \Codeception\Module
         $this->debugSection('advertFlatId', $advFlatId);
     }
 
+    function apiGetFlatAdvert()
+    {
+        //todo: your advert should be available on web site (status 1)
+        $flatID = file_get_contents(codecept_data_dir().'advertFlatId.json');
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/get-announcements/'.$flatID);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+
+    }
+
     /*========================================= HOUSES =========================================*/
 
     function apiAdvertHouseAddPlain()
@@ -1613,6 +1676,16 @@ class Api extends \Codeception\Module
         $this->debugSection('advertHouseId', $advHouseId);
     }
 
+    function apiGetHouseAdvert()
+    {
+        $houseID = file_get_contents(codecept_data_dir().'advertHouseId.json');
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/get-announcements/'.$houseID);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+
+    }
+
     /*========================================= PARCELS =========================================*/
 
     function apiAdvertParcelAddPlain()
@@ -1669,6 +1742,16 @@ class Api extends \Codeception\Module
         $advParcelId = json_decode($advertParcel)->id;
         file_put_contents(codecept_data_dir('advertParcelId.json'), $advParcelId);
         $this->debugSection('advertParcelId', $advParcelId);
+    }
+
+    function apiGetParcelAdvert()
+    {
+        $parcelID = file_get_contents(codecept_data_dir().'advertParcelId.json');
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/get-announcements/'.$parcelID);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+
     }
 
     /*========================================= COMMERCIALS =========================================*/
@@ -1731,10 +1814,130 @@ class Api extends \Codeception\Module
         $this->debugSection('advertCommercialId', $advCommercialId);
     }
 
+    function apiGetCommercialAdvert()
+    {
+        $commercialID = file_get_contents(codecept_data_dir().'advertCommercialId.json');
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/get-announcements/'.$commercialID);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
 
-/*========================================================Admin API==================================================*/
+    }
 
-    /*=====================================================Edit Advert=========================================*/
+/*=======================================================ADMIN API=============================================*/
+
+    /*===================================================Common=======================================*/
+
+    /*=================================================== REALTIES =======================================*/
+
+    function apiAdminGetFlatRealties()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $realtyFlatId = file_get_contents(codecept_data_dir('realtyFlatId.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/profiles/realties/'.$realtyFlatId);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'id' => 'string',
+            'category' => 'array',
+            'categoryType' => 'array',
+            'address' => 'array',
+            'user' => 'array'
+        ]);
+    }
+
+    function apiAdminGetHouseRealties()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $realtyHouseId = file_get_contents(codecept_data_dir('realtyHouseId.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/profiles/realties/'.$realtyHouseId);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'id' => 'string',
+            'category' => 'array',
+            'categoryType' => 'array',
+            'address' => 'array',
+            'user' => 'array'
+        ]);
+    }
+
+    function apiAdminGetParcelRealties()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $realtyParcelId = file_get_contents(codecept_data_dir('realtyParcelId.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/profiles/realties/'.$realtyParcelId);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'id' => 'string',
+            'category' => 'array',
+            'categoryType' => 'array',
+            'address' => 'array',
+            'user' => 'array'
+        ]);
+    }
+
+    function apiAdminGetCommercialRealties()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $realtyCommercialId = file_get_contents(codecept_data_dir('realtyCommercialId.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/profiles/realties/'.$realtyCommercialId);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'id' => 'string',
+            'category' => 'array',
+            'categoryType' => 'array',
+            'address' => 'array',
+            'user' => 'array'
+        ]);
+    }
+
+    /*=================================================== ADVERTS =======================================*/
+
+    function apiAdminAdvertsList()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/announcements/lists/1/25');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'total' => 'integer',
+            'count' => 'integer',
+            'page' => 'integer',
+            'data' => 'array'
+        ]);
+    }
+
+    function apiAdminAdvertsStatistics()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/announcements/statistics');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'preModeration' => 'integer',
+            'published' => 'integer',
+            'declined' => 'integer',
+            'forUnpublished' => 'integer',
+            'unpublished' => 'integer'
+        ]);
+    }
+
+    /*=================================================== Edit Advert =======================================*/
 
     function apiAdminEditFlatAdvertPlain()
     {
@@ -1764,7 +1967,7 @@ class Api extends \Codeception\Module
             'bedsCount' => Flat::beds,
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName,
-            'images' => json_decode($images, true)
+//            'images' => json_decode($images, true)
         ]);
         $this->restModule->seeResponseCodeIs(200);
         $this->restModule->seeResponseIsJson();
@@ -1866,7 +2069,7 @@ class Api extends \Codeception\Module
             'bedsCount' => Flat::beds,
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName,
-            'images' => json_decode($images, true)
+//            'images' => json_decode($images, true)
         ]);
         $this->restModule->seeResponseCodeIs(200);
         $this->restModule->seeResponseIsJson();
@@ -1902,7 +2105,7 @@ class Api extends \Codeception\Module
 //            'additionally' => [$this->getParcelAdditionals(0), $this->getParcelAdditionals(15)],
             'ownerContacts' => Parcel::ownerContacts,
             'ownerName' => Parcel::ownerName,
-            'images' => json_decode($images, true)
+//            'images' => json_decode($images, true)
         ]);
         $this->restModule->seeResponseCodeIs(200);
         $this->restModule->seeResponseIsJson();
@@ -1946,7 +2149,7 @@ class Api extends \Codeception\Module
         $this->debugSection('advertCommercialId', $advCommercialId);
     }
 
-    /*=====================================================Delete Advert=========================================*/
+    /*===================================================== Delete Advert =========================================*/
 
     function apiDeleteFlatAdvert()
     {
@@ -2098,7 +2301,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendDELETE('/announcements/'.$advertFlatId.'/images/'.$advImage0.'/delete');
 
     }
-/*=======================================================ADMIN API=============================================*/
+
 
 
 
