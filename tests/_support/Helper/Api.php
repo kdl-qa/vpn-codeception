@@ -1540,8 +1540,8 @@ class Api extends \Codeception\Module
             'additionally' => [$this->getFlatAdditionals(0), $this->getFlatAdditionals(1), $this->getFlatAdditionals(2), $this->getFlatAdditionals(3), $this->getFlatAdditionals(4), $this->getFlatAdditionals(5), $this->getFlatAdditionals(6), $this->getFlatAdditionals(7), $this->getFlatAdditionals(8), $this->getFlatAdditionals(9), $this->getFlatAdditionals(10), $this->getFlatAdditionals(11), $this->getFlatAdditionals(12), $this->getFlatAdditionals(13), $this->getFlatAdditionals(14), $this->getFlatAdditionals(15)],
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName,
-            'videos' => [['imageSrc' => Flat::videoImage, 'url'=>Flat::videoURL]]
-//            'images' => json_decode($images, true)
+            'videos' => [['imageSrc' => Flat::videoImage, 'url'=>Flat::videoURL]],
+            'images' => json_decode($images, true)
         ]);
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
@@ -2000,7 +2000,6 @@ class Api extends \Codeception\Module
 
     function uploadUserAvatar()
     {
-//        $this->restModule->haveHttpHeader();
         $this->restModule->sendPOST('/uploads/user-avatar/user_avatar', [], ['file' => codecept_data_dir('pit.jpg')]);
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
@@ -2012,7 +2011,6 @@ class Api extends \Codeception\Module
 
     function uploadLogo()
     {
-//        $this->restModule->haveHttpHeader('Content-Type', 'form-data');
         $this->restModule->sendPOST('/uploads/user-avatar/logo', [], ['file' => codecept_data_dir('/img/logo.png')]);
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
@@ -2024,7 +2022,6 @@ class Api extends \Codeception\Module
 
     function uploadCertificates()
     {
-        //  $this->restModule->haveHttpHeader('Content-Type', 'form-data');
         $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->sendPOST('/uploads/certificates', [], ['file' => codecept_data_dir('/img/certificate_1.jpg')]);
@@ -2038,7 +2035,6 @@ class Api extends \Codeception\Module
 
     function uploadSchema()
     {
-//        $this->restModule->haveHttpHeader('Content-Type', 'form-data');
         $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->sendPOST('/uploads/schema', [], ['file' => codecept_data_dir('/img/schema_1.jpg')]);
@@ -2050,9 +2046,8 @@ class Api extends \Codeception\Module
         $this->debugSection('schemaId', $schema);
     }
 
-    function uploadAdvImage()
+    function uploadAdvImages()
     {
-//        $this->restModule->haveHttpHeader('Content-Type', 'form-data');
         $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $image1 = $this->restModule->sendPOST('/uploads/announcement-image', [], ['file' => codecept_data_dir('/img/flat_1.jpg')]);
@@ -2090,6 +2085,19 @@ class Api extends \Codeception\Module
         $this->debugSection('advertsID', $images);
     }
 
+    function deleteAdvertImage()
+    {
+        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
+        $advImage0 = json_decode(file_get_contents(codecept_data_dir().'images_id.json'))[0]->id;
+//        $advImage1 = json_decode(file_get_contents(codecept_data_dir().'images_id.json'))[1]->id;
+//        $advImage2 = json_decode(file_get_contents(codecept_data_dir().'images_id.json'))[2]->id;
+        $advertFlatId = file_get_contents(codecept_data_dir('advertFlatId.json'));
+
+        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendDELETE('/announcements/'.$advertFlatId.'/images/'.$advImage0.'/delete');
+
+    }
 /*=======================================================ADMIN API=============================================*/
 
 

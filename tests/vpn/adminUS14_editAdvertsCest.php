@@ -69,8 +69,6 @@ class adminUS14_editAdvertsCest
         $I->checkEditedFlatProperties();
     }
 
-    //todo: do refactor for the Houses, Parcels and Commercials category
-
     /**
      *@before uploadImages
      *@before apiLogin
