@@ -1732,7 +1732,7 @@ class Api extends \Codeception\Module
     }
 
 
-/*=======================================================Admin API=============================================*/
+/*========================================================Admin API==================================================*/
 
     /*=====================================================Edit Advert=========================================*/
 
@@ -1946,7 +1946,57 @@ class Api extends \Codeception\Module
         $this->debugSection('advertCommercialId', $advCommercialId);
     }
 
-  /*=======================================================Image API================================================*/
+    /*=====================================================Delete Advert=========================================*/
+
+    function apiDeleteFlatAdvert()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $advertFlatId = file_get_contents(codecept_data_dir('advertFlatId.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendDELETE('/announcements/'.$advertFlatId.'/delete');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+
+    }
+
+    function apiDeleteHouseAdvert()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $advertHouseId = file_get_contents(codecept_data_dir('advertHouseId.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendDELETE('/announcements/'.$advertHouseId.'/delete');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+
+    }
+
+    function apiDeleteParcelAdvert()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $advertParcelId = file_get_contents(codecept_data_dir('advertParcelId.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendDELETE('/announcements/'.$advertParcelId.'/delete');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+
+    }
+
+    function apiDeleteCommercialAdvert()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $advertCommercialId = file_get_contents(codecept_data_dir('advertCommercialId.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendDELETE('/announcements/'.$advertCommercialId.'/delete');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+
+    }
+
+/*====================================================Image API==============================================*/
 
     function uploadUserAvatar()
     {
@@ -2040,7 +2090,7 @@ class Api extends \Codeception\Module
         $this->debugSection('advertsID', $images);
     }
 
-/*==========================================================ADMIN API================================================*/
+/*=======================================================ADMIN API=============================================*/
 
 
 

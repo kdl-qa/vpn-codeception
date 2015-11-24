@@ -1,7 +1,7 @@
 <?php
 
 
-class testCest
+class apiRealtyCest
 {
 //    public function _before(VpnTester $I)
 //    {
