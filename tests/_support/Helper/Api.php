@@ -8,6 +8,7 @@ use Data\Flat;
 use Data\House;
 use Data\Parcel;
 use Data\Commercial;
+use Data\Info;
 
 
 class Api extends \Codeception\Module
@@ -1539,6 +1540,25 @@ class Api extends \Codeception\Module
         ]);
     }
 
+    function apiGetAgencyAdvert()
+    {
+        //todo: you can change to House, Parcel or Commercial. Also you could change role to Agent.
+
+        $flatID = file_get_contents(codecept_data_dir().'advertFlatId.json');
+        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
+        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/profiles/announcements/'.$flatID);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'id' => 'string',
+            'user' => 'array',
+            'status' => 'integer',
+            'realty' => 'array'
+        ]);
+    }
+
     /*========================================= FLATS =========================================*/
     function apiAdvertFlatAddPlain()
     {
@@ -1824,6 +1844,8 @@ class Api extends \Codeception\Module
 
     }
 
+
+
 /*=======================================================ADMIN API=============================================*/
 
     /*===================================================Common=======================================*/
@@ -1969,8 +1991,8 @@ class Api extends \Codeception\Module
             'ownerName' => Flat::ownerName,
 //            'images' => json_decode($images, true)
         ]);
-        $this->restModule->seeResponseCodeIs(200);
         $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
 
     }
 
@@ -2149,7 +2171,7 @@ class Api extends \Codeception\Module
         $this->debugSection('advertCommercialId', $advCommercialId);
     }
 
-    /*===================================================== Delete Advert =========================================*/
+    /*================================================ Delete Advert ====================================*/
 
     function apiDeleteFlatAdvert()
     {
@@ -2199,6 +2221,98 @@ class Api extends \Codeception\Module
 
     }
 
+
+/*====================================================Info API==============================================*/
+
+    function apiGetProjectInfo()
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/get-project-info');
+
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'address' => 'string',
+            'schedule' => 'string',
+            'phones' => 'string',
+            'emails' => 'string',
+            'copyright' => 'string',
+            'logo' => 'array',
+            'homepageH1' => 'string',
+            'homepageContent' => 'string',
+            'homepageTitle' => 'string',
+            'homepageDescription' => 'string',
+            'homepageKeywords' => 'string',
+            'homepageRobots' => 'string',
+        ]);
+    }
+
+    function apiEditProjectInfo()
+    {
+        //todo: before launch - upload to server the logotype image
+
+        $logoID = file_get_contents(codecept_data_dir().'logo_id.json');
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/project-info/edit', [
+            'logo' => $logoID,
+            'address' => Info::editAddress,
+            'schedule' => Info::editSchedule,
+            'phones' => Info::editPhones,
+            'emails' => Info::editEmails,
+            'copyright' => Info::editCopyright,
+            'vk' => Info::editVk,
+            'facebook' => Info::editFacebook,
+            'google' => Info::editGoogle,
+            'ok' => Info::editOk,
+            'twitter' => Info::editTwitter,
+            'homepageH1' => Info::editHomepageH1,
+            'homepageContent' => Info::editHomepageContent,
+            'homepageTitle' => Info::editHomepageTitle,
+            'homepageDescription' => Info::editHomepageDescription,
+            'homepageKeywords' => Info::editHomepageKeywords,
+            'isIndex' => false,
+            'isFollow' => false
+        ]);
+
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'address' => 'string',
+            'schedule' => 'string',
+            'phones' => 'string',
+            'emails' => 'string',
+            'copyright' => 'string',
+            'logo' => 'array',
+            'homepageH1' => 'string',
+            'homepageContent' => 'string',
+            'homepageTitle' => 'string',
+            'homepageDescription' => 'string',
+            'homepageKeywords' => 'string',
+            'homepageRobots' => 'string',
+        ]);
+    }
+
+
+    function apiGetInfoPage()
+    {
+        //todo: to change the aim info-page look the {latinName} page at the list info-pages
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/info/pages/contacts');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'name' => 'string',
+            'latinName' => 'string',
+            'content' => 'string',
+            'title' => 'string',
+            'metaDescription' => 'string',
+            'metaRobots' => 'string'
+        ]);
+    }
+
 /*====================================================Image API==============================================*/
 
     function uploadUserAvatar()
@@ -2208,7 +2322,7 @@ class Api extends \Codeception\Module
         $this->restModule->seeResponseIsJson();
         $usAvatar = $this->restModule->grabResponse();
         $avatar = json_decode($usAvatar)->id;
-        $file = file_put_contents(codecept_data_dir('avatar_id.json'), $avatar);
+        file_put_contents(codecept_data_dir('avatar_id.json'), $avatar);
         $this->debugSection('avatarId', $avatar);
     }
 

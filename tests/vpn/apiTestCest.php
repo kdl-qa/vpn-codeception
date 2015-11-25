@@ -3,22 +3,35 @@ use \VpnTester;
 
 class apiTestCest
 {
-    protected function loginAdmin(VpnTester $I)
+    protected function login(VpnTester $I)
     {
         $I->apiAdminLogin();
     }
 
-    protected function addRealty(VpnTester $I)
+    protected function uploadLogo(VpnTester $I)
     {
-        $I->realtyCommercialAddPlain();
+        $I->uploadLogo();
     }
-
+//
+//    protected function addRealty(VpnTester $I)
+//    {
+//        $I->realtyFlatAddPlain();
+//    }
+//
+//    protected function addAdvert(VpnTester $I)
+//    {
+//        $I->apiAdvertFlatAddPlain();
+//    }
+//
     /**
-     *@before loginAdmin
-     *@before addRealty
+     *@before uploadLogo
+     *@before login
      */
-    public function getUserAdverts(VpnTester $I)
+    public function getProjectInfo(VpnTester $I)
     {
-        $I->apiAdminGetCommercialRealties();
+//        $I->apiGetProjectInfo();
+//        $I->apiGetInfoPage();
+//        $I->apiEditProjectInfo();
+        $I->apiCorrectEditProjectInfo();
     }
 }
