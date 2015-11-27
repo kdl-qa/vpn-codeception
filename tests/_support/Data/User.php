@@ -17,5 +17,7 @@ class User
     static $adminEmail = 'admin@neru.com.ua';
     static $adminPass = 'YO$3M8Kg;@U9yfF';
 
+    static $subdomain = 'agency';
+    static $domain = '.uhome.co';
 
 }

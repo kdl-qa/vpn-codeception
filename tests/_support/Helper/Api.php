@@ -19,6 +19,7 @@ class Api extends \Codeception\Module
      */
     protected $restModule;
 
+
     protected $adIds = [];
     protected $token;
 
@@ -2395,7 +2396,6 @@ class Api extends \Codeception\Module
         ]);
     }
 
-
     function apiGetInfoPage()
     {
         //todo: to change the aim info-page look the {latinName} page at the list info-pages
@@ -2519,10 +2519,63 @@ class Api extends \Codeception\Module
 
     }
 
+/*======================================================= User API =============================================*/
 
+    function apiAgenciesInfo()
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('http://'.User::$subdomain.User::$domain.'/api/v1/agencies/info');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'id' => 'string',
+            'name' => 'string',
+            'description' => 'string',
+            'email' => 'string',
+            'userType' => 'string',
+            'subdomain' => 'string'
+        ]);
 
+    }
 
+    function apiAgenciesServices()
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('http://'.User::$subdomain.User::$domain.'/api/v1/agencies/services');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'service' => 'array',
+            'certificate' => 'array'
+        ]);
+    }
 
+    function apiAgenciesEmployees()
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('http://'.User::$subdomain.User::$domain.'/api/v1/agencies/employees');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'manager' => 'array',
+            'employees' => 'array'
+        ]);
+    }
+
+    function apiAgenciesAdverts()
+    {
+        //todo: you can do custom search by text of the advert
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('http://' .User::$subdomain .User::$domain .'/api/v1/agencies/get-announcements/1/24');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'total' => 'integer',
+            'count' => 'integer',
+            'page' => 'integer',
+            'data' => 'array'
+        ]);
+    }
 }
 
 class Images {
