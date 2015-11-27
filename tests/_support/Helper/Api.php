@@ -1850,6 +1850,89 @@ class Api extends \Codeception\Module
 
     /*===================================================Common=======================================*/
 
+    function apiAdminInfoPages()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/admin/info-pages/1/25');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'total' => 'integer',
+            'page' => 'integer',
+            'count' => 'integer',
+            'data' => 'array'
+        ]);
+    }
+
+    function apiAdminAddInfoPage()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/admin/info-pages/create', [
+            'name' => Info::inf_name,
+            'latinName' => Info::inf_latinName,
+            'content' => Info::inf_content,
+            'title' => Info::inf_title,
+            'metaDescription' => Info::inf_metaDescription,
+            'metaKeywords' => Info::inf_metaKeywords,
+            'isIndex' => true,
+            'isFollow' => true
+        ]);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseMatchesJsonType([
+            'name' => 'string',
+            'latinName' => 'string',
+            'content' => 'string',
+            'title' => 'string',
+            'metaDescription' => 'string',
+            'metaKeywords' => 'string',
+            'metaRobots' => "string"
+        ]);
+    }
+
+    function apiAdminEditInfoPage()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/admin/info-pages/' .Info::inf_latinName .'/edit', [
+            'name' => Info::inf_editName,
+            'latinName' => Info::inf_editLatinName,
+            'content' => Info::inf_editContent,
+            'title' => Info::inf_editTitle,
+            'metaDescription' => Info::inf_editMetaDescription,
+            'metaKeywords' => Info::inf_editMetaKeywords,
+            'isIndex' => false,
+            'isFollow' => false
+        ]);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'name' => 'string',
+            'latinName' => 'string',
+            'content' => 'string',
+            'title' => 'string',
+            'metaDescription' => 'string',
+            'metaKeywords' => 'string',
+            'metaRobots' => "string"
+        ]);
+    }
+
+    function apiAdminDeleteInfoPage()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendDELETE('/admin/info-pages/' .Info::inf_editLatinName .'/delete');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+    }
+
+
     /*=================================================== REALTIES =======================================*/
 
     function apiAdminGetFlatRealties()
@@ -2221,6 +2304,24 @@ class Api extends \Codeception\Module
 
     }
 
+/*====================================================Info API==============================================*/
+
+    function apiAdminLogs()
+    {
+        //todo: additional parameters - dateFrom, dateTo, endpoint.
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/logs');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'total' => 'integer',
+            'count' => 'integer',
+            'page' => 'integer',
+            'data' => 'array'
+        ]);
+    }
 
 /*====================================================Info API==============================================*/
 
@@ -2257,21 +2358,21 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPUT('/project-info/edit', [
             'logo' => $logoID,
-            'address' => Info::editAddress,
-            'schedule' => Info::editSchedule,
-            'phones' => Info::editPhones,
-            'emails' => Info::editEmails,
-            'copyright' => Info::editCopyright,
-            'vk' => Info::editVk,
-            'facebook' => Info::editFacebook,
-            'google' => Info::editGoogle,
-            'ok' => Info::editOk,
-            'twitter' => Info::editTwitter,
-            'homepageH1' => Info::editHomepageH1,
-            'homepageContent' => Info::editHomepageContent,
-            'homepageTitle' => Info::editHomepageTitle,
-            'homepageDescription' => Info::editHomepageDescription,
-            'homepageKeywords' => Info::editHomepageKeywords,
+            'address' => Info::prj_editAddress,
+            'schedule' => Info::prj_editSchedule,
+            'phones' => Info::prj_editPhones,
+            'emails' => Info::prj_editEmails,
+            'copyright' => Info::prj_editCopyright,
+            'vk' => Info::prj_editVk,
+            'facebook' => Info::prj_editFacebook,
+            'google' => Info::prj_editGoogle,
+            'ok' => Info::prj_editOk,
+            'twitter' => Info::prj_editTwitter,
+            'homepageH1' => Info::prj_editHomepageH1,
+            'homepageContent' => Info::prj_editHomepageContent,
+            'homepageTitle' => Info::prj_editHomepageTitle,
+            'homepageDescription' => Info::prj_editHomepageDescription,
+            'homepageKeywords' => Info::prj_editHomepageKeywords,
             'isIndex' => false,
             'isFollow' => false
         ]);
@@ -2314,6 +2415,8 @@ class Api extends \Codeception\Module
     }
 
 /*====================================================Image API==============================================*/
+
+    //TODO: Fixed issue when we couldn't upload images with login (both func. in same Cest file)
 
     function uploadUserAvatar()
     {
