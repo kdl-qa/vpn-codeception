@@ -2305,7 +2305,7 @@ class Api extends \Codeception\Module
 
     }
 
-/*====================================================Info API==============================================*/
+/*==================================================== Log API ==============================================*/
 
     function apiAdminLogs()
     {
@@ -2324,7 +2324,7 @@ class Api extends \Codeception\Module
         ]);
     }
 
-/*====================================================Info API==============================================*/
+/*==================================================== Info API ==============================================*/
 
     function apiGetProjectInfo()
     {
@@ -2414,7 +2414,7 @@ class Api extends \Codeception\Module
         ]);
     }
 
-/*====================================================Image API==============================================*/
+/*==================================================== Image API ==============================================*/
 
     //TODO: Fixed issue when we couldn't upload images with login (both func. in same Cest file)
 
@@ -2576,6 +2576,118 @@ class Api extends \Codeception\Module
             'data' => 'array'
         ]);
     }
+
+    function apiAdminUsersList()
+    {
+        //todo: additional parameters - role(e.g. ROLE_AGENT), status, text. (sample request - ?status=true&role=ROLE_AGENT&text=test)
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/users/1/25');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'total' => 'integer',
+            'count' => 'integer',
+            'page' => 'integer',
+            'data' => 'array'
+        ]);
+    }
+
+    function apiAdminUsersStatistic()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/users/statistics');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'active' => [
+                'total' => 'integer',
+                'agency' => 'integer',
+                'agent' => 'integer',
+                'privatePerson' => 'integer',
+            ],
+            'notActive' => [
+                'total' => 'integer',
+                'agency' => 'integer',
+                'agent' => 'integer',
+                'privatePerson' => 'integer',
+            ]
+        ]);
+    }
+
+    function apiUserById()
+    {
+        //todo: this check for simple agency. If have a lot time add cases for pr.person and agent or simplify
+        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
+        $agencyID = json_decode(file_get_contents(codecept_data_dir().'agency_data.json'))->id;
+        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/users/'.$agencyID);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'id' => 'string',
+            'name' => 'string',
+            'subdomain' => 'string',
+            'firstName' => 'string',
+            'lastName' => 'string',
+            'email' => 'string'
+        ]);
+    }
+
+    function apiAgencyAgents()
+    {
+        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
+        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/profiles/agencies/agents/1/25');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'total' => 'integer',
+            'count' => 'integer',
+            'data' => 'array',
+            'page' => 'integer'
+        ]);
+    }
+
+    function apiAgencyEditServices()
+    {
+        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
+        $certificate1 = file_get_contents(codecept_data_dir().'certificate_id.json');
+        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/profiles/agencies/services/edit', [
+            'services' => [[
+                'title' => User::$serviceTitle1,
+                'description' => User::$serviceDescription1
+            ],[
+                'title' => User::$serviceTitle2,
+                'description' => User::$serviceDescription2
+            ]],
+            'certificates' => [[
+                'title' => User::$certificateTitle1,
+                'image' => $certificate1
+
+            ]]
+        ]);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseMatchesJsonType([
+            'id' => 'string',
+            'name' => 'string',
+            'subdomain' => 'string',
+            'firstName' => 'string',
+            'lastName' => 'string',
+            'email' => 'string',
+            'certificates' => 'array',
+            'services' => 'array'
+        ]);
+    }
+
 }
 
 class Images {
