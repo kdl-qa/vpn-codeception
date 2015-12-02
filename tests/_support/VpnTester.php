@@ -1,5 +1,8 @@
 <?php
 use \Page\Login as Login;
+use \Page\BackoffAdverts;
+use \Data\User;
+
 
 /**
  * Inherited Methods
@@ -26,10 +29,12 @@ class VpnTester extends \Codeception\Actor
     protected $agencyChiefLName = 'Сорокин';
     protected $agencyPass = 'L7KZXX';
 
-    function login()
+
+
+    function loginAgency()
     {
 //        if ($this->getScenario()->current('env') != 'firefox') {
-            if ($this->loadSessionSnapshot('login')) return;
+            if ($this->loadSessionSnapshot('loginAgency')) return;
 //        }
         $this->amOnPage(Login::$URL);
         $this->waitForElement(Login::$email);
@@ -38,7 +43,7 @@ class VpnTester extends \Codeception\Actor
         $this->click(Login::$submit);
         $this->wait(3);
         $this->seeElement("//img[@alt='$this->agencyChiefFName $this->agencyChiefLName']");
-        $this->saveSessionSnapshot('login');
+        $this->saveSessionSnapshot('loginAgency');
     }
 
     function seeInModal($title)
@@ -50,11 +55,30 @@ class VpnTester extends \Codeception\Actor
 
     function acceptModal()
     {
+//        $this->waitForElement(['css' => '.modal-content button.blue']);
+        $this->wait(1);
         $this->click(['css' => '.modal-content button.blue']);
+        $this->wait(1);
     }
 
     function rejectModal()
     {
+        $this->waitForElement(['css' => '.modal-content button.red']);
         $this->click(['css' => '.modal-content button.red']);
+    }
+
+    function loginAdmin()
+    {
+//        if ($this->getScenario()->current('env') != 'firefox') {
+        if ($this->loadSessionSnapshot('loginAdmin')) return;
+//        }
+        $this->amOnPage(BackoffAdverts::$authURL);
+        $this->waitForElement(BackoffAdverts::$authEmail);
+        $this->fillField(BackoffAdverts::$authEmail, User::$adminEmail);
+        $this->fillField(BackoffAdverts::$authPass, User::$adminPass);
+        $this->click(BackoffAdverts::$loginButton);
+        $this->wait(3);
+        $this->see('Выход');
+        $this->saveSessionSnapshot('loginAdmin');
     }
 }
