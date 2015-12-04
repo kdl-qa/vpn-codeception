@@ -31,6 +31,21 @@ class VpnTester extends \Codeception\Actor
 
 
 
+    function loginAdmin()
+    {
+//        if ($this->getScenario()->current('env') != 'firefox') {
+        if ($this->loadSessionSnapshot('loginAdmin')) return;
+//        }
+        $this->amOnPage(BackoffAdverts::$authURL);
+        $this->waitForElement(BackoffAdverts::$authEmail);
+        $this->fillField(BackoffAdverts::$authEmail, User::$adminEmail);
+        $this->fillField(BackoffAdverts::$authPass, User::$adminPass);
+        $this->click(BackoffAdverts::$loginButton);
+        $this->wait(3);
+        $this->see('Выход');
+        $this->saveSessionSnapshot('loginAdmin');
+    }
+
     function loginAgency()
     {
 //        if ($this->getScenario()->current('env') != 'firefox') {
@@ -44,6 +59,52 @@ class VpnTester extends \Codeception\Actor
         $this->wait(3);
         $this->seeElement("//img[@alt='$this->agencyChiefFName $this->agencyChiefLName']");
         $this->saveSessionSnapshot('loginAgency');
+    }
+
+
+    function loginAgencyTmp()
+    {
+//        if ($this->getScenario()->current('env') != 'firefox') {
+        if ($this->loadSessionSnapshot('loginAgency')) return;
+//        }
+        $this->amOnPage(Login::$URL);
+        $this->waitForElement(Login::$email);
+        $this->fillField(Login::$email, User::getCurrentAgencyEmail());
+        $this->fillField(Login::$pass, User::$agencyPass2);
+        $this->click(Login::$submit);
+        $this->wait(3);
+        //$this->seeElement("//img[@alt='$this->agencyChiefFName $this->agencyChiefLName']");
+        $this->saveSessionSnapshot('loginAgency');
+    }
+
+    function loginAgent()
+    {
+//          if ($this->getScenario()->current('env') != 'firefox') {
+        if ($this->loadSessionSnapshot('agent_login')) return;
+//        }
+        $this->amOnPage(Login::$URL);
+        $this->waitForElement(Login::$email);
+        $this->fillField(Login::$email, User::getCurrentAgentEmail());
+        $this->fillField(Login::$pass, User::$agentPass);
+        $this->click(Login::$submitLoginBtn);
+        $this->wait(3);
+        //$this->seeElement("//img[@alt='$this->agencyChiefFName $this->agencyChiefLName']");
+        $this->saveSessionSnapshot('agent_login');
+    }
+
+    function userLogin()
+    {
+//        if ($this->getScenario()->current('env') != 'firefox') {
+        if ($this->loadSessionSnapshot('user_login')) return;
+//        }
+        $this->amOnPage(Login::$URL);
+        $this->waitForElement(Login::$email);
+        $this->fillField(Login::$email, User::$userEmail);
+        $this->fillField(Login::$pass, User::$userPass);
+        $this->click(Login::$submitLoginBtn);
+        $this->wait(3);
+        //$this->seeElement("//img[@alt='$this->agencyChiefFName $this->agencyChiefLName']");
+        $this->saveSessionSnapshot('user_login');
     }
 
     function seeInModal($title)
@@ -61,24 +122,39 @@ class VpnTester extends \Codeception\Actor
         $this->wait(1);
     }
 
+    function acceptRegistrationModal(){
+        $this->click(['css' => 'button.blue']);
+    }
+
     function rejectModal()
     {
         $this->waitForElement(['css' => '.modal-content button.red']);
         $this->click(['css' => '.modal-content button.red']);
     }
 
-    function loginAdmin()
-    {
-//        if ($this->getScenario()->current('env') != 'firefox') {
-        if ($this->loadSessionSnapshot('loginAdmin')) return;
-//        }
-        $this->amOnPage(BackoffAdverts::$authURL);
-        $this->waitForElement(BackoffAdverts::$authEmail);
-        $this->fillField(BackoffAdverts::$authEmail, User::$adminEmail);
-        $this->fillField(BackoffAdverts::$authPass, User::$adminPass);
-        $this->click(BackoffAdverts::$loginButton);
-        $this->wait(3);
-        $this->see('Выход');
-        $this->saveSessionSnapshot('loginAdmin');
+
+
+    function acceptDeleteUserModal(){
+        $this->click(['css' => 'button.blue']);
     }
+
+
+    function submitBtnBlue(){
+        $this->click(['css' => 'button.blue']);
+    }
+
+    function acceptEditProfileModal(){
+        $this->click(['css' => 'button.blue']);
+    }
+
+
+    function logout(){
+        $this->click(Login::$menuBtn);
+        $this->click(Login::$logoutBtn);
+
+    }
+
+
+
+
 }
