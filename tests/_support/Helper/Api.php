@@ -95,15 +95,7 @@ class Api extends \Codeception\Module
         file_put_contents(codecept_data_dir('agency_token.json'), $token);
     }
 
-    function apiAdminLogin()
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPOST('/admin/login', ['email' => User::$adminEmail, 'password' => User::$adminPass]);
-        $token = $this->restModule->grabDataFromResponseByJsonPath('$.token');
-        $this->debugSection('New Token', $token);
-//        $this->restModule->haveHttpHeader('token', $token);
-        $adminToken = file_put_contents(codecept_data_dir('admin_token.json'), $token);
-    }
+
 
     function apiAgentLogin()
     {
