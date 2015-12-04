@@ -39,23 +39,36 @@ class Api extends \Codeception\Module
         $this->apiLogin();
         $this->adIds[] = $this->restModule->sendGET('/get-user');
 
-        codecept_debug('Here is response: '.$this->restModule->response);
+        codecept_debug('Here is response: ' . $this->restModule->response);
     }
 
     protected function apiLogin()
     {
 
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPOST('/login', ['email'=> User::$agencyEmail, 'password' => User::$agencyPass]);
+        $this->restModule->sendPOST('/login', ['email' => User::$agencyEmail, 'password' => User::$agencyPass]);
         $token = $this->restModule->grabDataFromResponseByJsonPath('$.token');
         $this->debugSection('New Token', $token);
         $this->restModule->haveHttpHeader('token', $token);
     }
 
+    function apiUserLogin()
+    {
+        $this->restModule->haveHttpHeader('Content-Type','application/json');
+        $this->restModule->sendPOST('/login',['email' => User::getApiUserEmail(),
+            'password' => User::$userPass]);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+        $token = $this->restModule->grabDataFromResponseByJsonPath('$.token');
+        $user_data = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('user_data.json'),$user_data);
+        file_put_contents(codecept_data_dir('user_token.json'),$token);
+    }
+
     function apiAgencyLogin()
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPOST('/login', ['email'=> User::$agencyEmail, 'password' => User::$agencyPass]);
+        $this->restModule->sendPOST('/login', ['email' => User::$agencyEmail, 'password' => User::$agencyPass]);
         $usrData = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('agency_data.json'), $usrData);
 //        $token = $this->restModule->grabDataFromResponseByJsonPath('$.token');
@@ -63,6 +76,40 @@ class Api extends \Codeception\Module
         $this->debugSection('New Token', $token);
 //        $this->restModule->haveHttpHeader('token', $token);
         $agencyToken = file_put_contents(codecept_data_dir('agency_token.json'), $token);
+    }
+
+    function apiAgencyLoginTmp()
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/login', ['email' => User::getApiAgencyEmail(), 'password' => User::$agencyRegPass]);
+        $usrData = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('agency_data.json'), $usrData);
+//        $token = $this->restModule->grabDataFromResponseByJsonPath('$.token');
+        $token = json_decode($usrData)->token;
+        $this->debugSection('New Token', $token);
+//        $this->restModule->haveHttpHeader('token', $token);
+        $agencyToken = file_put_contents(codecept_data_dir('agency_token.json'), $token);
+    }
+
+    function apiAdminLogin()
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/admin/login', ['email' => User::$adminEmail, 'password' => User::$adminPass]);
+        $token = $this->restModule->grabDataFromResponseByJsonPath('$.token');
+        $this->debugSection('New Token', $token);
+//        $this->restModule->haveHttpHeader('token', $token);
+        $adminToken = file_put_contents(codecept_data_dir('admin_token.json'), $token);
+    }
+
+    function apiAgentLogin()
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/login', ['email'=> User::getApiAgentEmail(), 'password' => User::$agentPass]);
+        $token = $this->restModule->grabDataFromResponseByJsonPath('$.token');
+        $agent_data = $this->restModule->grabResponse();
+        $this->debugSection('New Token', $token);
+        file_put_contents(codecept_data_dir('agent_token.json'), $token);
+        file_put_contents(codecept_data_dir('agent_data.json'), $agent_data);
     }
 
 
@@ -78,15 +125,6 @@ class Api extends \Codeception\Module
         $this->restModule->seeResponseIsJson();
     }
 
-    function apiAdminLogin()
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPOST('/admin/login', ['email'=> User::$adminEmail, 'password' => User::$adminPass]);
-        $token = $this->restModule->grabDataFromResponseByJsonPath('$.token');
-        $this->debugSection('New Token', $token);
-//        $this->restModule->haveHttpHeader('token', $token);
-        $adminToken = file_put_contents(codecept_data_dir('admin_token.json'), $token);
-    }
 
     function apiAdminLogout()
     {
@@ -97,6 +135,7 @@ class Api extends \Codeception\Module
         $this->restModule->seeResponseCodeIs(200);
         $this->restModule->seeResponseIsJson();
     }
+
 
 
     /*================================================ API LISTS =====================================================*/
@@ -130,8 +169,8 @@ class Api extends \Codeception\Module
     function getCity($id)
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $reg = $this->getRegion(0);
-        $this->restModule->sendGET('/lists/cities/'.$reg);
+        $reg = $this->getRegion(21);
+        $this->restModule->sendGET('/lists/cities/' . $reg);
         $cities = $this->restModule->grabResponse();
         $cityId = json_decode($cities)[$id]->id;
         $this->debugSection('City ID', $cityId);
@@ -143,7 +182,7 @@ class Api extends \Codeception\Module
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $city = $this->getCity(4);
-        $this->restModule->sendGET('/lists/districts/'.$city);
+        $this->restModule->sendGET('/lists/districts/' . $city);
         $districts = $this->restModule->grabResponse();
         $districtId = json_decode($districts)[$id]->id;
         $this->debugSection('District ID', $districtId);
@@ -155,7 +194,7 @@ class Api extends \Codeception\Module
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $city = $this->getCity(4);
-        $this->restModule->sendGET('/lists/streets/'.$city);
+        $this->restModule->sendGET('/lists/streets/' . $city);
         $streets = $this->restModule->grabResponse();
         $streetId = json_decode($streets)[$id]->id;
         $this->debugSection('Street ID', $streetId);
@@ -180,7 +219,7 @@ class Api extends \Codeception\Module
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $flat = $this->getCategories(0);
-        $this->restModule->sendGET('/lists/category-types/'.$flat);
+        $this->restModule->sendGET('/lists/category-types/' . $flat);
         $cType = $this->restModule->grabResponse();
         $this->debugSection('Flat Category Types', $cType);
         $file = file_put_contents(codecept_data_dir('flat_types.json'), $cType);
@@ -193,7 +232,7 @@ class Api extends \Codeception\Module
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $house = $this->getCategories(1);
-        $this->restModule->sendGET('/lists/category-types/'.$house);
+        $this->restModule->sendGET('/lists/category-types/' . $house);
         $cType = $this->restModule->grabResponse();
         $this->debugSection('House Category Types', $cType);
         $file = file_put_contents(codecept_data_dir('house_types.json'), $cType);
@@ -206,7 +245,7 @@ class Api extends \Codeception\Module
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $parcel = $this->getCategories(2);
-        $this->restModule->sendGET('/lists/category-types/'.$parcel);
+        $this->restModule->sendGET('/lists/category-types/' . $parcel);
         $cType = $this->restModule->grabResponse();
         $this->debugSection('Parcel Category Types', $cType);
         $file = file_put_contents(codecept_data_dir('parcel_types.json'), $cType);
@@ -215,11 +254,11 @@ class Api extends \Codeception\Module
         return $parcelCatId;
     }
 
-function getCommercialCategoryTypes($id) //0..10
+    function getCommercialCategoryTypes($id) //0..10
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $commerc = $this->getCategories(3);
-        $this->restModule->sendGET('/lists/category-types/'.$commerc);
+        $this->restModule->sendGET('/lists/category-types/' . $commerc);
         $cType = $this->restModule->grabResponse();
         $this->debugSection('Commercial Category Types', $cType);
         $file = file_put_contents(codecept_data_dir('commercial_types.json'), $cType);
@@ -232,7 +271,7 @@ function getCommercialCategoryTypes($id) //0..10
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $flat = $this->getCategories(0);
-        $this->restModule->sendGET('/lists/additionals/'.$flat);
+        $this->restModule->sendGET('/lists/additionals/' . $flat);
         $flatAdditionals = $this->restModule->grabResponse();
         $file = file_put_contents(codecept_data_dir('flat_additionals.json'), $flatAdditionals);
         $flatAdd = json_decode($flatAdditionals)[$id]->id;
@@ -474,7 +513,56 @@ function getCommercialCategoryTypes($id) //0..10
         return $wcId;
     }
 
-/*======================================================== API REALTY ===================================================*/
+    function apiGetAgencyAnnouncementsList(){
+        $token = User::getAgencyToken();
+        $this->restModule->haveHttpHeader('token',$token);
+        $this->restModule->sendGET('/profiles/announcements-lists/lists');
+        $announcement_list = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('agency_announcement_list.json'),$announcement_list);
+    }
+
+    function apiGetAgentAnnouncementsList(){
+        $token = User::getAgentToken();
+        $this->restModule->haveHttpHeader('token',$token);
+        $this->restModule->sendGET('/profiles/announcements-lists/lists');
+        $announcement_list = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('agent_announcement_list.json'),$announcement_list);
+    }
+
+    function apiGetUserAnnouncementsList(){
+        $token = User::getUserToken();
+        $this->restModule->haveHttpHeader('token',$token);
+        $this->restModule->sendGET('/profiles/announcements-lists/lists');
+        $announcement_list = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('user_announcement_list.json'),$announcement_list);
+    }
+
+    function apiGetUser(){
+        $token = User::getUserToken();
+        $this->restModule->haveHttpHeader('token',$token);
+        $this->restModule->sendGET('/users/'.User::getUserId(1));
+        $user_info = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('get_user.json'),$user_info);
+    }
+
+    function apiGetAgent(){
+        $token = User::getAgentToken();
+        $this->restModule->haveHttpHeader('token',$token);
+        $this->restModule->sendGET('/users/'.User::getUserId(2));
+        $agent_info = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('get_agent.json'),$agent_info);
+    }
+
+    function apiGetAgency(){
+        $token = User::getAgencyToken();
+        $this->restModule->haveHttpHeader('token',$token);
+        $this->restModule->sendGET('/users/'.User::getUserId(3));
+        $agency_info = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('get_agency.json'),$agency_info);
+    }
+
+
+    /*======================================================== API REALTY ===================================================*/
 
     function realtyFlatAddPlain()
     {
@@ -485,10 +573,10 @@ function getCommercialCategoryTypes($id) //0..10
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/flats/add', ['category' => $this->getCategories(0),
             'categoryType' => $this->getFlatCategoryTypes(0),
-            'region' => $this->getRegion(0),
-            'city' => $this->getCity(4),
+            'region' => $this->getRegion(24),
+            'city' => $this->getCity(0),
 //            'district' => $this->getDistrict(23),
-            'street' => $this->getStreet(32),
+            'street' => $this->getStreet(0),
             'houseNumber' => Flat::houseNumber,
             'flatNumber' => Flat::uniqueFlatNumber(),
             'latitude' => Flat::latitude,
@@ -770,7 +858,7 @@ function getCommercialCategoryTypes($id) //0..10
         $this->restModule->seeResponseIsJson();
     }
 
-/*===============================================ADVERT API===============================================================*/
+    /*===============================================ADVERT API===============================================================*/
 
     function apiAdvertFlatAddPlain()
     {
@@ -779,7 +867,7 @@ function getCommercialCategoryTypes($id) //0..10
 
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPOST('/announcements/flats/add/'.$realtyFlatId, [
+        $this->restModule->sendPOST('/announcements/flats/add/' . $realtyFlatId, [
             'operationType' => $this->getOperationType(0),
             'description' => Flat::descriptionFlatSell,
             'price' => Flat::priceFlatSell,
@@ -807,7 +895,7 @@ function getCommercialCategoryTypes($id) //0..10
 
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPOST('/announcements/flats/add/'.$realtyFlatId, [
+        $this->restModule->sendPOST('/announcements/flats/add/' . $realtyFlatId, [
             'operationType' => $this->getOperationType(0),
             'description' => Flat::descriptionFlatSell,
             'price' => Flat::priceFlatSell,
@@ -842,7 +930,7 @@ function getCommercialCategoryTypes($id) //0..10
 
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPOST('/announcements/houses/add/'.$realtyHouseId, [
+        $this->restModule->sendPOST('/announcements/houses/add/' . $realtyHouseId, [
             'operationType' => $this->getOperationType(1),
             'period' => $this->getPeriod(1),
             'price' => House::priceHouseRent,
@@ -869,7 +957,7 @@ function getCommercialCategoryTypes($id) //0..10
 
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPOST('/announcements/houses/add/'.$realtyHouseId, [
+        $this->restModule->sendPOST('/announcements/houses/add/' . $realtyHouseId, [
             'operationType' => $this->getOperationType(1),
             'period' => $this->getPeriod(1),
             'price' => House::priceHouseRent,
@@ -902,7 +990,7 @@ function getCommercialCategoryTypes($id) //0..10
 
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPOST('/announcements/parcels/add/'.$realtyParcelId, [
+        $this->restModule->sendPOST('/announcements/parcels/add/' . $realtyParcelId, [
             'operationType' => $this->getOperationType(0),
             'description' => Parcel::descriptionParcelSell,
             'price' => Parcel::priceParcelSell,
@@ -928,7 +1016,7 @@ function getCommercialCategoryTypes($id) //0..10
 
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPOST('/announcements/parcels/add/'.$realtyParcelId, [
+        $this->restModule->sendPOST('/announcements/parcels/add/' . $realtyParcelId, [
             'operationType' => $this->getOperationType(0),
             'description' => Parcel::descriptionParcelSell,
             'price' => Parcel::priceParcelSell,
@@ -958,7 +1046,7 @@ function getCommercialCategoryTypes($id) //0..10
 
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPOST('/announcements/commercials/add/'.$realtyCommercialId, [
+        $this->restModule->sendPOST('/announcements/commercials/add/' . $realtyCommercialId, [
             'operationType' => $this->getOperationType(0),
             'description' => Commercial::descriptionCommercialSell,
             'price' => Commercial::priceCommercialSell,
@@ -985,7 +1073,7 @@ function getCommercialCategoryTypes($id) //0..10
 
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPOST('/announcements/Commercials/add/'.$realtyCommercialId, [
+        $this->restModule->sendPOST('/announcements/Commercials/add/' . $realtyCommercialId, [
             'operationType' => $this->getOperationType(1),
             'description' => Commercial::descriptionCommercialRent,
             'price' => Commercial::priceCommercialRent,
@@ -1025,7 +1113,7 @@ function getCommercialCategoryTypes($id) //0..10
 
         $this->restModule->haveHttpHeader('token', $adminToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPUT('/announcements/edit/'.$advertFlatId, [
+        $this->restModule->sendPUT('/announcements/edit/' . $advertFlatId, [
             'type' => 'flats',
             'status' => 1,
             'userId' => $userId,
@@ -1060,7 +1148,7 @@ function getCommercialCategoryTypes($id) //0..10
 
         $this->restModule->haveHttpHeader('token', $adminToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPUT('/announcements/edit/'.$advertFlatId, [
+        $this->restModule->sendPUT('/announcements/edit/' . $advertFlatId, [
             'type' => 'flats',
             'status' => 1,
             'userId' => $userId,
@@ -1098,7 +1186,7 @@ function getCommercialCategoryTypes($id) //0..10
 
         $this->restModule->haveHttpHeader('token', $adminToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPUT('/announcements/edit/'.$advertHouseId, [
+        $this->restModule->sendPUT('/announcements/edit/' . $advertHouseId, [
             'type' => 'houses',
             'status' => 1,
             'userId' => $userId,
@@ -1136,7 +1224,7 @@ function getCommercialCategoryTypes($id) //0..10
 
         $this->restModule->haveHttpHeader('token', $adminToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPUT('/announcements/edit/'.$advertParcelId, [
+        $this->restModule->sendPUT('/announcements/edit/' . $advertParcelId, [
             'type' => 'parcels',
             'status' => 1,
             'userId' => $userId,
@@ -1172,7 +1260,7 @@ function getCommercialCategoryTypes($id) //0..10
 
         $this->restModule->haveHttpHeader('token', $adminToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendPUT('/announcements/edit/'.$advertCommercialId, [
+        $this->restModule->sendPUT('/announcements/edit/' . $advertCommercialId, [
             'type' => 'commercial-property',
             'status' => 1,
             'userId' => $userId,
@@ -1195,7 +1283,7 @@ function getCommercialCategoryTypes($id) //0..10
         $this->debugSection('advertCommercialId', $advCommercialId);
     }
 
-  /*=======================================================Image API============================================================*/
+    /*=======================================================Image API============================================================*/
 
     function uploadUserAvatar()
     {
@@ -1275,15 +1363,223 @@ function getCommercialCategoryTypes($id) //0..10
         $this->debugSection('advertsID', $images);
     }
 
-/*==========================================================ADMIN API==============================================================*/
+    /*==========================================================ADMIN API==============================================================*/
 //    public function
 
+
+//*=========================================================== USER API=====================================================*/
+
+    public function apiGetUsers()
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendGET('/users/1/24');
+        $users = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('users.json'), $users);
+    }
+
+    function apiUserRegistration()
+    {
+        $this->restModule->haveHttpHeader('Content-Type','application/json');
+        $this->restModule->sendPOST('/registration/private-person',['firstName' => User::$userFirstName,
+            'email' => User::uniqueApiUserEmail()]);
+        $user_info = $this->restModule->grabResponse();
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+        file_put_contents(codecept_data_dir('user_data.json'),$user_info);
+    }
+
+    function apiCheckUserPasswordLink()
+    {
+        $md5Key = md5(User::getUserEmail());
+        $this->restModule->sendGET('http://api.temp-mail.ru/request/mail/id/'.$md5Key.'/format/php');
+        $raw_html = $this->restModule->grabResponse();
+        $mail = User::grabPassFromMail($raw_html);
+        file_put_contents(codecept_data_dir('user_password_response.php'),$mail);
+    }
+
+
+    function apiUserDelete()
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendDELETE('/users/' .User::getUserId(1). '/delete');
+        /*$admin_data = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('user_delete.json'),$admin_data);*/
+    }
+
+    function apiAgentDelete()
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendDELETE('/users/' . User::getUserId(2) . '/delete');
+        /*$agent_data = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('agent_data.json'), $agent_data);*/
+    }
+
+    function apiAgencyDelete()
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendDELETE('/users/' . User::getUserId(3) . '/delete');
+        /*$agency_data = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('agency_data.json'), $agency_data);*/
+    }
+
+    function apiActivateUser()
+    {
+        $this->restModule->haveHttpHeader('Content-Type','application/json');
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendPUT('/users/'.User::getUserId(1).'/change-status',[
+            'status' => 1
+        ]);
+        $user_data = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('user_data.json'),$user_data);
+    }
+
+    function apiDeActivateUser()
+    {
+        $this->restModule->haveHttpHeader('Content-Type','application/json');
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendPUT('/users/'.User::getUserId(1).'/change-status',[
+            'status' => 0,
+            'disableReason' => 'disabled'
+        ]);
+        $user_data = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('user_data.json'),$user_data);
+    }
+
+    function apiActivateAgent()
+    {
+        $this->restModule->haveHttpHeader('Content-Type','application/json');
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendPUT('/users/'.User::getUserId(2).'/change-status',[
+            'status' => 1
+        ]);
+        $agent_data = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('agent_data.json'),$agent_data);
+    }
+
+    function apiDeActivateAgent()
+    {
+        $this->restModule->haveHttpHeader('Content-Type','application/json');
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendPUT('/users/'.User::getUserId(2).'/change-status',[
+            'status' => 0,
+            'disableReason' => 'disabled'
+        ]);
+        $agent_data = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('agent_data.json'),$agent_data);
+    }
+
+    function apiActivateAgency()
+    {
+        $this->restModule->haveHttpHeader('Content-Type','application/json');
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendPUT('/users/'.User::getUserId(3).'/change-status',[
+            'status' => 1
+        ]);
+        $agency_data = $this->restModule->grabResponse();
+        $agency_token = $this->restModule->grabDataFromResponseByJsonPath('$.token');
+        file_put_contents(codecept_data_dir('agency_data.json'),$agency_data);
+        file_put_contents(codecept_data_dir('agency_token.json'),$agency_token);
+    }
+
+    function apiDeActivateAgency()
+    {
+        $this->restModule->haveHttpHeader('Content-Type','application/json');
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendPUT('/users/'.User::getUserId(3).'/change-status',[
+            'status' => 0,
+            'disableReason' => 'disabled'
+        ]);
+        $agency_data = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('agency_data.json'),$agency_data);
+    }
+
+    function apiAgentRegistration()
+    {
+        $this->restModule->haveHttpHeader('Content-Type','application/json');
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->sendPOST('/registration/agent',['firstName' => User::$agentFirstName,
+            'lastName' => User::$agentLastName,
+            'email' => User::uniqueApiAgentEmail(),
+            'plainPassword' => User::$agentPass,
+            'userAvatar' => User::getAgencyAvatar(),
+            'phones' => [
+                array('phone' => User::$agentPhone0),
+                array('phone' => User::$agentPhone1)],
+        ]);
+        $agent_info = $this->restModule->grabResponse();
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+        file_put_contents(codecept_data_dir('agent_data.json'),$agent_info);
+    }
+
+    function apiAgencyRegistration()
+    {
+
+        $agencyOfficeRegion0 = $this->getRegion(21);
+        $agencyOfficeCity0 = $this->getCity(4);
+        $agencyOfficeAddress0 = $this->getStreetNameById(1);
+
+        $agencyOfficeRegion1 = $this->getRegion(21);
+        $agencyOfficeCity1 = $this->getCity(4);
+        $agencyOfficeAddress1 = $this->getStreetNameById(1);
+
+        $this->restModule->haveHttpHeader('Content-Type','application/json');
+        $this->restModule->sendPOST('/registration/agency',['name' => User::$agencyName,
+            'subdomain' => User::uniqueSubdomain(),
+            'firstName' => User::$agencyfirstName,
+            'lastName'  => User::$agencylastName,
+            'email'     => User::uniqueApiAgencyEmail(),
+            'plainPassword' => User::$agencyRegPass,
+            'description' => User::$agencyDescription,
+            'logo' => User::getAgencyLogo(),
+            'userAvatar' => User::getAgencyAvatar(),
+            'offices' => [array('officeName' => User::$agencyOfficeName0,
+                'region' => $agencyOfficeRegion0,
+                'city'=> $agencyOfficeCity0,
+                'address' => $agencyOfficeAddress0,
+                'officeNumbers' =>  User::$agencyOfficeNumbers0,
+                'phones' => [
+                    array('phone' => User::$agencyOfficePhoneNumber0_0),
+                    array('phone' => User::$agencyOfficePhoneNumber0_1)]),
+                    array('officeName' => User::$agencyOfficeName1,
+                    'region' => $agencyOfficeRegion1,
+                    'city' =>  $agencyOfficeCity1,
+                    'address' => $agencyOfficeAddress1,
+                    'officeNumbers' =>  User::$agencyOfficeNumbers1)],
+            'socialAccounts' => [array('facebook' => User::$agencySocialFb,'vk' => User::$agencySocialVk)],
+            'schedule' => [array('dayOfWeek' => '1-5', 'startTime' => '09:00','endTime' => '18:00'),
+                array('dayOfWeek' => '6', 'startTime' => '10:00','endTime' => '13:00')]
+        ]);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+        $agency_data = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('agency_data.json'),$agency_data);
+    }
+
+
+    function getStreetNameById($id)
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $city = $this->getCity(4);
+        $this->restModule->sendGET('/lists/streets/'.$city);
+        $streets = $this->restModule->grabResponse();
+        $streetName = json_decode($streets)[$id]->name;
+        //$this->debugSection('Street ID', $streetName);
+        file_put_contents(codecept_data_dir('streets_name.json'), $streets);
+        return $streetName;
+    }
 
 
 
 }
-
 class Images {
     public $id;
     public $mainImage;
 }
+
+
+
