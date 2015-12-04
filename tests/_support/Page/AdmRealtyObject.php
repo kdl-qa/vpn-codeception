@@ -13,13 +13,15 @@ class AdmRealtyObject
     public static $objStatus1 = '.cc-object-status1';
 
     public static $regionField = '[ng-model="ctrl.realty.address.region"] span';
+    public static $typeRegion = '[ng-model="ctrl.realty.address.region"] input';
     public static $region0 = '.cc-region-name0';
 
     public static $cityField = '[ng-model="ctrl.realty.address.city"] span';
-    public static $city4 = '.cc-city-name4';
+    public static $typeCity = '[ng-model="ctrl.realty.address.city"] input';
+    public static $city0 = '.cc-city-name0';
 
     public static $districtField = '[ng-model="ctrl.realty.address.district"] span';
-    public static $district24 = '.cc-district-name24';
+    public static $district22 = '.cc-district-name22';
     public static $district23 = '.cc-district-name23';
     public static $district3 = '.cc-district-name3';
     public static $district7 = '.cc-district-name7';

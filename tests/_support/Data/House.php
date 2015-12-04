@@ -89,9 +89,9 @@ class House
 
     static function uniqueHouseNumber()
     {
-        if (self::$currentHouseNumber) {
-            return self::$currentHouseNumber;
-        }
+//        if (self::$currentHouseNumber) {
+//            return self::$currentHouseNumber;
+//        }
         $constFileName = codecept_data_dir('house_number.txt');
         $number = trim(file_get_contents($constFileName));
         $number++;

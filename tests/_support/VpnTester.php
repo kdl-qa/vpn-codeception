@@ -117,6 +117,7 @@ class VpnTester extends \Codeception\Actor
     function acceptModal()
     {
 //        $this->waitForElement(['css' => '.modal-content button.blue']);
+        $this->wait(1);
         $this->click(['css' => '.modal-content button.blue']);
         $this->wait(1);
     }

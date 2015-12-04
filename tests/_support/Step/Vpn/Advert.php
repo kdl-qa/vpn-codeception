@@ -17,6 +17,7 @@ class Advert extends \VpnTester
     public function fillInStandardFlatType()
     {
         $I = $this;
+        $I->wantTo('Fill in Flat category');
         $I->amOnPage('/new-advert/step1');
         $I->waitForElement(AddAdvert::$yandexMap);
         $I->click(AddAdvert::$category);
@@ -28,9 +29,12 @@ class Advert extends \VpnTester
     public function fillInFlatAddress()
     {
         $I = $this;
+        $I->wantTo('Fill in flat address');
         $I->click(AddAdvert::$regionField);
+        $I->fillField(AddAdvert::$typeRegion, Flat::region);
         $I->click(AddAdvert::$region0);
         $I->click(AddAdvert::$cityField);
+        $I->fillField(AddAdvert::$typeCity, Flat::city);
         $I->click(AddAdvert::$chooseCity);
         $I->click(AddAdvert::$district);
         $I->fillField(AddAdvert::$typeDistrict,Flat::district);
@@ -48,6 +52,7 @@ class Advert extends \VpnTester
     public function fillInFlatObjPropertiesPlain()
     {
         $I = $this;
+        $I->wantTo('Fill in Flat object properties Plain');
         $I->waitForElement(AddAdvert::$generalArea);
         $I->fillField(AddAdvert::$generalArea,Flat::generalArea);
         $I->click(AddAdvert::$areaUnitField);
@@ -66,6 +71,7 @@ class Advert extends \VpnTester
     public function fillInFlatObjPropertiesComplex()
     {
         $I = $this;
+        $I->wantTo('Fill in Flat object properties Complex');
         $I->waitForElement(AddAdvert::$generalArea);
         $I->fillField(AddAdvert::$generalArea,Flat::generalArea);
         $I->click(AddAdvert::$areaUnitField);
@@ -106,6 +112,7 @@ class Advert extends \VpnTester
     public function checkFlatObjectPropertiesPlain()
     {
         $I = $this;
+        $I->wantTo('Check Flat object properties Plain');
         $I->see(Flat::category,AddAdvert::$objectPropsTable);
         $I->see(Flat::categoryType0,AddAdvert::$objectPropsTable);
         $I->see(Flat::region,AddAdvert::$objectPropsTable);
@@ -113,7 +120,7 @@ class Advert extends \VpnTester
         $I->see(Flat::district,AddAdvert::$objectPropsTable);
         $I->see(Flat::street,AddAdvert::$objectPropsTable);
         $I->see(Flat::houseNumber,AddAdvert::$objectPropsTable);
-        $I->see(Flat::uniqueFlatNumber(),AddAdvert::$objectPropsTable);
+        $I->see(Flat::$currentFlatNumber,AddAdvert::$objectPropsTable);
         $I->see(Flat::generalArea,AddAdvert::$objectPropsTable);
         $I->see(Flat::wallMaterial,AddAdvert::$objectPropsTable);
         $I->see(Flat::roomCount,AddAdvert::$objectPropsTable);
@@ -128,6 +135,7 @@ class Advert extends \VpnTester
     public function checkFlatObjectPropertiesComplex()
     {
         $I = $this;
+        $I->wantTo('Check Flat object properties Complex');
         $I->see(Flat::category,AddAdvert::$objectPropsTable);
         $I->see(Flat::categoryType0,AddAdvert::$objectPropsTable);
         $I->see(Flat::region,AddAdvert::$objectPropsTable);
@@ -135,7 +143,7 @@ class Advert extends \VpnTester
         $I->see(Flat::district,AddAdvert::$objectPropsTable);
         $I->see(Flat::street,AddAdvert::$objectPropsTable);
         $I->see(Flat::houseNumber,AddAdvert::$objectPropsTable);
-        $I->see(Flat::uniqueFlatNumber(),AddAdvert::$objectPropsTable);
+        $I->see(Flat::$currentFlatNumber,AddAdvert::$objectPropsTable);
         $I->see(Flat::generalArea,AddAdvert::$objectPropsTable);
         $I->see(Flat::wallMaterial,AddAdvert::$objectPropsTable);
         $I->see(Flat::roomCount,AddAdvert::$objectPropsTable);
@@ -163,6 +171,7 @@ class Advert extends \VpnTester
     public function fillInFlatAdvertPropertiesPlain()
     {
         $I = $this;
+        $I->wantTo('Fill in Flat advert properties Plain');
         $I->click(AddAdvert::$OTSell);
         $I->fillField(AddAdvert::$advDescription, Flat::descriptionFlatSell);
         $I->fillField(AddAdvert::$price, Flat::priceFlatSell);
@@ -174,6 +183,7 @@ class Advert extends \VpnTester
     public function fillInFlatAdvertPropertiesComplex()
     {
         $I = $this;
+        $I->wantTo('Fill in Flat advert properties Complex');
         $I->click(AddAdvert::$OTSell);
         $I->fillField(AddAdvert::$advDescription, Flat::descriptionFlatSell);
         $I->fillField(AddAdvert::$price, Flat::priceFlatSell);
@@ -200,6 +210,7 @@ class Advert extends \VpnTester
     public function fillInFlatAdvertCheckboxesComplex()
     {
         $I = $this;
+        $I->wantTo('Fill in Flat advert checkboxes Complex');
         $I->click(AddAdvert::$furniture0);
         $I->click(AddAdvert::$furniture1);
         $I->click(AddAdvert::$furniture2);
@@ -237,6 +248,7 @@ class Advert extends \VpnTester
     public function uploadFlatImage()
     {
         $I = $this;
+        $I->wantTo('Upload Flat images');
         $I->attachFile(AddAdvert::$galleryFile, '/img/flat_1.jpg');
         $I->wait(1);
         $I->attachFile(AddAdvert::$galleryFile, '/img/flat_2.jpg');
@@ -253,6 +265,7 @@ class Advert extends \VpnTester
     public function fillInStandardHouseType()
     {
         $I = $this;
+        $I->wantTo('Fill in House category');
         $I->amOnPage('/new-advert/step1');
         $I->waitForElement(AddAdvert::$yandexMap);
         $I->click(AddAdvert::$category);
@@ -264,9 +277,12 @@ class Advert extends \VpnTester
     public function fillInHouseAddress()
     {
         $I = $this;
+        $I->wantTo('Fill in House object address');
         $I->click(AddAdvert::$regionField);
+        $I->fillField(AddAdvert::$typeRegion, House::region);
         $I->click(AddAdvert::$region0);
         $I->click(AddAdvert::$cityField);
+        $I->fillField(AddAdvert::$typeCity, House::city);
         $I->click(AddAdvert::$chooseCity);
         $I->click(AddAdvert::$district);
         $I->fillField(AddAdvert::$typeDistrict,House::district);
@@ -509,17 +525,19 @@ class Advert extends \VpnTester
     {
         $I = $this;
         $I->click(AddAdvert::$regionField);
+        $I->fillField(AddAdvert::$typeRegion, Parcel::region);
         $I->click(AddAdvert::$region0);
         $I->click(AddAdvert::$cityField);
+        $I->fillField(AddAdvert::$typeCity, Parcel::city);
         $I->click(AddAdvert::$chooseCity);
         $I->click(AddAdvert::$district);
-        $I->fillField(AddAdvert::$typeDistrict,Parcel::district);
+        $I->fillField(AddAdvert::$typeDistrict, Parcel::district);
         $I->click(AddAdvert::$chooseDistrict);
 
         $I->click(AddAdvert::$street);
-        $I->fillField(AddAdvert::$typeStreet,Parcel::street);
+        $I->fillField(AddAdvert::$typeStreet, Parcel::street);
         $I->click(AddAdvert::$chooseStreet);
-        $I->fillField(AddAdvert::$cadastr_number,Parcel::uniqueCadastralNumber());
+        $I->fillField(AddAdvert::$cadastr_number, Parcel::uniqueCadastralNumber());
         $I->click(AddAdvert::$buttonSubmit);
         $I->wait(2);
     }
@@ -527,7 +545,7 @@ class Advert extends \VpnTester
     public function fillInParcelObjPropertiesPlain()
     {
         $I = $this;
-        $I->fillField(AddAdvert::$generalArea,Parcel::generalArea);
+        $I->fillField(AddAdvert::$generalArea, Parcel::generalArea);
         $I->click(AddAdvert::$areaUnitField);
         $I->click(AddAdvert::$areaUnit1);
         $I->click(AddAdvert::$step2_submit);
@@ -537,7 +555,7 @@ class Advert extends \VpnTester
     public function fillInParcelObjPropertiesComplex()
     {
         $I = $this;
-        $I->fillField(AddAdvert::$generalArea,Parcel::generalArea);
+        $I->fillField(AddAdvert::$generalArea, Parcel::generalArea);
         $I->click(AddAdvert::$areaUnitField);
         $I->click(AddAdvert::$areaUnit1);
         $I->click(AddAdvert::$communication0);
@@ -567,28 +585,28 @@ class Advert extends \VpnTester
     public function checkParcelObjectPropertiesPlain()
     {
         $I = $this;
-        $I->see(Parcel::category,AddAdvert::$objectPropsTable);
-        $I->see(Parcel::categoryType1,AddAdvert::$objectPropsTable);
-        $I->see(Parcel::region,AddAdvert::$objectPropsTable);
-        $I->see(Parcel::city,AddAdvert::$objectPropsTable);
-        $I->see(Parcel::district,AddAdvert::$objectPropsTable);
-        $I->see(Parcel::street,AddAdvert::$objectPropsTable);
-        $I->see(Parcel::$currentCadastralNumber,AddAdvert::$objectPropsTable);
-        $I->see(Parcel::generalArea,AddAdvert::$objectPropsTable);
+        $I->see(Parcel::category, AddAdvert::$objectPropsTable);
+        $I->see(Parcel::categoryType1, AddAdvert::$objectPropsTable);
+        $I->see(Parcel::region, AddAdvert::$objectPropsTable);
+        $I->see(Parcel::city, AddAdvert::$objectPropsTable);
+        $I->see(Parcel::district, AddAdvert::$objectPropsTable);
+        $I->see(Parcel::street, AddAdvert::$objectPropsTable);
+        $I->see(Parcel::$currentCadastralNumber, AddAdvert::$objectPropsTable);
+        $I->see(Parcel::generalArea, AddAdvert::$objectPropsTable);
 
     }
 
     public function checkParcelObjectPropertiesComplex()
     {
         $I = $this;
-        $I->see(Parcel::category,AddAdvert::$objectPropsTable);
-        $I->see(Parcel::categoryType1,AddAdvert::$objectPropsTable);
-        $I->see(Parcel::region,AddAdvert::$objectPropsTable);
-        $I->see(Parcel::city,AddAdvert::$objectPropsTable);
-        $I->see(Parcel::district,AddAdvert::$objectPropsTable);
-        $I->see(Parcel::street,AddAdvert::$objectPropsTable);
-        $I->see(Parcel::$currentCadastralNumber,AddAdvert::$objectPropsTable);
-        $I->see(Parcel::generalArea,AddAdvert::$objectPropsTable);
+        $I->see(Parcel::category, AddAdvert::$objectPropsTable);
+        $I->see(Parcel::categoryType1, AddAdvert::$objectPropsTable);
+        $I->see(Parcel::region, AddAdvert::$objectPropsTable);
+        $I->see(Parcel::city, AddAdvert::$objectPropsTable);
+        $I->see(Parcel::district, AddAdvert::$objectPropsTable);
+        $I->see(Parcel::street, AddAdvert::$objectPropsTable);
+        $I->see(Parcel::$currentCadastralNumber, AddAdvert::$objectPropsTable);
+        $I->see(Parcel::generalArea, AddAdvert::$objectPropsTable);
 
         $I->see(Lists::communication0, AddAdvert::$objectPropsTable);
         $I->see(Lists::communication1, AddAdvert::$objectPropsTable);
@@ -685,8 +703,10 @@ class Advert extends \VpnTester
     {
         $I = $this;
         $I->click(AddAdvert::$regionField);
+        $I->fillField(AddAdvert::$typeRegion, Commercial::region);
         $I->click(AddAdvert::$region0);
         $I->click(AddAdvert::$cityField);
+        $I->fillField(AddAdvert::$typeCity, Commercial::city);
         $I->click(AddAdvert::$chooseCity);
         $I->click(AddAdvert::$district);
         $I->fillField(AddAdvert::$typeDistrict,Commercial::district);
@@ -1141,7 +1161,7 @@ class Advert extends \VpnTester
         $I->waitForElement(AdvPage::$advInfoGallery);
 //        $I->see(House::priceHouseRent, AdvPage::$advInfoPrice);
         $I->see(Parcel::commission, AdvPage::$advInfoPrice);
-        $I->see(Parcel::$currentCadastralNumber, AdvPage::$advInfoAddress);
+//        $I->see(Parcel::$currentCadastralNumber, AdvPage::$advInfoAddress);
         $I->see(Parcel::generalArea, AdvPage::$advInfoMainProps);
         $I->seeElement(AdvPage::$advPropsLink);
         $I->see(Parcel::descriptionParcelSell,AdvPage::$advInfoDescription);
@@ -1155,6 +1175,7 @@ class Advert extends \VpnTester
         $I->see(Parcel::city, AdvPage::$advPropsTable);
         $I->see(Parcel::district, AdvPage::$advPropsTable);
         $I->see(Parcel::street, AdvPage::$advPropsTable);
+        $I->see(Parcel::$currentCadastralNumber, AdvPage::$advPropsTable);
         $I->see(Parcel::generalArea, AdvPage::$advPropsTable);
         $I->dontSee(AdvPage::$advSchemaTab);
 
@@ -1168,7 +1189,7 @@ class Advert extends \VpnTester
 //        $I->see(House::priceHouseRent, AdvPage::$advInfoPrice);
         $I->see(Parcel::commission, AdvPage::$advInfoPrice);
         $I->see(Parcel::availableFrom, AdvPage::$advInfoAvailableFrom);
-        $I->see(Parcel::$currentCadastralNumber, AdvPage::$advInfoAddress);
+//        $I->see(Parcel::$currentCadastralNumber, AdvPage::$advInfoAddress);
         $I->see(Parcel::generalArea, AdvPage::$advInfoMainProps);
 
         $I->seeElement(AdvPage::$advPropsLink);
@@ -1183,6 +1204,7 @@ class Advert extends \VpnTester
         $I->see(Parcel::city, AdvPage::$advPropsTable);
         $I->see(Parcel::district, AdvPage::$advPropsTable);
         $I->see(Parcel::street, AdvPage::$advPropsTable);
+        $I->see(Parcel::$currentCadastralNumber, AdvPage::$advPropsTable);
         $I->see(Parcel::generalArea, AdvPage::$advPropsTable);
 
         $I->see(Lists::nearObject0, AdvPage::$advPropsTable);

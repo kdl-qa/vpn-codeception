@@ -13,18 +13,18 @@ class Flat
     const city = 'Черкассы';
     const district = '700-летия';
     const street = 'Крещатик улица';
-    const houseNumber = '200';
-    const generalArea = '55';
-    const latitude = '49.44314';
-    const longitude = '32.06470';
+    const houseNumber = 200;
+    const generalArea = 55;
+    const latitude = 49.44314;
+    const longitude = 32.06470;
     const generalAreaUnit = 'Кв. метры';
     const wallMaterial = 'Силикатный кирпич';
-    const roomCount = '2';
-    const livingArea = '43';
-    const kitchenArea = '9';
-    const floorNumber = '4';
-    const floors = '10';
-    const buildYear = '1982';
+    const roomCount = 2;
+    const livingArea = 43;
+    const kitchenArea = 9;
+    const floorNumber = 4;
+    const floors = 10;
+    const buildYear = 1982;
     const wc = 'Раздельный';
     const balcony = '1';
     const heating = 'Централизованное';
@@ -104,14 +104,17 @@ class Flat
     const status3 = 'Заявка на снятие с публикации';
     const status4 = 'Снято с публикации';
 
+    const videoURL = 'https://www.youtube.com/embed/BlD2Zr_USXw';
+    const videoImage = 'https://i.ytimg.com/vi/BlD2Zr_USXw/hqdefault.jpg';
+
 
     static $currentFlatNumber;
 
     static function uniqueFlatNumber()
     {
-        if (self::$currentFlatNumber) {
-            return self::$currentFlatNumber;
-        }
+//        if (self::$currentFlatNumber) {
+//            return self::$currentFlatNumber;
+//        }
         $constFileName = codecept_data_dir('flat_number.txt');
         $number = trim(file_get_contents($constFileName));
         $number++;

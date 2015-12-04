@@ -54,6 +54,8 @@ class Parcel
     const editPriceParcelRent = '1500';
     const editPriceParcelSell = '15500';
     const editCommission = '5.25';
+    const editLatitude = '49.42487';
+    const editLongitude = '32.084055';
     const editDate = '19';
     const editMonth = 'Января';
     const editYear = '2016';
@@ -67,7 +69,6 @@ class Parcel
 /*==========================================Common=========================================*/
 
 
-//    static $testCadastrNumber;
     static $currentCadastralNumber;
 
 
