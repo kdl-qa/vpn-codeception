@@ -23,12 +23,12 @@ class apiRealtyCest
 
     }
 
-    public function images(VpnTester $I)
-
-    {
-        $I->uploadSchema();
-        $I->uploadCertificates();
-    }
+//    public function images(VpnTester $I)
+//
+//    {
+//        $I->uploadSchema();
+//        $I->uploadCertificates();
+//    }
 
     public function checkAddedRealties(VpnTester $I)
     {

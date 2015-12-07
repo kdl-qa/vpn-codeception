@@ -22,6 +22,9 @@ class User
     static $agencyEmail2 = "berlinisimus.92@gmail.com";
     static $agencyPass2 = "123456";
 
+    static $agencyEmail3 = "rblkkk@ukr.net";
+    static $agencyPass3 = "123456";
+
 
     //----------------------------------  Data to login user ------------------------ //
 
@@ -47,25 +50,42 @@ class User
     static $agencySocialFb = 'test.com/fb';
     static $agencySocialVk = 'test.com/vk';
 
+    //----------------------------------  Data to edit agency ------------------------ //
+    static $editAgencyName = 'edit-partners-and-co';
+    static $editCurrentSubdomain;
+    static $editAgencyfirstName = 'edit-alex';
+    static $editAgencylastName = 'edit-berlin';
+    static $editAgencyDescription = 'Edit Lorem ipsum dolor';
+    static $editAgencyOfficeName0 = 'Edit Main';
+    static $editAgencyOfficeName1 = 'Edit Second office';
+    static $editAgencyOfficeNumbers0 = '3';
+    static $editAgencyOfficeNumbers1 = '4';
+    static $editAgencyAddressName0 = 'Кирова';
+    static $editAgencyOfficePhoneNumber0_0 = '+380504812456';
+    static $editAgencyOfficePhoneNumber0_1 = '+380504812457';
+    static $editAgencySocialFb = 'edit.test.com/fb';
+    static $editAgencySocialVk = 'edit.test.com/vk';
 
     //----------------------------------  Data to register private person ------------------------ //
 
     static $userFirstName = 'alex_edit';
     static $userLastName = 'berlin_edit';
-    static $userRegEmail = 'ph@inboxstore.me';
+    static $userRegEmail = 'p2h@mailzi.ru';
+
 
 
     static $currentEmail;
     static $currentAgencyEmail;
     static $currentAgentEmail;
 
-    //----------------------------------  Data to edit user profile ------------------------ //
 
+    //----------------------------------  Data to edit user profile ------------------------ //
+    static $userApiEmail = 'rblkkk@mail.ru';
     static $userPhoneNumber1 = '+380931213123';
     static $userPhoneNumber2 = '+380931213124';
     static $userFirstNameEdit = 'alex';
     static $userLastNameEdit = 'berlin';
-    static $userEmailEdit = 'umqw@mail.ru';
+    static $userEmailEdit = 'rblkkkk@mail.ru';
 
 
     //----------------------------------  Data to edit agency profile ------------------------ //
@@ -73,7 +93,7 @@ class User
     static $agencyNameEdit = 'best';
     static $agencyfirstNameEdit = 'alexey';
     static $agencylastNameEdit = 'berlins';
-    static $agencyEmailEdit = 'mba@mail.ru';
+    static $agencyEmailEdit = 'mb2a@mail.ru';
     static $agencyCurrentSubdomain = 'agency-bestss';
     static $agencyOfficeName0Edit = 'Head';
     static $agencyOfficePhoneNumberEdit0_0 = '+380974812422';
@@ -98,6 +118,14 @@ class User
     static $agentPhone0 = '+380931213125';
     static $agentPhone1 = '+380931213127';
     static $agentPass = '123456';
+    static $agentEmail = 'rblkkk@yandex.ru';
+
+    // ---------------------------------------- Data to register agent by agency ----------------------------------
+    static $editAgentFirstName = 'Edit-Alexey';
+    static $editAgentLastName = 'EditBerlin';
+    static $editAgentPhone0 = '+380501213125';
+    static $editAgentPhone1 = '+380501213127';
+
 
 
 
@@ -105,7 +133,7 @@ class User
 
     static $agentFirstNameEdit = 'AgentName';
     static $agentLastNameEdit = 'AgentSurname';
-    static $agentEmailEdit = 'nz6s@mail.ru';
+    static $agentEmailEdit = 'n2z6s@mail.ru';
 
     static $agentActiveStatus = 'Активен';
     static $agentNotActiveStatus = 'Не активен';
@@ -133,6 +161,7 @@ class User
         $email = trim(file_get_contents(codecept_data_dir('userEmail.txt')));
         $emailPrefix = substr($email,0,1);
         $emailPrefix++;
+
         $domain = substr($email,1,17);
         $resultEmail = $emailPrefix.$domain;
         self::$currentEmail = $resultEmail;
@@ -287,9 +316,19 @@ class User
         //$imageId = json_decode($imageId)->id;
         return $imageId;
     }
+    static function getEditAgencyLogo(){
+        $imageId = file_get_contents(codecept_data_dir('edit_logo_id.json'));
+        //$imageId = json_decode($imageId)->id;
+        return $imageId;
+    }
 
     static function getAgencyAvatar(){
         $imageId = file_get_contents(codecept_data_dir('avatar_id.json'));
+        //$imageId = json_decode($imageId)->id;
+        return $imageId;
+    }
+    static function getEditAgencyAvatar(){
+        $imageId = file_get_contents(codecept_data_dir('edit_avatar_id.json'));
         //$imageId = json_decode($imageId)->id;
         return $imageId;
     }

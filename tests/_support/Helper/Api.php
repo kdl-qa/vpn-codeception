@@ -59,7 +59,7 @@ class Api extends \Codeception\Module
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/login', [
-            'email' => User::getApiUserEmail(),
+            'email' => User::$userApiEmail,
             'password' => User::$userPass
         ]);
         $this->restModule->seeResponseCodeIs(200);
@@ -74,6 +74,19 @@ class Api extends \Codeception\Module
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/login', ['email' => User::$agencyEmail, 'password' => User::$agencyPass]);
+        $usrData = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('agency_data.json'), $usrData);
+//        $token = $this->restModule->grabDataFromResponseByJsonPath('$.token');
+        $token = json_decode($usrData)->token;
+        $this->debugSection('New Token', $token);
+//        $this->restModule->haveHttpHeader('token', $token);
+        $agencyToken = file_put_contents(codecept_data_dir('agency_token.json'), $token);
+    }
+
+    function apiAgencyLogin1()
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/login', ['email' => User::$agencyEmail3, 'password' => User::$agencyPass3]);
         $usrData = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('agency_data.json'), $usrData);
 //        $token = $this->restModule->grabDataFromResponseByJsonPath('$.token');
@@ -101,6 +114,17 @@ class Api extends \Codeception\Module
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/login', ['email' => User::getApiAgentEmail(), 'password' => User::$agentPass]);
+        $token = $this->restModule->grabDataFromResponseByJsonPath('$.token');
+        $agent_data = $this->restModule->grabResponse();
+        $this->debugSection('New Token', $token);
+        file_put_contents(codecept_data_dir('agent_token.json'), $token);
+        file_put_contents(codecept_data_dir('agent_data.json'), $agent_data);
+    }
+
+    function apiAgentLogin1()
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/login', ['email' => User::$agentEmail, 'password' => User::$agentPass]);
         $token = $this->restModule->grabDataFromResponseByJsonPath('$.token');
         $agent_data = $this->restModule->grabResponse();
         $this->debugSection('New Token', $token);
@@ -591,7 +615,17 @@ class Api extends \Codeception\Module
         $agency_info = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('get_agency.json'), $agency_info);
     }
-
+    function apiGetAgencies()
+    {
+        $agencyName = User::$agencyName;
+        $region = $this->getRegion(21);
+        $city = $this->getCity(4);
+        //http://uhome.co/api/v1/users/agencies/search/1/24?city=5620c5e1d69b5aaa228b45b4&name=best&region=5620c5e1d69b5aaa228b459c
+        $this->restModule->sendGET('/users/agencies/search/1/24?city='.$city.'&name='.$agencyName.'&region='.$region.'');
+        $agencies_list = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('agencies_list.json'), $agencies_list);
+        $this->restModule->seeResponseCodeIS(200);
+    }
 
     /*======================================================== API REALTY ==================================*/
 
@@ -846,7 +880,7 @@ class Api extends \Codeception\Module
             'categoryType' => $this->getFlatCategoryTypes(0),
             'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
-            'street' => $this->getStreet(32),
+            'street' => $this->getStreet(0),
             'houseNumber' => Flat::houseNumber,
             'flatNumber' => Flat::$currentFlatNumber
 //            'flatNumber' => $flatNumber
@@ -2745,7 +2779,7 @@ class Api extends \Codeception\Module
 
     function uploadUserAvatar()
     {
-        $this->restModule->sendPOST('/uploads/user-avatar/user_avatar', [], ['file' => codecept_data_dir('pit.jpg')]);
+        $this->restModule->sendPOST('/uploads/user-avatar/user_avatar', [], ['file' => codecept_data_dir('/img/pit.jpg')]);
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
         $usAvatar = $this->restModule->grabResponse();
@@ -2762,6 +2796,29 @@ class Api extends \Codeception\Module
         $log = $this->restModule->grabResponse();
         $logo = json_decode($log)->id;
         file_put_contents(codecept_data_dir('logo_id.json'), $logo);
+        $this->debugSection('logoId', $logo);
+    }
+
+
+    function uploadEditUserAvatar()
+    {
+        $this->restModule->sendPOST('/uploads/user-avatar/user_avatar', [], ['file' => codecept_data_dir('/img/avatar_edit.jpg')]);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+        $usAvatar = $this->restModule->grabResponse();
+        $avatar = json_decode($usAvatar)->id;
+        file_put_contents(codecept_data_dir('edit_avatar_id.json'), $avatar);
+        $this->debugSection('avatarId', $avatar);
+    }
+
+    function uploadEditLogo()
+    {
+        $this->restModule->sendPOST('/uploads/user-avatar/logo', [], ['file' => codecept_data_dir('/img/agency_logo.png')]);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+        $log = $this->restModule->grabResponse();
+        $logo = json_decode($log)->id;
+        file_put_contents(codecept_data_dir('edit_logo_id.json'), $logo);
         $this->debugSection('logoId', $logo);
     }
 
@@ -2848,6 +2905,64 @@ class Api extends \Codeception\Module
         $this->restModule->sendDELETE('/announcements/' . $advertFlatId . '/images/' . $advImage0 . '/delete');
 
     }
+    function apiAdminRegistrationAgency()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $agencyOfficeRegion0 = $this->getRegion(21);
+        $agencyOfficeCity0 = $this->getCity(4);
+        $agencyOfficeAddress0 = $this->getStreetNameById(4,1);
+
+        $agencyOfficeRegion1 = $this->getRegion(21);
+        $agencyOfficeCity1 = $this->getCity(4);
+        $agencyOfficeAddress1 = $this->getStreetNameById(4,1);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->sendPOST('/admin/registration/agency', [
+            'name' => User::$agencyName,
+            'subdomain' => User::uniqueSubdomain(),
+            'firstName' => User::$agencyfirstName,
+            'lastName' => User::$agencylastName,
+            'email' => User::uniqueApiAgencyEmail(),
+            'plainPassword' => User::$agencyRegPass,
+            'description' => User::$agencyDescription,
+            'logo' => User::getAgencyLogo(),
+            'userAvatar' => User::getAgencyAvatar(),
+            'offices' => [
+                array(
+                    'officeName' => User::$agencyOfficeName0,
+                    'region' => $agencyOfficeRegion0,
+                    'city' => $agencyOfficeCity0,
+                    'address' => $agencyOfficeAddress0,
+                    'officeNumbers' => User::$agencyOfficeNumbers0,
+                    'phones' => [
+                        array('phone' => User::$agencyOfficePhoneNumber0_0),
+                        array('phone' => User::$agencyOfficePhoneNumber0_1)
+                    ]
+                ),
+                array(
+                    'officeName' => User::$agencyOfficeName1,
+                    'region' => $agencyOfficeRegion1,
+                    'city' => $agencyOfficeCity1,
+                    'address' => $agencyOfficeAddress1,
+                    'officeNumbers' => User::$agencyOfficeNumbers1
+                )
+            ],
+            'socialAccounts' => [array('facebook' => User::$agencySocialFb, 'vk' => User::$agencySocialVk)],
+            'schedule' => [
+                array('dayOfWeek' => '1-5', 'startTime' => '09:00', 'endTime' => '18:00'),
+                array('dayOfWeek' => '6', 'startTime' => '10:00', 'endTime' => '13:00')
+            ]
+        ]);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+        $agency_data = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('agency_data.json'), $agency_data);
+    }
+
+
+
+
 
     /*======================================================= User API =============================================*/
 
@@ -3046,6 +3161,47 @@ class Api extends \Codeception\Module
         $this->restModule->seeResponseIsJson();
         file_put_contents(codecept_data_dir('user_data.json'), $user_info);
     }
+    function apiEditUser()
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $userToken = file_get_contents(codecept_data_dir('user_token.json'));
+        $this->restModule->haveHttpHeader('token', $userToken);
+        $this->restModule->sendPUT('/profiles/private-persons/edit', [
+            'firstName' => User::$userFirstNameEdit,
+            'lastName' => User::$userLastNameEdit,
+            'email' => User::$userEmailEdit,
+            'userAvatar' => User::getAgencyLogo(),
+            'phones' => [
+                        array('phone' => User::$userPhoneNumber1),
+                        array('phone' => User::$userPhoneNumber2)
+
+            ],
+        ]);
+        $user_info = $this->restModule->grabResponse();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+        file_put_contents(codecept_data_dir('edit_user_data.json'), $user_info);
+    }
+
+    function changeUserPassword()
+    {
+        $userToken = file_get_contents(codecept_data_dir('user_token.json'));
+        $this->restModule->haveHttpHeader('token', $userToken);
+        $this->restModule->sendPUT('/profiles/change-password', [
+            'oldPassword' => User::$agentPass,
+            'newPassword' => 654321
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->haveHttpHeader('token', $userToken);
+        $this->restModule->sendPUT('/profiles/change-password', [
+            'oldPassword' => 654321,
+            'newPassword' => User::$agentPass
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+
+    }
+
+
 
     function apiCheckUserPasswordLink()
     {
@@ -3175,17 +3331,55 @@ class Api extends \Codeception\Module
         $this->restModule->seeResponseIsJson();
         file_put_contents(codecept_data_dir('agent_data.json'), $agent_info);
     }
+    function apiEditAgent()
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->haveHttpHeader('token', User::getAgentToken());
+        $this->restModule->sendPUT('/profiles/agents/edit', [
+            'firstName' => User::$editAgentFirstName,
+            'lastName' => User::$editAgentLastName,
+            'email' => User::uniqueApiAgentEmail(),
+            'userAvatar' => User::getAgencyAvatar(),
+            'phones' => [
+                array('phone' => User::$editAgentPhone0),
+                array('phone' => User::$editAgentPhone1)
+            ],
+        ]);
+        $agent_info = $this->restModule->grabResponse();
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+        file_put_contents(codecept_data_dir('edit_agent_data.json'), $agent_info);
+    }
+    function changeAgentPassword()
+    {
+        $agentToken = file_get_contents(codecept_data_dir('agent_token.json'));
+        $this->restModule->haveHttpHeader('token', $agentToken);
+        $this->restModule->sendPUT('/profiles/change-password', [
+            'oldPassword' => User::$agentPass,
+            'newPassword' => 654321
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->haveHttpHeader('token', $agentToken);
+        $this->restModule->sendPUT('/profiles/change-password', [
+            'oldPassword' => 654321,
+            'newPassword' => User::$agentPass
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+
+    }
+
+
 
     function apiAgencyRegistration()
     {
 
         $agencyOfficeRegion0 = $this->getRegion(21);
         $agencyOfficeCity0 = $this->getCity(4);
-        $agencyOfficeAddress0 = $this->getStreetNameById(1);
+        $agencyOfficeAddress0 = $this->getStreetNameById(4,1);
 
         $agencyOfficeRegion1 = $this->getRegion(21);
         $agencyOfficeCity1 = $this->getCity(4);
-        $agencyOfficeAddress1 = $this->getStreetNameById(1);
+        $agencyOfficeAddress1 = $this->getStreetNameById(4,1);
 
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/registration/agency', [
@@ -3230,11 +3424,97 @@ class Api extends \Codeception\Module
         file_put_contents(codecept_data_dir('agency_data.json'), $agency_data);
     }
 
+    function checkAgencyDomain()
+    {
+        $subdomain = 'dfgdgd';
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->sendGET('/registration/agency/check-subdomain/'.User::uniqueSubdomain().'');
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+    }
 
-    function getStreetNameById($id)
+    function apiEditAgency()
+    {
+        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
+        $agencyOfficeRegion0 = $this->getRegion(21);
+        $agencyOfficeCity0 = $this->getCity(3);
+        $agencyOfficeAddress0 = $this->getStreetNameById(3,2);
+        $agencyData = file_get_contents(codecept_data_dir('agency_data.json'));
+        $userId = json_decode($agencyData)->id;
+        $agencyOfficeRegion1 = $this->getRegion(21);
+        $agencyOfficeCity1 = $this->getCity(3);
+        $agencyOfficeAddress1 = $this->getStreetNameById(3,2);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->sendPUT('/profiles/agencies/edit', [
+            'name' => User::$editAgencyName,
+            'subdomain' => User::uniqueSubdomain(),
+            'firstName' => User::$editAgencyfirstName,
+            'lastName' => User::$editAgencylastName,
+            'email' => User::uniqueApiAgencyEmail(),
+            'description' => User::$editAgencyDescription,
+            'logo' => User::getEditAgencyLogo(),
+            'userAvatar' => User::getEditAgencyAvatar(),
+            'id' => $userId,
+            'offices' => [
+                array(
+                    'officeName' => User::$editAgencyOfficeName0,
+                    'region' => $agencyOfficeRegion0,
+                    'city' => $agencyOfficeCity0,
+                    'address' => $agencyOfficeAddress0,
+                    'officeNumbers' => User::$editAgencyOfficeNumbers0,
+                    'phones' => [
+                        array('phone' => User::$editAgencyOfficePhoneNumber0_0),
+                        array('phone' => User::$editAgencyOfficePhoneNumber0_1)
+                    ]
+                ),
+                array(
+                    'officeName' => User::$editAgencyOfficeName1,
+                    'region' => $agencyOfficeRegion1,
+                    'city' => $agencyOfficeCity1,
+                    'address' => $agencyOfficeAddress1,
+                    'officeNumbers' => User::$editAgencyOfficeNumbers1
+                )
+            ],
+            'socialAccounts' => [array('facebook' => User::$editAgencySocialFb, 'vk' => User::$editAgencySocialVk)],
+            'schedule' => [
+                array('dayOfWeek' => '6', 'startTime' => '09:00', 'endTime' => '18:00'),
+                array('dayOfWeek' => '1-5', 'startTime' => '10:00', 'endTime' => '13:00')
+            ]
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+        $agency_data = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('edit_agency_data.json'), $agency_data);
+    }
+
+    function changeAgencyPassword()
+    {
+        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
+        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->sendPUT('/profiles/change-password', [
+            'oldPassword' => User::$agencyPass3,
+            'newPassword' => 654321
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->sendPUT('/profiles/change-password', [
+            'oldPassword' => 654321,
+            'newPassword' => User::$agencyPass3
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+
+    }
+
+
+
+    function getStreetNameById($cityId, $id)
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $city = $this->getCity(4);
+        $city = $this->getCity($cityId);
         $this->restModule->sendGET('/lists/streets/' . $city);
         $streets = $this->restModule->grabResponse();
         $streetName = json_decode($streets)[$id]->name;
