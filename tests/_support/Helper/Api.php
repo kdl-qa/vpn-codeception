@@ -1518,7 +1518,7 @@ class Api extends \Codeception\Module
             'categoryType' => $this->getCommercialCategoryTypes(0),
             'region' => $this->getRegion(21),
             'city' => $this->getCity(4),
-            'district' => $this->getDistrict(20),
+            'district' => $this->getDistrict(7),
             'street' => $this->getStreet(97),
             'houseNumber' => Commercial::uniqueCommercialNumber(),
             'latitude' => Commercial::latitude,
@@ -1742,7 +1742,8 @@ class Api extends \Codeception\Module
     /*========================================= COMMON =========================================*/
     function apiGetLastSaleAdverts()
     {
-        $cityID = json_decode(file_get_contents(codecept_data_dir() . 'cities.json'))[4]->id;
+//        $cityID = json_decode(file_get_contents(codecept_data_dir() . 'cities.json'))[4]->id;
+        $cityID = '5620c5e3d69b5aaa228b479c';
         $operationTypeSale = json_decode(file_get_contents(codecept_data_dir() . 'operation_types.json'))[0]->id;
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendGET('/get-announcements/last/' . $operationTypeSale . '/1/24/' . $cityID);
@@ -1758,7 +1759,8 @@ class Api extends \Codeception\Module
 
     function apiGetLastRentAdverts()
     {
-        $cityID = json_decode(file_get_contents(codecept_data_dir() . 'cities.json'))[4]->id;
+//        $cityID = json_decode(file_get_contents(codecept_data_dir() . 'cities.json'))[4]->id;
+        $cityID = '5620c5e3d69b5aaa228b479c';
         $operationTypeRent = json_decode(file_get_contents(codecept_data_dir() . 'operation_types.json'))[1]->id;
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendGET('/get-announcements/last/' . $operationTypeRent . '/1/24/' . $cityID);
@@ -1776,8 +1778,8 @@ class Api extends \Codeception\Module
     {
         //todo: you also can do adverts sort by text of description (add to the end of url - ?text=test)
 
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendGET('/profiles/announcements/1/24');
         $this->restModule->seeResponseIsJson();
@@ -1794,11 +1796,9 @@ class Api extends \Codeception\Module
     {
         //todo: you can change to House, Parcel or Commercial. Also you could change role to Agent.
 
-        $flatID = file_get_contents(codecept_data_dir() . 'advertFlatId.json');
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/profiles/announcements/' . $flatID);
+        $this->restModule->sendGET('/profiles/announcements/' . User::getFlatId());
         $this->restModule->seeResponseIsJson();
         $this->restModule->seeResponseCodeIs(200);
         $this->restModule->seeResponseMatchesJsonType([
@@ -1808,6 +1808,190 @@ class Api extends \Codeception\Module
             'realty' => 'array'
         ]);
     }
+
+    function apiAgencyAddAnnouncementsList()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/profiles/announcements-lists/create', [
+                'name' => 'Test Group',
+                'client' => User::getUserId(1),
+                'reset' => 'true'
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $groupInfo = $this->restModule->grabResponse();
+        $groupId = json_decode($groupInfo)->id;
+        file_put_contents(codecept_data_dir('groupId.json'), $groupId);
+
+    }
+
+
+
+    function apiAgencyAddAdvertToAnnouncementsList()
+    {
+       $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/profiles/announcements-lists/'.User::getGroupId().'/add', [
+                'advert' => [
+                    User::getFlatId(),
+                    User::getHouseId(),
+                    User::getParcelId(),
+                    User::getCommercialId()
+                    ]
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+    }
+
+    function apiAgencySendAnnouncementListToUser()
+    {
+
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/profiles/announcements-lists/' . User::getGroupId() . '/send', [
+            'email' => User::$userApiEmail,
+            'subject' => 'Test subject',
+            'text' => 'Use this link to see announcement list'
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+    }
+
+    function apiAgencyAnnouncementList()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/'.User::getGroupId());
+        $this->restModule->seeResponseCodeIs(200);
+    }
+
+    function apiAgencyEditAnnouncementList()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/profiles/announcements-lists/'.User::getGroupId().'/edit',[
+            'name' => 'Edit Test Group',
+            'client' => '5644869cd69b5ae5538b4567',
+            'reset' => 'true'
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+
+
+    }
+
+    function apiAgencyDeleteAdvertAnnouncementList()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendDelete('/profiles/announcements-lists/'.User::getGroupId().'/'.User::getFlatId().'/delete');
+        $this->restModule->seeResponseCodeIs(200);
+    }
+
+    function apiAgencyDeleteAnnouncementList()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendDelete('/profiles/announcements-lists/'.User::getGroupId().'/delete');
+        $this->restModule->seeResponseCodeIs(200);
+    }
+
+    function apiUserAnnouncementList()
+    {
+        $this->restModule->haveHttpHeader('token', User::getUserToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/'.User::getGroupId());
+        $this->restModule->seeResponseCodeIs(200);
+    }
+
+    function apiUserIsInterestingAdvert()
+    {
+        $this->restModule->haveHttpHeader('token', User::getUserToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/lists/'.User::getGroupId().'/'.User::getFlatId().'/true');
+        $this->restModule->sendPUT('/lists/'.User::getGroupId().'/'.User::getHouseId().'/false');
+        $this->restModule->sendPUT('/lists/'.User::getGroupId().'/'.User::getParcelId().'/true');
+        $this->restModule->sendPUT('/lists/'.User::getGroupId().'/'.User::getCommercialId().'/false');
+        $this->restModule->seeResponseCodeIs(200);
+    }
+
+    function apiAgentAddAnnouncementsList()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAgentToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/profiles/announcements-lists/create', [
+            'name' => 'Test Agent Group',
+            'client' => User::getUserId(1),
+            'reset' => 'true'
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $groupInfo = $this->restModule->grabResponse();
+        $groupId = json_decode($groupInfo)->id;
+        file_put_contents(codecept_data_dir('groupId.json'), $groupId);
+
+    }
+    function apiAgentAddAdvertToAnnouncementsList()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAgentToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/profiles/announcements-lists/'.User::getGroupId().'/add', [
+            'advert' => [
+                User::getFlatId(),
+                User::getHouseId(),
+                User::getParcelId(),
+                User::getCommercialId()
+            ]
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+    }
+
+    function apiAgentSendAnnouncementListToUser()
+    {
+
+        $this->restModule->haveHttpHeader('token', User::getAgentToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/profiles/announcements-lists/' . User::getGroupId() . '/send', [
+            'email' => User::$userApiEmail,
+            'subject' => 'Test subject',
+            'text' => 'Use this link to see announcement list'
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+    }
+    function apiAgentAnnouncementList()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAgentToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/'.User::getGroupId());
+        $this->restModule->seeResponseCodeIs(200);
+    }
+
+    function apiAgentEditAnnouncementList()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAgentToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/profiles/announcements-lists/'.User::getGroupId().'/edit',[
+            'name' => 'Edit Test Agent Group',
+            'client' => '5644869cd69b5ae5538b4567',
+            'reset' => 'true'
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+
+
+    }
+
+    function apiAgentDeleteAdvertAnnouncementList()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAgentToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendDelete('/profiles/announcements-lists/'.User::getGroupId().'/'.User::getFlatId().'/delete');
+        $this->restModule->seeResponseCodeIs(200);
+    }
+
+    function apiAgentDeleteAnnouncementList()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAgentToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendDelete('/profiles/announcements-lists/'.User::getGroupId().'/delete');
+        $this->restModule->seeResponseCodeIs(200);
+    }
+
 
     /*========================================= FLATS =========================================*/
     function apiAdvertFlatAddPlain()
@@ -1918,6 +2102,8 @@ class Api extends \Codeception\Module
         $this->restModule->seeResponseCodeIs(200);
 
     }
+
+
 
     /*========================================= HOUSES =========================================*/
 
@@ -3039,6 +3225,7 @@ class Api extends \Codeception\Module
         ]);
     }
 
+
     function apiAdminUsersStatistic()
     {
         $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
@@ -3181,6 +3368,20 @@ class Api extends \Codeception\Module
         $this->restModule->seeResponseCodeIs(200);
         $this->restModule->seeResponseIsJson();
         file_put_contents(codecept_data_dir('edit_user_data.json'), $user_info);
+        $userToken = file_get_contents(codecept_data_dir('user_token.json'));
+        $this->restModule->haveHttpHeader('token', $userToken);
+        $this->restModule->sendPUT('/profiles/private-persons/edit', [
+            'firstName' => User::$userFirstName,
+            'lastName' => User::$userLastName,
+            'email' => User::$userApiEmail,
+            'userAvatar' => User::getAgencyLogo(),
+            'phones' => [
+                array('phone' => User::$userPhoneNumber2),
+                array('phone' => User::$userPhoneNumber1)
+
+            ],
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
     }
 
     function changeUserPassword()
@@ -3426,7 +3627,6 @@ class Api extends \Codeception\Module
 
     function checkAgencyDomain()
     {
-        $subdomain = 'dfgdgd';
         $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->haveHttpHeader('token', $adminToken);

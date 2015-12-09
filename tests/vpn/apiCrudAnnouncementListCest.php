@@ -1,9 +1,10 @@
 <?php
+
 use \VpnTester;
 
 class apiTesterCest
 {
-   //todo: create new api test
+    //todo: create new api test
     protected function agencyLogin(VpnTester $I)
     {
         $I->apiAgencyLogin();

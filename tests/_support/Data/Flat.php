@@ -14,7 +14,7 @@ class Flat
     const district = '700-летия';
     const street = 'Крещатик улица';
     const houseNumber = 200;
-    const generalArea = 55;
+    const generalArea = 58;
     const latitude = 49.44314;
     const longitude = 32.06470;
     const generalAreaUnit = 'Кв. метры';
@@ -30,16 +30,16 @@ class Flat
     const heating = 'Централизованное';
     const waterHeating = 'Бойлер';
     const descriptionFlatSell = 'Продается квартира в центре города. Квартира вложений не требует. Хорошая транспортная розвязка.';
-    const priceFlatSell = '45121';
-    const priceFlatRent = '300'; //5000 грн
+    const priceFlatSell = '65121';
+    const priceFlatRent = '500'; //5000 грн
 
     const currencyUA = 'грн.';
     const currencyUS = '$';
     const periodDay = 'За день';
     const periodMonth = 'За месяц';
     const commission = '3';
-    const date = '25';
-    const month = 'Ноября';
+    const date = '8';
+    const month = 'Декабря';
     const year = '2015';
     const availableFrom = '25.11.2015';
     const apiAvailableFrom = '2015-11-25';

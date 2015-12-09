@@ -424,6 +424,33 @@ class User
         $email = json_decode($email)->email;
     }
 
+    static function getGroupId(){
+        $groupId = file_get_contents(codecept_data_dir('groupId.json'));
+        return $groupId;
+    }
+
+    static function getFlatId(){
+        $flatId = file_get_contents(codecept_data_dir() . 'advertFlatId.json');
+        return $flatId;
+    }
+
+    static function getHouseId(){
+        $houseId = file_get_contents(codecept_data_dir('advertHouseId.json'));
+        return $houseId;
+    }
+
+    static function getParcelId(){
+        $parcelId = file_get_contents(codecept_data_dir('advertParcelId.json'));
+        return $parcelId;
+    }
+
+    static function getCommercialId(){
+        $commercialId = file_get_contents(codecept_data_dir('advertCommercialId.json'));
+        return $commercialId;
+    }
+
+
+
     static $subdomain = 'agency';
     static $domain = '.uhome.co';
 
