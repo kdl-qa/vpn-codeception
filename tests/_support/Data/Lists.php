@@ -151,7 +151,8 @@ class Lists
 //    const status5 = '';
 
     const unpubReason0 = 'Сделка завершена';
-    const unpubReason1 = 'Иная причина';
+    const unpubReason1 = 'Сделка заключена с помощью Neru';
+    const unpubReason2 = 'Иная причина';
 
     const wallMaterial0 = 'Кирпич';
     const wallMaterial1 = 'Панель';

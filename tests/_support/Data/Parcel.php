@@ -25,6 +25,7 @@ class Parcel
     const generalAreaUnit = 'Сотки';
     const descriptionParcelSell = 'Продается Земельный участок в тихом районе города. Все документы на землю в порядке и соответствуют законодательству страны. Рядом хорошая транспортная розвязка.';
     const priceParcelSell = '21050';
+    const priceParcelSearch = '35000';
     const currencyUA = 'грн.';
     const currencyUS = '$';
     const periodDay = 'За день';
@@ -33,8 +34,8 @@ class Parcel
     const date = '5';
     const month = 'Декабря';
     const year = '2015';
-    const availableFrom = '27.12.2015';
-    const apiAvailableFrom = '2015-12-27';
+    const availableFrom = '05.12.2015';
+    const apiAvailableFrom = '2015-12-05';
     const market = 'Вторичный';
     const ownerName = 'Ioan Ioan';
     const ownerContacts = 'ioan@freeletter.me; +380671234567';
@@ -43,9 +44,9 @@ class Parcel
 /*==========================================Edit Parcel=========================================*/
 
     const apiDistrict = 'Ж/д вокзал';
-    const apiStreet = 'Ватутина улица';
+    const apiStreet = 'Будённого улица';
 
-    const editDistrict = 'Днепровский';
+    const editDistrict = 'Ж/д вокзал';
     const editStreet = 'Благовестная улица';
     const editGeneralArea = '15';
 

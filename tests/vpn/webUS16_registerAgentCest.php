@@ -9,6 +9,6 @@ class webUS16_registerAgentCest
         $I->loginAgencyTmp();
         $I->registerAgent();
         $I->checkAgentRegistration();
-        $I->agentDelete();
+//        $I->agentDelete();
     }
 }

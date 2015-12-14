@@ -6,7 +6,7 @@ class webUS14_unpublishCest
     protected function uploadImages(VpnTester $I)
     {
 //        $I->uploadSchema();
-        $I->uploadAdvImage();
+        $I->uploadAdvImages();
     }
 
     protected function apiLogin(VpnTester $I)
@@ -48,5 +48,13 @@ class webUS14_unpublishCest
         $I->addDealFinishedReason();
         $common->acceptModal();
         $I->checkDealFinishedRequest();
+    }
+    public function addDealFinishedRequestWithNeru(\Step\Vpn\UnpublishAdvert $I, VpnTester $common)
+    {
+        $common->loginAgency();
+        $I->openFlatUnpublishPage();
+        $I->addDealFinishedReasonNeru();
+        $common->acceptModal();
+        $I->checkDealFinishedRequestNeru();
     }
 }

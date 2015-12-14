@@ -39,6 +39,7 @@ class adminUS10_editObjectsCest
         $obj->openAdmEditFlatObjPage();
         $obj->editFlatObject();
         $I->acceptModal();
+        $I->wait(2);
         $obj->checkEditFlatObject();
     }
 
@@ -52,6 +53,7 @@ class adminUS10_editObjectsCest
         $obj->openAdmEditHouseObjPage();
         $obj->editHouseObject();
         $I->acceptModal();
+        $I->wait(2);
         $obj->checkEditHouseObject();
     }
 
@@ -65,6 +67,7 @@ class adminUS10_editObjectsCest
         $obj->openAdmEditParcelObjPage();
         $obj->editParcelObject();
         $I->acceptModal();
+        $I->wait(2);
         $obj->checkEditParcelObject();
     }
 
@@ -78,6 +81,7 @@ class adminUS10_editObjectsCest
         $obj->openAdmEditCommercialObjPage();
         $obj->editCommercialObject();
         $I->acceptModal();
+        $I->wait(2);
         $obj->checkEditCommercialObject();
     }
 }

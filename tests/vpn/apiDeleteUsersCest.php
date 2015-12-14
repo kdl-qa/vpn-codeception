@@ -9,8 +9,9 @@ class apiDeleteUserCest
         $I->apiAdminLogin();
 
         $I->apiUserRegistration();
-        $I->apiAgentRegistration();
         $I->apiAgencyRegistration();
+        $I->apiAgentRegistration();
+
 
         $I->apiUserDelete();
         $I->apiAgentDelete();

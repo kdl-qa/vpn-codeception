@@ -18,9 +18,60 @@ class apiTesterCest
         $I->apiAgentLogin1();
     }
 
+//    protected function moderateAdv($admin)
+//    {
+//        $admin->loginAdmin();
+//        $admin->moderateAdvActive();
+//    }
+//
+//    protected function open1stAdvert($list)
+//    {
+//        $list->openUserAdvertsList();
+//        $list->openFirstListAdvert();
+//    }
+//
+//    protected function addFlatSaleAdvert($api)
+//    {
+//        $api->realtyFlatAddComplex();
+//        $api->apiAdvertFlatAddPlain();
+//
+//    }
+//
+//    protected function addHouseRentAdvert($api)
+//    {
+//        $api->realtyHouseAddComplex();
+//        $api->apiAdvertHouseAddPlain();
+//
+//    }
+//
+//    protected function addParcelRentAdvert($api)
+//    {
+//        $api->realtyParcelAddComplex();
+//        $api->apiAdvertParcelAddPlain();
+//
+//    }
+//
+//    protected function addCommercialSaleAdvert($api)
+//    {
+//        $api->realtyCommercialAddComplex();
+//        $api->apiAdvertCommercialAddPlain();
+//
+//    }
+//    /**
+//     * @before agencyLogin
+//     * @before adminLogin
+//     *@before addCommercialSaleAdvert
+//     *
+//     */
+//    function AddAdv (VpnTester $I)
+//    {
+//
+//    }
+
     /**
      *@before agencyLogin
      */
+
     public function apiAgencyAddAnnouncementsList(VpnTester $I)
     {
         $I->apiAgencyAddAnnouncementsList();

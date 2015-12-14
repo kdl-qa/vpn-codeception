@@ -37,6 +37,7 @@ class AdvertsList
     public static $chooseReason = '.reason span';
     public static $upublishReason0 = '.cc-unpublish-reason0';
     public static $upublishReason1 = '.cc-unpublish-reason1';
+    public static $upublishReason2 = '.cc-unpublish-reason2';
     public static $finalPrice = '#finalValue';
     public static $descriptionReason = '#description';
     public static $chooseCurrency = '.currency span';

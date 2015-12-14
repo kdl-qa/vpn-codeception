@@ -24,7 +24,7 @@ class AdmRealtyObject
     public static $district22 = '.cc-district-name22';
     public static $district23 = '.cc-district-name23';
     public static $district3 = '.cc-district-name3';
-    public static $district7 = '.cc-district-name7';
+    public static $district8 = '.cc-district-name8';
 
     public static $street = '[ng-model="ctrl.realty.address.street"] span';
     public static $typeStreet = '[ng-model="ctrl.realty.address.street"] input';

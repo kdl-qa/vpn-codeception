@@ -6,8 +6,8 @@ class apiChangeUserStatusesCest
 {
     function changeUserStatuses(VpnTester $I){
 
-        $I->uploadLogo();
-        $I->uploadUserAvatar();
+//        $I->uploadLogo();
+//        $I->uploadUserAvatar();
 
         $I->apiAdminLogin();
 

@@ -35,7 +35,7 @@ class AdmEditRealtyObject extends \VpnTester
         $I->fillField(AdmRealtyObject::$typeCity, Flat::city);
         $I->click(AdmRealtyObject::$city0);
         $I->click(AdmRealtyObject::$districtField);
-        $I->click(AdmRealtyObject::$district22);
+        $I->click(AdmRealtyObject::$district8);
         $I->click(AdmRealtyObject::$street);
         $I->fillField(AdmRealtyObject::$typeStreet, Flat::editStreet);
         $I->click(AdmRealtyObject::$chooseStreet);
@@ -84,6 +84,7 @@ class AdmEditRealtyObject extends \VpnTester
     {
         $I=$this;
         $I->reloadPage();
+        $I->wait(2);
         $I->waitForElement(AdmRealtyObject::$yandexMap);
         $I->seeInPageSource(Lists::objStatus1);
         $I->seeInPageSource(Flat::region);
@@ -197,6 +198,7 @@ class AdmEditRealtyObject extends \VpnTester
     {
         $I=$this;
         $I->reloadPage();
+        $I->wait(2);
         $I->waitForElement(AdmRealtyObject::$yandexMap);
         $I->seeInPageSource(Lists::objStatus1);
         $I->seeInPageSource(House::region);
@@ -263,7 +265,7 @@ class AdmEditRealtyObject extends \VpnTester
         $I->fillField(AdmRealtyObject::$typeCity, Parcel::city);
         $I->click(AdmRealtyObject::$city0);
         $I->click(AdmRealtyObject::$districtField);
-        $I->click(AdmRealtyObject::$district7);
+        $I->click(AdmRealtyObject::$district8);
         $I->click(AdmRealtyObject::$street);
         $I->fillField(AdmRealtyObject::$typeStreet, Parcel::editStreet);
         $I->click(AdmRealtyObject::$chooseStreet);
@@ -302,6 +304,7 @@ class AdmEditRealtyObject extends \VpnTester
     {
         $I=$this;
         $I->reloadPage();
+        $I->wait(2);
         $I->waitForElement(AdmRealtyObject::$yandexMap);
         $I->seeInPageSource(Parcel::region);
         $I->seeInPageSource(Parcel::city);
@@ -398,6 +401,7 @@ class AdmEditRealtyObject extends \VpnTester
     {
         $I=$this;
         $I->reloadPage();
+        $I->wait(2);
         $I->waitForElement(AdmRealtyObject::$yandexMap);
         $I->seeInPageSource(Lists::objStatus1);
         $I->seeInPageSource(Commercial::region);

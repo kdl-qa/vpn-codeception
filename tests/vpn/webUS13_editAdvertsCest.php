@@ -53,7 +53,7 @@ class webUS13_editAdvertsCest
 
     protected function uploadImages(VpnTester $I)
     {
-        $I->uploadAdvImage();
+        $I->uploadAdvImages();
         $I->uploadSchema();
     }
 

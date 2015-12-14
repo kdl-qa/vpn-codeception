@@ -33,16 +33,17 @@ class House
     const descriptionHouseRent = 'Сдается в аренду дом. Дом расположен в элитном районе города, ремонта и вложений не требует. Рядом находится парк отдыха, недалеко хорошая транспортная розвязка.';
     const priceHouseSell = '95050';
     const priceHouseRent = '2500';
+    const priceHouseSearch = '5000';
     const currencyUA = 'грн.';
     const currencyUS = '$';
     const commission = '3';
     const periodDay = 'За день';
     const periodMonth = 'За месяц';
     const date = '7';
-    const month = 'Декабря';
+    const month = 'Ноября';
     const year = '2015';
-    const availableFrom = '20.11.2015';
-    const apiAvailableFrom = '2015-11-20';
+    const availableFrom = '07.11.2015';
+    const apiAvailableFrom = '2015-11-07';
     const market = 'Вторичный';
     const repair = 'Косметический';
     const beds = '3';
@@ -58,7 +59,7 @@ class House
     const editPriceHouseRent = '6000'; //грн
 
     const editDistrict = 'Водоканал-Невского';
-    const editStreet = 'Ильина улица';
+    const editStreet = 'Замковый узвоз';
     const editLatitude = '49.41815';
     const editLongitude = '32.09172';
 //    const editWallMaterial = 'Кирпич';
@@ -68,7 +69,7 @@ class House
     const editLivingArea = '100';
     const editKitchenArea = '15';
     const editLandArea = '8';
-    const editFloors = '2';
+    const editFloors = '3';
     const editBuildYear = '1999';
 
 

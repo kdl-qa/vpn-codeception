@@ -29,7 +29,7 @@ class User
     //----------------------------------  Data to login user ------------------------ //
 
 
-    static $userEmail = 'berlin1.92@mail.ru';
+    static $userEmail = 'rblkkk@mail.ru';
     static $userPass = '123456';
 
     //----------------------------------  Data to register agency ------------------------ //
@@ -70,7 +70,7 @@ class User
 
     static $userFirstName = 'alex_edit';
     static $userLastName = 'berlin_edit';
-    static $userRegEmail = 'p2h@mailzi.ru';
+    static $userRegEmail = 'p2sh@mailzi.ru';
 
 
 
@@ -85,15 +85,15 @@ class User
     static $userPhoneNumber2 = '+380931213124';
     static $userFirstNameEdit = 'alex';
     static $userLastNameEdit = 'berlin';
-    static $userEmailEdit = 'rblkkkk@mail.ru';
+    static $userEmailEdit = 'rblkkk1@mail.ru';
 
 
     //----------------------------------  Data to edit agency profile ------------------------ //
 
-    static $agencyNameEdit = 'best';
+    static $agencyNameEdit = 'partners-and-cobest';
     static $agencyfirstNameEdit = 'alexey';
     static $agencylastNameEdit = 'berlins';
-    static $agencyEmailEdit = 'mb2a@mail.ru';
+    static $agencyEmailEdit = 'mb2s2a@mail.ru';
     static $agencyCurrentSubdomain = 'agency-bestss';
     static $agencyOfficeName0Edit = 'Head';
     static $agencyOfficePhoneNumberEdit0_0 = '+380974812422';

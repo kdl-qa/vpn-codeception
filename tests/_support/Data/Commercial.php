@@ -41,6 +41,7 @@ class Commercial
 
     const priceCommercialSell = '125400';
     const priceCommercialRent = '25400';
+    const priceCommercialSearch = '7000';
 
 
     const periodDay = 'За день';
@@ -66,11 +67,11 @@ class Commercial
     const editPriceCommercialSell = '151000';
     const editPriceCommercialRent = '29999';
 
-    const apiDistrict = 'Район Д';
-    const apiStreet = 'Калинина улица';
+    const apiDistrict = 'Ж/д вокзал';
+    const apiStreet = 'Вербовецкого улица';
 
     const editDistrict = 'Водоканал-Невского';
-    const editStreet = 'Ильина улица';
+    const editStreet = 'Вернигоры улица';
 
     const editLatitude = '49.41815';
     const editLongitude = '32.09172';

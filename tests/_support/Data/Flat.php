@@ -31,6 +31,7 @@ class Flat
     const waterHeating = 'Бойлер';
     const descriptionFlatSell = 'Продается квартира в центре города. Квартира вложений не требует. Хорошая транспортная розвязка.';
     const priceFlatSell = '65121';
+    const priceFlatSearch = '35000';
     const priceFlatRent = '500'; //5000 грн
 
     const currencyUA = 'грн.';
@@ -39,10 +40,10 @@ class Flat
     const periodMonth = 'За месяц';
     const commission = '3';
     const date = '8';
-    const month = 'Декабря';
+    const month = 'Ноября';
     const year = '2015';
-    const availableFrom = '25.11.2015';
-    const apiAvailableFrom = '2015-11-25';
+    const availableFrom = '8.11.2015';
+    const apiAvailableFrom = '2015-11-08';
     const market0 = 'Первичный';
     const market1 = 'Вторичный';
     const repair0 = 'Косметический';
@@ -62,8 +63,8 @@ class Flat
     const editPriceFlatSell = '35121'; //$
     const editPriceFlatRent = '4000'; //грн
 
-    const editDistrict = 'Сады';
-    const editStreet = 'Ватутина';
+    const editDistrict = 'Ж/д вокзал';
+    const editStreet = 'Будённого';
     const editHouseNumber = '175';
     const editCommission = '5.5';
     const editLatitude = '49.44314';
