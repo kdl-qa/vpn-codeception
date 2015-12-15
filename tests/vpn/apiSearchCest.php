@@ -9,7 +9,6 @@ class apiTesttCest
         $I->apiAdminLogin();
         $I->apiAgencyLogin();
     }
-
     protected function addApiFlatAdvert(VpnTester $I)
     {
         $I->realtyFlatAddForSearch();
@@ -41,18 +40,17 @@ class apiTesttCest
     }
 
     /**
-     * @before apiLogin
-     * @before addApiFlatAdvert
+     *@before apiLogin
+     *@before addApiFlatAdvert
      */
     public function flatSearch(VpnTester $I)
     {
 
         $I->apiFlatSearch();
     }
-
     /**
-     * @before apiLogin
-     * @before addApiHouseAdvert
+     *@before apiLogin
+     *@before addApiHouseAdvert
      */
 
     public function houseSearch(VpnTester $I)
@@ -61,8 +59,8 @@ class apiTesttCest
     }
 
     /**
-     * @before apiLogin
-     * @before addApiParcelAdvert
+     *@before apiLogin
+     *@before addApiParcelAdvert
      */
     public function parcelSearch(VpnTester $I)
     {
@@ -70,22 +68,16 @@ class apiTesttCest
     }
 
     /**
-     * @before apiLogin
-     * @before addApiCommercialAdvert
+     *@before apiLogin
+     *@before addApiCommercialAdvert
      */
     public function commercialSearch(VpnTester $I)
     {
         $I->apiCommercialSearch();
     }
 
-
-
     /**
      *@before apiLogin
-     * @before addApiFlatAdvert
-     * @before addApiHouseAdvert
-     * @before addApiParcelAdvert
-     * @before addApiCommercialAdvert
      */
     public function apiDeleteAdverts(VpnTester $I)
     {
