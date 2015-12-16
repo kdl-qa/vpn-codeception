@@ -60,9 +60,11 @@ class Flat
     const editDescriptionFlatRent = 'Аренда квартиры в центре города. Аренда квартиры без посредников. Квартира вложений не требует. Хорошая транспортная розвязка.';
     const editDescriptionFlatSale = 'Продажа квартиры на окраине города. Продажа квартир без посредников. Квартира ремонта и вложений не требует. Рядом хорошая транспортная розвязка.';
 
+    const editCity = 'Смела';
     const editPriceFlatSell = '35121'; //$
     const editPriceFlatRent = '4000'; //грн
 
+    const apiStreet = 'Василевского Маршала улица';
     const editDistrict = 'Ж/д вокзал';
     const editStreet = 'Будённого';
     const editHouseNumber = '175';

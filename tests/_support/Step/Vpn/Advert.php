@@ -60,7 +60,7 @@ class Advert extends \VpnTester
         $I->click(AddAdvert::$wallMaterialField);
         $I->click(AddAdvert::$wallMaterial5);
 
-        $I->doubleClick(AddAdvert::$roomСount);
+        $I->click(AddAdvert::$roomСount);
         $I->fillField(AddAdvert::$roomСount,Flat::roomCount);
         $I->fillField(AddAdvert::$floors,Flat::floors);
         $I->fillField(AddAdvert::$floorNumber,Flat::floorNumber);
@@ -78,7 +78,7 @@ class Advert extends \VpnTester
         $I->click(AddAdvert::$areaUnit0);
         $I->click(AddAdvert::$wallMaterialField);
         $I->click(AddAdvert::$wallMaterial5);
-        $I->doubleClick(AddAdvert::$roomСount);
+        $I->click(AddAdvert::$roomСount);
         $I->fillField(AddAdvert::$roomСount,Flat::roomCount);
         $I->fillField(AddAdvert::$livingArea,Flat::livingArea);
         $I->fillField(AddAdvert::$kitchenArea,Flat::kitchenArea);
@@ -320,7 +320,7 @@ class Advert extends \VpnTester
         $I->click(AddAdvert::$wallMaterialField);
         $I->click(AddAdvert::$wallMaterial10);
 
-        $I->doubleClick(AddAdvert::$roomСount);
+        $I->click(AddAdvert::$roomСount);
         $I->fillField(AddAdvert::$roomСount,House::roomCount);
         $I->fillField(AddAdvert::$livingArea,House::livingArea);
         $I->fillField(AddAdvert::$kitchenArea,House::kitchenArea);
@@ -742,7 +742,7 @@ class Advert extends \VpnTester
         $I->click(AddAdvert::$areaUnit0);
         $I->click(AddAdvert::$wallMaterialField);
         $I->click(AddAdvert::$wallMaterial2);
-        $I->doubleClick(AddAdvert::$roomСount);
+        $I->click(AddAdvert::$roomСount);
         $I->fillField(AddAdvert::$roomСount,Commercial::roomCount);
         $I->fillField(AddAdvert::$effectiveArea,Commercial::effectiveArea);
         $I->fillField(AddAdvert::$floorNumber,Commercial::floors);

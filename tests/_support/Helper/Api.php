@@ -3046,8 +3046,7 @@ class Api extends \Codeception\Module
 
     function apiAdminEditInfoPage()
     {
-        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
-        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPUT('/admin/info-pages/' . Info::inf_latinName . '/edit', [
             'name' => Info::inf_editName,
@@ -3074,13 +3073,147 @@ class Api extends \Codeception\Module
 
     function apiAdminDeleteInfoPage()
     {
-        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
-        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendDELETE('/admin/info-pages/' . Info::inf_editLatinName . '/delete');
         $this->restModule->seeResponseIsJson();
         $this->restModule->seeResponseCodeIs(200);
     }
+
+    function apiAdminAddCity()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendPOST('/admin/lists/cities/add', [
+            'regionId' => $this->getRegion(23),
+            'name' => 'Свитанок',
+            'cityLocative' => 'в Свитанке'
+        ]);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $city = $this->restModule->grabResponse();
+        $cityId = json_decode($city)->id;
+        file_put_contents(codecept_data_dir('cityId.json'), $cityId);
+        $this->debugSection('City Id', $city);
+    }
+
+     function apiAdminEditCity()
+     {
+         $this->restModule->haveHttpHeader('token', User::getAdminToken());
+         $this->restModule->sendPUT('/admin/lists/cities/'.User::getCityId().'/edit', [
+             'name' => 'Выдубычи',
+             'cityLocative' => 'в Выдубычах'
+         ]);
+         $this->restModule->seeResponseIsJson();
+         $this->restModule->seeResponseCodeIs(200);
+     }
+
+    function apiAdminDeleteCity()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendDELETE('/admin/lists/cities/'.User::getCityId().'/delete');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+    }
+
+    function apiAdminAddDistrict()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendPOST('/admin/lists/districts/add', [
+            'cityId' => User::getCityId(),
+            'name' => 'Центр'
+        ]);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $district = $this->restModule->grabResponse();
+        $districtId = json_decode($district)->id;
+        file_put_contents(codecept_data_dir('districtId.json'), $districtId);
+        $this->debugSection('District Id', $district);
+    }
+
+    function apiAdminEditDistrict()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendPUT('/admin/lists/districts/'.User::getDistrictId().'/edit',[
+            'name' => 'Автостанция'
+        ]);
+    }
+
+    function apiAdminDeleteDistrict()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendDELETE('/admin/lists/districts/'.User::getDistrictId().'/delete');
+    }
+
+    function apiAdminAddStreet()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendPOST('/admin/lists/streets/add', [
+            'cityId' => User::getCityId(),
+            'name' => 'Волковка улица'
+        ]);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+        $street = $this->restModule->grabResponse();
+        $streetId = json_decode($street)->id;
+        file_put_contents(codecept_data_dir('streetId.json'), $streetId);
+        $this->debugSection('Street Id', $street);
+    }
+
+    function apiAdminEditStreet()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendPUT('/admin/lists/streets/'.User::getStreetId().'/edit',[
+            'name' => 'Кирова улица'
+        ]);
+    }
+
+    function apiAdminDeleteStreet()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendDELETE('/admin/lists/streets/'.User::getStreetId().'/delete');
+    }
+
+    function apiAdminAddCategoryType($id) //0..3
+    {
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendPOST('/admin/lists/category-types/add', [
+            'categoryId' => $this->getCategories($id),
+            'name' => 'Гаражи'
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $categoryType = $this->restModule->grabResponse();
+        $categoryTypeId = json_decode($categoryType)->id;
+        file_put_contents(codecept_data_dir('categoryTypeId.json'), $categoryTypeId);
+        $this->debugSection('Category Id', $categoryType);
+    }
+
+    function apiAdminEditCategoryType()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendPUT('/admin/lists/category-types/'.User::getCategoryTypeId().'/edit', [
+            'name' => 'Edit Гаражи'
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+    }
+
+    function apiAdminChangePositionCategoryType()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendPUT('/admin/lists/category-types/'.User::getCategoryTypeId().'/0/edit', [
+            'name' => 'Edit Гаражи'
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+    }
+
+    function apiAdminDeleteCategoryType()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->sendDELETE('/admin/lists/category-types/'.User::getCategoryTypeId().'/delete');
+        $this->restModule->seeResponseCodeIs(200);
+    }
+
+
+
 
 
     /*=================================================== REALTIES =======================================*/

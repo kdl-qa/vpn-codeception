@@ -449,6 +449,26 @@ class User
         return $commercialId;
     }
 
+    static function getCityId(){
+        $cityId = file_get_contents(codecept_data_dir('cityId.json'));
+        return $cityId;
+    }
+
+    static function getDistrictId(){
+        $districtId = file_get_contents(codecept_data_dir('districtId.json'));
+        return $districtId;
+    }
+
+    static function getStreetId(){
+        $streetId = file_get_contents(codecept_data_dir('streetId.json'));
+        return $streetId;
+    }
+
+    static function getCategoryTypeId(){
+        $categoryTypeId = file_get_contents(codecept_data_dir('categoryTypeId.json'));
+        return $categoryTypeId;
+    }
+
 
 
     static $subdomain = 'agency';

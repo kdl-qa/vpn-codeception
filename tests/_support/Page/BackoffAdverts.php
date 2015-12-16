@@ -70,7 +70,7 @@ class BackoffAdverts
     public static $repair6 = '.cc-repair-type6';
     public static $repair7 = '.cc-repair-type7';
 
-    public static $bedsCount = '[ng-model="ctrl.advert.bads"] input';
+    public static $bedsCount = '[ng-model="ctrl.advert.beds"] input';
 
     public static $furniture0 = '.cc-advert-furnitures0';
     public static $furniture1 = '.cc-advert-furnitures1';
