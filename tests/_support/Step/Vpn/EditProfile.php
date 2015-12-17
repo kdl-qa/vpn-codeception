@@ -122,7 +122,7 @@ class EditProfile extends \VpnTester
         $this->wait(3);
         $this->click(EditProfiles::$submitEditAgencyProfileBtn);
         $this->wait(5);
-        $this->click(EditProfiles::$acceptEditAgencyProfileModal);
+//        $this->click(EditProfiles::$acceptEditAgencyProfileModal);
         $this->wait(3);
     }
 

@@ -90,7 +90,7 @@ class User
 
     //----------------------------------  Data to edit agency profile ------------------------ //
 
-    static $agencyNameEdit = 'partners-and-cobest';
+    static $agencyNameEdit = 'best';
     static $agencyfirstNameEdit = 'alexey';
     static $agencylastNameEdit = 'berlins';
     static $agencyEmailEdit = 'mb2s2a@mail.ru';

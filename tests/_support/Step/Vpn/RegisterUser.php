@@ -102,7 +102,7 @@ class RegisterUser extends  \VpnTester
         $I->wait(3);
         $I->click(Registration::$submit_edit_profileBtn);
         $I->wait(5);
-        $I->click(Registration::$submit_edit_profileModal);
+//        $I->click(Registration::$submit_edit_profileModal);
         $I->wait(3);
 
 

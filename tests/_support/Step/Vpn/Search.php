@@ -15,7 +15,7 @@ class Search extends \VpnTester
     public function searchFlat()
     {
         $I = $this;
-        $I->wantTo('Check UI Search Page');
+        $I->wantTo('Check search functionality Flat category');
         $I->amOnPage('/search');
 //        $I->see('Продажа', SearchPage::$operationType1);
 //        $I->see('Аренда', SearchPage::$operationType2);
@@ -691,7 +691,7 @@ class Search extends \VpnTester
     public function searchFlat29()
     {
         $I = $this;
-        $I->wantTo('Change aplience');
+        $I->wantTo('Change appliance');
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
         $I->click(SearchPage::$nearObject0);
