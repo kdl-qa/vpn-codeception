@@ -2,6 +2,7 @@
 namespace Step\Vpn;
 use Data\Commercial;
 use Data\Parcel;
+use Data\User;
 use Page\AddAdvert;
 use \Data\Flat;
 use \Data\House;
@@ -17,6 +18,7 @@ class Search extends \VpnTester
         $I = $this;
         $I->wantTo('Check search functionality Flat category');
         $I->amOnPage('/search');
+        $I->waitForElement(SearchPage::$operationType1);
 //        $I->see('Продажа', SearchPage::$operationType1);
 //        $I->see('Аренда', SearchPage::$operationType2);
         $I->click(SearchPage::$operationType1);
@@ -44,6 +46,10 @@ class Search extends \VpnTester
         $I->click(SearchPage::$currencyUS);
         $I->click(SearchPage::$auction);
         $I->dontSee(SearchPage::$agencyField);
+        $I->click(SearchPage::$agencyField);
+        $I->fillField(SearchPage::$agencyType, 'Uhome');
+        $I->click(SearchPage::$agency0);
+        $I->click(SearchPage::$agencyField);
 
         $I->click(SearchPage::$characteristicsTab);
         $I->click(SearchPage::$marketTypeField);
@@ -113,6 +119,7 @@ class Search extends \VpnTester
     {
         $I = $this;
 //        $I->amOnPage()
+        $I->wait(1);
         $I->waitForElement(AdvPage::$advInfoGallery);
 //        $I->see(Flat::priceFlatSell, AdvPage::$advInfoPrice);
         $I->see(Flat::commission, AdvPage::$advInfoPrice);
@@ -180,7 +187,10 @@ class Search extends \VpnTester
         $I->click(SearchPage::$currencyField);
         $I->click(SearchPage::$currencyUS);
         $I->click(SearchPage::$auction);
-        $I->dontSee(SearchPage::$agencyField);
+        $I->click(SearchPage::$agencyField);
+        $I->fillField(SearchPage::$agencyType, 'Uhome');
+        $I->click(SearchPage::$agency0);
+        $I->click(SearchPage::$agencyField);
 
         $I->click(SearchPage::$characteristicsTab);
         $I->click(SearchPage::$marketTypeField);
@@ -221,18 +231,18 @@ class Search extends \VpnTester
         $I->fillField(SearchPage::$floorNumberTo, Flat::floors);
 
         $I->click(SearchPage::$furnitureTab);
-        $I->click(SearchPage::$furniture0);
-
+//        $I->click(SearchPage::$furniture0);
+//
         $I->click(SearchPage::$applianceTab);
-        $I->click(SearchPage::$appliance0);
-
+//        $I->click(SearchPage::$appliance0);
+//
         $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
-
+//
         $I->click(SearchPage::$nearObjectsTab);
-        $I->click(SearchPage::$nearObject0);
+//        $I->click(SearchPage::$nearObject0);
 
-        $I->click(SearchPage::$searchButton);
+//        $I->click(SearchPage::$searchButton);
 
         //--------------------------Search result------------------------------------------//
 
@@ -243,7 +253,6 @@ class Search extends \VpnTester
 //        $I->see(Flat::generalArea. 'кв. метров', )
 //        $I->click(SearchPage::$resultPrice);
     }
-
     public function searchFlat2()
     {
         $I = $this;
@@ -303,6 +312,12 @@ class Search extends \VpnTester
         $I->click(SearchPage::$cityField);
         $I->fillField(SearchPage::$cityType, Flat::city);
         $I->click(SearchPage::$city0);
+        $I->click(SearchPage::$districtField);
+        $I->fillField(SearchPage::$districtType, Flat::editDistrict);
+        $I->click(SearchPage::$district0);
+        $I->click(SearchPage::$streetField);
+        $I->fillField(SearchPage::$streetType, Flat::apiStreet);
+        $I->click(SearchPage::$street0);
         $I->click(SearchPage::$categoryField);
         $I->click(SearchPage::$houseCategory);
         $I->click(SearchPage::$searchButton);
@@ -356,8 +371,8 @@ class Search extends \VpnTester
         $I->fillField(SearchPage::$priseTo, Flat::priceFlatSearch);
         $I->click(SearchPage::$currencyField);
         $I->click(SearchPage::$currencyUA);
-
-        $I->click(SearchPage::$searchButton);
+        $I->click(SearchPage::$agencyField);
+         $I->click(SearchPage::$searchButton);
 
         //--------------------------Search result------------------------------------------//
 
@@ -368,9 +383,36 @@ class Search extends \VpnTester
     public function searchFlat9()
     {
         $I = $this;
-        $I->wantTo('Change marketType');
+        $I->wantTo('Change currency');
         $I->click(SearchPage::$currencyField);
         $I->click(SearchPage::$currencyUS);
+        $I->click(SearchPage::$agencyField);
+        $I->click(SearchPage::$agency0);
+        $I->click(SearchPage::$agencyField);
+        $I->click(SearchPage::$agencyField);
+        $I->fillField(SearchPage::$agencyType, 'Domm');
+        $I->click(SearchPage::$agency0);
+        $I->click(SearchPage::$agencyField);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+
+        $I->dontSee(SearchPage::$resultPrice);
+        $I->dontSee(SearchPage::$resultAdvert);
+
+    }
+    public function searchFlat10()
+    {
+        $I = $this;
+        $I->wantTo('Change marketType');
+        $I->click(SearchPage::$agencyField);
+        $I->click(SearchPage::$agency0);
+        $I->click(SearchPage::$agencyField);
+        $I->click(SearchPage::$agencyField);
+        $I->fillField(SearchPage::$agencyType, 'Uhome');
+        $I->click(SearchPage::$agency0);
+        $I->click(SearchPage::$agencyField);
         $I->click(SearchPage::$marketTypeField);
         $I->click(SearchPage::$marketType2);
 
@@ -382,7 +424,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultAdvert);
 
     }
-    public function searchFlat10()
+    public function searchFlat11()
     {
         $I = $this;
         $I->wantTo('Change build Year');
@@ -399,7 +441,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultAdvert);
 
     }
-    public function searchFlat11()
+    public function searchFlat12()
     {
         $I = $this;
         $I->wantTo('Change beds count');
@@ -415,7 +457,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultAdvert);
 
     }
-    public function searchFlat12()
+    public function searchFlat13()
     {
         $I = $this;
         $I->wantTo('Change wall material');
@@ -431,7 +473,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultAdvert);
 
     }
-    public function searchFlat13()
+    public function searchFlat14()
     {
         $I = $this;
         $I->wantTo('Change repair');
@@ -447,7 +489,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
-    public function searchFlat14()
+    public function searchFlat15()
     {
         $I = $this;
         $I->wantTo('Change wc');
@@ -463,7 +505,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
-    public function searchFlat15()
+    public function searchFlat16()
     {
         $I = $this;
         $I->wantTo('Change balcony');
@@ -480,7 +522,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
-    public function searchFlat16()
+    public function searchFlat17()
     {
         $I = $this;
         $I->wantTo('Change heating');
@@ -496,7 +538,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
-    public function searchFlat17()
+    public function searchFlat18()
     {
         $I = $this;
         $I->wantTo('Change water heating');
@@ -512,7 +554,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
-    public function searchFlat18()
+    public function searchFlat19()
     {
         $I = $this;
         $I->wantTo('Change general area');
@@ -528,7 +570,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
-    public function searchFlat19()
+    public function searchFlat20()
     {
         $I = $this;
         $I->wantTo('Change area unit');
@@ -544,7 +586,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
-    public function searchFlat20()
+    public function searchFlat21()
     {
         $I = $this;
         $I->wantTo('Change living area');
@@ -560,7 +602,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
-    public function searchFlat21()
+    public function searchFlat22()
     {
         $I = $this;
         $I->wantTo('Change kitchen area');
@@ -576,7 +618,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
-    public function searchFlat22()
+    public function searchFlat23()
     {
         $I = $this;
         $I->wantTo('Change room count');
@@ -592,7 +634,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
-    public function searchFlat23()
+    public function searchFlat24()
     {
         $I = $this;
         $I->wantTo('Change room count');
@@ -608,7 +650,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
-    public function searchFlat24()
+    public function searchFlat25()
     {
         $I = $this;
         $I->wantTo('Change floor');
@@ -624,7 +666,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
-    public function searchFlat25()
+    public function searchFlat26()
     {
         $I = $this;
         $I->wantTo('Change floor number');
@@ -640,7 +682,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
-    public function searchFlat26()
+    public function searchFlat27()
     {
         $I = $this;
         $I->wantTo('Change furniture');
@@ -656,12 +698,12 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
-    public function searchFlat27()
+    public function searchFlat28()
     {
         $I = $this;
         $I->wantTo('Change appliance');
-//        $I->click(SearchPage::$furniture0);
-//        $I->click(SearchPage::$furniture1);
+        $I->click(SearchPage::$furniture0);
+        $I->click(SearchPage::$furniture1);
         $I->click(SearchPage::$appliance0);
         $I->click(SearchPage::$appliance1);
 
@@ -672,7 +714,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
-    public function searchFlat28()
+    public function searchFlat29()
     {
         $I = $this;
         $I->wantTo('Change additional');
@@ -688,7 +730,7 @@ class Search extends \VpnTester
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
-    public function searchFlat29()
+    public function searchFlat30()
     {
         $I = $this;
         $I->wantTo('Change appliance');
