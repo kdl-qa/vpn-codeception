@@ -12,7 +12,9 @@ class House
     const region = 'Черкасская область';
     const city = 'Черкассы';
     const district = 'Казбет';
+    const districtSearch = 'Грузовой порт';
     const street = 'Франко улица';
+    const apiStreet = 'Восточная улица';
 //    const houseNumber = '129';
     const generalArea = '75';
     const latitude = '49.44968';
@@ -57,6 +59,7 @@ class House
 
     const editPriceHouseSell = '65000'; //$
     const editPriceHouseRent = '6000'; //грн
+    const editCity = 'Смела';
 
     const editDistrict = 'Водоканал-Невского';
     const editStreet = 'Замковый узвоз';

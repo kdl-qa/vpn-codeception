@@ -52,6 +52,10 @@ class SearchPage
     public static $currencyUA = '.cc-currency-type1';
     public static $auction = '.cc-filters-auction';
 
+    public static $periodField ='[ng-model="ctrl.filters.period"]';
+    public static $period0 = '.cc-period0';
+    public static $period1 ='.cc-period1';
+
     public static $agencyField = '[ng-model="ctrl.filters.selectedAgencies"] span';
     public static $agencyType = '[ng-model="ctrl.filters.selectedAgencies"] input';
     public static $agency0 = '.agency0';
@@ -83,6 +87,7 @@ class SearchPage
     public static $wallMaterial8 = '.cc-wall-material-type8';
     public static $wallMaterial9 = '.cc-wall-material-type9';
     public static $wallMaterial10 = '.cc-wall-material-type10';
+    public static $wallMaterial11 = '.cc-wall-material-type11';
 
     public static $repairField ='[ng-model="ctrl.filters.repair"] span';
     public static $repair0 = '.cc-repair-type0';  //Любое
@@ -131,6 +136,13 @@ class SearchPage
     public static $areaUnit0 = '.cc-area-size0';
     public static $areaUnit1 = '.cc-area-size1';
     public static $areaUnit2 = '.cc-area-size2';
+    public static $areaLandFrom = '[ng-model="ctrl.filters.minLandArea"]';
+    public static $areaLandTo = '[ng-model="ctrl.filters.maxLandArea"]';
+    public static $areaLandUnit = '[ng-model="ctrl.filters.landAreaUnit"] span';
+    public static $areaLand0 ='.cc-land-area-size0';
+    public static $areaLand1 ='.cc-land-area-size1';
+    public static $areaLand2 ='.cc-land-area-size2';
+
     public static $livingAreaFrom = '[ng-model="ctrl.filters.minLiveArea"]';
     public static $livingAreaTo = '[ng-model="ctrl.filters.maxLiveArea"]';
     public static $kitchenAreaFrom = '[ng-model="ctrl.filters.minKichenArea"]';
@@ -165,8 +177,20 @@ class SearchPage
     public static $appliance5 ='.cc-appliances5';
     public static $appliance6 ='.cc-appliances6';
 
+    //----------------------Communications---------------------------------//
+    public static $communicationTab ='/html/body/div[2]/div[3]/form/div[7]';
+    public static $communication0 ='.cc-communications0';
+    public static $communication1 ='.cc-communications1';
+    public static $communication2 ='.cc-communications2';
+    public static $communication3 ='.cc-communications3';
+    public static $communication4 ='.cc-communications4';
+    public static $communication5 ='.cc-communications5';
+    public static $communication6 ='.cc-communications6';
+    public static $communication7 ='.cc-communications7';
+
     //-----------------------Additionals-------------------------------------//
-    public static $additionalTab ='/html/body/div[2]/div[3]/form/div[7]';
+    public static $additionalTab ='/html/body/div[2]/div[3]/form/div[7]/div[1]';
+    public static $additionalTab1 ='/html/body/div[2]/div[3]/form/div[8]/div[1]';
     public static $additional0 ='.cc-additional0';
     public static $additional1 ='.cc-additional1';
     public static $additional2 ='.cc-additional2';
@@ -186,6 +210,7 @@ class SearchPage
 
     //-----------------------Near objects-------------------------------------//
     public static $nearObjectsTab ='/html/body/div[2]/div[3]/form/div[8]';
+    public static $nearObjectsTab1 ='/html/body/div[2]/div[3]/form/div[9]';
     public static $nearObject0 = '.cc-nearObject0';
     public static $nearObject1 = '.cc-nearObject1';
     public static $nearObject2 = '.cc-nearObject2';
@@ -213,7 +238,7 @@ class SearchPage
 
     //------------------------------Search by map-------------------------------------//
     public static $yandexMap = '.search-map';
-    public static $advertsCount = '.info';
+    public static $advertsCount = '[ng-show="ctrl.isResultVisible"]';
 
 
     //-------------------------------------------Search by Agency--------------------------------------//

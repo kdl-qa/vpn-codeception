@@ -2,12 +2,13 @@
 
 use \VpnTester;
 
-class apiTesterCest
+class apiCrudAnnouncementListCest
 {
     //todo: create new api test
-    protected function agencyLogin(VpnTester $I)
+    protected function apiLogin(VpnTester $I)
     {
-        $I->apiAgencyLogin();
+        $I->apiAdminLogin();
+        $I->apiAgencyLogin1();
     }
     protected function userLogin(VpnTester $I)
     {
@@ -17,67 +18,54 @@ class apiTesterCest
     {
         $I->apiAgentLogin1();
     }
+    protected function addApiFlatAdvert(VpnTester $I)
+    {
+        $I->realtyFlatAddForSearch();
+        $I->apiAdvertFlatAddForSearch();
+        $I->apiAdminEditFlatAdvertSearch();
 
-//    protected function moderateAdv($admin)
-//    {
-//        $admin->loginAdmin();
-//        $admin->moderateAdvActive();
-//    }
-//
-//    protected function open1stAdvert($list)
-//    {
-//        $list->openUserAdvertsList();
-//        $list->openFirstListAdvert();
-//    }
-//
-//    protected function addFlatSaleAdvert($api)
-//    {
-//        $api->realtyFlatAddComplex();
-//        $api->apiAdvertFlatAddPlain();
-//
-//    }
-//
-//    protected function addHouseRentAdvert($api)
-//    {
-//        $api->realtyHouseAddComplex();
-//        $api->apiAdvertHouseAddPlain();
-//
-//    }
-//
-//    protected function addParcelRentAdvert($api)
-//    {
-//        $api->realtyParcelAddComplex();
-//        $api->apiAdvertParcelAddPlain();
-//
-//    }
-//
-//    protected function addCommercialSaleAdvert($api)
-//    {
-//        $api->realtyCommercialAddComplex();
-//        $api->apiAdvertCommercialAddPlain();
-//
-//    }
-//    /**
-//     * @before agencyLogin
-//     * @before adminLogin
-//     *@before addCommercialSaleAdvert
-//     *
-//     */
-//    function AddAdv (VpnTester $I)
-//    {
-//
-//    }
+    }
+    protected function addApiHouseAdvert(VpnTester $I)
+    {
+        $I->realtyHouseAddSearch();
+        $I->apiAdvertHouseAddSearch();
+        $I->apiAdminEditHouseAdvertSearch();
+    }
+    protected function addApiParcelAdvert(VpnTester $I)
+    {
+        $I->realtyParcelAddSearch();
+        $I->apiAdvertParcelAddSearch();
+        $I->apiAdminEditParcelAdvertSearch();
+    }
+    protected function addApiCommercialAdvert(VpnTester $I)
+    {
+        $I->realtyCommercialAddSearch();
+        $I->apiAdvertCommercialAddSearch();
+        $I->apiAdminEditCommercialAdvertSearch();
+    }
+
+
 
     /**
-     *@before agencyLogin
+     *@before apiLogin
+     *@before addApiFlatAdvert
+     *@before addApiHouseAdvert
+     *@before addApiParcelAdvert
+     *@before addApiCommercialAdvert
+     *
      */
 
     public function apiAgencyAddAnnouncementsList(VpnTester $I)
     {
         $I->apiAgencyAddAnnouncementsList();
+        $I->pauseExecution();
         $I->apiGetAgencyAnnouncementsList();
+        $I->pauseExecution();
         $I->apiAgencyAddAdvertToAnnouncementsList();
+        $I->pauseExecution();
         $I->apiAgencySendAnnouncementListToUser();
+        $I->pauseExecution();
+
     }
 
     /**
@@ -91,7 +79,7 @@ class apiTesterCest
     }
 
     /**
-     *@before agencyLogin
+     *@before apiLogin
      */
     public function apiAgencyAnnouncementList(VpnTester $I)
     {
@@ -126,7 +114,7 @@ class apiTesterCest
     }
 
     /**
-     *@before agencyLogin
+     *@before apiLogin
      */
     public function apiAgentAnnouncementList(VpnTester $I)
     {
@@ -134,6 +122,18 @@ class apiTesterCest
         $I->apiAgentEditAnnouncementList();
         $I->apiAgentDeleteAdvertAnnouncementList();
         $I->apiAgentDeleteAnnouncementList();
+    }
+
+    /**
+     *@before apiLogin
+     */
+    public function apiDeleteAdverts(VpnTester $I)
+    {
+        $I->apiDeleteFlatAdvert();
+        $I->apiDeleteHouseAdvert();
+        $I->apiDeleteParcelAdvert();
+        $I->apiDeleteCommercialAdvert();
+
     }
 
 

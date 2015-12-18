@@ -7,11 +7,11 @@ class apiTesttCest
     protected function apiLogin(VpnTester $I)
     {
         $I->apiAdminLogin();
-                $I->apiAgencyLogin();
+        $I->apiAgencyLogin();
     }
     protected function addApiFlatAdvert(VpnTester $I)
     {
-       $I->realtyFlatAddForSearch();
+        $I->realtyFlatAddForSearch();
         $I->apiAdvertFlatAddForSearch();
         $I->apiAdminEditFlatAdvertSearch();
 
@@ -20,7 +20,7 @@ class apiTesttCest
 
     protected function addApiHouseAdvert(VpnTester $I)
     {
-             $I->realtyHouseAddSearch();
+            $I->realtyHouseAddSearch();
             $I->apiAdvertHouseAddSearch();
            $I->apiAdminEditHouseAdvertSearch();
     }

@@ -1,8 +1,8 @@
 <?php
 use \VpnTester;
-use Data\User as User;
 
-class apiAdminCrudCity
+
+class apiAdminCrudCityCest
 {
     protected function apiLogin(VpnTester $I)
     {
@@ -20,12 +20,12 @@ class apiAdminCrudCity
 
         $district->apiAdminAddDistrict();
         $district->apiAdminEditDistrict();
-        $district->apiAdminDeleteDistrict();
 
         $street->apiAdminAddStreet();
         $street->apiAdminEditStreet();
-        $street->apiAdminDeleteStreet();
 
+        $district->apiAdminDeleteDistrict();
+        $street->apiAdminDeleteStreet();
         $city->apiAdminDeleteCity();
 
         $categoryType->apiAdminAddCategoryType(0);
