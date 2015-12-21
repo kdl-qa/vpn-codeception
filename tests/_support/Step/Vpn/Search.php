@@ -106,8 +106,10 @@ class Search extends \VpnTester
 
         $I->waitForElement(SearchPage::$resultPrice);
 
-//        $I->see(Flat::roomCount.' комнаты', SearchPage::$resultRoomCount);
-//        $I->see(Flat::generalArea. 'кв. метров', )
+        $I->seeElement(SearchPage::$sortField);
+        $I->seeElement(SearchPage::$addToGroup);
+        $I->seeElement(SearchPage::$listAdvertButton);
+        $I->seeElement(SearchPage::$mapAdvertButton);
         $I->click(SearchPage::$resultPrice);
 
 
@@ -170,6 +172,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -568,7 +571,7 @@ class Search extends \VpnTester
     public function searchFlat24()
     {
         $I = $this;
-        $I->wantTo('Change room count');
+        $I->wantTo('Change  floor');
         $I->fillField(SearchPage::$roomsCountFrom, Flat::roomCount);
         $I->fillField(SearchPage::$roomsCountTo, Flat::roomCount);
         $I->fillField(SearchPage::$floorFrom, Flat::editFloorNumber);
@@ -651,7 +654,7 @@ class Search extends \VpnTester
     public function searchFlat29()
     {
         $I = $this;
-        $I->wantTo('Change appliance');
+        $I->wantTo('Change near');
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
         $I->click(SearchPage::$nearObjectsTab);
@@ -749,10 +752,10 @@ class Search extends \VpnTester
         $I->click(SearchPage::$communicationTab);
         $I->click(SearchPage::$communication0);
 
-        $I->click(SearchPage::$additionalTab1);
+        $I->click(SearchPage::$additionalHouseTab);
         $I->click(SearchPage::$additional0);
 
-        $I->click(SearchPage::$nearObjectsTab1);
+        $I->click(SearchPage::$nearObjectsHouseTab);
         $I->click(SearchPage::$nearObject0);
         $I->click(SearchPage::$nearObject1);
 
@@ -763,11 +766,10 @@ class Search extends \VpnTester
         $I->waitForElement(SearchPage::$resultPrice);
 
 
-
-//        $I->see(Flat::roomCount.' комнаты', SearchPage::$resultRoomCount);
-//        $I->see(Flat::generalArea. 'кв. метров', )
+        $I->seeElement(SearchPage::$sortField);
+        $I->dontSeeElement(SearchPage::$addToGroup);
+        $I->dontSeeElement(SearchPage::$mapAdvertButton);
         $I->click(SearchPage::$resultPrice);
-
 
     }
 
@@ -778,8 +780,6 @@ class Search extends \VpnTester
 //        $I->amOnPage()
         $I->wait(1);
         $I->waitForElement(AdvPage::$advInfoGallery);
-//        $I->see(Flat::priceFlatSell, AdvPage::$advInfoPrice);
-//        $I->see(House::commission, AdvPage::$advInfoPrice);
         $I->see(House::generalArea, AdvPage::$advInfoMainProps);
         $I->see(House::roomCount, AdvPage::$advInfoMainProps);
         $I->see(House::wallMaterial, AdvPage::$advInfoMainProps);
@@ -915,9 +915,9 @@ class Search extends \VpnTester
         $I->wantTo('Change category type');
         $I->click(SearchPage::$categoryField);
         $I->click(SearchPage::$houseCategory);
-        $I->click(SearchPage::$additionalTab1);
+        $I->click(SearchPage::$additionalHouseTab);
         $I->click(SearchPage::$additional0);
-        $I->click(SearchPage::$additionalTab1);
+        $I->click(SearchPage::$additionalHouseTab);
         $I->click(SearchPage::$categoryType);
         $I->click(SearchPage::$houseCatType1);
 
@@ -1267,7 +1267,7 @@ class Search extends \VpnTester
         $I->wantTo('Change additional');
         $I->click(SearchPage::$communication0);
         $I->click(SearchPage::$communication0);
-        $I->click(SearchPage::$additionalTab1);
+        $I->click(SearchPage::$additionalHouseTab);
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
 
@@ -1284,7 +1284,7 @@ class Search extends \VpnTester
         $I->wantTo('Change appliance');
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
-        $I->click(SearchPage::$nearObjectsTab1);
+        $I->click(SearchPage::$nearObjectsHouseTab);
         $I->click(SearchPage::$nearObject0);
         $I->click(SearchPage::$nearObject1);
 
@@ -1296,4 +1296,561 @@ class Search extends \VpnTester
     }
 
 
+
+    //-----------------------------------Parsel Search----------------------//
+
+    public function searchParcel()
+    {
+        $I = $this;
+        $I->wantTo('Check search functionality Parcel category');
+        $I->amOnPage('/search');
+        $I->waitForElement(SearchPage::$operationType1);
+//        $I->see('Продажа', SearchPage::$operationType1);
+//        $I->see('Аренда', SearchPage::$operationType2);
+        $I->click(SearchPage::$operationType1);
+//        $I->see('Киевская область', SearchPage::$regionField);
+        $I->click(SearchPage::$regionField);
+        $I->fillField(SearchPage::$regionType,Parcel::region);
+//        $I->see(SearchPage::$region0);
+        $I->click(SearchPage::$region0);
+        $I->click(SearchPage::$cityField);
+        $I->fillField(SearchPage::$cityType, Parcel::city);
+        $I->click(SearchPage::$city0);
+        $I->click(SearchPage::$districtField);
+        $I->fillField(SearchPage::$districtType, Parcel::apiDistrict);
+        $I->click(SearchPage::$district0);
+        $I->click(SearchPage::$streetField);
+        $I->fillField(SearchPage::$streetType, Parcel::apiStreet);
+        $I->click(SearchPage::$street0);
+        $I->click(SearchPage::$categoryField);
+        $I->click(SearchPage::$parcelCategory);
+        $I->click(SearchPage::$categoryType);
+        $I->click(SearchPage::$parcelCatType0);
+        $I->fillField(SearchPage::$priseFrom, Parcel::priceParcelSearch);
+        $I->fillField(SearchPage::$priseTo, Parcel::priceParcelSearch);
+        $I->click(SearchPage::$currencyField);
+        $I->click(SearchPage::$currencyUS);
+        $I->click(SearchPage::$auction);
+
+
+        $I->click(SearchPage::$areaParcelTab);
+        $I->fillField(SearchPage::$generalAreaFrom, Parcel::generalArea);
+        $I->click(SearchPage::$areaUnitField);
+        $I->click(SearchPage::$areaUnit1);
+
+        $I->click(SearchPage::$communicationParcelTab);
+        $I->click(SearchPage::$communication0);
+
+        $I->click(SearchPage::$additionalParcelTab);
+        $I->click(SearchPage::$additional0);
+
+        $I->click(SearchPage::$nearObjectsParcelTab);
+        $I->click(SearchPage::$nearObject0);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+
+        $I->waitForElement(SearchPage::$resultPrice);
+
+        $I->seeElement(SearchPage::$sortField);
+        $I->dontSeeElement(SearchPage::$addToGroup);
+        $I->dontSeeElement(SearchPage::$mapAdvertButton);
+        $I->click(SearchPage::$resultPrice);
+        $I->pauseExecution();
+
+    }
+    public function checkParcelObjectPropertiesSearch()
+    {
+        $I = $this;
+//        $I->amOnPage();
+//        $I->click(AdvertsList::$advInfoTab);
+        $I->waitForElement(AdvPage::$advInfoGallery);
+
+        $I->see(Parcel::availableFrom, AdvPage::$advInfoAvailableFrom);
+        $I->see(Parcel::generalArea, AdvPage::$advInfoMainProps);
+        $I->seeElement(AdvPage::$advPropsLink);
+        $I->see(Parcel::descriptionParcelSell,AdvPage::$advInfoDescription);
+        $I->seeElement(AdvPage::$advInfoGallery);
+
+//        $I->seeElement(AdvPage::$advInfoSocialButtons);
+        $I->click(AdvPage::$advPropsTab);
+        $I->see(Parcel::category, AdvPage::$advPropsTable);
+        $I->see(Parcel::categoryType0, AdvPage::$advPropsTable);
+        $I->see(Parcel::region, AdvPage::$advPropsTable);
+        $I->see(Parcel::city, AdvPage::$advPropsTable);
+        $I->see(Parcel::apiDistrict, AdvPage::$advPropsTable);
+        $I->see(Parcel::apiStreet, AdvPage::$advPropsTable);
+        $I->see(Parcel::generalArea, AdvPage::$advPropsTable);
+        $I->see(Lists::communication0, AdvPage::$advPropsTable);
+        $I->see(Lists::nearObject0, AdvPage::$advPropsTable);
+        $I->see(Lists::additionalParcel0, AdvPage::$advPropsTable);
+
+    }
+
+    public function searchParcel1()
+    {
+        $I = $this;
+        $I->wantTo('Change operation type');
+        $I->amOnPage('/search');
+//        $I->reloadPage();
+        $I->waitForElement(SearchPage::$operationType1);
+        $I->wait(1);
+        $I->click(SearchPage::$operationType2);
+//        $I->click(SearchPage::$additionalTab1);
+//        $I->click(SearchPage::$additional0);
+//        $I->pauseExecution();
+        $I->click(SearchPage::$searchButton);
+
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchParcel2()
+    {
+        $I = $this;
+        $I->wantTo('Change district');
+        $I->wait(1);
+        $I->click(SearchPage::$operationType2);
+        $I->click(SearchPage::$districtField);
+        $I->fillField(SearchPage::$districtType, Parcel::district);
+        $I->click(SearchPage::$district0);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+
+    }
+    public function searchParcel3()
+    {
+        $I = $this;
+        $I->wantTo('Change street');
+        $I->click(SearchPage::$districtField);
+        $I->fillField(SearchPage::$districtType, Parcel::apiDistrict);
+        $I->click(SearchPage::$district0);
+        $I->click(SearchPage::$streetField);
+        $I->fillField(SearchPage::$streetType, Parcel::street);
+        $I->click(SearchPage::$street0);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchParcel4()
+    {
+        $I = $this;
+        $I->wantTo('Change city');
+        $I->click(SearchPage::$streetField);
+        $I->fillField(SearchPage::$streetType, Parcel::apiStreet);
+        $I->click(SearchPage::$street0);
+        $I->click(SearchPage::$cityField);
+        $I->fillField(SearchPage::$cityType, Parcel::editCity);
+        $I->click(SearchPage::$city0);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchParcel5()
+    {
+        $I = $this;
+        $I->wantTo('Change category');
+        $I->click(SearchPage::$cityField);
+        $I->fillField(SearchPage::$cityType, Parcel::city);
+        $I->click(SearchPage::$city0);
+        $I->click(SearchPage::$districtField);
+        $I->fillField(SearchPage::$districtType, Parcel::apiDistrict);
+        $I->click(SearchPage::$district0);
+        $I->click(SearchPage::$streetField);
+        $I->fillField(SearchPage::$streetType, Parcel::apiStreet);
+        $I->click(SearchPage::$street0);
+        $I->click(SearchPage::$categoryField);
+        $I->click(SearchPage::$flatCategory);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchParcel6()
+    {
+        $I = $this;
+        $I->wantTo('Change category type');
+        $I->click(SearchPage::$categoryField);
+        $I->click(SearchPage::$parcelCategory);
+        $I->click(SearchPage::$additionalHouseTab);
+        $I->click(SearchPage::$additional0);
+        $I->click(SearchPage::$additionalHouseTab);
+        $I->click(SearchPage::$categoryType);
+        $I->click(SearchPage::$houseCatType1);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchParcel7()
+    {
+        $I = $this;
+        $I->wantTo('Change price');
+
+        $I->click(SearchPage::$categoryType);
+        $I->click(SearchPage::$houseCatType0);
+        $I->fillField(SearchPage::$priseFrom, House::priceHouseSell);
+        $I->fillField(SearchPage::$priseTo, House::priceHouseSell);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchParcel8()
+    {
+        $I = $this;
+        $I->wantTo('Change currency');
+        $I->fillField(SearchPage::$priseFrom, House::priceHouseSearch);
+        $I->fillField(SearchPage::$priseTo, House::priceHouseSearch);
+        $I->click(SearchPage::$currencyField);
+        $I->click(SearchPage::$currencyUS);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchParcel9()
+    {
+        $I = $this;
+        $I->wantTo('Change period');
+        $I->click(SearchPage::$currencyField);
+        $I->click(SearchPage::$currencyUA);
+        $I->click(SearchPage::$periodField);
+        $I->click(SearchPage::$period0);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchParcel10()
+    {
+        $I = $this;
+        $I->wantTo('Change buid year');
+        $I->click(SearchPage::$periodField);
+        $I->click(SearchPage::$period0);
+        $I->click(SearchPage::$characteristicsTab);
+        $I->fillField(SearchPage::$buildYearFrom, House::editBuildYear);
+        $I->fillField(SearchPage::$buildYearTo, House::editBuildYear);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchParcel11()
+    {
+        $I = $this;
+        $I->wantTo('Change beds count');
+        $I->fillField(SearchPage::$buildYearFrom, House::buildYear);
+        $I->fillField(SearchPage::$buildYearTo, House::buildYear);
+        $I->click(SearchPage::$wallMaterialField);
+        $I->click(SearchPage::$wallMaterial2);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchParcel12()
+    {
+        $I = $this;
+        $I->wantTo('Change repair');
+        $I->click(SearchPage::$wallMaterialField);
+        $I->click(SearchPage::$wallMaterial11);
+        $I->click(SearchPage::$repairField);
+        $I->click(SearchPage::$repair2);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchParcel13()
+    {
+        $I = $this;
+        $I->wantTo('Change wc');
+        $I->click(SearchPage::$repairField);
+        $I->click(SearchPage::$repair1);
+        $I->click(SearchPage::$wcField);
+        $I->click(SearchPage::$wc2);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchParcel14()
+    {
+        $I = $this;
+        $I->wantTo('Change heating');
+        $I->click(SearchPage::$wcField);
+        $I->click(SearchPage::$wc1);
+        $I->click(SearchPage::$heatingField);
+        $I->click(SearchPage::$heating1);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchParcel15()
+    {
+        $I = $this;
+        $I->wantTo('Change water heating');
+        $I->click(SearchPage::$heatingField);
+        $I->click(SearchPage::$heating2);
+        $I->click(SearchPage::$waterHeatingField);
+        $I->click(SearchPage::$waterHeating1);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchParcel16()
+    {
+        $I = $this;
+        $I->wantTo('Change general area');
+        $I->click(SearchPage::$waterHeatingField);
+        $I->click(SearchPage::$waterHeating2);
+        $I->click(SearchPage::$areaTab);
+        $I->fillField(SearchPage::$generalAreaFrom, House::editGeneralArea);
+        $I->fillField(SearchPage::$generalAreaTo, House::editGeneralArea);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchParcel17()
+    {
+        $I = $this;
+        $I->wantTo('Change area unit');
+        $I->fillField(SearchPage::$generalAreaFrom, House::generalArea);
+        $I->fillField(SearchPage::$generalAreaTo, House::generalArea);
+        $I->click(SearchPage::$areaUnitField);
+        $I->click(SearchPage::$areaUnit1);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchParcel18()
+    {
+        $I = $this;
+        $I->wantTo('Change living area');
+        $I->click(SearchPage::$areaUnitField);
+        $I->click(SearchPage::$areaUnit0);
+        $I->fillField(SearchPage::$areaLandFrom, House::editLandArea);
+        $I->fillField(SearchPage::$areaLandTo, House::editLandArea);
+
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchParcel19()
+    {
+        $I = $this;
+        $I->wantTo('Change living area');
+
+        $I->fillField(SearchPage::$areaLandFrom, House::landArea);
+        $I->fillField(SearchPage::$areaLandTo, House::landArea);
+        $I->click(SearchPage::$areaLandUnit);
+        $I->click(SearchPage::$areaLand0);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchParcel20()
+    {
+        $I = $this;
+        $I->wantTo('Change living area');
+        $I->click(SearchPage::$areaLandUnit);
+        $I->click(SearchPage::$areaLand1);
+        $I->fillField(SearchPage::$livingAreaFrom, House::editLivingArea);
+        $I->fillField(SearchPage::$livingAreaTo, House::editLivingArea);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchParcel21()
+    {
+        $I = $this;
+        $I->wantTo('Change kitchen area');
+        $I->fillField(SearchPage::$livingAreaFrom, House::livingArea);
+        $I->fillField(SearchPage::$livingAreaTo, House::livingArea);
+        $I->fillField(SearchPage::$kitchenAreaFrom, House::editKitchenArea);
+        $I->fillField(SearchPage::$kitchenAreaTo, House::editKitchenArea);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchParcel23()
+    {
+        $I = $this;
+        $I->wantTo('Change room count');
+        $I->fillField(SearchPage::$roomsCountFrom, House::roomCount);
+        $I->fillField(SearchPage::$roomsCountTo, House::roomCount);
+        $I->fillField(SearchPage::$floorNumberFrom, House::editFloors);
+        $I->fillField(SearchPage::$floorNumberTo, House::editFloors);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchParcel24()
+    {
+        $I = $this;
+        $I->wantTo('Change furniture');
+        $I->fillField(SearchPage::$floorNumberFrom, House::floors);
+        $I->fillField(SearchPage::$floorNumberTo, House::floors);
+        $I->click(SearchPage::$furnitureTab);
+        $I->click(SearchPage::$furniture0);
+        $I->click(SearchPage::$furniture1);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchParcel25()
+    {
+        $I = $this;
+        $I->wantTo('Change appliance');
+        $I->click(SearchPage::$furniture0);
+        $I->click(SearchPage::$furniture1);
+        $I->click(SearchPage::$applianceTab);
+        $I->click(SearchPage::$appliance0);
+        $I->click(SearchPage::$appliance1);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchParcel26()
+    {
+        $I = $this;
+        $I->wantTo('Change additional');
+        $I->click(SearchPage::$appliance0);
+        $I->click(SearchPage::$appliance1);
+        $I->click(SearchPage::$communicationTab);
+        $I->click(SearchPage::$communication0);
+        $I->click(SearchPage::$communication1);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchParcel27()
+    {
+        $I = $this;
+        $I->wantTo('Change additional');
+        $I->click(SearchPage::$communication0);
+        $I->click(SearchPage::$communication0);
+        $I->click(SearchPage::$additionalHouseTab);
+        $I->click(SearchPage::$additional0);
+        $I->click(SearchPage::$additional1);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchParcel28()
+    {
+        $I = $this;
+        $I->wantTo('Change appliance');
+        $I->click(SearchPage::$additional0);
+        $I->click(SearchPage::$additional1);
+        $I->click(SearchPage::$nearObjectsHouseTab);
+        $I->click(SearchPage::$nearObject0);
+        $I->click(SearchPage::$nearObject1);
+
+        $I->click(SearchPage::$searchButton);
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
 }

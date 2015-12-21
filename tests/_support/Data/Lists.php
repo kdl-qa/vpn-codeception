@@ -176,6 +176,20 @@ class Lists
     const wc1 = 'Совмещенный';
     const wc2 = 'Несколько санузлов';
 
+    const cityName = 'Лозивок';
+    const cityLocativeName = 'в Лозивке';
+    const editCityName = 'Выдубычи';
+    const editCityLocativeName = 'в Выдубычах';
+    const districtName = 'Центр';
+    const editDistrictName = 'Автостанция';
+    const streetName = 'Волковка улица';
+    const editStreetName = 'Кирова улица';
+    const categoryTypeName = 'Гаражи';
+    const editCategoryTypeName = 'Сарай';
+
+
+
+
 
 }
 

@@ -41,9 +41,9 @@ class apiTesttCest
 
 
     /**
-         *@before apiLogin
-         *@before addApiFlatAdvert
-     **/
+     *@before apiLogin
+     *@before addApiFlatAdvert
+     */
     public function flatSearch(VpnTester $I)
     {
         $I->apiFlatSearch();

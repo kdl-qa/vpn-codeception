@@ -130,6 +130,8 @@ class SearchPage
     public static $waterHeating5 = '.cc-water-heating-type5';
 
     public static $areaTab = '/html/body/div[2]/div[3]/form/div[3]';
+    public static $areaParcelTab = '/html/body/div[2]/div[3]/form/div[2]';
+
     public static $generalAreaFrom = '[ng-model="ctrl.filters.minGeneralArea"]';
     public static $generalAreaTo = '[ng-model="ctrl.filters.maxGeneralArea"]';
     public static $areaUnitField = '[ng-model="ctrl.filters.areaUnit"] span';
@@ -179,6 +181,7 @@ class SearchPage
 
     //----------------------Communications---------------------------------//
     public static $communicationTab ='/html/body/div[2]/div[3]/form/div[7]';
+    public static $communicationParcelTab = '/html/body/div[2]/div[3]/form/div[3]/div[1]';
     public static $communication0 ='.cc-communications0';
     public static $communication1 ='.cc-communications1';
     public static $communication2 ='.cc-communications2';
@@ -190,7 +193,8 @@ class SearchPage
 
     //-----------------------Additionals-------------------------------------//
     public static $additionalTab ='/html/body/div[2]/div[3]/form/div[7]/div[1]';
-    public static $additionalTab1 ='/html/body/div[2]/div[3]/form/div[8]/div[1]';
+    public static $additionalHouseTab ='/html/body/div[2]/div[3]/form/div[8]/div[1]';
+    public static $additionalParcelTab = '/html/body/div[2]/div[3]/form/div[4]/div[1]';
     public static $additional0 ='.cc-additional0';
     public static $additional1 ='.cc-additional1';
     public static $additional2 ='.cc-additional2';
@@ -210,7 +214,8 @@ class SearchPage
 
     //-----------------------Near objects-------------------------------------//
     public static $nearObjectsTab ='/html/body/div[2]/div[3]/form/div[8]';
-    public static $nearObjectsTab1 ='/html/body/div[2]/div[3]/form/div[9]';
+    public static $nearObjectsHouseTab ='/html/body/div[2]/div[3]/form/div[9]';
+    public static $nearObjectsParcelTab = '/html/body/div[2]/div[3]/form/div[5]/div[1]';
     public static $nearObject0 = '.cc-nearObject0';
     public static $nearObject1 = '.cc-nearObject1';
     public static $nearObject2 = '.cc-nearObject2';
@@ -256,6 +261,7 @@ class SearchPage
     public static $resultCategory = '.categoryType';
     public static $resultRoomCount = '[ng-if="item.realty.category.type != ctrl.const.realtyTypes.parcel"]';
     public static $resultAdvert = '.advertPreview';
+    public static $countSearchResult = '.afterSidebar strong.ng-binding';
 
 
 

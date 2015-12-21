@@ -6,26 +6,28 @@ class apiTesterCest
 {
 
 
-    public function apiAdminCity (VpnTester $U)
+    public function apiAdminCity (VpnTester $I)
     {
-        $U->apiAdminLogin();
-        $U->apiAdminAddCity();
-        $U->apiAdminEditCity();
 
-        $U->apiAdminAddDistrict();
-        $U->apiAdminEditDistrict();
+        $I->apiAdminLogin();
+        $I->apiAgencyLogin1();
+//
+////        $I->apiAgencyAddAnnouncementsList();
+////        $I->apiAgencyEditAnnouncementList();
+////        $I->apiAgencyAnnouncementList();
+////        $I->apiGetAgencyAnnouncementsList();
+        $I->apiAgencyAddAdvertToAnnouncementsList();
+//
 
-        $U->apiAdminAddStreet();
-        $U->apiAdminEditStreet();
 
-        $U->apiAdminDeleteDistrict();
-        $U->apiAdminDeleteStreet();
-        $U->apiAdminDeleteCity();
 
-        $U->apiAdminAddCategoryType(0);
-        $U->apiAdminEditCategoryType();
-        $U->apiAdminChangePositionCategoryType();
-        $U->apiAdminDeleteCategoryType();
+//        $I->apiAgencyDeleteAnnouncementList();
+
+
+//        $I->apiDeleteFlatAdvert();
+//        $I->apiDeleteHouseAdvert();
+//        $I->apiDeleteParcelAdvert();
+//        $I->apiDeleteCommercialAdvert();
     }
 
 

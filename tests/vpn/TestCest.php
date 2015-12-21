@@ -23,7 +23,7 @@ class TestCest
     /**
      *@before agencyLogin
      */
-    public function searchFlat1(\Step\Vpn\Search $I)
+    public function searchFlat1(\Step\Vpn\Search $I, VpnTester $P)
     {
         $I->searchFlat1();
         $I->searchFlat2();
@@ -93,5 +93,11 @@ class TestCest
         $H->searchHouse27();
         $H->searchHouse28();
     }
+    //----------------Parcel-------------------------//
+//    public function searchParcel(\Step\Vpn\Search $P)
+//    {
+//        $P->searchParcel();
+//        $P->checkParcelObjectPropertiesSearch();
+//    }
 
 }

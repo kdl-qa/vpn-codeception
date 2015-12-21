@@ -45,6 +45,7 @@ class Parcel
 
     const apiDistrict = 'Ж/д вокзал';
     const apiStreet = 'Будённого улица';
+    const editCity = 'Смела';
 
     const editDistrict = 'Ж/д вокзал';
     const editStreet = 'Благовестная улица';

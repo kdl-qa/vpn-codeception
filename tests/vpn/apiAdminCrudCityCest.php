@@ -24,14 +24,14 @@ class apiAdminCrudCityCest
         $street->apiAdminAddStreet();
         $street->apiAdminEditStreet();
 
-        $district->apiAdminDeleteDistrict();
-        $street->apiAdminDeleteStreet();
-        $city->apiAdminDeleteCity();
-
         $categoryType->apiAdminAddCategoryType(0);
         $categoryType->apiAdminEditCategoryType();
         $categoryType->apiAdminChangePositionCategoryType();
+
         $categoryType->apiAdminDeleteCategoryType();
+        $district->apiAdminDeleteDistrict();
+        $street->apiAdminDeleteStreet();
+        $city->apiAdminDeleteCity();
     }
 
 
