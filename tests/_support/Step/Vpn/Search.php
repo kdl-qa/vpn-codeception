@@ -193,6 +193,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -212,6 +213,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -229,6 +231,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -252,6 +255,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -274,6 +278,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -293,6 +298,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -310,6 +316,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -321,7 +328,7 @@ class Search extends \VpnTester
         $I->click(SearchPage::$currencyField);
         $I->click(SearchPage::$currencyUS);
         $I->click(SearchPage::$agencyField);
-        $I->fillField(SearchPage::$agencyType, 'Domm');
+        $I->fillField(SearchPage::$agencyType, 'dom13');
         $I->click(SearchPage::$agency0);
         $I->click(SearchPage::$agencyField);
 
@@ -329,9 +336,9 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
-
     }
     public function searchFlat10()
     {
@@ -352,6 +359,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -369,6 +377,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -385,6 +394,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -401,6 +411,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -418,6 +429,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -434,6 +446,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -451,6 +464,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -467,6 +481,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -483,6 +498,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -500,6 +516,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -516,6 +533,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -532,6 +550,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -548,6 +567,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -565,6 +585,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -581,6 +602,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -597,6 +619,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -614,6 +637,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -631,6 +655,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -648,6 +673,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -664,6 +690,7 @@ class Search extends \VpnTester
         $I->click(SearchPage::$searchButton);
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
@@ -756,7 +783,7 @@ class Search extends \VpnTester
         $I->click(SearchPage::$additional0);
 
         $I->click(SearchPage::$nearObjectsHouseTab);
-        $I->click(SearchPage::$nearObject0);
+//        $I->click(SearchPage::$nearObject0);
         $I->click(SearchPage::$nearObject1);
 
         $I->click(SearchPage::$searchButton);
@@ -772,8 +799,6 @@ class Search extends \VpnTester
         $I->click(SearchPage::$resultPrice);
 
     }
-
-
     public function checkHouseObjectPropertiesSearch()
     {
         $I = $this;
@@ -829,6 +854,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -846,6 +872,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -865,6 +892,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -882,6 +910,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -905,6 +934,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -925,6 +955,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -943,6 +974,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -959,6 +991,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -976,6 +1009,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -994,6 +1028,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1011,6 +1046,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1027,6 +1063,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1043,6 +1080,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1059,6 +1097,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1075,6 +1114,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1092,6 +1132,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1108,6 +1149,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1125,6 +1167,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1142,6 +1185,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1158,6 +1202,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1174,6 +1219,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1191,6 +1237,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1207,6 +1254,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1224,6 +1272,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1241,6 +1290,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1258,6 +1308,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1275,13 +1326,14 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
     public function searchHouse28()
     {
         $I = $this;
-        $I->wantTo('Change appliance');
+        $I->wantTo('Change near object');
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
         $I->click(SearchPage::$nearObjectsHouseTab);
@@ -1291,6 +1343,7 @@ class Search extends \VpnTester
         $I->click(SearchPage::$searchButton);
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1335,17 +1388,20 @@ class Search extends \VpnTester
 
         $I->click(SearchPage::$areaParcelTab);
         $I->fillField(SearchPage::$generalAreaFrom, Parcel::generalArea);
+        $I->fillField(SearchPage::$generalAreaTo, Parcel::generalArea);
         $I->click(SearchPage::$areaUnitField);
         $I->click(SearchPage::$areaUnit1);
 
         $I->click(SearchPage::$communicationParcelTab);
         $I->click(SearchPage::$communication0);
+        $I->click(SearchPage::$communication1);
 
         $I->click(SearchPage::$additionalParcelTab);
         $I->click(SearchPage::$additional0);
 
         $I->click(SearchPage::$nearObjectsParcelTab);
         $I->click(SearchPage::$nearObject0);
+        $I->click(SearchPage::$nearObject1);
 
         $I->click(SearchPage::$searchButton);
 
@@ -1357,7 +1413,6 @@ class Search extends \VpnTester
         $I->dontSeeElement(SearchPage::$addToGroup);
         $I->dontSeeElement(SearchPage::$mapAdvertButton);
         $I->click(SearchPage::$resultPrice);
-        $I->pauseExecution();
 
     }
     public function checkParcelObjectPropertiesSearch()
@@ -1365,9 +1420,8 @@ class Search extends \VpnTester
         $I = $this;
 //        $I->amOnPage();
 //        $I->click(AdvertsList::$advInfoTab);
+        $I->wait(1);
         $I->waitForElement(AdvPage::$advInfoGallery);
-
-        $I->see(Parcel::availableFrom, AdvPage::$advInfoAvailableFrom);
         $I->see(Parcel::generalArea, AdvPage::$advInfoMainProps);
         $I->seeElement(AdvPage::$advPropsLink);
         $I->see(Parcel::descriptionParcelSell,AdvPage::$advInfoDescription);
@@ -1393,18 +1447,15 @@ class Search extends \VpnTester
         $I = $this;
         $I->wantTo('Change operation type');
         $I->amOnPage('/search');
-//        $I->reloadPage();
         $I->waitForElement(SearchPage::$operationType1);
         $I->wait(1);
         $I->click(SearchPage::$operationType2);
-//        $I->click(SearchPage::$additionalTab1);
-//        $I->click(SearchPage::$additional0);
-//        $I->pauseExecution();
         $I->click(SearchPage::$searchButton);
 
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1414,7 +1465,7 @@ class Search extends \VpnTester
         $I = $this;
         $I->wantTo('Change district');
         $I->wait(1);
-        $I->click(SearchPage::$operationType2);
+        $I->click(SearchPage::$operationType1);
         $I->click(SearchPage::$districtField);
         $I->fillField(SearchPage::$districtType, Parcel::district);
         $I->click(SearchPage::$district0);
@@ -1422,6 +1473,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1441,6 +1493,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1458,6 +1511,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1481,6 +1535,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1491,16 +1546,17 @@ class Search extends \VpnTester
         $I->wantTo('Change category type');
         $I->click(SearchPage::$categoryField);
         $I->click(SearchPage::$parcelCategory);
-        $I->click(SearchPage::$additionalHouseTab);
+        $I->click(SearchPage::$additionalParcelTab);
         $I->click(SearchPage::$additional0);
-        $I->click(SearchPage::$additionalHouseTab);
+        $I->click(SearchPage::$additionalParcelTab);
         $I->click(SearchPage::$categoryType);
-        $I->click(SearchPage::$houseCatType1);
+        $I->click(SearchPage::$parcelCatType1);
 
         $I->click(SearchPage::$searchButton);
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1511,14 +1567,15 @@ class Search extends \VpnTester
         $I->wantTo('Change price');
 
         $I->click(SearchPage::$categoryType);
-        $I->click(SearchPage::$houseCatType0);
-        $I->fillField(SearchPage::$priseFrom, House::priceHouseSell);
-        $I->fillField(SearchPage::$priseTo, House::priceHouseSell);
+        $I->click(SearchPage::$parcelCatType0);
+        $I->fillField(SearchPage::$priseFrom, Parcel::editPriceParcelRent);
+        $I->fillField(SearchPage::$priseTo, Parcel::editPriceParcelRent);
 
         $I->click(SearchPage::$searchButton);
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1527,10 +1584,10 @@ class Search extends \VpnTester
     {
         $I = $this;
         $I->wantTo('Change currency');
-        $I->fillField(SearchPage::$priseFrom, House::priceHouseSearch);
-        $I->fillField(SearchPage::$priseTo, House::priceHouseSearch);
+        $I->fillField(SearchPage::$priseFrom, Parcel::priceParcelSearch);
+        $I->fillField(SearchPage::$priseTo, Parcel::priceParcelSearch);
         $I->click(SearchPage::$currencyField);
-        $I->click(SearchPage::$currencyUS);
+        $I->click(SearchPage::$currencyUA);
         $I->click(SearchPage::$searchButton);
 
         //--------------------------Search result------------------------------------------//
@@ -1542,12 +1599,12 @@ class Search extends \VpnTester
     public function searchParcel9()
     {
         $I = $this;
-        $I->wantTo('Change period');
+        $I->wantTo('Change general area');
         $I->click(SearchPage::$currencyField);
-        $I->click(SearchPage::$currencyUA);
-        $I->click(SearchPage::$periodField);
-        $I->click(SearchPage::$period0);
-
+        $I->click(SearchPage::$currencyUS);
+        $I->click(SearchPage::$areaParcelTab);
+        $I->fillField(SearchPage::$generalAreaFrom, Parcel::editGeneralArea);
+        $I->fillField(SearchPage::$generalAreaTo, Parcel::editGeneralArea);
         $I->click(SearchPage::$searchButton);
 
         //--------------------------Search result------------------------------------------//
@@ -1559,12 +1616,11 @@ class Search extends \VpnTester
     public function searchParcel10()
     {
         $I = $this;
-        $I->wantTo('Change buid year');
-        $I->click(SearchPage::$periodField);
-        $I->click(SearchPage::$period0);
-        $I->click(SearchPage::$characteristicsTab);
-        $I->fillField(SearchPage::$buildYearFrom, House::editBuildYear);
-        $I->fillField(SearchPage::$buildYearTo, House::editBuildYear);
+        $I->wantTo('Change area unit');
+        $I->fillField(SearchPage::$generalAreaFrom, Parcel::generalArea);
+        $I->fillField(SearchPage::$generalAreaTo, Parcel::generalArea);
+        $I->click(SearchPage::$areaUnitField);
+        $I->click(SearchPage::$areaUnit0);
 
         $I->click(SearchPage::$searchButton);
 
@@ -1572,16 +1628,16 @@ class Search extends \VpnTester
         $I->wait(1);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
-
     }
     public function searchParcel11()
     {
         $I = $this;
-        $I->wantTo('Change beds count');
-        $I->fillField(SearchPage::$buildYearFrom, House::buildYear);
-        $I->fillField(SearchPage::$buildYearTo, House::buildYear);
-        $I->click(SearchPage::$wallMaterialField);
-        $I->click(SearchPage::$wallMaterial2);
+        $I->wantTo('Change communications');
+        $I->click(SearchPage::$areaUnitField);
+        $I->click(SearchPage::$areaUnit1);
+        $I->click(SearchPage::$communicationParcelTab);
+        $I->click(SearchPage::$communication0);
+        $I->click(SearchPage::$communication1);
 
         $I->click(SearchPage::$searchButton);
 
@@ -1589,16 +1645,17 @@ class Search extends \VpnTester
         $I->wait(1);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
-
     }
     public function searchParcel12()
     {
         $I = $this;
-        $I->wantTo('Change repair');
-        $I->click(SearchPage::$wallMaterialField);
-        $I->click(SearchPage::$wallMaterial11);
-        $I->click(SearchPage::$repairField);
-        $I->click(SearchPage::$repair2);
+        $I->wantTo('Change additional');
+        $I->click(SearchPage::$communication0);
+        $I->click(SearchPage::$communication1);
+        $I->click(SearchPage::$additionalParcelTab);
+        $I->click(SearchPage::$additional0);
+        $I->click(SearchPage::$additional1);
+
         $I->click(SearchPage::$searchButton);
 
         //--------------------------Search result------------------------------------------//
@@ -1607,6 +1664,376 @@ class Search extends \VpnTester
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
     public function searchParcel13()
+    {
+        $I = $this;
+        $I->wantTo('Change near object');
+        $I->click(SearchPage::$additional0);
+        $I->click(SearchPage::$additional1);
+        $I->click(SearchPage::$nearObjectsParcelTab);
+        $I->click(SearchPage::$nearObject0);
+        $I->click(SearchPage::$nearObject1);
+
+        $I->click(SearchPage::$searchButton);
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+
+    //--------------------------------Commercial Search----------------------//
+
+    public function searchCommercial()
+    {
+        $I = $this;
+        $I->wantTo('Check search functionality House category');
+        $I->reloadPage();
+        $I->amOnPage('/search');
+        $I->waitForElement(SearchPage::$operationType1);
+        $I->click(SearchPage::$operationType2);
+        $I->click(SearchPage::$regionField);
+        $I->fillField(SearchPage::$regionType,Commercial::region);
+        $I->click(SearchPage::$region0);
+        $I->click(SearchPage::$cityField);
+        $I->fillField(SearchPage::$cityType, Commercial::city);
+        $I->click(SearchPage::$city0);
+        $I->click(SearchPage::$districtField);
+        $I->fillField(SearchPage::$districtType, Commercial::apiDistrict);
+        $I->click(SearchPage::$district0);
+        $I->click(SearchPage::$streetField);
+        $I->fillField(SearchPage::$streetType, Commercial::apiStreetRent);
+        $I->click(SearchPage::$street0);
+        $I->click(SearchPage::$categoryField);
+        $I->click(SearchPage::$commercialCategory);
+        $I->click(SearchPage::$categoryType);
+        $I->click(SearchPage::$commercialCatType0);
+        $I->fillField(SearchPage::$priseFrom, Commercial::priceCommercialSearch);
+        $I->fillField(SearchPage::$priseTo, Commercial::priceCommercialSearch);
+        $I->click(SearchPage::$currencyField);
+        $I->click(SearchPage::$currencyUA);
+        $I->click(SearchPage::$auction);
+        $I->click(SearchPage::$periodField);
+        $I->click(SearchPage::$period0);
+        $I->dontSeeElement(SearchPage::$agencyField);
+
+        $I->click(SearchPage::$characteristicsTab);
+//        $I->click(SearchPage::$marketTypeField);
+//        $I->click(SearchPage::$marketType1);
+        $I->fillField(SearchPage::$buildYearFrom, Commercial::buildYear);
+        $I->fillField(SearchPage::$buildYearTo, Commercial::buildYear);
+        $I->click(SearchPage::$wallMaterialField);
+        $I->click(SearchPage::$wallMaterial1);
+        $I->click(SearchPage::$repairField);
+        $I->click(SearchPage::$repair1);
+        $I->click(SearchPage::$wcField);
+        $I->click(SearchPage::$wc3);
+        $I->click(SearchPage::$heatingField);
+        $I->click(SearchPage::$heating3);
+        $I->click(SearchPage::$waterHeatingField);
+        $I->click(SearchPage::$waterHeating3);
+
+        $I->click(SearchPage::$areaTab);
+        $I->fillField(SearchPage::$generalAreaFrom, Commercial::generalArea);
+        $I->fillField(SearchPage::$generalAreaTo, Commercial::generalArea);
+        $I->click(SearchPage::$areaUnitField);
+        $I->click(SearchPage::$areaUnit0);
+        $I->fillField(SearchPage::$effectiveAreaFrom,Commercial::effectiveArea);
+        $I->fillField(SearchPage::$effectiveAreaTo,Commercial::effectiveArea);
+
+        $I->click(SearchPage::$floorsAndRoomsTab);
+        $I->fillField(SearchPage::$roomsCountFrom, Commercial::roomCount);
+        $I->fillField(SearchPage::$roomsCountTo, Commercial::roomCount);
+        $I->fillField(SearchPage::$floorFrom, Commercial::floorNumber);
+        $I->fillField(SearchPage::$floorTo, Commercial::floorNumber);
+        $I->fillField(SearchPage::$floorNumberFrom, Commercial::floors);
+        $I->fillField(SearchPage::$floorNumberTo, Commercial::floors);
+//        $I->pauseExecution();
+
+        $I->click(SearchPage::$communicationCommercialTab);
+//        $I->click(SearchPage::$communication0);
+
+        $I->click(SearchPage::$additionalCommercialTab);
+        $I->click(SearchPage::$additional0);
+
+
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+//        $I->pauseExecution();
+        $I->waitForElement(SearchPage::$resultPrice);
+
+
+        $I->seeElement(SearchPage::$sortField);
+        $I->dontSeeElement(SearchPage::$addToGroup);
+        $I->dontSeeElement(SearchPage::$mapAdvertButton);
+        $I->click(SearchPage::$resultPrice);
+
+    }
+    public function checkCommercialObjectPropertiesSearch()
+    {
+        $I = $this;
+//        $I->amOnPage();
+//        $I->click(AdvertsList::$advInfoTab);
+        $I->wait(1);
+        $I->waitForElement(AdvPage::$advInfoGallery);
+        $I->see(Commercial::availableFrom, AdvPage::$advInfoAvailableFrom);
+        $I->see(Commercial::generalArea, AdvPage::$advInfoMainProps);
+        $I->see(Commercial::roomCount, AdvPage::$advInfoMainProps);
+        $I->see(Lists::wallMaterial0, AdvPage::$advInfoMainProps);
+        $I->see(Commercial::floors, AdvPage::$advInfoMainProps);
+        $I->see(Commercial::floorNumber, AdvPage::$advInfoMainProps);
+        $I->seeElement(AdvPage::$advPropsLink);
+        $I->seeElement(AdvPage::$advInfoGallery);
+//        $I->seeElement(AdvPage::$advInfoSocialButtons);
+        $I->click(AdvPage::$advPropsTab);
+        $I->see(Commercial::category, AdvPage::$advPropsTable);
+        $I->see(Commercial::categoryType0, AdvPage::$advPropsTable);
+        $I->see(Commercial::region, AdvPage::$advPropsTable);
+        $I->see(Commercial::city, AdvPage::$advPropsTable);
+        $I->see(Commercial::apiDistrict, AdvPage::$advPropsTable);
+        $I->see(Commercial::apiStreetRent, AdvPage::$advPropsTable);
+        $I->see(Commercial::generalArea, AdvPage::$advPropsTable);
+        $I->see(Commercial::effectiveArea, AdvPage::$advPropsTable);
+        $I->see(Commercial::roomCount, AdvPage::$advPropsTable);
+        $I->see(Lists::wc2, AdvPage::$advPropsTable);
+        $I->see(Lists::heating2, AdvPage::$advPropsTable);
+        $I->see(Lists::waterHeat2, AdvPage::$advPropsTable);
+        $I->see(Lists::repair0, AdvPage::$advPropsTable);
+
+        $I->see(Lists::communication0, AdvPage::$advPropsTable);
+
+        $I->see(Lists::additionalCommercial0, AdvPage::$advPropsTable);
+        $I->dontSee(AdvPage::$advSchemaTab);
+
+    }
+    public function searchCommercial1()
+    {
+        $I = $this;
+        $I->wantTo('Change operation type');
+        $I->amOnPage('/search');
+//        $I->reloadPage();
+        $I->waitForElement(SearchPage::$operationType2);
+        $I->wait(1);
+        $I->click(SearchPage::$operationType1);
+        $I->click(SearchPage::$searchButton);
+
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchCommercial2()
+    {
+        $I = $this;
+        $I->wantTo('Change district');
+        $I->wait(1);
+        $I->click(SearchPage::$operationType2);
+        $I->click(SearchPage::$districtField);
+        $I->fillField(SearchPage::$districtType, Commercial::district);
+        $I->click(SearchPage::$district0);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+
+    }
+    public function searchCommercial3()
+    {
+        $I = $this;
+        $I->wantTo('Change street');
+        $I->click(SearchPage::$districtField);
+        $I->fillField(SearchPage::$districtType, Commercial::apiDistrict);
+        $I->click(SearchPage::$district0);
+        $I->click(SearchPage::$streetField);
+        $I->fillField(SearchPage::$streetType, Commercial::street);
+        $I->click(SearchPage::$street0);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchCommercial4()
+    {
+        $I = $this;
+        $I->wantTo('Change city');
+        $I->click(SearchPage::$streetField);
+        $I->fillField(SearchPage::$streetType, Commercial::apiStreetRent);
+        $I->click(SearchPage::$street0);
+        $I->click(SearchPage::$cityField);
+        $I->fillField(SearchPage::$cityType, House::editCity);
+        $I->click(SearchPage::$city0);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchCommercial5()
+    {
+        $I = $this;
+        $I->wantTo('Change category');
+        $I->click(SearchPage::$cityField);
+        $I->fillField(SearchPage::$cityType, Commercial::city);
+        $I->click(SearchPage::$city0);
+        $I->click(SearchPage::$districtField);
+        $I->fillField(SearchPage::$districtType, Commercial::apiDistrict);
+        $I->click(SearchPage::$district0);
+        $I->click(SearchPage::$streetField);
+        $I->fillField(SearchPage::$streetType, Commercial::apiStreetRent);
+        $I->click(SearchPage::$street0);
+        $I->click(SearchPage::$categoryField);
+        $I->click(SearchPage::$flatCategory);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchCommercial6()
+    {
+        $I = $this;
+        $I->wantTo('Change category type');
+        $I->click(SearchPage::$categoryField);
+        $I->click(SearchPage::$commercialCategory);
+        $I->click(SearchPage::$additionalCommercialTab);
+        $I->click(SearchPage::$additional0);
+        $I->click(SearchPage::$additionalCommercialTab);
+        $I->click(SearchPage::$categoryType);
+        $I->click(SearchPage::$commercialCatType1);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchCommercial7()
+    {
+        $I = $this;
+        $I->wantTo('Change price');
+
+        $I->click(SearchPage::$categoryType);
+        $I->click(SearchPage::$commercialCatType0);
+        $I->fillField(SearchPage::$priseFrom, Commercial::priceCommercialSell);
+        $I->fillField(SearchPage::$priseTo, Commercial::priceCommercialSell);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchCommercial8()
+    {
+        $I = $this;
+        $I->wantTo('Change currency');
+        $I->fillField(SearchPage::$priseFrom, Commercial::priceCommercialSearch);
+        $I->fillField(SearchPage::$priseTo, Commercial::priceCommercialSearch);
+        $I->click(SearchPage::$currencyField);
+        $I->click(SearchPage::$currencyUS);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchCommercial9()
+    {
+        $I = $this;
+        $I->wantTo('Change period');
+        $I->click(SearchPage::$currencyField);
+        $I->click(SearchPage::$currencyUA);
+        $I->click(SearchPage::$periodField);
+        $I->click(SearchPage::$period1);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchCommercial10()
+    {
+        $I = $this;
+        $I->wantTo('Change buid year');
+        $I->click(SearchPage::$periodField);
+        $I->click(SearchPage::$period0);
+        $I->click(SearchPage::$characteristicsTab);
+        $I->fillField(SearchPage::$buildYearFrom, Commercial::editBuildYear);
+        $I->fillField(SearchPage::$buildYearTo, Commercial::editBuildYear);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchCommercial11()
+    {
+        $I = $this;
+        $I->wantTo('Change beds count');
+        $I->fillField(SearchPage::$buildYearFrom, Commercial::buildYear);
+        $I->fillField(SearchPage::$buildYearTo, Commercial::buildYear);
+        $I->click(SearchPage::$wallMaterialField);
+        $I->click(SearchPage::$wallMaterial2);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchCommercial12()
+    {
+        $I = $this;
+        $I->wantTo('Change repair');
+        $I->click(SearchPage::$wallMaterialField);
+        $I->click(SearchPage::$wallMaterial1);
+        $I->click(SearchPage::$repairField);
+        $I->click(SearchPage::$repair2);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchCommercial13()
     {
         $I = $this;
         $I->wantTo('Change wc');
@@ -1619,15 +2046,16 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
-    public function searchParcel14()
+    public function searchCommercial14()
     {
         $I = $this;
         $I->wantTo('Change heating');
         $I->click(SearchPage::$wcField);
-        $I->click(SearchPage::$wc1);
+        $I->click(SearchPage::$wc3);
         $I->click(SearchPage::$heatingField);
         $I->click(SearchPage::$heating1);
 
@@ -1635,15 +2063,16 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
-    public function searchParcel15()
+    public function searchCommercial15()
     {
         $I = $this;
         $I->wantTo('Change water heating');
         $I->click(SearchPage::$heatingField);
-        $I->click(SearchPage::$heating2);
+        $I->click(SearchPage::$heating3);
         $I->click(SearchPage::$waterHeatingField);
         $I->click(SearchPage::$waterHeating1);
 
@@ -1651,32 +2080,34 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
-    public function searchParcel16()
+    public function searchCommercial16()
     {
         $I = $this;
         $I->wantTo('Change general area');
         $I->click(SearchPage::$waterHeatingField);
-        $I->click(SearchPage::$waterHeating2);
+        $I->click(SearchPage::$waterHeating3);
         $I->click(SearchPage::$areaTab);
-        $I->fillField(SearchPage::$generalAreaFrom, House::editGeneralArea);
-        $I->fillField(SearchPage::$generalAreaTo, House::editGeneralArea);
+        $I->fillField(SearchPage::$generalAreaFrom, Commercial::editGeneralArea);
+        $I->fillField(SearchPage::$generalAreaTo, Commercial::editGeneralArea);
 
         $I->click(SearchPage::$searchButton);
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
-    public function searchParcel17()
+    public function searchCommercial17()
     {
         $I = $this;
         $I->wantTo('Change area unit');
-        $I->fillField(SearchPage::$generalAreaFrom, House::generalArea);
-        $I->fillField(SearchPage::$generalAreaTo, House::generalArea);
+        $I->fillField(SearchPage::$generalAreaFrom, Commercial::generalArea);
+        $I->fillField(SearchPage::$generalAreaTo, Commercial::generalArea);
         $I->click(SearchPage::$areaUnitField);
         $I->click(SearchPage::$areaUnit1);
 
@@ -1684,132 +2115,72 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
-    public function searchParcel18()
+    public function searchCommercial18()
     {
         $I = $this;
         $I->wantTo('Change living area');
         $I->click(SearchPage::$areaUnitField);
         $I->click(SearchPage::$areaUnit0);
-        $I->fillField(SearchPage::$areaLandFrom, House::editLandArea);
-        $I->fillField(SearchPage::$areaLandTo, House::editLandArea);
+        $I->fillField(SearchPage::$effectiveAreaFrom, Commercial::editEffectiveArea);
+        $I->fillField(SearchPage::$effectiveAreaTo, Commercial::editEffectiveArea);
 
 
         $I->click(SearchPage::$searchButton);
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
-    public function searchParcel19()
+    public function searchCommercial19()
     {
         $I = $this;
         $I->wantTo('Change living area');
 
-        $I->fillField(SearchPage::$areaLandFrom, House::landArea);
-        $I->fillField(SearchPage::$areaLandTo, House::landArea);
-        $I->click(SearchPage::$areaLandUnit);
-        $I->click(SearchPage::$areaLand0);
+        $I->fillField(SearchPage::$effectiveAreaFrom, Commercial::effectiveArea);
+        $I->fillField(SearchPage::$effectiveAreaTo, Commercial::effectiveArea);
+        $I->click(SearchPage::$floorsAndRoomsTab);
+        $I->fillField(SearchPage::$roomsCountFrom, Commercial::editRoomCount);
+        $I->fillField(SearchPage::$roomsCountTo, Commercial::editRoomCount);
 
         $I->click(SearchPage::$searchButton);
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
-    public function searchParcel20()
-    {
-        $I = $this;
-        $I->wantTo('Change living area');
-        $I->click(SearchPage::$areaLandUnit);
-        $I->click(SearchPage::$areaLand1);
-        $I->fillField(SearchPage::$livingAreaFrom, House::editLivingArea);
-        $I->fillField(SearchPage::$livingAreaTo, House::editLivingArea);
-
-        $I->click(SearchPage::$searchButton);
-
-        //--------------------------Search result------------------------------------------//
-        $I->wait(1);
-        $I->dontSeeElement(SearchPage::$resultPrice);
-        $I->dontSeeElement(SearchPage::$resultAdvert);
-    }
-    public function searchParcel21()
-    {
-        $I = $this;
-        $I->wantTo('Change kitchen area');
-        $I->fillField(SearchPage::$livingAreaFrom, House::livingArea);
-        $I->fillField(SearchPage::$livingAreaTo, House::livingArea);
-        $I->fillField(SearchPage::$kitchenAreaFrom, House::editKitchenArea);
-        $I->fillField(SearchPage::$kitchenAreaTo, House::editKitchenArea);
-
-        $I->click(SearchPage::$searchButton);
-
-        //--------------------------Search result------------------------------------------//
-        $I->wait(1);
-        $I->dontSeeElement(SearchPage::$resultPrice);
-        $I->dontSeeElement(SearchPage::$resultAdvert);
-    }
-    public function searchParcel23()
+    public function searchCommercial20()
     {
         $I = $this;
         $I->wantTo('Change room count');
-        $I->fillField(SearchPage::$roomsCountFrom, House::roomCount);
-        $I->fillField(SearchPage::$roomsCountTo, House::roomCount);
-        $I->fillField(SearchPage::$floorNumberFrom, House::editFloors);
-        $I->fillField(SearchPage::$floorNumberTo, House::editFloors);
+        $I->fillField(SearchPage::$roomsCountFrom, Commercial::roomCount);
+        $I->fillField(SearchPage::$roomsCountTo, Commercial::roomCount);
+        $I->fillField(SearchPage::$floorNumberFrom, Commercial::editFloor);
+        $I->fillField(SearchPage::$floorNumberTo, Commercial::editFloor);
 
         $I->click(SearchPage::$searchButton);
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
-    public function searchParcel24()
+    public function searchCommercial21()
     {
         $I = $this;
         $I->wantTo('Change furniture');
-        $I->fillField(SearchPage::$floorNumberFrom, House::floors);
-        $I->fillField(SearchPage::$floorNumberTo, House::floors);
-        $I->click(SearchPage::$furnitureTab);
-        $I->click(SearchPage::$furniture0);
-        $I->click(SearchPage::$furniture1);
+        $I->fillField(SearchPage::$floorNumberFrom, Commercial::floors);
+        $I->fillField(SearchPage::$floorNumberTo, Commercial::floors);
 
-        $I->click(SearchPage::$searchButton);
-
-        //--------------------------Search result------------------------------------------//
-        $I->wait(1);
-        $I->dontSeeElement(SearchPage::$resultPrice);
-        $I->dontSeeElement(SearchPage::$resultAdvert);
-    }
-    public function searchParcel25()
-    {
-        $I = $this;
-        $I->wantTo('Change appliance');
-        $I->click(SearchPage::$furniture0);
-        $I->click(SearchPage::$furniture1);
-        $I->click(SearchPage::$applianceTab);
-        $I->click(SearchPage::$appliance0);
-        $I->click(SearchPage::$appliance1);
-
-        $I->click(SearchPage::$searchButton);
-
-        //--------------------------Search result------------------------------------------//
-        $I->wait(1);
-        $I->dontSeeElement(SearchPage::$resultPrice);
-        $I->dontSeeElement(SearchPage::$resultAdvert);
-    }
-    public function searchParcel26()
-    {
-        $I = $this;
-        $I->wantTo('Change additional');
-        $I->click(SearchPage::$appliance0);
-        $I->click(SearchPage::$appliance1);
-        $I->click(SearchPage::$communicationTab);
+        $I->click(SearchPage::$communicationCommercialTab);
         $I->click(SearchPage::$communication0);
         $I->click(SearchPage::$communication1);
 
@@ -1817,16 +2188,17 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
-    public function searchParcel27()
+    public function searchCommercial22()
     {
         $I = $this;
         $I->wantTo('Change additional');
         $I->click(SearchPage::$communication0);
-        $I->click(SearchPage::$communication0);
-        $I->click(SearchPage::$additionalHouseTab);
+        $I->click(SearchPage::$communication1);
+        $I->click(SearchPage::$additionalCommercialTab);
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
 
@@ -1834,23 +2206,148 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
-    public function searchParcel28()
+
+    public function checkResetFilter()
     {
         $I = $this;
-        $I->wantTo('Change appliance');
+        $I->wantTo('Check Reset Filter functionality');
+        $I->amOnPage('/search');
+        $I->waitForElement(SearchPage::$operationType1);
+//        $I->see('Продажа', SearchPage::$operationType1);
+//        $I->see('Аренда', SearchPage::$operationType2);
+        $I->click(SearchPage::$operationType1);
+//        $I->see('Киевская область', SearchPage::$regionField);
+        $I->click(SearchPage::$regionField);
+        $I->fillField(SearchPage::$regionType, Flat::region);
+//        $I->see(SearchPage::$region0);
+        $I->click(SearchPage::$region0);
+        $I->click(SearchPage::$cityField);
+        $I->fillField(SearchPage::$cityType, Flat::city);
+        $I->click(SearchPage::$city0);
+        $I->click(SearchPage::$districtField);
+        $I->fillField(SearchPage::$districtType, Flat::editDistrict);
+        $I->click(SearchPage::$district0);
+        $I->click(SearchPage::$streetField);
+        $I->fillField(SearchPage::$streetType, Flat::apiStreet);
+        $I->click(SearchPage::$street0);
+        $I->click(SearchPage::$categoryField);
+        $I->click(SearchPage::$flatCategory);
+        $I->click(SearchPage::$categoryType);
+        $I->click(SearchPage::$flatCatType0);
+        $I->fillField(SearchPage::$priseFrom, Flat::priceFlatSearch);
+        $I->fillField(SearchPage::$priseTo, Flat::priceFlatSearch);
+        $I->click(SearchPage::$currencyField);
+        $I->click(SearchPage::$currencyUS);
+        $I->click(SearchPage::$auction);
+
+        $I->click(SearchPage::$characteristicsTab);
+        $I->click(SearchPage::$marketTypeField);
+        $I->click(SearchPage::$marketType1);
+        $I->fillField(SearchPage::$buildYearFrom, Flat::buildYear);
+        $I->fillField(SearchPage::$buildYearTo, Flat::buildYear);
+        $I->fillField(SearchPage::$bedCountFrom, Flat::beds);
+        $I->fillField(SearchPage::$bedCountTo, Flat::beds);
+        $I->click(SearchPage::$wallMaterialField);
+        $I->click(SearchPage::$wallMaterial1);
+        $I->click(SearchPage::$repairField);
+        $I->click(SearchPage::$repair1);
+        $I->click(SearchPage::$wcField);
+        $I->click(SearchPage::$wc2);
+        $I->click(SearchPage::$balconyField);
+        $I->click(SearchPage::$balcony2);
+        $I->click(SearchPage::$heatingField);
+        $I->click(SearchPage::$heating2);
+        $I->click(SearchPage::$waterHeatingField);
+        $I->click(SearchPage::$waterHeating2);
+
+        $I->click(SearchPage::$areaTab);
+        $I->fillField(SearchPage::$generalAreaFrom, Flat::generalArea);
+        $I->fillField(SearchPage::$generalAreaTo, Flat::generalArea);
+        $I->click(SearchPage::$areaUnitField);
+        $I->click(SearchPage::$areaUnit0);
+        $I->fillField(SearchPage::$livingAreaFrom, Flat::livingArea);
+        $I->fillField(SearchPage::$livingAreaTo, Flat::livingArea);
+        $I->fillField(SearchPage::$kitchenAreaFrom, Flat::kitchenArea);
+        $I->fillField(SearchPage::$kitchenAreaTo, Flat::kitchenArea);
+
+        $I->click(SearchPage::$floorsAndRoomsTab);
+        $I->fillField(SearchPage::$roomsCountFrom, Flat::roomCount);
+        $I->fillField(SearchPage::$roomsCountTo, Flat::roomCount);
+        $I->fillField(SearchPage::$floorFrom, Flat::floorNumber);
+        $I->fillField(SearchPage::$floorTo, Flat::floorNumber);
+        $I->fillField(SearchPage::$floorNumberFrom, Flat::floors);
+        $I->fillField(SearchPage::$floorNumberTo, Flat::floors);
+
+        $I->click(SearchPage::$furnitureTab);
+//        $I->click(SearchPage::$furniture0);
+
+        $I->click(SearchPage::$applianceTab);
+//        $I->click(SearchPage::$appliance0);
+
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
-        $I->click(SearchPage::$additional1);
-        $I->click(SearchPage::$nearObjectsHouseTab);
-        $I->click(SearchPage::$nearObject0);
+
+        $I->click(SearchPage::$nearObjectsTab);
+//        $I->click(SearchPage::$nearObject0);
         $I->click(SearchPage::$nearObject1);
 
         $I->click(SearchPage::$searchButton);
-        //--------------------------Search result------------------------------------------//
+        $I->click(SearchPage::$backupFilterLink);
         $I->wait(1);
-        $I->dontSeeElement(SearchPage::$resultPrice);
-        $I->dontSeeElement(SearchPage::$resultAdvert);
+        $I->see('Киевская область', SearchPage::$regionField);
+
+        $I->click(SearchPage::$cancelBackupFilterLink);
+
+        $I->see(Flat::region,SearchPage::$regionField);
+        $I->see(Flat::city,SearchPage::$cityField);
+//        $I->see(Flat::editDistrict,SearchPage::$districtField);
+        $I->see(Flat::apiStreet,SearchPage::$streetField);
+        $I->see(Flat::category,SearchPage::$categoryField);
+        $I->see(Flat::categoryType0, SearchPage::$categoryType);
+        $I->seeInField(SearchPage::$priseFrom,Flat::priceFlatSearch);
+        $I->seeInField(SearchPage::$priseTo, Flat::priceFlatSearch);
+        $I->see('$', SearchPage::$currencyField);
+
+        $I->see(Lists::marketType0, SearchPage::$marketTypeField);
+        $I->seeInField(SearchPage::$buildYearFrom, Flat::buildYear);
+        $I->seeInField(SearchPage::$buildYearTo, Flat::buildYear);
+        $I->seeInField(SearchPage::$bedCountFrom, Flat::beds);
+        $I->seeInField(SearchPage::$bedCountTo,Flat::beds );
+        $I->see(Lists::wallMaterial0,SearchPage::$wallMaterialField);
+
+        $I->see(Lists::repair0,SearchPage::$repairField);
+        $I->see(Lists::wc1, SearchPage::$wcField);
+        $I->see(Lists::balconies1,SearchPage::$balconyField);
+        $I->see(Lists::heating1,SearchPage::$heatingField);
+        $I->see(Lists::waterHeat1,SearchPage::$waterHeatingField);
+
+
+        $I->seeInField(SearchPage::$generalAreaFrom, Flat::generalArea);
+        $I->seeInField(SearchPage::$generalAreaTo, Flat::generalArea);
+        $I->see(Lists::areaUnit0,SearchPage::$areaUnitField);
+        $I->seeInField(SearchPage::$livingAreaFrom, Flat::livingArea);
+        $I->seeInField(SearchPage::$livingAreaTo, Flat::livingArea);
+        $I->seeInField(SearchPage::$kitchenAreaFrom, Flat::kitchenArea);
+        $I->seeInField(SearchPage::$kitchenAreaTo, Flat::kitchenArea);
+
+        $I->seeInField(SearchPage::$roomsCountFrom, Flat::roomCount);
+        $I->seeInField(SearchPage::$roomsCountTo, Flat::roomCount);
+        $I->seeInField(SearchPage::$floorFrom, Flat::floorNumber);
+        $I->seeInField(SearchPage::$floorTo, Flat::floorNumber);
+        $I->seeInField(SearchPage::$floorNumberFrom, Flat::floors);
+        $I->seeInField(SearchPage::$floorNumberTo, Flat::floors);
+//        $I->seeCheckboxIsChecked(SearchPage::$furniture0);
+        $I->seeElement(SearchPage::$checked.SearchPage::$furniture0);
+        $I->seeElement(SearchPage::$checked.SearchPage::$appliance0);
+        $I->seeElement(SearchPage::$checked.SearchPage::$additional0);
+        $I->seeElement(SearchPage::$checked.SearchPage::$nearObject0);
+
+
+
     }
+
 }

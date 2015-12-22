@@ -1,10 +1,8 @@
 <?php
 use \VpnTester;
-use Data\User as User;
 
-class TestCest
+class webUS5a_searchAdvertsListResultCest
 {
-
     protected function agencyLogin(VpnTester $I)
     {
         $I->loginAgency();
@@ -21,28 +19,25 @@ class TestCest
         $I->apiAdminEditFlatAdvertSearch();
 
     }
-
-
     protected function addApiHouseAdvert(VpnTester $I)
     {
         $I->realtyHouseAddSearch();
         $I->apiAdvertHouseAddSearch();
         $I->apiAdminEditHouseAdvertSearch();
     }
-
     protected function addApiParcelAdvert(VpnTester $I)
     {
         $I->realtyParcelAddSearch();
         $I->apiAdvertParcelAddSearch();
         $I->apiAdminEditParcelAdvertSearch();
     }
-
     protected function addApiCommercialAdvert(VpnTester $I)
     {
         $I->realtyCommercialAddSearch();
         $I->apiAdvertCommercialAddSearch();
         $I->apiAdminEditCommercialAdvertSearch();
     }
+
     /**
      *@before apiLogin
      *@before addApiFlatAdvert
@@ -52,47 +47,44 @@ class TestCest
      *@before agencyLogin
      */
 
-   public function searchFlatAndCheckProperties(\Step\Vpn\Search $I)
-   {
+    public function searchFlatAndCheckProperties(\Step\Vpn\Search $I)
+    {
 
-       $I->searchFlat();
-       $I->checkFlatObjectPropertiesSearch();
+        $I->searchFlat();
+        $I->checkFlatObjectPropertiesSearch();
 
-       $I->searchFlat1();
-       $I->searchFlat2();
-       $I->searchFlat3();
-       $I->searchFlat4();
-       $I->searchFlat5();
-       $I->searchFlat6();
-       $I->searchFlat7();
-       $I->searchFlat8();
-       $I->searchFlat9();
-       $I->searchFlat10();
-       $I->searchFlat11();
-       $I->searchFlat12();
-       $I->searchFlat13();
-       $I->searchFlat14();
-       $I->searchFlat15();
-       $I->searchFlat16();
-       $I->searchFlat17();
-       $I->searchFlat18();
-       $I->searchFlat19();
-       $I->searchFlat20();
-       $I->searchFlat21();
-       $I->searchFlat22();
-       $I->searchFlat23();
-       $I->searchFlat24();
-       $I->searchFlat25();
-       $I->searchFlat26();
-       $I->searchFlat27();
-       $I->searchFlat28();
-       $I->searchFlat29();
-   }
-
-
+        $I->searchFlat1();
+        $I->searchFlat2();
+        $I->searchFlat3();
+        $I->searchFlat4();
+        $I->searchFlat5();
+        $I->searchFlat6();
+        $I->searchFlat7();
+        $I->searchFlat8();
+        $I->searchFlat9();
+        $I->searchFlat10();
+        $I->searchFlat11();
+        $I->searchFlat12();
+        $I->searchFlat13();
+        $I->searchFlat14();
+        $I->searchFlat15();
+        $I->searchFlat16();
+        $I->searchFlat17();
+        $I->searchFlat18();
+        $I->searchFlat19();
+        $I->searchFlat20();
+        $I->searchFlat21();
+        $I->searchFlat22();
+        $I->searchFlat23();
+        $I->searchFlat24();
+        $I->searchFlat25();
+        $I->searchFlat26();
+        $I->searchFlat27();
+        $I->searchFlat28();
+        $I->searchFlat29();
+    }
 
     //--------------------House---------------------//
-
     public function searchHouseAndCheckProperties(\Step\Vpn\Search $H)
     {
         $H->searchHouse();
@@ -126,6 +118,7 @@ class TestCest
         $H->searchHouse27();
         $H->searchHouse28();
     }
+
     //----------------Parcel-------------------------//
     public function searchParcelAndCheckProperties(\Step\Vpn\Search $P, VpnTester $I)
     {
@@ -149,6 +142,8 @@ class TestCest
 //        $I->pauseExecution();
 
     }
+
+    //----------------------Commercial--------------//
     public function searchCommercialAndCheckProperties(\Step\Vpn\Search $C, VpnTester $I)
     {
         $C->searchCommercial();
@@ -180,6 +175,8 @@ class TestCest
 
 
     }
+
+    //-------------------------Reset filter----------------//
     public function resetFilter(\Step\Vpn\Search $I)
     {
         $I->checkResetFilter();
@@ -195,5 +192,4 @@ class TestCest
         $I->apiDeleteCommercialAdvert();
 
     }
-
 }

@@ -69,6 +69,7 @@ class Commercial
 
     const apiDistrict = 'Ж/д вокзал';
     const apiStreet = 'Вербовецкого улица';
+    const apiStreetRent = 'Володарского улица';
 
     const editDistrict = 'Водоканал-Невского';
     const editStreet = 'Вернигоры улица';

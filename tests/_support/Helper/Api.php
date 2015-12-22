@@ -4680,7 +4680,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendGET('/lists/streets/' . $city);
         $streets = $this->restModule->grabResponse();
         $streetName = json_decode($streets)[$name]->name;
-        //$this->debugSection('Street ID', $streetName);
+        $this->debugSection('Street ID', $streetName);
         file_put_contents(codecept_data_dir('streets_name.json'), $streets);
         return $streetName;
     }

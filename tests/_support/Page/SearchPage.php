@@ -45,6 +45,18 @@ class SearchPage
     public static $parcelCatType3 = '.cc-category-type3';
     public static $parcelCatType4 = '.cc-category-type4';
 
+    public static $commercialCatType0 = '.cc-category-type0';
+    public static $commercialCatType1 = '.cc-category-type1';
+    public static $commercialCatType2 = '.cc-category-type2';
+    public static $commercialCatType3 = '.cc-category-type3';
+    public static $commercialCatType4 = '.cc-category-type4';
+    public static $commercialCatType5 = '.cc-category-type5';
+    public static $commercialCatType6 = '.cc-category-type6';
+    public static $commercialCatType7 = '.cc-category-type7';
+    public static $commercialCatType8 = '.cc-category-type8';
+    public static $commercialCatType9 = '.cc-category-type9';
+    public static $commercialCatType10 = '.cc-category-type10';
+
     public static $priseFrom = '[ng-model="ctrl.filters.minPrice"]';
     public static $priseTo = '[ng-model="ctrl.filters.maxPrice"]';
     public static $currencyField = '[ng-model="ctrl.filters.currency"] span';
@@ -132,6 +144,7 @@ class SearchPage
     public static $areaTab = '/html/body/div[2]/div[3]/form/div[3]';
     public static $areaParcelTab = '/html/body/div[2]/div[3]/form/div[2]';
 
+
     public static $generalAreaFrom = '[ng-model="ctrl.filters.minGeneralArea"]';
     public static $generalAreaTo = '[ng-model="ctrl.filters.maxGeneralArea"]';
     public static $areaUnitField = '[ng-model="ctrl.filters.areaUnit"] span';
@@ -144,6 +157,8 @@ class SearchPage
     public static $areaLand0 ='.cc-land-area-size0';
     public static $areaLand1 ='.cc-land-area-size1';
     public static $areaLand2 ='.cc-land-area-size2';
+    public static $effectiveAreaFrom = '[ng-model="ctrl.filters.minEffectiveArea"]';
+    public static $effectiveAreaTo = '[ng-model="ctrl.filters.maxEffectiveArea"]';
 
     public static $livingAreaFrom = '[ng-model="ctrl.filters.minLiveArea"]';
     public static $livingAreaTo = '[ng-model="ctrl.filters.maxLiveArea"]';
@@ -182,6 +197,7 @@ class SearchPage
     //----------------------Communications---------------------------------//
     public static $communicationTab ='/html/body/div[2]/div[3]/form/div[7]';
     public static $communicationParcelTab = '/html/body/div[2]/div[3]/form/div[3]/div[1]';
+    public static $communicationCommercialTab ='/html/body/div[2]/div[3]/form/div[5]/div[1]';
     public static $communication0 ='.cc-communications0';
     public static $communication1 ='.cc-communications1';
     public static $communication2 ='.cc-communications2';
@@ -195,6 +211,7 @@ class SearchPage
     public static $additionalTab ='/html/body/div[2]/div[3]/form/div[7]/div[1]';
     public static $additionalHouseTab ='/html/body/div[2]/div[3]/form/div[8]/div[1]';
     public static $additionalParcelTab = '/html/body/div[2]/div[3]/form/div[4]/div[1]';
+    public static $additionalCommercialTab = '/html/body/div[2]/div[3]/form/div[6]/div[1]';
     public static $additional0 ='.cc-additional0';
     public static $additional1 ='.cc-additional1';
     public static $additional2 ='.cc-additional2';
@@ -229,6 +246,8 @@ class SearchPage
 
     public static $listAdvertButton = '.listWhite';
     public static $mapAdvertButton = '.mapDark';
+    public static $backupFilterLink = '[ng-click="ctrl.reset()"]';
+    public static $cancelBackupFilterLink = '[ng-click="ctrl.reset(true)"]';
 
     //------------------------Sort filter------------------------------//
     public static $sortField = '[ng-model="ctrl.filters.sort"] span';
@@ -239,6 +258,7 @@ class SearchPage
     public static $sort4 = '.cc-sort-type4';
     public static $addToGroup = '[ng-click="ctrl.addToGroup()"]';
     public static $searchButton = '[ng-show="!ctrl.isSearching"]';
+    public static $checked ='[checked="checked"]';
 
 
     //------------------------------Search by map-------------------------------------//
