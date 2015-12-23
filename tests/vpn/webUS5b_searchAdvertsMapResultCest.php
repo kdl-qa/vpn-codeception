@@ -1,10 +1,8 @@
 <?php
 use \VpnTester;
-use Data\User as User;
 
-class TestCest
+class webUS5b_searchAdvertsMapResultCest
 {
-
     protected function agencyLogin(VpnTester $I)
     {
         $I->loginAgency();
@@ -51,45 +49,45 @@ class TestCest
 //     *@before agencyLogin
 //     */
 
-   public function mapSearchFlatAndCheckProperties(\Step\Vpn\Search $I)
+    public function mapSearchFlatAndCheckProperties(\Step\Vpn\Search $I)
 
-   {
-       $I->mapSearchFlat();
-       $I->checkFlatObjectPropertiesSearch();
+    {
+        $I->mapSearchFlat();
+        $I->checkFlatObjectPropertiesSearch();
 //
-       $I->mapSearchFlat1();
-       $I->mapSearchFlat2();
-       $I->mapSearchFlat3();
-       $I->mapSearchFlat4();
-       $I->mapSearchFlat5();
-       $I->mapSearchFlat6();
-       $I->mapSearchFlat7();
-       $I->mapSearchFlat8();
-       $I->mapSearchFlat9();
-       $I->mapSearchFlat10();
-       $I->mapSearchFlat11();
-       $I->mapSearchFlat12();
-       $I->mapSearchFlat13();
-       $I->mapSearchFlat14();
-       $I->mapSearchFlat15();
-       $I->mapSearchFlat16();
-       $I->mapSearchFlat17();
-       $I->mapSearchFlat18();
-       $I->mapSearchFlat19();
-       $I->mapSearchFlat20();
-       $I->mapSearchFlat21();
-       $I->mapSearchFlat22();
-       $I->mapSearchFlat23();
-       $I->mapSearchFlat24();
-       $I->mapSearchFlat25();
-       $I->mapSearchFlat26();
-       $I->mapSearchFlat27();
-       $I->mapSearchFlat28();
-       $I->mapSearchFlat29();
+        $I->mapSearchFlat1();
+        $I->mapSearchFlat2();
+        $I->mapSearchFlat3();
+        $I->mapSearchFlat4();
+        $I->mapSearchFlat5();
+        $I->mapSearchFlat6();
+        $I->mapSearchFlat7();
+        $I->mapSearchFlat8();
+        $I->mapSearchFlat9();
+        $I->mapSearchFlat10();
+        $I->mapSearchFlat11();
+        $I->mapSearchFlat12();
+        $I->mapSearchFlat13();
+        $I->mapSearchFlat14();
+        $I->mapSearchFlat15();
+        $I->mapSearchFlat16();
+        $I->mapSearchFlat17();
+        $I->mapSearchFlat18();
+        $I->mapSearchFlat19();
+        $I->mapSearchFlat20();
+        $I->mapSearchFlat21();
+        $I->mapSearchFlat22();
+        $I->mapSearchFlat23();
+        $I->mapSearchFlat24();
+        $I->mapSearchFlat25();
+        $I->mapSearchFlat26();
+        $I->mapSearchFlat27();
+        $I->mapSearchFlat28();
+        $I->mapSearchFlat29();
 //       $I->pauseExecution();
 
 
-   }
+    }
 
 
 
@@ -136,7 +134,7 @@ class TestCest
 
 
     }
-   //----------------Parcel-------------------------//
+    //----------------Parcel-------------------------//
 //    /**
 //     *@before agencyLogin
 //     */
@@ -206,5 +204,4 @@ class TestCest
         $I->apiDeleteCommercialAdvert();
 
     }
-
 }

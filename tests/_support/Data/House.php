@@ -19,6 +19,8 @@ class House
     const generalArea = '75';
     const latitude = '49.44968';
     const longitude = '32.04494';
+    const searchLatitude = '49.39863';
+    const searchLongitude = '32.115822';
     const generalAreaUnit = 'Кв. метры';
     const wallMaterial = 'Дерево и кирпич';
     const roomCount = '4';

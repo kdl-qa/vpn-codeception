@@ -887,8 +887,8 @@ class Api extends \Codeception\Module
             'street' => $this->getStreet(34),
             'houseNumber' => Flat::houseNumber,
             'flatNumber' => Flat::uniqueFlatNumber(),
-            'latitude' => Flat::latitude,
-            'longitude' => Flat::longitude,
+            'latitude' => Flat::searchLatitude,
+            'longitude' => Flat::searchLongitude,
             'roomCount' => Flat::roomCount,
             'wallMaterial' => $this->getWallMaterials(0),
             'area' => Flat::generalArea,
@@ -1189,8 +1189,8 @@ class Api extends \Codeception\Module
             'district' => $this->getDistrict(3),
             'street' => $this->getStreet(52),
             'houseNumber' => House::uniqueHouseNumber(),
-            'latitude' => House::latitude,
-            'longitude' => House::longitude,
+            'latitude' => House::searchLatitude,
+            'longitude' => House::searchLongitude,
             'roomCount' => House::roomCount,
             'wallMaterial' => $this->getWallMaterials(10),
             'area' => House::generalArea,
@@ -1399,8 +1399,8 @@ class Api extends \Codeception\Module
 //            'district' => $this->getDistrict(7),
 //            'street' => $this->getStreet(32),
             'cadastralNumber' => Parcel::uniqueCadastralNumber(),
-            'latitude' => Parcel::latitude,
-            'longitude' => Parcel::longitude,
+//            'latitude' => Parcel::latitude,
+//            'longitude' => Parcel::longitude,
             'area' => Parcel::generalArea,
             'areaUnit' => $this->getAreaUnits(1),
 //            'communication' => [$this->getCommunications(0), $this->getCommunications(6)],
@@ -1480,8 +1480,8 @@ class Api extends \Codeception\Module
             'district' => $this->getDistrict(7),
             'street' => $this->getStreet(32),
             'cadastralNumber' => Parcel::uniqueCadastralNumber(),
-            'latitude' => Parcel::latitude,
-            'longitude' => Parcel::longitude,
+            'latitude' => Parcel::searchLatitude,
+            'longitude' => Parcel::searchLongitude,
             'area' => Parcel::generalArea,
             'areaUnit' => $this->getAreaUnits(1),
             'communication' => [$this->getCommunications(0)],
@@ -1716,7 +1716,7 @@ class Api extends \Codeception\Module
     function realtyCommercialAddSearch()
     {
         $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
-        $schema = file_get_contents(codecept_data_dir('schema_id.json'));
+//        $schema = file_get_contents(codecept_data_dir('schema_id.json'));
         $this->restModule->haveHttpHeader('token', $agencyToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/commercials/add', [
@@ -1727,8 +1727,8 @@ class Api extends \Codeception\Module
             'district' => $this->getDistrict(7),
             'street' => $this->getStreet(49),
             'houseNumber' => Commercial::uniqueCommercialNumber(),
-            'latitude' => Commercial::latitude,
-            'longitude' => Commercial::longitude,
+            'latitude' => Commercial::searchLatitude,
+            'longitude' => Commercial::searchLongitude,
             'area' => Commercial::generalArea,
             'areaUnit' => $this->getAreaUnits(0),
             'effectiveArea' => Commercial::effectiveArea,

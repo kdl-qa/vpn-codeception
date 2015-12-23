@@ -21,6 +21,8 @@ class Parcel
 //    const generalArea = '65';
     const latitude = '49.41473';
     const longitude = '32.08260';
+    const searchLatitude = '49.479318';
+    const searchLongitude = '31.995843';
     const generalArea = '50';
     const generalAreaUnit = 'Сотки';
     const descriptionParcelSell = 'Продается Земельный участок в тихом районе города. Все документы на землю в порядке и соответствуют законодательству страны. Рядом хорошая транспортная розвязка.';

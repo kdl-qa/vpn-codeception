@@ -26,6 +26,8 @@ class Commercial
     const generalArea = '250';
     const latitude = '49.44188';
     const longitude = '32.06402';
+    const searchLatitude = '49.483357';
+    const searchLongitude = '31.97087';
     const effectiveArea = '200';
     const roomCount = '5';
     const roomCountDefault = '5';

@@ -75,6 +75,7 @@ class SearchPage
     //----------------------------------------Характеристики объекта недвижимости-----------------//
 
     public static $characteristicsTab = '/html/body/div[2]/div[3]/form/div[2]';
+    public static $characteristicsMapTab = '/html/body/div[2]/div[2]/form/div[2]/div[1]';
 
     public static $marketTypeField = '[ng-model="ctrl.filters.market"] span';
     public static $marketType0 = '.cc-market-type0';
@@ -143,6 +144,9 @@ class SearchPage
 
     public static $areaTab = '/html/body/div[2]/div[3]/form/div[3]';
     public static $areaParcelTab = '/html/body/div[2]/div[3]/form/div[2]';
+    public static $areaParcelMapTab = '/html/body/div[2]/div[2]/form/div[2]';
+    public static $areaMapTab ='/html/body/div[2]/div[2]/form/div[3]';
+
 
 
     public static $generalAreaFrom = '[ng-model="ctrl.filters.minGeneralArea"]';
@@ -166,6 +170,7 @@ class SearchPage
     public static $kitchenAreaTo = '[ng-model="ctrl.filters.maxKichenArea"]';
 
     public static $floorsAndRoomsTab = '/html/body/div[2]/div[3]/form/div[4]';
+    public static $floorsAndRoomsMapTab = '/html/body/div[2]/div[2]/form/div[4]';
     public static $roomsCountFrom = '[ng-model="ctrl.filters.minRoomCount"]';
     public static $roomsCountTo = '[ng-model="ctrl.filters.maxRoomCount"]';
     public static $floorFrom = '[ng-model="ctrl.filters.minFloor"]';
@@ -175,6 +180,7 @@ class SearchPage
 
     //-------------------------Furniture-----------------------------------//
     public static $furnitureTab = '/html/body/div[2]/div[3]/form/div[5]';
+    public static $furnitureMapTab = '/html/body/div[2]/div[2]/form/div[5]';
     public static $furniture0 ='.cc-furnitures0';
     public static $furniture1 ='.cc-furnitures1';
     public static $furniture2 ='.cc-furnitures2';
@@ -186,6 +192,7 @@ class SearchPage
 
     //-------------------------Appliances-----------------------------------//
     public static $applianceTab = '/html/body/div[2]/div[3]/form/div[6]';
+    public static $applianceMapTab = '/html/body/div[2]/div[2]/form/div[6]';
     public static $appliance0 ='.cc-appliances0';
     public static $appliance1 ='.cc-appliances1';
     public static $appliance2 ='.cc-appliances2';
@@ -196,8 +203,11 @@ class SearchPage
 
     //----------------------Communications---------------------------------//
     public static $communicationTab ='/html/body/div[2]/div[3]/form/div[7]';
+    public static $communicationMapTab ='/html/body/div[2]/div[2]/form/div[7]';
     public static $communicationParcelTab = '/html/body/div[2]/div[3]/form/div[3]/div[1]';
+    public static $communicationParcelMapTab = '/html/body/div[2]/div[2]/form/div[3]/div[1]';
     public static $communicationCommercialTab ='/html/body/div[2]/div[3]/form/div[5]/div[1]';
+    public static $communicationCommercialMapTab ='/html/body/div[2]/div[2]/form/div[5]/div[1]';
     public static $communication0 ='.cc-communications0';
     public static $communication1 ='.cc-communications1';
     public static $communication2 ='.cc-communications2';
@@ -209,9 +219,13 @@ class SearchPage
 
     //-----------------------Additionals-------------------------------------//
     public static $additionalTab ='/html/body/div[2]/div[3]/form/div[7]/div[1]';
+    public static $additionalMapTab ='/html/body/div[2]/div[2]/form/div[7]/div[1]';
     public static $additionalHouseTab ='/html/body/div[2]/div[3]/form/div[8]/div[1]';
+    public static $additionalHouseMapTab ='/html/body/div[2]/div[2]/form/div[8]/div[1]';
     public static $additionalParcelTab = '/html/body/div[2]/div[3]/form/div[4]/div[1]';
+    public static $additionalParcelMapTab = '/html/body/div[2]/div[2]/form/div[4]/div[1]';
     public static $additionalCommercialTab = '/html/body/div[2]/div[3]/form/div[6]/div[1]';
+    public static $additionalCommercialMapTab = '/html/body/div[2]/div[2]/form/div[6]/div[1]';
     public static $additional0 ='.cc-additional0';
     public static $additional1 ='.cc-additional1';
     public static $additional2 ='.cc-additional2';
@@ -231,8 +245,11 @@ class SearchPage
 
     //-----------------------Near objects-------------------------------------//
     public static $nearObjectsTab ='/html/body/div[2]/div[3]/form/div[8]';
+    public static $nearObjectsMapTab ='/html/body/div[2]/div[2]/form/div[8]';
     public static $nearObjectsHouseTab ='/html/body/div[2]/div[3]/form/div[9]';
+    public static $nearObjectsHouseMapTab ='/html/body/div[2]/div[2]/form/div[9]';
     public static $nearObjectsParcelTab = '/html/body/div[2]/div[3]/form/div[5]/div[1]';
+    public static $nearObjectsParcelMapTab = '/html/body/div[2]/div[2]/form/div[5]/div[1]';
     public static $nearObject0 = '.cc-nearObject0';
     public static $nearObject1 = '.cc-nearObject1';
     public static $nearObject2 = '.cc-nearObject2';
@@ -245,6 +262,7 @@ class SearchPage
     public static $nearObject9 = '.cc-nearObject9';
 
     public static $listAdvertButton = '.listWhite';
+
     public static $mapAdvertButton = '.mapDark';
     public static $backupFilterLink = '[ng-click="ctrl.reset()"]';
     public static $cancelBackupFilterLink = '[ng-click="ctrl.reset(true)"]';
@@ -264,6 +282,12 @@ class SearchPage
     //------------------------------Search by map-------------------------------------//
     public static $yandexMap = '.search-map';
     public static $advertsCount = '[ng-show="ctrl.isResultVisible"]';
+    public static $markerTitle = '.yMarkerTitle';
+    public static $mark = '.ymaps-2-1-34-places-pane';
+    public static $cluster = 'ymaps.ymaps-2-1-34-events-pane.ymaps-2-1-34-user-selection-none';
+
+    public static $listAdvertButton1 = '.listDark';
+    public static $mapAdvertButton1 = '.mapWhite';
 
 
     //-------------------------------------------Search by Agency--------------------------------------//
