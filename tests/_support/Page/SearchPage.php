@@ -74,8 +74,8 @@ class SearchPage
 
     //----------------------------------------Характеристики объекта недвижимости-----------------//
 
-    public static $characteristicsTab = '/html/body/div[2]/div[3]/form/div[2]';
-    public static $characteristicsMapTab = '/html/body/div[2]/div[2]/form/div[2]/div[1]';
+    public static $characteristicsTab = '.cc-sidebar-characteristic-of-object';
+    public static $characteristicsMapTab = '.cc-sidebar-characteristic-of-object';
 
     public static $marketTypeField = '[ng-model="ctrl.filters.market"] span';
     public static $marketType0 = '.cc-market-type0';
@@ -142,10 +142,10 @@ class SearchPage
     public static $waterHeating4 = '.cc-water-heating-type4';
     public static $waterHeating5 = '.cc-water-heating-type5';
 
-    public static $areaTab = '/html/body/div[2]/div[3]/form/div[3]';
-    public static $areaParcelTab = '/html/body/div[2]/div[3]/form/div[2]';
-    public static $areaParcelMapTab = '/html/body/div[2]/div[2]/form/div[2]';
-    public static $areaMapTab ='/html/body/div[2]/div[2]/form/div[3]';
+    public static $areaTab = '.cc-sidebar-area-size';
+    public static $areaParcelTab = '.cc-sidebar-area-size';
+    public static $areaParcelMapTab = '.cc-sidebar-area-size';
+    public static $areaMapTab ='.cc-sidebar-area-size';
 
 
 
@@ -169,8 +169,8 @@ class SearchPage
     public static $kitchenAreaFrom = '[ng-model="ctrl.filters.minKichenArea"]';
     public static $kitchenAreaTo = '[ng-model="ctrl.filters.maxKichenArea"]';
 
-    public static $floorsAndRoomsTab = '/html/body/div[2]/div[3]/form/div[4]';
-    public static $floorsAndRoomsMapTab = '/html/body/div[2]/div[2]/form/div[4]';
+    public static $floorsAndRoomsTab = '.cc-sidebar-floor';
+    public static $floorsAndRoomsMapTab = '.cc-sidebar-floor';
     public static $roomsCountFrom = '[ng-model="ctrl.filters.minRoomCount"]';
     public static $roomsCountTo = '[ng-model="ctrl.filters.maxRoomCount"]';
     public static $floorFrom = '[ng-model="ctrl.filters.minFloor"]';
@@ -179,8 +179,7 @@ class SearchPage
     public static $floorNumberTo = '[ng-model="ctrl.filters.maxFloorCount"]';
 
     //-------------------------Furniture-----------------------------------//
-    public static $furnitureTab = '/html/body/div[2]/div[3]/form/div[5]';
-    public static $furnitureMapTab = '/html/body/div[2]/div[2]/form/div[5]';
+    public static $furnitureTab = '.cc-sidebar-furniture >div';
     public static $furniture0 ='.cc-furnitures0';
     public static $furniture1 ='.cc-furnitures1';
     public static $furniture2 ='.cc-furnitures2';
@@ -191,8 +190,7 @@ class SearchPage
     public static $furniture7 ='.cc-furnitures7';
 
     //-------------------------Appliances-----------------------------------//
-    public static $applianceTab = '/html/body/div[2]/div[3]/form/div[6]';
-    public static $applianceMapTab = '/html/body/div[2]/div[2]/form/div[6]';
+    public static $applianceTab = '.cc-sidebar-electrical >div';
     public static $appliance0 ='.cc-appliances0';
     public static $appliance1 ='.cc-appliances1';
     public static $appliance2 ='.cc-appliances2';
@@ -202,12 +200,7 @@ class SearchPage
     public static $appliance6 ='.cc-appliances6';
 
     //----------------------Communications---------------------------------//
-    public static $communicationTab ='/html/body/div[2]/div[3]/form/div[7]';
-    public static $communicationMapTab ='/html/body/div[2]/div[2]/form/div[7]';
-    public static $communicationParcelTab = '/html/body/div[2]/div[3]/form/div[3]/div[1]';
-    public static $communicationParcelMapTab = '/html/body/div[2]/div[2]/form/div[3]/div[1]';
-    public static $communicationCommercialTab ='/html/body/div[2]/div[3]/form/div[5]/div[1]';
-    public static $communicationCommercialMapTab ='/html/body/div[2]/div[2]/form/div[5]/div[1]';
+    public static $communicationTab ='.cc-sidebar-communications >div';
     public static $communication0 ='.cc-communications0';
     public static $communication1 ='.cc-communications1';
     public static $communication2 ='.cc-communications2';
@@ -218,14 +211,7 @@ class SearchPage
     public static $communication7 ='.cc-communications7';
 
     //-----------------------Additionals-------------------------------------//
-    public static $additionalTab ='/html/body/div[2]/div[3]/form/div[7]/div[1]';
-    public static $additionalMapTab ='/html/body/div[2]/div[2]/form/div[7]/div[1]';
-    public static $additionalHouseTab ='/html/body/div[2]/div[3]/form/div[8]/div[1]';
-    public static $additionalHouseMapTab ='/html/body/div[2]/div[2]/form/div[8]/div[1]';
-    public static $additionalParcelTab = '/html/body/div[2]/div[3]/form/div[4]/div[1]';
-    public static $additionalParcelMapTab = '/html/body/div[2]/div[2]/form/div[4]/div[1]';
-    public static $additionalCommercialTab = '/html/body/div[2]/div[3]/form/div[6]/div[1]';
-    public static $additionalCommercialMapTab = '/html/body/div[2]/div[2]/form/div[6]/div[1]';
+    public static $additionalTab ='.cc-sidebar-additionally >div';
     public static $additional0 ='.cc-additional0';
     public static $additional1 ='.cc-additional1';
     public static $additional2 ='.cc-additional2';
@@ -244,12 +230,7 @@ class SearchPage
     public static $additional15 ='.cc-additional15';
 
     //-----------------------Near objects-------------------------------------//
-    public static $nearObjectsTab ='/html/body/div[2]/div[3]/form/div[8]';
-    public static $nearObjectsMapTab ='/html/body/div[2]/div[2]/form/div[8]';
-    public static $nearObjectsHouseTab ='/html/body/div[2]/div[3]/form/div[9]';
-    public static $nearObjectsHouseMapTab ='/html/body/div[2]/div[2]/form/div[9]';
-    public static $nearObjectsParcelTab = '/html/body/div[2]/div[3]/form/div[5]/div[1]';
-    public static $nearObjectsParcelMapTab = '/html/body/div[2]/div[2]/form/div[5]/div[1]';
+    public static $nearObjectsTab ='.cc-sidebar-near-objects >div';
     public static $nearObject0 = '.cc-nearObject0';
     public static $nearObject1 = '.cc-nearObject1';
     public static $nearObject2 = '.cc-nearObject2';
@@ -305,7 +286,7 @@ class SearchPage
     public static $resultCategory = '.categoryType';
     public static $resultRoomCount = '[ng-if="item.realty.category.type != ctrl.const.realtyTypes.parcel"]';
     public static $resultAdvert = '.advertPreview';
-    public static $countSearchResult = '.afterSidebar strong.ng-binding';
+    public static $countSearchResult = '.cc-advertisements-count';
 
 
 

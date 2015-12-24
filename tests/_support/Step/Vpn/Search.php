@@ -172,7 +172,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -193,7 +193,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -213,7 +213,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -231,7 +231,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -255,9 +255,10 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
+
 
     }
     public function searchFlat6()
@@ -269,7 +270,10 @@ class Search extends \VpnTester
         $I->click(SearchPage::$flatCategory);
         $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
+//        $I->click(SearchPage::$searchButton);
         $I->click(SearchPage::$additionalTab);
+
+
         $I->click(SearchPage::$categoryType);
         $I->click(SearchPage::$flatCatType1);
 
@@ -278,7 +282,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -298,7 +302,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -316,7 +320,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -336,7 +340,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -359,7 +363,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -377,7 +381,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -394,7 +398,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -411,7 +415,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -429,7 +433,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -446,7 +450,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -464,7 +468,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -481,7 +485,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -498,7 +502,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -516,7 +520,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -533,7 +537,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -550,7 +554,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -567,7 +571,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -585,7 +589,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -602,7 +606,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -619,7 +623,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -637,7 +641,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -655,7 +659,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -673,7 +677,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -690,7 +694,7 @@ class Search extends \VpnTester
         $I->click(SearchPage::$searchButton);
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSee(SearchPage::$resultPrice);
         $I->dontSee(SearchPage::$resultAdvert);
     }
@@ -704,13 +708,10 @@ class Search extends \VpnTester
         $I->reloadPage();
         $I->amOnPage('/search');
         $I->waitForElement(SearchPage::$operationType1);
-//        $I->see('Продажа', SearchPage::$operationType1);
-//        $I->see('Аренда', SearchPage::$operationType2);
         $I->click(SearchPage::$operationType2);
 //        $I->see('Киевская область', SearchPage::$regionField);
         $I->click(SearchPage::$regionField);
         $I->fillField(SearchPage::$regionType,House::region);
-//        $I->see(SearchPage::$region0);
         $I->click(SearchPage::$region0);
         $I->click(SearchPage::$cityField);
         $I->fillField(SearchPage::$cityType, House::city);
@@ -735,8 +736,6 @@ class Search extends \VpnTester
         $I->dontSeeElement(SearchPage::$agencyField);
 
         $I->click(SearchPage::$characteristicsTab);
-//        $I->click(SearchPage::$marketTypeField);
-//        $I->click(SearchPage::$marketType1);
         $I->fillField(SearchPage::$buildYearFrom, House::buildYear);
         $I->fillField(SearchPage::$buildYearTo, House::buildYear);
         $I->click(SearchPage::$wallMaterialField);
@@ -779,10 +778,10 @@ class Search extends \VpnTester
         $I->click(SearchPage::$communicationTab);
         $I->click(SearchPage::$communication0);
 
-        $I->click(SearchPage::$additionalHouseTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
 
-        $I->click(SearchPage::$nearObjectsHouseTab);
+        $I->click(SearchPage::$nearObjectsTab);
 //        $I->click(SearchPage::$nearObject0);
         $I->click(SearchPage::$nearObject1);
 
@@ -846,15 +845,12 @@ class Search extends \VpnTester
         $I->waitForElement(SearchPage::$operationType2);
         $I->wait(1);
         $I->click(SearchPage::$operationType1);
-//        $I->click(SearchPage::$additionalTab1);
-//        $I->click(SearchPage::$additional0);
-//        $I->pauseExecution();
         $I->click(SearchPage::$searchButton);
 
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -872,7 +868,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -892,7 +888,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -910,7 +906,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -934,7 +930,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -945,9 +941,9 @@ class Search extends \VpnTester
         $I->wantTo('Change category type');
         $I->click(SearchPage::$categoryField);
         $I->click(SearchPage::$houseCategory);
-        $I->click(SearchPage::$additionalHouseTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
-        $I->click(SearchPage::$additionalHouseTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$categoryType);
         $I->click(SearchPage::$houseCatType1);
 
@@ -955,7 +951,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -974,7 +970,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -991,7 +987,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1009,7 +1005,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1028,7 +1024,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1046,7 +1042,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1063,7 +1059,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1080,7 +1076,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1097,7 +1093,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1114,7 +1110,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1132,7 +1128,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1149,7 +1145,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1167,7 +1163,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1185,7 +1181,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1202,7 +1198,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1219,7 +1215,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1237,7 +1233,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1254,7 +1250,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1272,7 +1268,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1290,7 +1286,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1308,7 +1304,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1318,7 +1314,7 @@ class Search extends \VpnTester
         $I->wantTo('Change additional');
         $I->click(SearchPage::$communication0);
         $I->click(SearchPage::$communication0);
-        $I->click(SearchPage::$additionalHouseTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
 
@@ -1326,7 +1322,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1336,14 +1332,14 @@ class Search extends \VpnTester
         $I->wantTo('Change near object');
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
-        $I->click(SearchPage::$nearObjectsHouseTab);
+        $I->click(SearchPage::$nearObjectsTab);
         $I->click(SearchPage::$nearObject0);
         $I->click(SearchPage::$nearObject1);
 
         $I->click(SearchPage::$searchButton);
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1386,20 +1382,20 @@ class Search extends \VpnTester
         $I->click(SearchPage::$auction);
 
 
-        $I->click(SearchPage::$areaParcelTab);
+        $I->click(SearchPage::$areaTab);
         $I->fillField(SearchPage::$generalAreaFrom, Parcel::generalArea);
         $I->fillField(SearchPage::$generalAreaTo, Parcel::generalArea);
         $I->click(SearchPage::$areaUnitField);
         $I->click(SearchPage::$areaUnit1);
 
-        $I->click(SearchPage::$communicationParcelTab);
+        $I->click(SearchPage::$communicationTab);
         $I->click(SearchPage::$communication0);
         $I->click(SearchPage::$communication1);
 
-        $I->click(SearchPage::$additionalParcelTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
 
-        $I->click(SearchPage::$nearObjectsParcelTab);
+        $I->click(SearchPage::$nearObjectsTab);
         $I->click(SearchPage::$nearObject0);
         $I->click(SearchPage::$nearObject1);
 
@@ -1455,7 +1451,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1473,7 +1469,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1493,7 +1489,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1511,7 +1507,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1535,7 +1531,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1546,9 +1542,9 @@ class Search extends \VpnTester
         $I->wantTo('Change category type');
         $I->click(SearchPage::$categoryField);
         $I->click(SearchPage::$parcelCategory);
-        $I->click(SearchPage::$additionalParcelTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
-        $I->click(SearchPage::$additionalParcelTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$categoryType);
         $I->click(SearchPage::$parcelCatType1);
 
@@ -1556,7 +1552,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1575,7 +1571,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1592,6 +1588,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1602,13 +1599,14 @@ class Search extends \VpnTester
         $I->wantTo('Change general area');
         $I->click(SearchPage::$currencyField);
         $I->click(SearchPage::$currencyUS);
-        $I->click(SearchPage::$areaParcelTab);
+        $I->click(SearchPage::$areaTab);
         $I->fillField(SearchPage::$generalAreaFrom, Parcel::editGeneralArea);
         $I->fillField(SearchPage::$generalAreaTo, Parcel::editGeneralArea);
         $I->click(SearchPage::$searchButton);
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1626,6 +1624,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1635,7 +1634,7 @@ class Search extends \VpnTester
         $I->wantTo('Change communications');
         $I->click(SearchPage::$areaUnitField);
         $I->click(SearchPage::$areaUnit1);
-        $I->click(SearchPage::$communicationParcelTab);
+        $I->click(SearchPage::$communicationTab);
         $I->click(SearchPage::$communication0);
         $I->click(SearchPage::$communication1);
 
@@ -1643,6 +1642,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1652,7 +1652,7 @@ class Search extends \VpnTester
         $I->wantTo('Change additional');
         $I->click(SearchPage::$communication0);
         $I->click(SearchPage::$communication1);
-        $I->click(SearchPage::$additionalParcelTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
 
@@ -1660,6 +1660,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1669,13 +1670,14 @@ class Search extends \VpnTester
         $I->wantTo('Change near object');
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
-        $I->click(SearchPage::$nearObjectsParcelTab);
+        $I->click(SearchPage::$nearObjectsTab);
         $I->click(SearchPage::$nearObject0);
         $I->click(SearchPage::$nearObject1);
 
         $I->click(SearchPage::$searchButton);
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1685,7 +1687,7 @@ class Search extends \VpnTester
     public function searchCommercial()
     {
         $I = $this;
-        $I->wantTo('Check search functionality House category');
+        $I->wantTo('Check search functionality Commercial category');
         $I->reloadPage();
         $I->amOnPage('/search');
         $I->waitForElement(SearchPage::$operationType1);
@@ -1748,10 +1750,10 @@ class Search extends \VpnTester
         $I->fillField(SearchPage::$floorNumberTo, Commercial::floors);
 //        $I->pauseExecution();
 
-        $I->click(SearchPage::$communicationCommercialTab);
+        $I->click(SearchPage::$communicationTab);
 //        $I->click(SearchPage::$communication0);
 
-        $I->click(SearchPage::$additionalCommercialTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
 
 
@@ -1821,7 +1823,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1839,7 +1841,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1859,7 +1861,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -1877,7 +1879,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1901,7 +1903,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1912,9 +1914,9 @@ class Search extends \VpnTester
         $I->wantTo('Change category type');
         $I->click(SearchPage::$categoryField);
         $I->click(SearchPage::$commercialCategory);
-        $I->click(SearchPage::$additionalCommercialTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
-        $I->click(SearchPage::$additionalCommercialTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$categoryType);
         $I->click(SearchPage::$commercialCatType1);
 
@@ -1922,7 +1924,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1941,7 +1943,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1958,7 +1960,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1976,7 +1978,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -1995,7 +1997,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -2013,7 +2015,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
 
@@ -2030,7 +2032,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -2047,7 +2049,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -2064,7 +2066,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -2081,7 +2083,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -2099,7 +2101,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -2116,7 +2118,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -2134,7 +2136,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -2153,7 +2155,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -2170,7 +2172,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -2181,7 +2183,7 @@ class Search extends \VpnTester
         $I->fillField(SearchPage::$floorNumberFrom, Commercial::floors);
         $I->fillField(SearchPage::$floorNumberTo, Commercial::floors);
 
-        $I->click(SearchPage::$communicationCommercialTab);
+        $I->click(SearchPage::$communicationTab);
         $I->click(SearchPage::$communication0);
         $I->click(SearchPage::$communication1);
 
@@ -2189,7 +2191,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -2199,7 +2201,7 @@ class Search extends \VpnTester
         $I->wantTo('Change additional');
         $I->click(SearchPage::$communication0);
         $I->click(SearchPage::$communication1);
-        $I->click(SearchPage::$additionalCommercialTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
 
@@ -2207,7 +2209,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<strong class="ng-binding">Oбъявлений: 0</strong>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$resultPrice);
         $I->dontSeeElement(SearchPage::$resultAdvert);
     }
@@ -2428,16 +2430,16 @@ class Search extends \VpnTester
         $I->fillField(SearchPage::$floorNumberFrom, Flat::floors);
         $I->fillField(SearchPage::$floorNumberTo, Flat::floors);
 
-        $I->click(SearchPage::$furnitureMapTab);
+        $I->click(SearchPage::$furnitureTab);
         $I->click(SearchPage::$furniture0);
 
-        $I->click(SearchPage::$applianceMapTab);
+        $I->click(SearchPage::$applianceTab);
         $I->click(SearchPage::$appliance0);
 
-        $I->click(SearchPage::$additionalMapTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
 
-        $I->click(SearchPage::$nearObjectsMapTab);
+        $I->click(SearchPage::$nearObjectsTab);
         $I->click(SearchPage::$nearObject0);
 
         $I->click(SearchPage::$searchButton);
@@ -2467,7 +2469,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat2()
@@ -2483,7 +2485,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
 
@@ -2502,7 +2504,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat4()
@@ -2519,7 +2521,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -2542,7 +2544,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -2553,9 +2555,9 @@ class Search extends \VpnTester
 
         $I->click(SearchPage::$categoryField);
         $I->click(SearchPage::$flatCategory);
-        $I->click(SearchPage::$additionalMapTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
-        $I->click(SearchPage::$additionalMapTab);
+        $I->click(SearchPage::$additionalTab);
 
         $I->click(SearchPage::$categoryType);
         $I->click(SearchPage::$flatCatType1);
@@ -2565,7 +2567,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -2584,7 +2586,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -2601,7 +2603,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -2620,7 +2622,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat10()
@@ -2642,7 +2644,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -2659,7 +2661,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -2675,7 +2677,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -2691,7 +2693,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -2708,7 +2710,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat15()
@@ -2724,7 +2726,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat16()
@@ -2741,7 +2743,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat17()
@@ -2757,7 +2759,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result---------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat18()
@@ -2773,7 +2775,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result----------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat19()
@@ -2790,7 +2792,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat20()
@@ -2806,7 +2808,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat21()
@@ -2822,7 +2824,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat22()
@@ -2838,7 +2840,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat23()
@@ -2855,7 +2857,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat24()
@@ -2871,7 +2873,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat25()
@@ -2887,7 +2889,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat26()
@@ -2896,7 +2898,7 @@ class Search extends \VpnTester
         $I->wantTo('Change furniture');
         $I->fillField(SearchPage::$floorNumberFrom, Flat::floors);
         $I->fillField(SearchPage::$floorNumberTo, Flat::floors);
-        $I->click(SearchPage::$furnitureMapTab);
+        $I->click(SearchPage::$furnitureTab);
         $I->click(SearchPage::$furniture0);
         $I->click(SearchPage::$furniture1);
 
@@ -2904,7 +2906,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat27()
@@ -2913,7 +2915,7 @@ class Search extends \VpnTester
         $I->wantTo('Change appliance');
         $I->click(SearchPage::$furniture0);
         $I->click(SearchPage::$furniture1);
-        $I->click(SearchPage::$applianceMapTab);
+        $I->click(SearchPage::$applianceTab);
         $I->click(SearchPage::$appliance0);
         $I->click(SearchPage::$appliance1);
 
@@ -2921,7 +2923,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat28()
@@ -2930,7 +2932,7 @@ class Search extends \VpnTester
         $I->wantTo('Change additional');
         $I->click(SearchPage::$appliance0);
         $I->click(SearchPage::$appliance1);
-        $I->click(SearchPage::$additionalMapTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
 
@@ -2938,7 +2940,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchFlat29()
@@ -2947,14 +2949,14 @@ class Search extends \VpnTester
         $I->wantTo('Change near');
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
-        $I->click(SearchPage::$nearObjectsMapTab);
+        $I->click(SearchPage::$nearObjectsTab);
         $I->click(SearchPage::$nearObject0);
         $I->click(SearchPage::$nearObject1);
 
         $I->click(SearchPage::$searchButton);
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
 
@@ -3027,19 +3029,19 @@ class Search extends \VpnTester
         $I->fillField(SearchPage::$floorNumberFrom, House::floors);
         $I->fillField(SearchPage::$floorNumberTo, House::floors);
 
-        $I->click(SearchPage::$furnitureMapTab);
+        $I->click(SearchPage::$furnitureTab);
 //        $I->click(SearchPage::$furniture0);
 
-        $I->click(SearchPage::$applianceMapTab);
+        $I->click(SearchPage::$applianceTab);
 //        $I->click(SearchPage::$appliance0);
 
-        $I->click(SearchPage::$communicationMapTab);
+        $I->click(SearchPage::$communicationTab);
         $I->click(SearchPage::$communication0);
 
-        $I->click(SearchPage::$additionalHouseMapTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
 
-        $I->click(SearchPage::$nearObjectsHouseMapTab);
+        $I->click(SearchPage::$nearObjectsTab);
         $I->click(SearchPage::$nearObject0);
         $I->click(SearchPage::$nearObject1);
 
@@ -3070,7 +3072,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -3087,7 +3089,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
 
@@ -3106,7 +3108,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse4()
@@ -3123,7 +3125,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -3146,7 +3148,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse6()
@@ -3155,9 +3157,9 @@ class Search extends \VpnTester
         $I->wantTo('Change category type');
         $I->click(SearchPage::$categoryField);
         $I->click(SearchPage::$houseCategory);
-        $I->click(SearchPage::$additionalHouseMapTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
-        $I->click(SearchPage::$additionalHouseMapTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$regionField);
         $I->click(SearchPage::$categoryType);
         $I->click(SearchPage::$houseCatType1);
@@ -3166,7 +3168,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -3184,7 +3186,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -3200,7 +3202,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -3217,7 +3219,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -3235,7 +3237,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -3252,7 +3254,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -3268,7 +3270,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse13()
@@ -3284,7 +3286,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse14()
@@ -3300,7 +3302,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse15()
@@ -3316,7 +3318,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse16()
@@ -3333,7 +3335,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse17()
@@ -3348,7 +3350,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse18()
@@ -3363,7 +3365,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse19()
@@ -3380,7 +3382,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse20()
@@ -3396,7 +3398,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse21()
@@ -3412,7 +3414,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse22()
@@ -3429,7 +3431,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse23()
@@ -3445,7 +3447,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse24()
@@ -3454,7 +3456,7 @@ class Search extends \VpnTester
         $I->wantTo('Change furniture');
         $I->fillField(SearchPage::$floorNumberFrom, House::floors);
         $I->fillField(SearchPage::$floorNumberTo, House::floors);
-        $I->click(SearchPage::$furnitureMapTab);
+        $I->click(SearchPage::$furnitureTab);
         $I->click(SearchPage::$furniture0);
         $I->click(SearchPage::$furniture1);
 
@@ -3462,7 +3464,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse25()
@@ -3471,7 +3473,7 @@ class Search extends \VpnTester
         $I->wantTo('Change appliance');
         $I->click(SearchPage::$furniture0);
         $I->click(SearchPage::$furniture1);
-        $I->click(SearchPage::$applianceMapTab);
+        $I->click(SearchPage::$applianceTab);
         $I->click(SearchPage::$appliance0);
         $I->click(SearchPage::$appliance1);
 
@@ -3479,7 +3481,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse26()
@@ -3488,7 +3490,7 @@ class Search extends \VpnTester
         $I->wantTo('Change additional');
         $I->click(SearchPage::$appliance0);
         $I->click(SearchPage::$appliance1);
-        $I->click(SearchPage::$communicationMapTab);
+        $I->click(SearchPage::$communicationTab);
         $I->click(SearchPage::$communication0);
         $I->click(SearchPage::$communication1);
 
@@ -3496,7 +3498,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse27()
@@ -3505,7 +3507,7 @@ class Search extends \VpnTester
         $I->wantTo('Change additional');
         $I->click(SearchPage::$communication0);
         $I->click(SearchPage::$communication0);
-        $I->click(SearchPage::$additionalHouseMapTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
 
@@ -3513,7 +3515,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchHouse28()
@@ -3522,14 +3524,14 @@ class Search extends \VpnTester
         $I->wantTo('Change near object');
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
-        $I->click(SearchPage::$nearObjectsHouseMapTab);
+        $I->click(SearchPage::$nearObjectsTab);
         $I->click(SearchPage::$nearObject0);
         $I->click(SearchPage::$nearObject1);
 
         $I->click(SearchPage::$searchButton);
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
 
@@ -3569,14 +3571,14 @@ class Search extends \VpnTester
         $I->click(SearchPage::$areaUnitField);
         $I->click(SearchPage::$areaUnit1);
 
-        $I->click(SearchPage::$communicationParcelMapTab);
+        $I->click(SearchPage::$communicationTab);
         $I->click(SearchPage::$communication0);
 //        $I->click(SearchPage::$communication1);
 
-        $I->click(SearchPage::$additionalParcelMapTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
 
-        $I->click(SearchPage::$nearObjectsParcelMapTab);
+        $I->click(SearchPage::$nearObjectsTab);
         $I->click(SearchPage::$nearObject0);
 //        $I->click(SearchPage::$nearObject1);
 
@@ -3611,7 +3613,7 @@ class Search extends \VpnTester
         //--------------------------Search result------------------------------------------//
 
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -3628,7 +3630,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
 
@@ -3647,7 +3649,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchParcel4()
@@ -3664,7 +3666,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -3687,7 +3689,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchParcel6()
@@ -3696,9 +3698,9 @@ class Search extends \VpnTester
         $I->wantTo('Change category type');
         $I->click(SearchPage::$categoryField);
         $I->click(SearchPage::$parcelCategory);
-        $I->click(SearchPage::$additionalParcelMapTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
-        $I->click(SearchPage::$additionalParcelMapTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$regionField);
         $I->click(SearchPage::$categoryType);
         $I->click(SearchPage::$parcelCatType1);
@@ -3707,7 +3709,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -3725,7 +3727,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -3741,7 +3743,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchParcel9()
@@ -3757,7 +3759,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -3774,7 +3776,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchParcel11()
@@ -3783,7 +3785,7 @@ class Search extends \VpnTester
         $I->wantTo('Change communications');
         $I->click(SearchPage::$areaUnitField);
         $I->click(SearchPage::$areaUnit1);
-        $I->click(SearchPage::$communicationParcelMapTab);
+        $I->click(SearchPage::$communicationTab);
         $I->click(SearchPage::$communication0);
         $I->click(SearchPage::$communication1);
 
@@ -3791,7 +3793,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchParcel12()
@@ -3800,7 +3802,7 @@ class Search extends \VpnTester
         $I->wantTo('Change additional');
         $I->click(SearchPage::$communication0);
         $I->click(SearchPage::$communication1);
-        $I->click(SearchPage::$additionalParcelMapTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
 
@@ -3808,7 +3810,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchParcel13()
@@ -3817,14 +3819,14 @@ class Search extends \VpnTester
         $I->wantTo('Change near object');
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
-        $I->click(SearchPage::$nearObjectsParcelMapTab);
+        $I->click(SearchPage::$nearObjectsTab);
         $I->click(SearchPage::$nearObject0);
         $I->click(SearchPage::$nearObject1);
 
         $I->click(SearchPage::$searchButton);
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
 
@@ -3893,11 +3895,11 @@ class Search extends \VpnTester
         $I->fillField(SearchPage::$floorNumberTo, Commercial::floors);
 //        $I->pauseExecution();
 
-        $I->click(SearchPage::$communicationCommercialMapTab);
+        $I->click(SearchPage::$communicationTab);
         $I->click(SearchPage::$communication0);
         $I->click(SearchPage::$communication1);
 
-        $I->click(SearchPage::$additionalCommercialMapTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
 //        $I->click(SearchPage::$additional1);
 
@@ -3931,7 +3933,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchCommercial2()
@@ -3947,7 +3949,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
 
@@ -3966,7 +3968,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchCommercial4()
@@ -3983,7 +3985,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -4006,7 +4008,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -4016,9 +4018,9 @@ class Search extends \VpnTester
         $I->wantTo('Change category type');
         $I->click(SearchPage::$categoryField);
         $I->click(SearchPage::$commercialCategory);
-        $I->click(SearchPage::$additionalCommercialMapTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
-        $I->click(SearchPage::$additionalCommercialMapTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$regionField);
         $I->click(SearchPage::$categoryType);
         $I->click(SearchPage::$commercialCatType1);
@@ -4027,7 +4029,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -4045,7 +4047,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -4061,7 +4063,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -4078,7 +4080,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -4096,7 +4098,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -4113,7 +4115,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
 
     }
@@ -4129,7 +4131,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchCommercial13()
@@ -4145,7 +4147,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchCommercial14()
@@ -4161,7 +4163,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchCommercial15()
@@ -4177,7 +4179,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchCommercial16()
@@ -4194,7 +4196,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchCommercial17()
@@ -4210,7 +4212,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchCommercial18()
@@ -4227,7 +4229,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchCommercial19()
@@ -4245,7 +4247,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchCommercial20()
@@ -4261,7 +4263,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchCommercial21()
@@ -4271,7 +4273,7 @@ class Search extends \VpnTester
         $I->fillField(SearchPage::$floorNumberFrom, Commercial::floors);
         $I->fillField(SearchPage::$floorNumberTo, Commercial::floors);
 
-        $I->click(SearchPage::$communicationCommercialMapTab);
+        $I->click(SearchPage::$communicationTab);
         $I->click(SearchPage::$communication0);
         $I->click(SearchPage::$communication1);
 
@@ -4279,7 +4281,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
     public function mapSearchCommercial22()
@@ -4288,7 +4290,7 @@ class Search extends \VpnTester
         $I->wantTo('Change additional');
         $I->click(SearchPage::$communication0);
         $I->click(SearchPage::$communication1);
-        $I->click(SearchPage::$additionalCommercialMapTab);
+        $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
         $I->click(SearchPage::$additional1);
 
@@ -4296,7 +4298,7 @@ class Search extends \VpnTester
 
         //--------------------------Search result------------------------------------------//
         $I->wait(1);
-        $I->seeInPageSource('<span class="ng-binding">Oбъявлений: 0</span>');
+       $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
 }
