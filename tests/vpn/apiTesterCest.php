@@ -9,7 +9,9 @@ class apiTesterCest
     public function apiAdminCity (VpnTester $I)
     {
 
-        $I->getStreetNameById(6,49);
+//        $I->getStreetNameById(6,49);
+        $I->apiAdminLogin();
+        $I->apiAdminAddInfoPage();
 
 //        $I->apiAdminLogin();
 //        $I->apiAgencyLogin1();

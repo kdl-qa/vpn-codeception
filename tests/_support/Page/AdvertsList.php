@@ -11,7 +11,8 @@ class AdvertsList
 
     public static $firstListAdvert = 'li.advert:first-child';
     public static $firstListAdvertTitle = '.advert:nth-child(1) .annTitle a.ng-binding';
-
+    public static $secondListAdvertTitle = '.advert:nth-child(2) .annTitle a.ng-binding';
+    public static $thirdListAdvertTitle = '.advert:nth-child(3) .annTitle a.ng-binding';
     public static $advInfoTab = 'ul.nav.nav-tabs li:nth-child(1)';
     public static $advInfoTable = 'table.ng-scope';
     public static $advUnpublishLink = 'tr:nth-child(1) td:nth-child(2) a';

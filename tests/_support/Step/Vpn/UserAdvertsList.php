@@ -21,6 +21,20 @@ class UserAdvertsList extends \VpnTester
         $I->doubleClick(AdvertsList::$firstListAdvertTitle);
         $I->wait(3);
     }
+    public function openSecondListAdvert()
+    {
+        $I  =$this;
+        $I->waitForElement(AdvertsList::$firstListAdvert);
+        $I->doubleClick(AdvertsList::$secondListAdvertTitle);
+        $I->wait(3);
+    }
+    public function openThirdListAdvert()
+    {
+        $I  =$this;
+        $I->waitForElement(AdvertsList::$firstListAdvert);
+        $I->doubleClick(AdvertsList::$thirdListAdvertTitle);
+        $I->wait(3);
+    }
 
     public function newFlatAdvertContains()
     {

@@ -16,6 +16,7 @@ class User
 
     static $agencyPass = 'L7KZXX';
     static $agencyEmail = 'support@uhome.ck.ua';
+    static $agencyUhomeName = 'UHome';
 
     //----------------------------------  Data to login CUSTOM agency ------------------------ //
 
@@ -36,6 +37,7 @@ class User
     //----------------------------------  Data to register agency ------------------------ //
 
     static $agencyName = 'partners-and-co';
+    static $agencyName1 = 'Domm';
     static $currentSubdomain;
     static $agencyfirstName = 'alex';
     static $agencylastName = 'berlin';

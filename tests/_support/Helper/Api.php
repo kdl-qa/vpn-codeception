@@ -569,6 +569,8 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', $token);
         $this->restModule->sendGET('/profiles/announcements-lists/lists');
         $announcement_list = $this->restModule->grabResponse();
+        $this->restModule->seeResponseContainsJson(array('interestingCount' => '0'));
+        $this->restModule->seeResponseContainsJson(array('uninterestingCount' => '0'));
         file_put_contents(codecept_data_dir('agency_announcement_list.json'), $announcement_list);
         $this->restModule->seeResponseContainsJson(array('id' => User::getGroupId()));
     }
@@ -579,6 +581,8 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', $token);
         $this->restModule->sendGET('/profiles/announcements-lists/lists');
         $announcement_list = $this->restModule->grabResponse();
+        $this->restModule->seeResponseContainsJson(array('interestingCount' => '2'));
+        $this->restModule->seeResponseContainsJson(array('uninterestingCount' => '2'));
         file_put_contents(codecept_data_dir('agent_announcement_list.json'), $announcement_list);
         $this->restModule->seeResponseContainsJson(array('id' => User::getGroupId()));
     }
@@ -2307,7 +2311,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/profiles/announcements-lists/create', [
                 'name' => User::$groupName,
                 'client' => User::getUserId(1),
-                'reset' => 'true'
+                'reset' => true
         ]);
         $this->restModule->seeResponseCodeIs(200);
         $groupInfo = $this->restModule->grabResponse();
@@ -2373,7 +2377,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendPUT('/profiles/announcements-lists/'.User::getGroupId().'/edit',[
             'name' => User::$editGroupName,
             'client' => '56681347d69b5a5b0d8b4567',
-            'reset' => 'true'
+            'reset' => true
         ]);
         $this->restModule->seeResponseCodeIs(200);
         $this->restModule->seeResponseContainsJson(array('name' => User::$editGroupName));
@@ -2443,7 +2447,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/profiles/announcements-lists/create', [
             'name' => 'Test Agent Group',
             'client' => User::getUserId(1),
-            'reset' => 'true'
+            'reset' => true
         ]);
         $this->restModule->seeResponseCodeIs(200);
         $groupInfo = $this->restModule->grabResponse();
@@ -2504,7 +2508,7 @@ class Api extends \Codeception\Module
         $this->restModule->sendPUT('/profiles/announcements-lists/'.User::getGroupId().'/edit',[
             'name' => 'Edit Test Agent Group',
             'client' => '56698809d69b5ac8288b4567',
-            'reset' => 'true'
+            'reset' => false
         ]);
         $this->restModule->seeResponseCodeIs(200);
 

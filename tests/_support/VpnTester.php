@@ -91,6 +91,20 @@ class VpnTester extends \Codeception\Actor
         //$this->seeElement("//img[@alt='$this->agencyChiefFName $this->agencyChiefLName']");
         $this->saveSessionSnapshot('agent_login');
     }
+    function loginAgent1()
+    {
+//          if ($this->getScenario()->current('env') != 'firefox') {
+        if ($this->loadSessionSnapshot('agent_login')) return;
+//        }
+        $this->amOnPage(Login::$URL);
+        $this->waitForElement(Login::$email);
+        $this->fillField(Login::$email, User::$agentEmail);
+        $this->fillField(Login::$pass, User::$agentPass);
+        $this->click(Login::$submitLoginBtn);
+        $this->wait(3);
+        //$this->seeElement("//img[@alt='$this->agencyChiefFName $this->agencyChiefLName']");
+        $this->saveSessionSnapshot('agent_login');
+    }
 
     function userLogin()
     {

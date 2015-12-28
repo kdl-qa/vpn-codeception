@@ -116,6 +116,44 @@ class Search extends \VpnTester
 
 
     }
+    public function searchFlatCategory()
+    {
+        $I = $this;
+        $I->wantTo('Check search functionality Flat category');
+        $I->amOnPage('/search');
+        $I->waitForElement(SearchPage::$operationType1);
+//        $I->see('Продажа', SearchPage::$operationType1);
+//        $I->see('Аренда', SearchPage::$operationType2);
+        $I->click(SearchPage::$operationType1);
+        $I->see('Киевская область', SearchPage::$regionField);
+        $I->click(SearchPage::$regionField);
+        $I->fillField(SearchPage::$regionType, Flat::region);
+//        $I->see(SearchPage::$region0);
+        $I->click(SearchPage::$region0);
+        $I->click(SearchPage::$cityField);
+        $I->fillField(SearchPage::$cityType, Flat::city);
+        $I->click(SearchPage::$city0);
+        $I->click(SearchPage::$districtField);
+        $I->fillField(SearchPage::$districtType, Flat::editDistrict);
+        $I->click(SearchPage::$district0);
+        $I->click(SearchPage::$streetField);
+        $I->fillField(SearchPage::$streetType, Flat::apiStreet);
+        $I->click(SearchPage::$street0);
+        $I->click(SearchPage::$categoryField);
+        $I->click(SearchPage::$flatCategory);
+        $I->click(SearchPage::$categoryType);
+        $I->click(SearchPage::$flatCatType0);
+        $I->click(SearchPage::$searchButton);
+
+        $I->waitForElement(SearchPage::$resultPrice);
+
+        $I->seeElement(SearchPage::$sortField);
+        $I->seeElement(SearchPage::$addToGroup);
+        $I->seeElement(SearchPage::$listAdvertButton);
+        $I->seeElement(SearchPage::$mapAdvertButton);
+
+    }
+
     public function checkFlatObjectPropertiesSearch()
     {
         $I = $this;
@@ -3057,6 +3095,36 @@ class Search extends \VpnTester
         $I->seeElement(SearchPage::$mapAdvertButton1);
         $I->click('div.line>a');
 
+    }
+    public function mapSearchHouseCategory()
+    {
+        $I = $this;
+        $I->wantTo('Check search functionality House category');
+        $I->reloadPage();
+        $I->amOnPage('/map');
+        $I->waitForElement(SearchPage::$operationType1);
+        $I->click(SearchPage::$operationType2);
+        $I->click(SearchPage::$regionField);
+        $I->fillField(SearchPage::$regionType, House::region);
+        $I->click(SearchPage::$region0);
+        $I->click(SearchPage::$cityField);
+        $I->fillField(SearchPage::$cityType, House::city);
+        $I->click(SearchPage::$city0);
+        $I->click(SearchPage::$districtField);
+        $I->fillField(SearchPage::$districtType, House::districtSearch);
+        $I->click(SearchPage::$district0);
+        $I->click(SearchPage::$streetField);
+        $I->fillField(SearchPage::$streetType, House::apiStreet);
+        $I->click(SearchPage::$street0);
+        $I->click(SearchPage::$categoryField);
+        $I->click(SearchPage::$houseCategory);
+        $I->click(SearchPage::$categoryType);
+        $I->click(SearchPage::$houseCatType0);
+        $I->click(SearchPage::$periodField);
+        $I->click(SearchPage::$period1);
+        $I->click(SearchPage::$searchButton);
+        $I->wait(3);
+        $I->pauseExecution();
     }
     public function mapSearchHouse1()
     {

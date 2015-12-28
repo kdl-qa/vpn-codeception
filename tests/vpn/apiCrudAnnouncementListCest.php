@@ -62,7 +62,6 @@ class apiCrudAnnouncementListCest
     {
 
         $I->apiAgencyAddAnnouncementsList();
-        $I->apiGetAgencyAnnouncementsList();
         $I->apiAgencyAddAdvertToAnnouncementsList();
         $I->apiAgencySendAnnouncementListToUser();
     }
@@ -84,6 +83,7 @@ class apiCrudAnnouncementListCest
     {
         $I->apiAgencyAnnouncementList();
         $I->apiAgencyEditAnnouncementList();
+        $I->apiGetAgencyAnnouncementsList();
         $I->apiAgencyDeleteAdvertAnnouncementList();
         $I->apiAgencyDeleteAnnouncementList();
     }
@@ -95,7 +95,6 @@ class apiCrudAnnouncementListCest
     public function apiAgentAddAnnouncementsList(VpnTester $I)
     {
         $I->apiAgentAddAnnouncementsList();
-        $I->apiGetAgentAnnouncementsList();
         $I->apiAgentAddAdvertToAnnouncementsList();
         $I->apiAgentSendAnnouncementListToUser();
     }
@@ -117,7 +116,9 @@ class apiCrudAnnouncementListCest
     public function apiAgentAnnouncementList(VpnTester $I)
     {
         $I->apiAgentAnnouncementList();
+        $I->pauseExecution();
         $I->apiAgentEditAnnouncementList();
+        $I->apiGetAgentAnnouncementsList();
         $I->apiAgentDeleteAdvertAnnouncementList();
         $I->apiAgentDeleteAnnouncementList();
     }
