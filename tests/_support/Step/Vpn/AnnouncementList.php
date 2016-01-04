@@ -6,6 +6,7 @@ use Data\User;
 use Page\AdvPage;
 use Page\AnnouncementListPage;
 use Page\SearchPage;
+use \Facebook\WebDriver\WebDriverKeys;
 
 class AnnouncementList extends \VpnTester
 {
@@ -73,6 +74,7 @@ class AnnouncementList extends \VpnTester
         $I->click(AnnouncementListPage::$generalInfo);
         $I->waitForElement(AnnouncementListPage::$groupNameField);
         $I->doubleClick(AnnouncementListPage::$groupNameField);
+        $I->pressKey(AnnouncementListPage::$groupNameField, WebDriverKeys::DELETE);
         $I->pauseExecution();
         $I->fillField(AnnouncementListPage::$groupNameField, User::$editGroupName);
         $I->click(AnnouncementListPage::$clientNameField);

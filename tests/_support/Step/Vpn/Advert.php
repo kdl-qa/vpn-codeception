@@ -31,17 +31,17 @@ class Advert extends \VpnTester
         $I = $this;
         $I->wantTo('Fill in flat address');
         $I->click(AddAdvert::$regionField);
-        $I->fillField(AddAdvert::$typeRegion, Flat::region);
+        $I->fillField(AddAdvert::$typeRegion, $this->getRegionName(21));
         $I->click(AddAdvert::$region0);
         $I->click(AddAdvert::$cityField);
-        $I->fillField(AddAdvert::$typeCity, Flat::city);
+        $I->fillField(AddAdvert::$typeCity, $this->getCityName(6));
         $I->click(AddAdvert::$chooseCity);
         $I->click(AddAdvert::$district);
-        $I->fillField(AddAdvert::$typeDistrict,Flat::district);
+        $I->fillField(AddAdvert::$typeDistrict, $this->getDistrictName(0));
         $I->click(AddAdvert::$chooseDistrict);
 
         $I->click(AddAdvert::$street);
-        $I->fillField(AddAdvert::$typeStreet,Flat::street);
+        $I->fillField(AddAdvert::$typeStreet, $this->getStreetName(144));
         $I->click(AddAdvert::$chooseStreet);
         $I->fillField(AddAdvert::$house_number,Flat::houseNumber);
         $I->fillField(AddAdvert::$flat_number,Flat::uniqueFlatNumber());
@@ -113,58 +113,58 @@ class Advert extends \VpnTester
     {
         $I = $this;
         $I->wantTo('Check Flat object properties Plain');
-        $I->see(Flat::category,AddAdvert::$objectPropsTable);
-        $I->see(Flat::categoryType0,AddAdvert::$objectPropsTable);
-        $I->see(Flat::region,AddAdvert::$objectPropsTable);
-        $I->see(Flat::city,AddAdvert::$objectPropsTable);
-        $I->see(Flat::district,AddAdvert::$objectPropsTable);
+        $I->see($this->getCategoryName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getFlatCategoryTypeName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getRegionName(21),AddAdvert::$objectPropsTable);
+        $I->see($this->getCityName(6),AddAdvert::$objectPropsTable);
+        $I->see($this->getDistrictName(0),AddAdvert::$objectPropsTable);
         $I->see(Flat::street,AddAdvert::$objectPropsTable);
         $I->see(Flat::houseNumber,AddAdvert::$objectPropsTable);
         $I->see(Flat::$currentFlatNumber,AddAdvert::$objectPropsTable);
         $I->see(Flat::generalArea,AddAdvert::$objectPropsTable);
-        $I->see(Flat::wallMaterial,AddAdvert::$objectPropsTable);
+        $I->see($this->getWallMaterialsName(5),AddAdvert::$objectPropsTable);
         $I->see(Flat::roomCount,AddAdvert::$objectPropsTable);
         $I->see(Flat::floors,AddAdvert::$objectPropsTable);
         $I->see(Flat::floorNumber,AddAdvert::$objectPropsTable);
-        $I->see(Lists::wc0,AddAdvert::$objectPropsTable);
-        $I->see(Lists::balconies0,AddAdvert::$objectPropsTable);
-        $I->see(Lists::heating0,AddAdvert::$objectPropsTable);
-        $I->see(Lists::waterHeat0,AddAdvert::$objectPropsTable);
+        $I->see($this->getWCName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getBalconiesName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getHeatingsName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getWaterHeatingsName(0),AddAdvert::$objectPropsTable);
     }
 
     public function checkFlatObjectPropertiesComplex()
     {
         $I = $this;
         $I->wantTo('Check Flat object properties Complex');
-        $I->see(Flat::category,AddAdvert::$objectPropsTable);
-        $I->see(Flat::categoryType0,AddAdvert::$objectPropsTable);
-        $I->see(Flat::region,AddAdvert::$objectPropsTable);
-        $I->see(Flat::city,AddAdvert::$objectPropsTable);
-        $I->see(Flat::district,AddAdvert::$objectPropsTable);
-        $I->see(Flat::street,AddAdvert::$objectPropsTable);
+        $I->see($this->getCategoryName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getFlatCategoryTypeName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getRegionName(21),AddAdvert::$objectPropsTable);
+        $I->see($this->getCityName(6),AddAdvert::$objectPropsTable);
+        $I->see($this->getDistrictName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getStreetName(144),AddAdvert::$objectPropsTable);
         $I->see(Flat::houseNumber,AddAdvert::$objectPropsTable);
         $I->see(Flat::$currentFlatNumber,AddAdvert::$objectPropsTable);
         $I->see(Flat::generalArea,AddAdvert::$objectPropsTable);
-        $I->see(Flat::wallMaterial,AddAdvert::$objectPropsTable);
+        $I->see($this->getWallMaterialsName(5),AddAdvert::$objectPropsTable);
         $I->see(Flat::roomCount,AddAdvert::$objectPropsTable);
         $I->see(Flat::livingArea,AddAdvert::$objectPropsTable);
         $I->see(Flat::kitchenArea,AddAdvert::$objectPropsTable);
         $I->see(Flat::floors,AddAdvert::$objectPropsTable);
         $I->see(Flat::floorNumber,AddAdvert::$objectPropsTable);
-        $I->see(Lists::wc0,AddAdvert::$objectPropsTable);
-        $I->see(Lists::balconies1,AddAdvert::$objectPropsTable);
-        $I->see(Lists::heating1,AddAdvert::$objectPropsTable);
-        $I->see(Lists::waterHeat2,AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject0,AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject1,AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject2,AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject3,AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject4,AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject5,AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject6,AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject7,AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject8,AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject9,AddAdvert::$objectPropsTable);
+        $I->see($this->getWCName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getBalconiesName(1),AddAdvert::$objectPropsTable);
+        $I->see($this->getHeatingsName(1),AddAdvert::$objectPropsTable);
+        $I->see($this->getWaterHeatingsName(2),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(1),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(2),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(3),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(4),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(5),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(6),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(7),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(8),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(9),AddAdvert::$objectPropsTable);
 
     }
 
@@ -279,17 +279,17 @@ class Advert extends \VpnTester
         $I = $this;
         $I->wantTo('Fill in House object address');
         $I->click(AddAdvert::$regionField);
-        $I->fillField(AddAdvert::$typeRegion, House::region);
+        $I->fillField(AddAdvert::$typeRegion, $this->getRegionName(21));
         $I->click(AddAdvert::$region0);
         $I->click(AddAdvert::$cityField);
-        $I->fillField(AddAdvert::$typeCity, House::city);
+        $I->fillField(AddAdvert::$typeCity, $this->getCityName(6));
         $I->click(AddAdvert::$chooseCity);
         $I->click(AddAdvert::$district);
-        $I->fillField(AddAdvert::$typeDistrict,House::district);
+        $I->fillField(AddAdvert::$typeDistrict,$this->getDistrictName(9));
         $I->click(AddAdvert::$chooseDistrict);
 
         $I->click(AddAdvert::$street);
-        $I->fillField(AddAdvert::$typeStreet,House::street);
+        $I->fillField(AddAdvert::$typeStreet,$this->getStreetName(328));
         $I->click(AddAdvert::$chooseStreet);
         $I->fillField(AddAdvert::$house_number,House::uniqueHouseNumber());
         $I->click(AddAdvert::$buttonSubmit);
@@ -363,61 +363,61 @@ class Advert extends \VpnTester
     public function checkHouseObjectPropertiesPlain()
     {
         $I = $this;
-        $I->see(House::category,AddAdvert::$objectPropsTable);
-        $I->see(House::categoryType0,AddAdvert::$objectPropsTable);
-        $I->see(House::region,AddAdvert::$objectPropsTable);
-        $I->see(House::city,AddAdvert::$objectPropsTable);
-        $I->see(House::district,AddAdvert::$objectPropsTable);
-        $I->see(House::street,AddAdvert::$objectPropsTable);
+        $I->see($this->getCategoryName(1),AddAdvert::$objectPropsTable);
+        $I->see($this->getHouseCategoryTypeName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getRegionName(21),AddAdvert::$objectPropsTable);
+        $I->see($this->getCategoryName(6),AddAdvert::$objectPropsTable);
+        $I->see($this->getDistrictName(9),AddAdvert::$objectPropsTable);
+        $I->see($this->getStreetName(328),AddAdvert::$objectPropsTable);
         $I->see(House::$currentHouseNumber,AddAdvert::$objectPropsTable);
         $I->see(House::generalArea,AddAdvert::$objectPropsTable);
-        $I->see(Lists::wallMaterial10,AddAdvert::$objectPropsTable);
+        $I->see($this->getWallMaterialsName(10),AddAdvert::$objectPropsTable);
         $I->see(House::roomCount,AddAdvert::$objectPropsTable);
-        $I->see(Lists::wc0,AddAdvert::$objectPropsTable);
-        $I->see(Lists::heating0,AddAdvert::$objectPropsTable);
-        $I->see(Lists::waterHeat0,AddAdvert::$objectPropsTable);
+        $I->see($this->getWCName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getHeatingsName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getWaterHeatingsName(0),AddAdvert::$objectPropsTable);
     }
 
     public function checkHouseObjectPropertiesComplex()
     {
         $I = $this;
-        $I->see(House::category,AddAdvert::$objectPropsTable);
-        $I->see(House::categoryType0,AddAdvert::$objectPropsTable);
-        $I->see(House::region,AddAdvert::$objectPropsTable);
-        $I->see(House::city,AddAdvert::$objectPropsTable);
-        $I->see(House::district,AddAdvert::$objectPropsTable);
-        $I->see(House::street,AddAdvert::$objectPropsTable);
+        $I->see($this->getCategoryName(1),AddAdvert::$objectPropsTable);
+        $I->see($this->getHouseCategoryTypeName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getRegionName(21),AddAdvert::$objectPropsTable);
+        $I->see($this->getCategoryName(6),AddAdvert::$objectPropsTable);
+        $I->see($this->getDistrictName(9),AddAdvert::$objectPropsTable);
+        $I->see($this->getStreetName(328),AddAdvert::$objectPropsTable);
         $I->see(House::$currentHouseNumber,AddAdvert::$objectPropsTable);
         $I->see(House::generalArea,AddAdvert::$objectPropsTable);
-        $I->see(Lists::wallMaterial10,AddAdvert::$objectPropsTable);
+        $I->see($this->getWallMaterialsName(10),AddAdvert::$objectPropsTable);
         $I->see(House::roomCount,AddAdvert::$objectPropsTable);
         $I->see(House::livingArea,AddAdvert::$objectPropsTable);
         $I->see(House::kitchenArea,AddAdvert::$objectPropsTable);
         $I->see(House::landArea, AddAdvert::$objectPropsTable);
         $I->see(House::floors,AddAdvert::$objectPropsTable);
         $I->see(House::buildYear,AddAdvert::$objectPropsTable);
-        $I->see(Lists::wc0,AddAdvert::$objectPropsTable);
-        $I->see(Lists::heating2,AddAdvert::$objectPropsTable);
-        $I->see(Lists::waterHeat2,AddAdvert::$objectPropsTable);
+        $I->see($this->getWCName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getHeatingsName(2),AddAdvert::$objectPropsTable);
+        $I->see($this->getWaterHeatingsName(2),AddAdvert::$objectPropsTable);
 
-        $I->see(Lists::communication0, AddAdvert::$objectPropsTable);
-        $I->see(Lists::communication1, AddAdvert::$objectPropsTable);
-        $I->see(Lists::communication2, AddAdvert::$objectPropsTable);
-        $I->see(Lists::communication3, AddAdvert::$objectPropsTable);
-        $I->see(Lists::communication4, AddAdvert::$objectPropsTable);
-        $I->see(Lists::communication5, AddAdvert::$objectPropsTable);
-        $I->see(Lists::communication6, AddAdvert::$objectPropsTable);
-        $I->see(Lists::communication7, AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject0, AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject1, AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject2, AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject3, AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject4, AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject5, AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject6, AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject7, AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject8, AddAdvert::$objectPropsTable);
-        $I->see(Lists::nearObject9, AddAdvert::$objectPropsTable);
+        $I->see($this->getCommercialAdditionalsName(0), AddAdvert::$objectPropsTable);
+        $I->see($this->getCommercialAdditionalsName(1), AddAdvert::$objectPropsTable);
+        $I->see($this->getCommercialAdditionalsName(2), AddAdvert::$objectPropsTable);
+        $I->see($this->getCommercialAdditionalsName(3), AddAdvert::$objectPropsTable);
+        $I->see($this->getCommercialAdditionalsName(4), AddAdvert::$objectPropsTable);
+        $I->see($this->getCommercialAdditionalsName(5), AddAdvert::$objectPropsTable);
+        $I->see($this->getCommercialAdditionalsName(6), AddAdvert::$objectPropsTable);
+        $I->see($this->getCommercialAdditionalsName(7), AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(0), AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(1), AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(2), AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(3), AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(4), AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(5), AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(6), AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(7), AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(8), AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(9), AddAdvert::$objectPropsTable);
     }
 
     public function fillInHouseAdvertPropertiesPlain()

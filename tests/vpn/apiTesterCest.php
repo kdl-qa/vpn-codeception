@@ -5,34 +5,49 @@
 class apiTesterCest
 {
 
-
-    public function apiAdminCity (VpnTester $I)
+    protected function apiAdminLogin(VpnTester $I)
     {
-
-//        $I->getStreetNameById(6,49);
-        $I->apiAdminLogin();
-        $I->apiAdminAddInfoPage();
-
-//        $I->apiAdminLogin();
-//        $I->apiAgencyLogin1();
-////
-//////        $I->apiAgencyAddAnnouncementsList();
-//////        $I->apiAgencyEditAnnouncementList();
-//////        $I->apiAgencyAnnouncementList();
-//////        $I->apiGetAgencyAnnouncementsList();
-//        $I->apiAgencyAddAdvertToAnnouncementsList();
-//
-
-
-
-//        $I->apiAgencyDeleteAnnouncementList();
-
-
-//        $I->apiDeleteFlatAdvert();
-//        $I->apiDeleteHouseAdvert();
-//        $I->apiDeleteParcelAdvert();
-//        $I->apiDeleteCommercialAdvert();
+    $I->apiAdminLogin();
     }
+
+    protected function apiAgencyLogin(VpnTester $I)
+    {
+        $I->apiAgencyLogin();
+    }
+
+    protected function uploadImages(VpnTester $I)
+    {
+        $I->uploadSchema();
+        $I->uploadAdvImages();
+    }
+
+    /**
+     * @before uploadImages
+     *@before apiAgencyLogin
+     * @before apiAdminLogin
+     */
+
+    public function apiAddGarageRealtyPlain (VpnTester $I)
+    {
+//        $I->realtyGarageAddPlain();
+        $I->apiAdvertGarageAddPlain();
+//        $I->apiAdvertGarageAddComplex();
+//        $I->realtyGarageCheck();
+//        $I->realtyGarageEdit();
+//        $I->pauseExecution();
+//        $I->realtyGarageValidate();
+//        $I->realtyGarageDelete();
+    }
+//    /**
+//     * @before uploadImages
+//     *@before apiAgencyLogin
+//     * @before apiAdminLogin
+//     */
+//    public function apiAddGarageRealtyComplex (VpnTester $I)
+//    {
+//        $I->realtyGarageAddComplex();
+//        $I->realtyGarageDelete();
+//    }
 
 
 }

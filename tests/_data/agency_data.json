@@ -1,1 +1,7 @@
-{"id":"56681324d69b5a3e1c8b456c","token":"bvCTQH3spLjbapk4TdQzaEFB1Mjfzhjwp8qDVQiA-ws","name":"Domm","subdomain":"domm","firstName":"Test","lastName":"Test","email":"rblkkk@ukr.net","userType":"agency","userAvatar":{"id":"5672caf8d69b5a07218b4568","path":"/uploads/original/14/50/36/36/39/1450363639.57811450363639.jpeg","thumbnails":[{"id":"5672caf8d69b5a07218b4567","processor":"user_avatar","path":"/uploads/thumbnail/user_avatar/14/50/36/36/39/1450363639.58711450363639.jpeg"}]},"logo":{"id":"5672caf2d69b5a46248b4568","path":"/uploads/original/14/50/36/36/33/1450363633.81211450363633.jpeg","thumbnails":[{"id":"5672caf2d69b5a46248b4567","processor":"logo","path":"/uploads/thumbnail/logo/14/50/36/36/33/1450363633.82111450363633.jpeg"}]},"offices":[],"schedule":[{"id":"5678f441d69b5a5c4d8b4567","dayOfWeek":"1","startTime":"00:00","endTime":"00:00"}],"socialAccounts":[{"vk":"vk.com/domm"},{"facebook":"facebook.com/domm"},{"google":"google.com/domm"},{"ok":"ok.ru/domm"},{"twitter":"twitter.com/domm"}],"services":[],"certificates":[]}
+<html>
+<head><title>502 Bad Gateway</title></head>
+<body bgcolor="white">
+<center><h1>502 Bad Gateway</h1></center>
+<hr><center>nginx</center>
+</body>
+</html>

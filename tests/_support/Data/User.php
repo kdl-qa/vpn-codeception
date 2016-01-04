@@ -39,8 +39,8 @@ class User
     static $agencyName = 'partners-and-co';
     static $agencyName1 = 'Domm';
     static $currentSubdomain;
-    static $agencyfirstName = 'alex';
-    static $agencylastName = 'berlin';
+    static $agencyFirstName = 'alex';
+    static $agencyLastName = 'berlin';
     static $agencyRegPass = '123456';
     static $agencyDescription = 'Lorem ipsum dolor';
     static $agencyOfficeName0 = 'Main';

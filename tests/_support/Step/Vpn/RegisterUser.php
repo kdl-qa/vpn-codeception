@@ -82,8 +82,8 @@ class RegisterUser extends  \VpnTester
         $I->wait(2);
         $I->attachFile(Registration::$agencyAvatar,'/img/avatar.jpg');
         $I->wait(2);
-        $I->fillField(Registration::$agentFirstName,User::$agencyfirstName);
-        $I->fillField(Registration::$agentLastName,User::$agencylastName);
+        $I->fillField(Registration::$agentFirstName,User::$agencyFirstName);
+        $I->fillField(Registration::$agentLastName,User::$agencyLastName);
         $I->wait(3);
         $I->attachFile(Registration::$agencyLogo,'/img/agency_logo.png');
         $I->wait(3);

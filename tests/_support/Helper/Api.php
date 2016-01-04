@@ -4,6 +4,7 @@ namespace Helper;
 // here you can define custom actions
 // all public methods declared in helper class will be available in $I
 
+use Data\Garage;
 use Data\Lists;
 use Data\User;
 use Data\Flat;
@@ -191,6 +192,13 @@ class Api extends \Codeception\Module
         file_put_contents(codecept_data_dir('regions.json'), $regions);
         return $regId;
     }
+    function getRegionName($id)
+    {
+        $region = file_get_contents(codecept_data_dir('regions.json'));
+        $regionName = json_decode($region)[$id]->name;
+        $this->debugSection('Region', $regionName);
+        return $regionName;
+    }
 
     function getCity($id)
     {
@@ -203,6 +211,14 @@ class Api extends \Codeception\Module
         file_put_contents(codecept_data_dir('cities.json'), $cities);
         return $cityId;
     }
+    function getCityName($id)
+    {
+        $city = file_get_contents(codecept_data_dir('cities.json'));
+        $cityName = json_decode($city)[$id]->name;
+        $this->debugSection('City Name', $cityName);
+        return $cityName;
+    }
+
 
     function getDistrict($id)
     {
@@ -215,6 +231,13 @@ class Api extends \Codeception\Module
         $file = file_put_contents(codecept_data_dir('districts.json'), $districts);
         return $districtId;
     }
+    function getDistrictName($id)
+    {
+        $district = file_get_contents(codecept_data_dir('districts.json'));
+        $districtName = json_decode($district)[$id]->name;
+        $this->debugSection('Districts Name', $districtName);
+        return $districtName;
+    }
 
     function getStreet($id)
     {
@@ -226,6 +249,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Street ID', $streetId);
         $file = file_put_contents(codecept_data_dir('streets.json'), $streets);
         return $streetId;
+    }
+    function getStreetName($id)
+    {
+        $street = file_get_contents(codecept_data_dir('streets.json'));
+        $streetName = json_decode($street)[$id]->name;
+        $this->debugSection('Street Name', $streetName);
+        return $streetName;
     }
 
     function getCategories($id) //0..3
@@ -240,6 +270,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Cat ID', $CatId);
         return $CatId;
     }
+    function getCategoryName($id)
+    {
+        $caregory = file_get_contents(codecept_data_dir('categories.json'));
+        $caregoryName = json_decode($caregory)[$id]->name;
+        $this->debugSection('Category Name', $caregoryName);
+        return $caregoryName;
+    }
 
     function getFlatCategoryTypes($id) //0..1
     {
@@ -252,6 +289,13 @@ class Api extends \Codeception\Module
         $flatCatId = json_decode($cType)[$id]->id;
         $this->debugSection('flatCatId', $flatCatId);
         return $flatCatId;
+    }
+    function getFlatCategoryTypeName($id) //0..1
+    {
+        $caregoryType = file_get_contents(codecept_data_dir('flat_types.json'));
+        $caregoryTypeName = json_decode($caregoryType)[$id]->name;
+        $this->debugSection('Flat Category Type Name', $caregoryTypeName);
+        return $caregoryTypeName;
     }
 
     function getHouseCategoryTypes($id) //0..2
@@ -266,6 +310,13 @@ class Api extends \Codeception\Module
         $this->debugSection('houseCatId', $houseCatId);
         return $houseCatId;
     }
+    function getHouseCategoryTypeName($id) //0..2
+    {
+        $caregoryType = file_get_contents(codecept_data_dir('house_types.json'));
+        $caregoryTypeName = json_decode($caregoryType)[$id]->name;
+        $this->debugSection('House Category Type Name', $caregoryTypeName);
+        return $caregoryTypeName;
+    }
 
     function getParcelCategoryTypes($id) //0..4
     {
@@ -278,6 +329,13 @@ class Api extends \Codeception\Module
         $parcelCatId = json_decode($cType)[$id]->id;
         $this->debugSection('parcelCatId', $parcelCatId);
         return $parcelCatId;
+    }
+    function getParcelCategoryTypeName($id) //0..4
+    {
+        $caregoryType = file_get_contents(codecept_data_dir('parcel_types.json'));
+        $caregoryTypeName = json_decode($caregoryType)[$id]->name;
+        $this->debugSection('Parcel Category Type Name', $caregoryTypeName);
+        return $caregoryTypeName;
     }
 
     function getCommercialCategoryTypes($id) //0..10
@@ -292,6 +350,32 @@ class Api extends \Codeception\Module
         $this->debugSection('commercCatId', $commercCatId);
         return $commercCatId;
     }
+    function getCommercialCategoryTypeName($id) //0..10
+    {
+        $caregoryType = file_get_contents(codecept_data_dir('commercial_types.json'));
+        $caregoryTypeName = json_decode($caregoryType)[$id]->name;
+        $this->debugSection('Commercial Category Type Name', $caregoryTypeName);
+        return $caregoryTypeName;
+    }
+    function getGaragesCategoryTypes($id) //0..3
+    {
+        $this->restModule->haveHttpHeader ('Content-Type', 'application/json');
+        $garage = $this->getCategories(4);
+        $this->restModule->sendGET('/lists/category-types/' . $garage);
+        $cType = $this->restModule->grabResponse();
+        $this->debugSection('Garage Category Types', $cType);
+        file_put_contents(codecept_data_dir('garage_types.json'), $cType);
+        $garageCatId = json_decode($cType)[$id]->id;
+        $this->debugSection('garageCatId', $garageCatId);
+        return $garageCatId;
+    }
+    function getGaragesCategoryTypeName($id) //0..3
+    {
+        $caregoryType = file_get_contents(codecept_data_dir('garage_types.json'));
+        $caregoryTypeName = json_decode($caregoryType)[$id]->name;
+        $this->debugSection('Garages Category Type Name', $caregoryTypeName);
+        return $caregoryTypeName;
+    }
 
     function getFlatAdditionals($id) //0..15
     {
@@ -303,6 +387,13 @@ class Api extends \Codeception\Module
         $flatAdd = json_decode($flatAdditionals)[$id]->id;
         $this->debugSection('flatAdd', $flatAdd);
         return $flatAdd;
+    }
+    function getFlatAdditionalsName($id) //0..15
+    {
+        $additional = file_get_contents(codecept_data_dir('flat_additionals.json'));
+        $additionalName = json_decode($additional)[$id]->name;
+        $this->debugSection('Flat Additionals Name', $additionalName);
+        return $additionalName;
     }
 
     function getHouseAdditionals($id) //0..15
@@ -316,6 +407,13 @@ class Api extends \Codeception\Module
         $this->debugSection('houseAdd', $houseAdd);
         return $houseAdd;
     }
+    function getHouseAdditionalsName($id) //0..15
+    {
+        $additional = file_get_contents(codecept_data_dir('house_additionals.json'));
+        $additionalName = json_decode($additional)[$id]->name;
+        $this->debugSection('House Additionals Name', $additionalName);
+        return $additionalName;
+    }
 
     function getParcelAdditionals($id) //0..11
     {
@@ -327,7 +425,13 @@ class Api extends \Codeception\Module
         $parcelAdd = json_decode($parcelAdditionals)[$id]->id;
         $this->debugSection('parcelAdd', $parcelAdd);
         return $parcelAdd;
-
+    }
+    function getParcelAdditionalsName($id) //0..11
+    {
+        $additional = file_get_contents(codecept_data_dir('parcel_additionals.json'));
+        $additionalName = json_decode($additional)[$id]->name;
+        $this->debugSection('Parcel Additionals Name', $additionalName);
+        return $additionalName;
     }
 
     function getCommercialAdditionals($id) //0..7
@@ -341,6 +445,33 @@ class Api extends \Codeception\Module
         $this->debugSection('commercialAdd0', $commercialAdd);
         return $commercialAdd;
     }
+    function getCommercialAdditionalsName($id) //0..7
+    {
+        $additional = file_get_contents(codecept_data_dir('commercial_additionals.json'));
+        $additionalName = json_decode($additional)[$id]->name;
+        $this->debugSection('Commercial Additionals Name', $additionalName);
+        return $additionalName;
+    }
+
+    function getGarageAdditionals($id) //0..7
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $garage = $this->getCategories(4);
+        $this->restModule->sendGET('/lists/additionals/' . $garage);
+        $garageAdditionals = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('garage_additionals.json'), $garageAdditionals);
+        $garageAdd = json_decode($garageAdditionals)[$id]->id;
+        $this->debugSection('Garage Add0', $garageAdd);
+        return $garageAdd;
+    }
+    function getGarageAdditionalsName($id) //0..7
+    {
+        $additional = file_get_contents(codecept_data_dir('garage_additionals.json'));
+        $additionalName = json_decode($additional)[$id]->name;
+        $this->debugSection('Garage Additionals Name', $additionalName);
+        return $additionalName;
+    }
+
 
     function getAppliances($id) //0..7
     {
@@ -352,6 +483,13 @@ class Api extends \Codeception\Module
         $this->debugSection('appliancesId', $appliancesId);
         return $appliancesId;
     }
+    function getAppliancesName($id) //0..7
+    {
+        $appliances = file_get_contents(codecept_data_dir('appliances.json'));
+        $appliancesName = json_decode($appliances)[$id]->name;
+        $this->debugSection('Appliances Name', $appliancesName);
+        return $appliancesName;
+    }
 
     function getActualCurrency()
     {
@@ -359,7 +497,13 @@ class Api extends \Codeception\Module
         $this->restModule->sendGET('/lists/actual-currency');
         $actCurrency = $this->restModule->grabResponse();
         $file = file_put_contents(codecept_data_dir('actual_currency.json'), $actCurrency);
-
+    }
+    function getActualCurrencyName($id)
+    {
+        $actualCurrency = file_get_contents(codecept_data_dir('actual_currency.json'));
+        $actualCurrencyName = json_decode($actualCurrency)[$id]->currency;
+        $this->debugSection('Actual Currency Name', $actualCurrencyName);
+        return $actualCurrencyName;
     }
 
     function getAreaUnits($id) //0..2
@@ -372,6 +516,13 @@ class Api extends \Codeception\Module
         $this->debugSection('areaUnitId', $areaUnitId);
         return $areaUnitId;
     }
+    function getAreaUnitsName($id)
+    {
+        $areaUnits = file_get_contents(codecept_data_dir('area_units.json'));
+        $areaUnitsName = json_decode($areaUnits)[$id]->name;
+        $this->debugSection('Area Unit Name', $areaUnitsName);
+        return $areaUnitsName;
+    }
 
     function getBalconies($id) //0..3
     {
@@ -382,6 +533,13 @@ class Api extends \Codeception\Module
         $balconyId = json_decode($balconies)[$id]->id;
         $this->debugSection('balconyId0', $balconyId);
         return $balconyId;
+    }
+    function getBalconiesName($id)
+    {
+        $balconies = file_get_contents(codecept_data_dir('balconies.json'));
+        $balconiesName = json_decode($balconies)[$id]->name;
+        $this->debugSection('Balcony', $balconiesName);
+        return $balconiesName;
     }
 
     function getCommunications($id) //0..7
@@ -394,6 +552,13 @@ class Api extends \Codeception\Module
         $this->debugSection('communicatId', $communicatId);
         return $communicatId;
     }
+    function getCommunicationsName($id)
+    {
+        $communications = file_get_contents(codecept_data_dir('communications.json'));
+        $communicationsName = json_decode($communications)[$id]->name;
+        $this->debugSection('Communications Name', $communicationsName);
+        return $communicationsName;
+    }
 
     function getCurrency($id) //0..1
     {
@@ -404,6 +569,13 @@ class Api extends \Codeception\Module
         $currencyId = json_decode($currency)[$id]->id;
         $this->debugSection('currencyId', $currencyId);
         return $currencyId;
+    }
+    function getCurrencyName($id)
+    {
+        $currency = file_get_contents(codecept_data_dir('currency.json'));
+        $currencyName = json_decode($currency)[$id]->name;
+        $this->debugSection('Communications Name', $currencyName);
+        return $currencyName;
     }
 
     function getHouseNumbers($id)
@@ -429,6 +601,17 @@ class Api extends \Codeception\Module
         $this->debugSection('flat_number ID', $flatNumbersID);
         return $flatNumbersID;
     }
+    function getGarageNumbers($id)
+    {
+        $garageNumID = $this->getHouseNumbers(0);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/garage-numbers/' . $garageNumID);
+        $garage_numbers = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('garage_numbers.json'), $garage_numbers);
+        $garageNumbersID = json_decode($garage_numbers)[$id]->id;
+        $this->debugSection('garage_number ID', $garageNumbersID);
+        return $garageNumbersID;
+    }
 
     function getFurnitures($id) //0..7
     {
@@ -440,6 +623,13 @@ class Api extends \Codeception\Module
         $this->debugSection('furId', $furId);
         return $furId;
     }
+    function getFurnituresName($id)
+    {
+        $furnitures = file_get_contents(codecept_data_dir('furnitures.json'));
+        $furnituresName = json_decode($furnitures)[$id]->name;
+        $this->debugSection('Furnitures Name', $furnituresName);
+        return $furnituresName;
+    }
 
     function getHeatings($id) //0..4
     {
@@ -450,6 +640,13 @@ class Api extends \Codeception\Module
         $heatId = json_decode($heatings)[$id]->id;
         $this->debugSection('heatId', $heatId);
         return $heatId;
+    }
+    function getHeatingsName($id)
+    {
+        $heatings = file_get_contents(codecept_data_dir('heatings.json'));
+        $heatingsName = json_decode($heatings)[$id]->name;
+        $this->debugSection('Heatings Name', $heatingsName);
+        return $heatingsName;
     }
 
     function getMarketType($id) //0..1
@@ -474,6 +671,14 @@ class Api extends \Codeception\Module
         return $nObjId;
 
     }
+    function getNearObjectsName($id)
+    {
+        $nearObj = file_get_contents(codecept_data_dir('near_objects.json'));
+        $nearObjName = json_decode($nearObj)[$id]->name;
+        $this->debugSection('NearObjects Name', $nearObjName);
+        return $nearObjName;
+    }
+
 
     function getOperationType($id) //0..1
     {
@@ -484,6 +689,13 @@ class Api extends \Codeception\Module
         $opTypeId = json_decode($opTypes)[$id]->id;
         $this->debugSection('opTypeId', $opTypeId);
         return $opTypeId;
+    }
+    function getOperationTypeName($id)
+    {
+        $opTypes = file_get_contents(codecept_data_dir('operation_types.json'));
+        $opTypesName = json_decode($opTypes)[$id]->name;
+        $this->debugSection('OperationType Name', $opTypesName);
+        return $opTypesName;
     }
 
     function getPeriod($id) //0..1
@@ -496,6 +708,13 @@ class Api extends \Codeception\Module
         $this->debugSection('periodId', $periodId);
         return $periodId;
     }
+    function getPeriodName($id)
+    {
+        $periods = file_get_contents(codecept_data_dir('periods.json'));
+        $periodsName = json_decode($periods)[$id]->name;
+        $this->debugSection('Period', $periodsName);
+        return $periodsName;
+    }
 
     function getStatuses($id) //0..4
     {
@@ -506,6 +725,13 @@ class Api extends \Codeception\Module
         $statusId = json_decode($statuses)[$id]->id;
         $this->debugSection('statusId', $statusId);
         return $statusId;
+    }
+    function getStatusesName($id)
+    {
+        $statuses = file_get_contents(codecept_data_dir('statuses.json'));
+        $statusesName = json_decode($statuses)[$id]->name;
+        $this->debugSection('Status', $statusesName);
+        return $statusesName;
     }
 
     function getRepairs($id) //0..7
@@ -518,6 +744,13 @@ class Api extends \Codeception\Module
         $this->debugSection('repairId', $repairId);
         return $repairId;
     }
+    function getRepairsName($id)
+    {
+        $repairs = file_get_contents(codecept_data_dir('repairs.json'));
+        $repairsName = json_decode($repairs)[$id]->name;
+        $this->debugSection('Repairs Name', $repairsName);
+        return $repairsName;
+    }
 
     function getUnpublishReasons($id) //0..1
     {
@@ -528,6 +761,13 @@ class Api extends \Codeception\Module
         $unpReasonId = json_decode($unpubReason)[$id]->id;
         $this->debugSection('unpReasonId', $unpReasonId);
         return $unpReasonId;
+    }
+    function getUnpublishReasonsName($id)
+    {
+        $unpubReason = file_get_contents(codecept_data_dir('unpublish_reasons.json'));
+        $unpubReasonName = json_decode($unpubReason)[$id]->name;
+        $this->debugSection('Unpublish reason', $unpubReasonName);
+        return $unpubReasonName;
     }
 
     function getWallMaterials($id) //0..10
@@ -540,6 +780,13 @@ class Api extends \Codeception\Module
         $this->debugSection('wMaterialId', $wMaterialId);
         return $wMaterialId;
     }
+    function getWallMaterialsName($id)
+    {
+        $wallMaterials = file_get_contents(codecept_data_dir('wall_materials.json'));
+        $wallMaterialsName = json_decode($wallMaterials)[$id]->name;
+        $this->debugSection('Wall material', $wallMaterialsName);
+        return $wallMaterialsName;
+    }
 
     function getWaterHeatings($id) //0..4
     {
@@ -551,7 +798,13 @@ class Api extends \Codeception\Module
         $this->debugSection('wHeatId', $wHeatId);
         return $wHeatId;
     }
-
+    function getWaterHeatingsName($id)
+    {
+        $waterHeatings = file_get_contents(codecept_data_dir('water_heatings.json'));
+        $waterHeatingsName = json_decode($waterHeatings)[$id]->name;
+        $this->debugSection('Water Heating', $waterHeatingsName);
+        return $waterHeatingsName;
+    }
     function getWC($id) //0..2
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
@@ -562,11 +815,17 @@ class Api extends \Codeception\Module
         $this->debugSection('wcId', $wcId);
         return $wcId;
     }
+    function getWCName($id)
+    {
+        $wc = file_get_contents(codecept_data_dir('wc.json'));
+        $wcName = json_decode($wc)[$id]->name;
+        $this->debugSection('Water Heating', $wcName);
+        return $wcName;
+    }
 
     function apiGetAgencyAnnouncementsList()
     {
-        $token = User::getAgencyToken();
-        $this->restModule->haveHttpHeader('token', $token);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->sendGET('/profiles/announcements-lists/lists');
         $announcement_list = $this->restModule->grabResponse();
         $this->restModule->seeResponseContainsJson(array('interestingCount' => '0'));
@@ -577,8 +836,7 @@ class Api extends \Codeception\Module
 
     function apiGetAgentAnnouncementsList()
     {
-        $token = User::getAgentToken();
-        $this->restModule->haveHttpHeader('token', $token);
+        $this->restModule->haveHttpHeader('token', User::getAgentToken());
         $this->restModule->sendGET('/profiles/announcements-lists/lists');
         $announcement_list = $this->restModule->grabResponse();
         $this->restModule->seeResponseContainsJson(array('interestingCount' => '2'));
@@ -589,8 +847,7 @@ class Api extends \Codeception\Module
 
     function apiGetUserAnnouncementsList()
     {
-        $token = User::getUserToken();
-        $this->restModule->haveHttpHeader('token', $token);
+        $this->restModule->haveHttpHeader('token', User::getUserToken());
         $this->restModule->sendGET('/profiles/announcements-lists/lists');
         $announcement_list = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('user_announcement_list.json'), $announcement_list);
@@ -599,8 +856,7 @@ class Api extends \Codeception\Module
 
     function apiGetUser()
     {
-        $token = User::getUserToken();
-        $this->restModule->haveHttpHeader('token', $token);
+        $this->restModule->haveHttpHeader('token', User::getUserToken());
         $this->restModule->sendGET('/users/' . User::getUserId(1));
         $user_info = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('get_user.json'), $user_info);
@@ -608,8 +864,7 @@ class Api extends \Codeception\Module
 
     function apiGetAgent()
     {
-        $token = User::getAgentToken();
-        $this->restModule->haveHttpHeader('token', $token);
+        $this->restModule->haveHttpHeader('token', User::getAgentToken());
         $this->restModule->sendGET('/users/' . User::getUserId(2));
         $agent_info = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('get_agent.json'), $agent_info);
@@ -617,8 +872,7 @@ class Api extends \Codeception\Module
 
     function apiGetAgency()
     {
-        $token = User::getAgencyToken();
-        $this->restModule->haveHttpHeader('token', $token);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->sendGET('/users/' . User::getUserId(3));
         $agency_info = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('get_agency.json'), $agency_info);
@@ -628,12 +882,12 @@ class Api extends \Codeception\Module
         $agencyName = User::$agencyName;
         $region = $this->getRegion(21);
         $city = $this->getCity(6);
-        //http://uhome.co/api/v1/users/agencies/search/1/24?city=5620c5e1d69b5aaa228b45b4&name=best&region=5620c5e1d69b5aaa228b459c
         $this->restModule->sendGET('/users/agencies/search/1/24?city='.$city.'&name='.$agencyName.'&region='.$region.'');
         $agencies_list = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('agencies_list.json'), $agencies_list);
         $this->restModule->seeResponseCodeIS(200);
     }
+
 
     /*======================================================== API REALTY ==================================*/
 
@@ -641,10 +895,9 @@ class Api extends \Codeception\Module
 
     function realtyFlatHistory()
     {
-        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
         $realtyFlatID = file_get_contents(codecept_data_dir('realtyFlatId.json'));
 
-        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendGET('/realties/history/' . $realtyFlatID);
 //        $realtyFlatDelete = $this->restModule->grabResponse();
@@ -676,10 +929,9 @@ class Api extends \Codeception\Module
 
     function realtyHouseHistory()
     {
-        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
         $realtyHouseID = file_get_contents(codecept_data_dir('realtyHouseId.json'));
 
-        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendGET('/realties/history/' . $realtyHouseID);
         $this->restModule->seeResponseCodeIS(200);
@@ -695,10 +947,9 @@ class Api extends \Codeception\Module
 
     function realtyParcelHistory()
     {
-        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
         $realtyParcelID = file_get_contents(codecept_data_dir('realtyParcelId.json'));
 
-        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendGET('/realties/history/' . $realtyParcelID);
         $this->restModule->seeResponseCodeIS(200);
@@ -714,10 +965,9 @@ class Api extends \Codeception\Module
 
     function realtyCommercialHistory()
     {
-        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
         $realtyCommercialID = file_get_contents(codecept_data_dir('realtyCommercialId.json'));
 
-        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendGET('/realties/history/' . $realtyCommercialID);
         $this->restModule->seeResponseCodeIS(200);
@@ -733,9 +983,8 @@ class Api extends \Codeception\Module
 
     function realtiesStatistics()
     {
-        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
 
-        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendGET('/realties/statistics');
         $this->restModule->seeResponseCodeIS(200);
@@ -750,11 +999,10 @@ class Api extends \Codeception\Module
 
     function realtiesLists()
     {
-        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
         $agency = file_get_contents(codecept_data_dir('agency_data.json'));
         $agencyID = json_decode($agency)->id;
 
-        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendGET('/realties/lists', [
             'category' => $this->getCategories(0),
@@ -779,10 +1027,9 @@ class Api extends \Codeception\Module
     /*========================================= FLATS =========================================*/
     function realtyFlatAddPlain()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $schema = file_get_contents(codecept_data_dir('schema_id.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/flats/add', [
             'category' => $this->getCategories(0),
@@ -823,10 +1070,9 @@ class Api extends \Codeception\Module
 
     function realtyFlatAddComplex()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $schema = file_get_contents(codecept_data_dir('schema_id.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/flats/add', [
             'category' => $this->getCategories(0),
@@ -877,10 +1123,9 @@ class Api extends \Codeception\Module
     }
     function realtyFlatAddForSearch()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
 //        $schema = file_get_contents(codecept_data_dir('schema_id.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/flats/add', [
             'category' => $this->getCategories(0),
@@ -921,10 +1166,9 @@ class Api extends \Codeception\Module
 
     function realtyFlatCheck()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $flatNumbs = file_get_contents(codecept_data_dir('flat_numbers.json'));
         $flatNumber = json_decode($flatNumbs)[0]->number;
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/flats/check', [
             'category' => $this->getCategories(0),
@@ -946,9 +1190,8 @@ class Api extends \Codeception\Module
 
     function realtyFlatsValidate()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/flats/validate', [
             'category' => $this->getCategories(0),
@@ -1011,11 +1254,10 @@ class Api extends \Codeception\Module
 
     function realtyFlatsEdit() //previously you should execute function realtyFlatAdd(Plain or Complex)
     {
-        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
         $schema = file_get_contents(codecept_data_dir('schema_id.json'));
         $realtyFlatID = file_get_contents(codecept_data_dir('realtyFlatId.json'));
 
-        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPUT('/realties/flats/edit/' . $realtyFlatID, [
             'status' => 1,
@@ -1067,10 +1309,9 @@ class Api extends \Codeception\Module
 
     function realtyFlatsDelete()
     {
-        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
         $realtyFlatID = file_get_contents(codecept_data_dir('realtyFlatId.json'));
 
-        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendDELETE('/realties/' . $realtyFlatID . '/delete');
         $realtyFlatDelete = $this->restModule->grabResponse();
@@ -1084,9 +1325,8 @@ class Api extends \Codeception\Module
 
     function realtyHouseAddPlain()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $schema = file_get_contents(codecept_data_dir('schema_id.json'));
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/houses/add', [
             'category' => $this->getCategories(1),
@@ -1120,9 +1360,8 @@ class Api extends \Codeception\Module
 
     function realtyHouseAddComplex()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $schema = file_get_contents(codecept_data_dir('schema_id.json'));
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/houses/add', [
             'category' => $this->getCategories(1),
@@ -1182,8 +1421,7 @@ class Api extends \Codeception\Module
     }
     function realtyHouseAddSearch()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/houses/add', [
             'category' => $this->getCategories(1),
@@ -1227,9 +1465,8 @@ class Api extends \Codeception\Module
 
     function realtyHousesCheck()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/houses/check', [
             'category' => $this->getCategories(1),
@@ -1247,8 +1484,7 @@ class Api extends \Codeception\Module
 
     function realtyHousesValidate()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/houses/validate', [
             'category' => $this->getCategories(1),
@@ -1310,11 +1546,10 @@ class Api extends \Codeception\Module
 
     function realtyHousesEdit()
     {
-        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
         $schema = file_get_contents(codecept_data_dir('schema_id.json'));
         $realtyHouseID = file_get_contents(codecept_data_dir('realtyHouseId.json'));
 
-        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPUT('/realties/houses/edit/' . $realtyHouseID, [
             'status' => 1,
@@ -1375,10 +1610,9 @@ class Api extends \Codeception\Module
 
     function realtyHousesDelete()
     {
-        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
         $realtyHouseID = file_get_contents(codecept_data_dir('realtyHouseId.json'));
 
-        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendDELETE('/realties/' . $realtyHouseID . '/delete');
         $realtyHouseDelete = $this->restModule->grabResponse();
@@ -1392,8 +1626,7 @@ class Api extends \Codeception\Module
 
     function realtyParcelAddPlain()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/parcels/add', [
             'category' => $this->getCategories(2),
@@ -1421,9 +1654,8 @@ class Api extends \Codeception\Module
 
     function realtyParcelAddComplex()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $schema = file_get_contents(codecept_data_dir('schema_id.json'));
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/parcels/add', [
             'category' => $this->getCategories(2),
@@ -1472,9 +1704,8 @@ class Api extends \Codeception\Module
 
     function realtyParcelAddSearch()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
 //        $schema = file_get_contents(codecept_data_dir('schema_id.json'));
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/parcels/add', [
             'category' => $this->getCategories(2),
@@ -1503,10 +1734,9 @@ class Api extends \Codeception\Module
 
     function realtyParcelsCheck()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $cadastr = file_get_contents(codecept_data_dir('cadastral_number.txt'));
         $cadastrNumb = str_replace(':', '', $cadastr);
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/parcels/check', [
             'category' => $this->getCategories(2),
@@ -1524,8 +1754,7 @@ class Api extends \Codeception\Module
 
     function realtyParcelsValidate()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/parcels/validate', [
             'category' => $this->getCategories(2),
@@ -1564,11 +1793,10 @@ class Api extends \Codeception\Module
 
     function realtyParcelsEdit()
     {
-        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
         $schema = file_get_contents(codecept_data_dir('schema_id.json'));
         $realtyParcelID = file_get_contents(codecept_data_dir('realtyParcelId.json'));
 
-        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPUT('/realties/parcels/edit/' . $realtyParcelID, [
             'status' => 1,
@@ -1618,10 +1846,9 @@ class Api extends \Codeception\Module
 
     function realtyParcelsDelete()
     {
-        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
         $realtyParcelsID = file_get_contents(codecept_data_dir('realtyParcelId.json'));
 
-        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendDELETE('/realties/' . $realtyParcelsID . '/delete');
         $realtyParcelDelete = $this->restModule->grabResponse();
@@ -1635,9 +1862,8 @@ class Api extends \Codeception\Module
 
     function realtyCommercialAddPlain()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
 //        $schema = file_get_contents(codecept_data_dir('schema_id.json'));
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/commercials/add', [
             'category' => $this->getCategories(3),
@@ -1671,9 +1897,8 @@ class Api extends \Codeception\Module
 
     function realtyCommercialAddComplex()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $schema = file_get_contents(codecept_data_dir('schema_id.json'));
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/commercials/add', [
             'category' => $this->getCategories(3),
@@ -1719,9 +1944,8 @@ class Api extends \Codeception\Module
 
     function realtyCommercialAddSearch()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
 //        $schema = file_get_contents(codecept_data_dir('schema_id.json'));
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/commercials/add', [
             'category' => $this->getCategories(3),
@@ -1754,6 +1978,314 @@ class Api extends \Codeception\Module
         $this->debugSection('realtyCommercialId', $realtyCommercialId);
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
+    }
+    /*============================================GARAGES======================================*/
+
+    function realtyGarageAddPlain()
+    {
+
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/realties/garages/add', [
+            'category' => $this->getCategories(4),
+            'categoryType' => $this->getGaragesCategoryTypes(0),
+            'region' => $this->getRegion(21),
+            'city' => $this->getCity(6),
+            'street' => $this->getStreet(201),
+            'houseNumber' => Garage::houseNumber,
+            'garageNumber' => Flat::uniqueFlatNumber(),
+            'latitude' => Garage::latitude,
+            'longitude' => Garage::longitude,
+            'roomCount' => Garage::roomCount,
+            'wallMaterial' => $this->getWallMaterials(0),
+            'area' => Garage::generalArea,
+            'areaUnit' => $this->getAreaUnits(0),
+            'floor' => Garage::floor,
+            'floorNumber' => Garage::floorNumber,
+            'heating' => $this->getHeatings(0),
+//            'inspectionPit'=>Garage::inspectionPit0,
+
+//            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(1), $this->getNearObjects(5)],
+//            'schema' => $schema
+        ]);
+
+        $realtyGarage = $this->restModule->grabResponse();
+        $realtyGarageId = json_decode($realtyGarage)->id;
+        file_put_contents(codecept_data_dir('realtyGarageId.json'), $realtyGarageId);
+        $this->debugSection('realtyGarageId', $realtyGarageId);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+
+    }
+
+    function realtyGarageAddComplex()
+    {
+        $schema = file_get_contents(codecept_data_dir('schema_id.json'));
+
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/realties/garages/add', [
+            'category' => $this->getCategories(4),
+            'categoryType' => $this->getGaragesCategoryTypes(1),
+            'region' => $this->getRegion(21),
+            'city' => $this->getCity(6),
+            'district' => $this->getDistrict(16),
+            'street' => $this->getStreet(201),
+            'houseNumber' => Garage::houseNumber,
+            'garageNumber' => Flat::uniqueFlatNumber(),
+            'latitude' => Garage::latitude,
+            'longitude' => Garage::longitude,
+            'roomCount' => Garage::roomCount,
+            'wallMaterial' => $this->getWallMaterials(0),
+            'area' => Garage::generalArea,
+            'areaUnit' => $this->getAreaUnits(0),
+            'floor' => Garage::floor,
+            'floorNumber' => Garage::floorNumber,
+            'inspectionPit'=> '5680ece336107635f977b797',
+            'parkingPlace' => '5680ecef36107635f977b79a',
+            'transportType' =>'5680ed0136107635f977b7b6',
+            'buildYear' => Garage::buildYear,
+            'heating' => $this->getHeatings(1),
+            'communication' => [
+                $this->getCommunications(0),
+                $this->getCommunications(1),
+                $this->getCommunications(2),
+                $this->getCommunications(3),
+                $this->getCommunications(4),
+                $this->getCommunications(5),
+                $this->getCommunications(6),
+                $this->getCommunications(7)
+            ],
+            'nearObjects' => [
+                $this->getNearObjects(0),
+                $this->getNearObjects(1),
+                $this->getNearObjects(2),
+                $this->getNearObjects(3),
+                $this->getNearObjects(4),
+                $this->getNearObjects(5),
+                $this->getNearObjects(6),
+                $this->getNearObjects(7),
+                $this->getNearObjects(8),
+                $this->getNearObjects(9)
+            ],
+            'schema' => $schema
+        ]);
+
+        $realtyGarage = $this->restModule->grabResponse();
+        $realtyGarageId = json_decode($realtyGarage)->id;
+        file_put_contents(codecept_data_dir('realtyGarageId.json'), $realtyGarageId);
+        $this->debugSection('realtyGarageId', $realtyGarageId);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+
+    }
+    function realtyGarageAddForSearch()
+    {
+//        $schema = file_get_contents(codecept_data_dir('schema_id.json'));
+
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/realties/garages/add', [
+            'category' => $this->getCategories(0),
+            'categoryType' => $this->getFlatCategoryTypes(0),
+            'region' => $this->getRegion(21),
+            'city' => $this->getCity(6),
+            'district' => $this->getDistrict(7),
+            'street' => $this->getStreet(34),
+            'houseNumber' => Garage::houseNumber,
+            'flatNumber' => Garage::uniqueFlatNumber(),
+            'latitude' => Garage::searchLatitude,
+            'longitude' => Garage::searchLongitude,
+            'roomCount' => Garage::roomCount,
+            'wallMaterial' => $this->getWallMaterials(0),
+            'area' => Garage::generalArea,
+            'areaUnit' => $this->getAreaUnits(0),
+            'floor' => Garage::floor,
+            'floorNumber' => Garage::floorNumber,
+            'buildYear' => Garage::buildYear,
+            'wc' => $this->getWC(1),
+            'balcony' => $this->getBalconies(1),
+            'heating' => $this->getHeatings(1),
+            'waterHeating' => $this->getWaterHeatings(1),
+            'nearObjects' => [$this->getNearObjects(0)]
+//            'schema' => $schema
+        ]);
+
+        $realtyFlat = $this->restModule->grabResponse();
+        $realtyFlatId = json_decode($realtyFlat)->id;
+        file_put_contents(codecept_data_dir('realtyFlatId.json'), $realtyFlatId);
+        $this->debugSection('realtyFlatId', $realtyFlatId);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+
+    }
+
+    function realtyGarageCheck()
+    {
+        $flatNumbs = file_get_contents(codecept_data_dir('flat_numbers.json'));
+        $flatNumber = json_decode($flatNumbs)[0]->number;
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/realties/garages/check', [
+            'category' => $this->getCategories(4),
+            'categoryType' => $this->getGaragesCategoryTypes(1),
+            'region' => $this->getRegion(21),
+            'city' => $this->getCity(6),
+            'street' => $this->getStreet(201),
+            'houseNumber' => Garage::houseNumber,
+//            'garageNumber' => Flat::$currentFlatNumber
+            'garageNumber' => $flatNumber
+
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeHttpHeader('Content-Type', 'application/json');
+        $this->restModule->seeResponseMatchesJsonType(['id' => 'string']);
+
+    }
+
+    function realtyGarageValidate()
+    {
+
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/realties/garages/validate', [
+            'category' => $this->getCategories(0),
+            'categoryType' => $this->getFlatCategoryTypes(0),
+            'region' => $this->getRegion(21),
+            'city' => $this->getCity(6),
+            'district' => $this->getDistrict(16),
+            'street' => $this->getStreet(201),
+            'houseNumber' => Garage::houseNumber,
+            'garageNumber' => Flat::uniqueFlatNumber(),
+            'latitude' => Garage::latitude,
+            'longitude' => Garage::longitude,
+            'roomCount' => Garage::roomCount,
+            'wallMaterial' => $this->getWallMaterials(0),
+            'area' => Garage::generalArea,
+            'areaUnit' => $this->getAreaUnits(0),
+            'floor' => Garage::floor,
+            'floorNumber' => Garage::floorNumber,
+            'buildYear' => Garage::buildYear,
+            'heating' => $this->getHeatings(1),
+            'inspectionPit'=> '5680ece336107635f977b797',
+            'parkingPlace' => '5680ecef36107635f977b79a',
+            'transportType' =>'5680ed0136107635f977b7b6',
+            'communication' => [
+                $this->getCommunications(0),
+                $this->getCommunications(1),
+
+            ],
+            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(1)]
+
+        ]);
+
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeHttpHeader('Content-Type', 'application/json');
+        $this->restModule->seeResponseMatchesJsonType([
+            'category' => 'string',
+            'categoryType' => 'string',
+            'region' => 'string',
+            'city' => 'string',
+            'district' => 'string',
+            'street' => 'string',
+            'houseNumber' => 'integer',
+            'garageNumber' => 'integer',
+            'latitude' => 'float',
+            'longitude' => 'float',
+            'roomCount' => 'integer',
+            'wallMaterial' => 'string',
+            'area' => 'integer',
+            'areaUnit' => 'string',
+            'floor' => 'integer',
+            'floorNumber' => 'integer',
+            'buildYear' => 'integer',
+            'inspectionPit'=> 'string',
+            'parkingPlace' => 'string',
+            'transportType' =>'string',
+            'heating' => 'string',
+            'nearObjects' => 'array',
+            'communication' => 'array',
+        ]);
+    }
+
+    function realtyGarageEdit() //previously you should execute function realtyFlatAdd(Plain or Complex)
+    {
+        $schema = file_get_contents(codecept_data_dir('schema_id.json'));
+        $realtyGarageID = file_get_contents(codecept_data_dir('realtyGarageId.json'));
+
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/realties/garages/edit/' . $realtyGarageID, [
+            'status' => 1,
+            'region' => $this->getRegion(21),
+            'city' => $this->getCity(6),
+            'district' => $this->getDistrict(0),
+            'street' => $this->getStreet(0),
+            'houseNumber' => House::uniqueHouseNumber(),
+            'garageNumber' => Flat::uniqueFlatNumber(),
+            'latitude' => Garage::editLatitude,
+            'longitude' => Garage::editLongitude,
+            'roomCount' => Garage::editRoomCount,
+            'wallMaterial' => $this->getWallMaterials(2),
+            'area' => Garage::editGeneralArea,
+            'areaUnit' => $this->getAreaUnits(0),
+            'floor' => Garage::editFloor,
+            'floorNumber' => Garage::editFloorNumber,
+            'buildYear' => Garage::editBuildYear,
+            'heating' => $this->getHeatings(2),
+            'inspectionPit'=> '5680ece336107635f977b797',
+            'parkingPlace' => '5680ecef36107635f977b79a',
+            'transportType' =>'5680ed0136107635f977b7b6',
+            'communication' => [
+                $this->getCommunications(0),
+                $this->getCommunications(1),
+                $this->getCommunications(2),
+                $this->getCommunications(3),
+                $this->getCommunications(4),
+                $this->getCommunications(5),
+                $this->getCommunications(6),
+                $this->getCommunications(7)
+            ],
+            'nearObjects' => [
+                $this->getNearObjects(0),
+                $this->getNearObjects(1),
+                $this->getNearObjects(2),
+                $this->getNearObjects(3),
+                $this->getNearObjects(4),
+                $this->getNearObjects(5),
+                $this->getNearObjects(6),
+                $this->getNearObjects(7),
+                $this->getNearObjects(8),
+                $this->getNearObjects(9)
+            ],
+            'schema' => $schema
+        ]);
+
+
+        $realtyGarage = $this->restModule->grabResponse();
+        $realtyGarageId = json_decode($realtyGarage)->id;
+        if ($realtyGarageID === $realtyGarageId) {
+            file_put_contents(codecept_data_dir('realtyGarageId.json'), $realtyGarageId);
+        }
+        $this->debugSection('realtyGarageId', $realtyGarageId);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+    }
+
+    function realtyGarageDelete()
+    {
+        $realtyGarageID = file_get_contents(codecept_data_dir('realtyGarageId.json'));
+
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendDELETE('/realties/' . $realtyGarageID . '/delete');
+        $realtyGarageDelete = $this->restModule->grabResponse();
+        $this->debugSection('realtyGarageDelete', $realtyGarageDelete);
+        $this->restModule->seeResponseCodeIS(200);
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeHttpHeader('Content-Type', 'application/json');
     }
 
     /*==============================================SEARCH API=========================================================*/
@@ -2006,7 +2538,6 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
         $this->restModule->seeResponseCodeIs(200);
-//        $this->restModule->seeResponseContainsJson(array('total' => 13));
         $this->restModule->seeResponseContainsJson(array('id' => User::getCommercialId()));
         $search = $this->restModule->grabResponse();
         $this->debugSection('Commercial', $search);
@@ -2086,12 +2617,329 @@ class Api extends \Codeception\Module
 
 
     }
+
+    //--------------------------------------Save search-----------------------//
+    function apiAgencySaveFlatSearch()
+    {
+        $agencyID = json_decode(file_get_contents(codecept_data_dir() . 'agency_data.json'))->id;
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/profiles/searches/create', [
+           'name' => 'TestFlat',
+            'searchCriteria' => [
+                'operationType'=> $this->getOperationType(0),
+                'region' => $this->getRegion(21),
+                'city' => $this->getCity(6),
+                'district' => $this->getDistrict(7),
+                'street' => $this->getStreet(34),
+                'category' => $this->getCategories(0),
+                'categoryType' => $this->getFlatCategoryTypes(0),
+                'currency' => $this->getCurrency(0),
+                'priceFrom' => Flat::priceFlatSearch,
+                'priceTo' => Flat::priceFlatSearch,
+                'auction' => true,
+                'userIds'=> [$agencyID],
+                'marketType'=> $this->getMarketType(0),
+                'buildYearFrom' => Flat::buildYear,
+                'buildYearTo' => Flat::buildYear,
+                'bedsCountFrom' => Flat::beds,
+                'bedsCountTo' => Flat::beds,
+                'wallMaterial' => $this->getWallMaterials(0),
+                'repair' => $this->getRepairs(0),
+                'wc' => $this->getWC(1),
+                'balcony' => $this->getBalconies(1),
+                'heating' => $this->getHeatings(1),
+                'waterHeating' => $this->getWaterHeatings(1),
+                'areaFrom' => Flat::generalArea,
+                'areaTo' => Flat::generalArea,
+                'areaUnit' => $this->getAreaUnits(0),
+                'livingAreaFrom' => Flat::livingArea,
+                'livingAreaTo' => Flat::livingArea,
+                'kitchenAreaFrom' => Flat::kitchenArea,
+                'kitchenAreaTo' => Flat::kitchenArea,
+                'roomCountFrom' => Flat::roomCount,
+                'roomCountTo' => Flat::roomCount,
+                'floorFrom' => Flat::floorNumber,
+                'floorTo' => Flat::floorNumber,
+                'floorNumberTo' => Flat::floors,
+                'floorNumberFrom' => Flat::floors,
+                'furniture' => [$this->getFurnitures(0)],
+                'appliances' => [$this->getAppliances(0)],
+                'additionally' => [$this->getFlatAdditionals(0)],
+                'nearObjects' => [$this->getNearObjects(0)],
+            ]
+        ]);
+        $saveSearchFlat = $this->restModule->grabResponse();
+        $saveSearchFlatId = json_decode($saveSearchFlat)->id;
+        file_put_contents(codecept_data_dir('saveSearchFlatId.json'), $saveSearchFlatId);
+        $this->debugSection('saveSearchFlatId', $saveSearchFlatId);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+    }
+    function apiAgencySaveFlatSearchPlain()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/profiles/searches/create', [
+            'name' => 'TestFlat',
+            'searchCriteria' => [
+                'operationType'=> $this->getOperationType(0),
+                'region' => $this->getRegion(21),
+                'category' => $this->getCategories(0),
+//                'categoryType' => $this->getFlatCategoryTypes(0),
+            ]
+        ]);
+        $saveSearchFlat = $this->restModule->grabResponse();
+        $saveSearchFlatId = json_decode($saveSearchFlat)->id;
+        file_put_contents(codecept_data_dir('saveSearchFlatId.json'), $saveSearchFlatId);
+        $this->debugSection('saveSearchFlatId', $saveSearchFlatId);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+    }
+    function apiAgencySaveHouseSearch()
+    {
+            $agencyID = json_decode(file_get_contents(codecept_data_dir() . 'agency_data.json'))->id;
+            $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+            $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+            $this->restModule->sendPOST('/profiles/searches/create', [
+                'name' => 'TestHouse',
+                'searchCriteria' => [
+                    'operationType' => $this->getOperationType(1),
+                    'region' => $this->getRegion(21),
+                    'city' => $this->getCity(6),
+                    'district' => $this->getDistrict(3),
+                    'street' => $this->getStreet(52),
+                    'category' => $this->getCategories(1),
+                    'categoryType' => $this->getHouseCategoryTypes(0),
+                    'currency' => $this->getCurrency(1),
+                    'priceFrom' => House::priceHouseSearch,
+                    'priceTo' => House::priceHouseSearch,
+                    'period' => $this->getPeriod(1),
+                    'auction' =>true,
+                    'userIds' => [$agencyID],
+                    'buildYearFrom' => House::buildYear,
+                    'buildYearTo' => House::buildYear,
+                    'wallMaterial' => $this->getWallMaterials(10),
+                    'repair' => $this->getRepairs(0),
+                    'wc' => $this->getWC(0),
+                    'heating' => $this->getHeatings(1),
+                    'waterHeating' => $this->getWaterHeatings(1),
+                    'areaFrom' => House::generalArea,
+                    'areaTo' => House::generalArea,
+                    'areaUnit' => $this->getAreaUnits(0),
+                    'livingAreaFrom' => House::livingArea,
+                    'livingAreaTo' => House::livingArea,
+                    'kitchenAreaFrom' => House::kitchenArea,
+                    'kitchenAreaTo' => House::kitchenArea,
+                    'roomCountFrom' => House::roomCount,
+                    'roomCountTo' => House::roomCount,
+                    'floorNumberTo' => House::floors,
+                    'floorNumberFrom' => House::floors,
+                    'furniture' => [$this->getFurnitures(0)],
+                    'appliances' => [$this->getAppliances(0)],
+                    'additionally' => [$this->getHouseAdditionals(0)],
+                    'nearObjects' => [$this->getNearObjects(0)]
+
+                ]
+                ]);
+            $saveSearchFlat = $this->restModule->grabResponse();
+            $saveSearchFlatId = json_decode($saveSearchFlat)->id;
+            file_put_contents(codecept_data_dir('saveSearchFlatId.json'), $saveSearchFlatId);
+            $this->debugSection('saveSearchFlatId', $saveSearchFlatId);
+            $this->restModule->seeResponseCodeIs(201);
+            $this->restModule->seeResponseIsJson();
+    }
+    function apiAgencySaveParcelSearch()
+    {
+        $agencyID = json_decode(file_get_contents(codecept_data_dir() . 'agency_data.json'))->id;
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/profiles/searches/create', [
+            'name' => 'TestParcel',
+            'searchCriteria' => [
+                'operationType' => $this->getOperationType(0),
+                'region' => $this->getRegion(21),
+                'city' => $this->getCity(6),
+                'district' => $this->getDistrict(7),
+                'street' => $this->getStreet(32),
+                'category' => $this->getCategories(2),
+                'categoryType' => $this->getParcelCategoryTypes(0),
+                'currency' => $this->getCurrency(0),
+                'priceFrom' => Parcel::priceParcelSearch,
+                'priceTo' => Parcel::priceParcelSearch,
+                'auction' => true,
+                'userIds' => [$agencyID],
+                'areaFrom' => Parcel::generalArea,
+                'areaTo' => Parcel::generalArea,
+                'areaUnit' => $this->getAreaUnits(1),
+                'communication' => [$this->getCommunications(0)],
+                'additionally' => [$this->getParcelAdditionals(0)],
+                'nearObjects' => [$this->getNearObjects(0)],
+                ]
+        ]);
+        $saveSearchFlat = $this->restModule->grabResponse();
+        $saveSearchFlatId = json_decode($saveSearchFlat)->id;
+        file_put_contents(codecept_data_dir('saveSearchFlatId.json'), $saveSearchFlatId);
+        $this->debugSection('saveSearchFlatId', $saveSearchFlatId);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+    }
+    function apiAgencySaveCommercialSearch()
+    {
+        $agencyID = json_decode(file_get_contents(codecept_data_dir() . 'agency_data.json'))->id;
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/profiles/searches/create', [
+            'name' => 'TestCommercial',
+            'searchCriteria' => [
+                'operationType' => $this->getOperationType(1),
+                'region' => $this->getRegion(21),
+                'city' => $this->getCity(6),
+                'district' => $this->getDistrict(7),
+                'street' => $this->getStreet(49),
+                'category' => $this->getCategories(3),
+                'categoryType' => $this->getCommercialCategoryTypes(0),
+                'currency' => $this->getCurrency(1),
+                'priceFrom' => Commercial::priceCommercialSearch,
+                'priceTo' => Commercial::priceCommercialSearch,
+                'auction' => true,
+                'period' => $this->getPeriod(0),
+                'userIds' => [$agencyID],
+                'buildYearFrom' => Commercial::buildYear,
+                'buildYearTo' => Commercial::buildYear,
+                'wallMaterial' => $this->getWallMaterials(0),
+                'repair' => $this->getRepairs(0),
+                'wc' => $this->getWC(2),
+                'heating' => $this->getHeatings(2),
+                'waterHeating' => $this->getWaterHeatings(2),
+                'areaFrom' => Commercial::generalArea,
+                'areaTo' => Commercial::generalArea,
+                'areaUnit' => $this->getAreaUnits(0),
+                'roomCountFrom' => Commercial::roomCount,
+                'roomCountTo' => Commercial::roomCount,
+                'floorFrom' => Commercial::floorNumber,
+                'floorTo' => Commercial::floorNumber,
+                'floorNumberTo' => Commercial::floors,
+                'floorNumberFrom' => Commercial::floors,
+                'communication' => [$this->getCommunications(0)],
+                'additionally' => [$this->getCommercialAdditionals(0)],
+            ]
+        ]);
+        $saveSearchFlat = $this->restModule->grabResponse();
+        $saveSearchFlatId = json_decode($saveSearchFlat)->id;
+        file_put_contents(codecept_data_dir('saveSearchFlatId.json'), $saveSearchFlatId);
+        $this->debugSection('saveSearchFlatId', $saveSearchFlatId);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+    }
+    function apiAgencyViewSaveSearch()
+    {
+        $searchId = file_get_contents(codecept_data_dir('saveSearchFlatId.json'));
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/profiles/searches/'.$searchId);
+        $this->restModule->seeResponseCodeIS(200);
+        $this->restModule->seeResponseIsJson();
+
+    }
+    function apiAgencyEditSaveSearch()
+    {
+        $agencyID = json_decode(file_get_contents(codecept_data_dir() . 'agency_data.json'))->id;
+        $searchId = file_get_contents(codecept_data_dir('saveSearchFlatId.json'));
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/profiles/searches/'.$searchId.'/edit', [
+            'name' => 'EditTestFlat',
+            'searchCriteria' => [
+                'operationType'=> $this->getOperationType(0),
+                'region' => $this->getRegion(21),
+                'city' => $this->getCity(6),
+                'district' => $this->getDistrict(7),
+                'street' => $this->getStreet(34),
+                'category' => $this->getCategories(0),
+                'categoryType' => $this->getFlatCategoryTypes(0),
+                'currency' => $this->getCurrency(0),
+                'priceFrom' => Flat::priceFlatSearch,
+                'priceTo' => Flat::priceFlatSearch,
+                'auction' => true,
+                'userIds'=> [$agencyID],
+                'marketType'=> $this->getMarketType(0),
+                'buildYearFrom' => Flat::buildYear,
+                'buildYearTo' => Flat::buildYear,
+                'bedsCountFrom' => Flat::beds,
+                'bedsCountTo' => Flat::beds,
+                'wallMaterial' => $this->getWallMaterials(0),
+                'repair' => $this->getRepairs(0),
+                'wc' => $this->getWC(1),
+                'balcony' => $this->getBalconies(1),
+                'heating' => $this->getHeatings(1),
+                'waterHeating' => $this->getWaterHeatings(1),
+                'areaFrom' => Flat::generalArea,
+                'areaTo' => Flat::generalArea,
+                'areaUnit' => $this->getAreaUnits(0),
+                'livingAreaFrom' => Flat::livingArea,
+                'livingAreaTo' => Flat::livingArea,
+                'kitchenAreaFrom' => Flat::kitchenArea,
+                'kitchenAreaTo' => Flat::kitchenArea,
+                'roomCountFrom' => Flat::roomCount,
+                'roomCountTo' => Flat::roomCount,
+                'floorFrom' => Flat::floorNumber,
+                'floorTo' => Flat::floorNumber,
+                'floorNumberTo' => Flat::floors,
+                'floorNumberFrom' => Flat::floors,
+                'furniture' => [$this->getFurnitures(0)],
+                'appliances' => [$this->getAppliances(0)],
+                'additionally' => [$this->getFlatAdditionals(0)],
+                'nearObjects' => [$this->getNearObjects(0)],
+                ]
+        ]);
+        $this->restModule->seeResponseCodeIS(200);
+        $this->restModule->seeResponseIsJson();
+
+    }
+    function apiAgencyViewSaveSearchList()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/profiles/searches/');
+        $this->restModule->seeResponseCodeIS(200);
+        $this->restModule->seeResponseIsJson();
+    }
+    function apiAgencyDeleteSaveSearch()
+    {
+        $searchId = file_get_contents(codecept_data_dir('saveSearchFlatId.json'));
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendDELETE('/profiles/searches/'.$searchId.'/delete');
+        $this->restModule->seeResponseCodeIS(200);
+        $this->restModule->seeResponseIsJson();
+    }
+    function apiGetFlatAdvert1()
+    {
+
+        $flatID = file_get_contents(codecept_data_dir() . 'advertFlatId.json');
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->sendGET('/get-announcements/567c1bb0d69b5a383e8b4567');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+
+    }
+    function apiUserVisitAdvert()
+    {
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/announcements/visit', [
+            'adverts' => ['567c1bb0d69b5a383e8b4567']
+        ]);
+
+        $this->restModule->seeResponseCodeIs(200);
+    }
     /*===============================================ADVERT API===============================================================*/
     function realtyCommercialsCheck()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/commercials/check', [
             'category' => $this->getCategories(3),
@@ -2109,8 +2957,7 @@ class Api extends \Codeception\Module
 
     function realtyCommercialsValidate()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/commercials/validate', [
             'category' => $this->getCategories(3),
@@ -2166,11 +3013,10 @@ class Api extends \Codeception\Module
 
     function realtyCommercialsEdit()
     {
-        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
         $schema = file_get_contents(codecept_data_dir('schema_id.json'));
         $realtyCommercialID = file_get_contents(codecept_data_dir('realtyCommercialId.json'));
 
-        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPUT('/realties/commercials/edit/' . $realtyCommercialID, [
             'status' => 1,
@@ -2218,10 +3064,9 @@ class Api extends \Codeception\Module
 
     function realtyCommercialsDelete()
     {
-        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
         $realtyCommercialsID = file_get_contents(codecept_data_dir('realtyCommercialId.json'));
 
-        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendDELETE('/realties/' . $realtyCommercialsID . '/delete');
         $realtyCommercialDelete = $this->restModule->grabResponse();
@@ -2429,6 +3274,7 @@ class Api extends \Codeception\Module
 
     }
 
+
     function apiUserIsInterestingAdvert()
     {
         $this->restModule->haveHttpHeader('token', User::getUserToken());
@@ -2535,10 +3381,9 @@ class Api extends \Codeception\Module
     /*========================================= FLATS =========================================*/
     function apiAdvertFlatAddPlain()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $realtyFlatId = file_get_contents(codecept_data_dir('realtyFlatId.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/flats/add/' . $realtyFlatId, [
             'operationType' => $this->getOperationType(0),
@@ -2562,11 +3407,10 @@ class Api extends \Codeception\Module
 
     function apiAdvertFlatAddComplex()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $realtyFlatId = file_get_contents(codecept_data_dir('realtyFlatId.json'));
         $images = file_get_contents(codecept_data_dir('images_id.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/flats/add/' . $realtyFlatId, [
             'operationType' => $this->getOperationType(0),
@@ -2632,11 +3476,10 @@ class Api extends \Codeception\Module
     }
     function apiAdvertFlatAddForSearch()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $realtyFlatId = file_get_contents(codecept_data_dir('realtyFlatId.json'));
 //        $images = file_get_contents(codecept_data_dir('images_id.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/flats/add/' . $realtyFlatId, [
             'operationType' => $this->getOperationType(0),
@@ -2670,6 +3513,7 @@ class Api extends \Codeception\Module
         //todo: your advert should be available on web site (status 1)
         $flatID = file_get_contents(codecept_data_dir() . 'advertFlatId.json');
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->sendGET('/get-announcements/' . $flatID);
         $this->restModule->seeResponseIsJson();
         $this->restModule->seeResponseCodeIs(200);
@@ -2682,11 +3526,10 @@ class Api extends \Codeception\Module
 
     function apiAdvertHouseAddPlain()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $realtyHouseId = file_get_contents(codecept_data_dir('realtyHouseId.json'));
         $images = file_get_contents(codecept_data_dir('images_id.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/houses/add/' . $realtyHouseId, [
             'operationType' => $this->getOperationType(1),
@@ -2709,11 +3552,10 @@ class Api extends \Codeception\Module
 
     function apiAdvertHouseAddComplex()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $realtyHouseId = file_get_contents(codecept_data_dir('realtyHouseId.json'));
         $images = file_get_contents(codecept_data_dir('images_id.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/houses/add/' . $realtyHouseId, [
             'operationType' => $this->getOperationType(1),
@@ -2777,11 +3619,10 @@ class Api extends \Codeception\Module
 
     function apiAdvertHouseAddSearch()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $realtyHouseId = file_get_contents(codecept_data_dir('realtyHouseId.json'));
 //        $images = file_get_contents(codecept_data_dir('images_id.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/houses/add/' . $realtyHouseId, [
             'operationType' => $this->getOperationType(1),
@@ -2821,11 +3662,10 @@ class Api extends \Codeception\Module
 
     function apiAdvertParcelAddPlain()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $realtyParcelId = file_get_contents(codecept_data_dir('realtyParcelId.json'));
         $images = file_get_contents(codecept_data_dir('images_id.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/parcels/add/' . $realtyParcelId, [
             'operationType' => $this->getOperationType(0),
@@ -2847,11 +3687,10 @@ class Api extends \Codeception\Module
 
     function apiAdvertParcelAddComplex()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $realtyParcelId = file_get_contents(codecept_data_dir('realtyParcelId.json'));
         $images = file_get_contents(codecept_data_dir('images_id.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/parcels/add/' . $realtyParcelId, [
             'operationType' => $this->getOperationType(0),
@@ -2894,11 +3733,10 @@ class Api extends \Codeception\Module
 
     function apiAdvertParcelAddSearch()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $realtyParcelId = file_get_contents(codecept_data_dir('realtyParcelId.json'));
         $images = file_get_contents(codecept_data_dir('images_id.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/parcels/add/' . $realtyParcelId, [
             'operationType' => $this->getOperationType(0),
@@ -2935,11 +3773,10 @@ class Api extends \Codeception\Module
 
     function apiAdvertCommercialAddPlain()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $realtyCommercialId = file_get_contents(codecept_data_dir('realtyCommercialId.json'));
         $images = file_get_contents(codecept_data_dir('images_id.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/commercials/add/' . $realtyCommercialId, [
             'operationType' => $this->getOperationType(0),
@@ -2962,11 +3799,10 @@ class Api extends \Codeception\Module
 
     function apiAdvertCommercialAddComplex()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $realtyCommercialId = file_get_contents(codecept_data_dir('realtyCommercialId.json'));
         $images = file_get_contents(codecept_data_dir('images_id.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/commercials/add/' . $realtyCommercialId, [
             'operationType' => $this->getOperationType(1),
@@ -3010,11 +3846,10 @@ class Api extends \Codeception\Module
 
     function apiAdvertCommercialAddSearch()
     {
-        $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $realtyCommercialId = file_get_contents(codecept_data_dir('realtyCommercialId.json'));
         $images = file_get_contents(codecept_data_dir('images_id.json'));
 
-        $this->restModule->haveHttpHeader('token', $agencyToken);
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/commercials/add/' . $realtyCommercialId, [
             'operationType' => $this->getOperationType(1),
@@ -3048,6 +3883,107 @@ class Api extends \Codeception\Module
         $this->restModule->seeResponseCodeIs(200);
 
     }
+
+    /*============================================GARAGES===============================*/
+
+    function apiAdvertGarageAddPlain()
+    {
+        $realtyGarageId = file_get_contents(codecept_data_dir('realtyGarageId.json'));
+
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/announcements/garages/add/' . $realtyGarageId, [
+            'operationType' => $this->getOperationType(0),
+            'description' => Garage::descriptionGarageSell,
+            'price' => Garage::priceGarageSell,
+            'currency' => $this->getCurrency(0),
+            'commission' => Garage::commission,
+            'availableFrom' => Garage::apiAvailableFrom,
+//            'repair' => $this->getRepairs(0),
+//            'ownerContacts' => Garage::ownerContacts,
+            'ownerName' => Garage::ownerName
+        ]);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+        $advertGarage = $this->restModule->grabResponse();
+        $advGarageId = json_decode($advertGarage)->id;
+        file_put_contents(codecept_data_dir('advertGarageId.json'), $advGarageId);
+        $this->debugSection('advertGarageId', $advGarageId);
+    }
+
+    function apiAdvertGarageAddComplex()
+    {
+        $realtyGarageId = file_get_contents(codecept_data_dir('realtyGarageId.json'));
+        $images = file_get_contents(codecept_data_dir('images_id.json'));
+
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/announcements/garages/add/' . $realtyGarageId, [
+            'operationType' => $this->getOperationType(0),
+            'description' => Garage::descriptionGarageSell,
+            'price' => Garage::priceGarageSell,
+            'currency' => $this->getCurrency(0),
+//            'period' => ,
+            'commission' => Garage::commission,
+            'auction' => true,
+            'availableFrom' => Garage::apiAvailableFrom,
+            'additionally' => [
+                $this->getGarageAdditionals(0),
+                $this->getGarageAdditionals(1),
+                $this->getGarageAdditionals(2),
+                $this->getGarageAdditionals(3),
+                $this->getGarageAdditionals(4),
+                $this->getGarageAdditionals(5),
+            ],
+            'ownerContacts' => Flat::ownerContacts,
+            'ownerName' => Flat::ownerName,
+            'images' => json_decode($images, true),
+            'videos' => [['imageSrc' => Flat::videoImage, 'url' => Flat::videoURL]],
+
+        ]);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+        $advertGarage = $this->restModule->grabResponse();
+        $advGarageId = json_decode($advertGarage)->id;
+        file_put_contents(codecept_data_dir('advertGarageId.json'), $advGarageId);
+        $this->debugSection('advertGarageId', $advGarageId);
+    }
+    function apiAdvertGarageAddForSearch()
+    {
+        $realtyGarageId = file_get_contents(codecept_data_dir('realtyGarageId.json'));
+//        $images = file_get_contents(codecept_data_dir('images_id.json'));
+
+        $this->restModule->haveHttpHeader('token', User::getAgencyToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPOST('/announcements/garages/add/' . $realtyGarageId, [
+            'operationType' => $this->getOperationType(0),
+            'description' => Flat::descriptionFlatSell,
+            'price' => Flat::priceFlatSearch,
+            'currency' => $this->getCurrency(0),
+            'commission' => Flat::commission,
+            'auction' => true,
+            'availableFrom' => Flat::apiAvailableFrom,
+            'marketType' => $this->getMarketType(0),
+            'repair' => $this->getRepairs(0),
+            'bedsCount' => Flat::beds,
+            'furniture' => [$this->getFurnitures(0)],
+            'appliances' => [$this->getAppliances(0)],
+            'additionally' => [$this->getFlatAdditionals(0)],
+            'ownerContacts' => Flat::ownerContacts,
+            'ownerName' => Flat::ownerName,
+            'videos' => [['imageSrc' => Flat::videoImage, 'url' => Flat::videoURL]],
+//            'images' => json_decode($images, true)
+        ]);
+        $this->restModule->seeResponseCodeIs(201);
+        $this->restModule->seeResponseIsJson();
+        $advertGarage = $this->restModule->grabResponse();
+        $advGarageId = json_decode($advertGarage)->id;
+        file_put_contents(codecept_data_dir('advertGarageId.json'), $advGarageId);
+        $this->debugSection('advertGarageId', $advGarageId);
+    }
+
+
+
 
 
 
@@ -4073,8 +5009,8 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/admin/registration/agency', [
             'name' => User::$agencyName,
             'subdomain' => User::uniqueSubdomain(),
-            'firstName' => User::$agencyfirstName,
-            'lastName' => User::$agencylastName,
+            'firstName' => User::$agencyFirstName,
+            'lastName' => User::$agencyLastName,
             'email' => User::uniqueApiAgencyEmail(),
             'plainPassword' => User::$agencyRegPass,
             'description' => User::$agencyDescription,
@@ -4552,8 +5488,8 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/registration/agency', [
             'name' => User::$agencyName,
             'subdomain' => User::uniqueSubdomain(),
-            'firstName' => User::$agencyfirstName,
-            'lastName' => User::$agencylastName,
+            'firstName' => User::$agencyFirstName,
+            'lastName' => User::$agencyLastName,
             'email' => User::uniqueApiAgencyEmail(),
             'plainPassword' => User::$agencyRegPass,
             'description' => User::$agencyDescription,
@@ -4686,6 +5622,18 @@ class Api extends \Codeception\Module
         $streetName = json_decode($streets)[$name]->name;
         $this->debugSection('Street ID', $streetName);
         file_put_contents(codecept_data_dir('streets_name.json'), $streets);
+        return $streetName;
+    }
+
+    function getDistrictNameById($cityId, $name)
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $city = $this->getCity($cityId);
+        $this->restModule->sendGET('/lists/districts/' . $city);
+        $streets = $this->restModule->grabResponse();
+        $streetName = json_decode($streets)[$name]->name;
+        $this->debugSection('District ID', $streetName);
+//        file_put_contents(codecept_data_dir('streets_name.json'), $streets);
         return $streetName;
     }
 
