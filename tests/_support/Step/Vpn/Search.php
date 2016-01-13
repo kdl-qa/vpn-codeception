@@ -1,6 +1,7 @@
 <?php
 namespace Step\Vpn;
 use Data\Commercial;
+use Data\Garage;
 use Data\Parcel;
 use Data\User;
 use Page\AddAdvert;
@@ -4381,4 +4382,578 @@ class Search extends \VpnTester
        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
         $I->dontSeeElement(SearchPage::$mark);
     }
+    //==================================Search garages================================//
+    public function searchGarage()
+    {
+        $I = $this;
+        $I->wantTo('Check search functionality Garage category');
+        $I->reloadPage();
+        $I->amOnPage('/search');
+        $I->waitForElement(SearchPage::$operationType1);
+//        $I->see('Продажа', SearchPage::$operationType1);
+//        $I->see('Аренда', SearchPage::$operationType2);
+        $I->click(SearchPage::$operationType1);
+//        $I->see('Киевская область', SearchPage::$regionField);
+        $I->click(SearchPage::$regionField);
+        $I->fillField(SearchPage::$regionType, $this->getRegionName(21));
+//        $I->see(SearchPage::$region0);
+        $I->click(SearchPage::$region0);
+        $I->click(SearchPage::$cityField);
+        $I->fillField(SearchPage::$cityType, $this->getCityName(6));
+        $I->click(SearchPage::$city0);
+        $I->click(SearchPage::$districtField);
+        $I->fillField(SearchPage::$districtType, $this->getDistrictName(16));
+        $I->click(SearchPage::$district0);
+        $I->click(SearchPage::$streetField);
+        $I->fillField(SearchPage::$streetType, $this->getStreetName(201));
+        $I->click(SearchPage::$street0);
+        $I->click(SearchPage::$categoryField);
+        $I->click(SearchPage::$garageCategory);
+        $I->click(SearchPage::$categoryType);
+        $I->click(SearchPage::$garageCatType0);
+        $I->fillField(SearchPage::$priseFrom, Garage::priceGarageSearch);
+        $I->fillField(SearchPage::$priseTo, Garage::priceGarageSearch);
+        $I->click(SearchPage::$currencyField);
+        $I->click(SearchPage::$currencyUS);
+        $I->click(SearchPage::$auction);
+        $I->click(SearchPage::$agencyField);
+        $I->fillField(SearchPage::$agencyType, 'Uhome');
+        $I->click(SearchPage::$agency0);
+        $I->click(SearchPage::$agencyField);
+
+        $I->click(SearchPage::$characteristicsTab);
+        $I->fillField(SearchPage::$buildYearFrom, Garage::buildYear);
+        $I->fillField(SearchPage::$buildYearTo, Garage::buildYear);
+        $I->click(SearchPage::$wallMaterialField);
+        $I->click(SearchPage::$wallMaterial1);
+        $I->click(SearchPage::$transportTypeField);
+        $I->click(SearchPage::$transportType1);
+        $I->click(SearchPage::$parkingPlaceField);
+        $I->click(SearchPage::$parkingPlace1);
+        $I->click(SearchPage::$inspectionPitField);
+        $I->click(SearchPage::$inspectionPit1);
+        $I->click(SearchPage::$heatingField);
+        $I->click(SearchPage::$heating1);
+
+        $I->click(SearchPage::$areaTab);
+        $I->fillField(SearchPage::$generalAreaFrom, Garage::generalArea);
+        $I->fillField(SearchPage::$generalAreaTo, Garage::generalArea);
+        $I->click(SearchPage::$areaUnitField);
+        $I->click(SearchPage::$areaUnit0);
+
+        $I->click(SearchPage::$floorsAndRoomsTab);
+        $I->fillField(SearchPage::$roomsCountFrom, Garage::roomCount);
+        $I->fillField(SearchPage::$roomsCountTo, Garage::roomCount);
+        $I->fillField(SearchPage::$floorFrom, Garage::floor);
+        $I->fillField(SearchPage::$floorTo, Garage::floor);
+        $I->fillField(SearchPage::$floorNumberFrom, Garage::floorNumber);
+        $I->fillField(SearchPage::$floorNumberTo, Garage::floorNumber);
+
+
+        $I->click(SearchPage::$communicationTab);
+//        $I->click(SearchPage::$communication0);
+
+        $I->click(SearchPage::$additionalTab);
+        $I->click(SearchPage::$additional0);
+
+        $I->click(SearchPage::$nearObjectsTab);
+//        $I->click(SearchPage::$nearObject0);
+        $I->click(SearchPage::$nearObject1);
+//        $I->pauseExecution();
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+
+        $I->waitForElement(SearchPage::$resultPrice);
+
+        $I->seeElement(SearchPage::$sortField);
+        $I->seeElement(SearchPage::$addToGroup);
+        $I->seeElement(SearchPage::$listAdvertButton);
+        $I->seeElement(SearchPage::$mapAdvertButton);
+        $I->click(SearchPage::$resultPrice);
+    }
+
+    public function checkGarageObjectPropertiesSearch()
+    {
+        $I = $this;
+//        $I->amOnPage()
+        $I->wait(1);
+        $I->waitForElement(AdvPage::$advInfoGallery);
+//        $I->see(Flat::priceFlatSell, AdvPage::$advInfoPrice);
+        $I->see(Garage::commission, AdvPage::$advInfoPrice);
+        $I->see(Garage::generalArea, AdvPage::$advInfoMainProps);
+        $I->see($this->getTransportTypeName(0), AdvPage::$advInfoMainProps);
+        $I->see($this->getInspectionPitName(0), AdvPage::$advInfoMainProps);
+        $I->seeElement(AdvPage::$advPropsLink);
+        $I->see(Garage::descriptionGarageSell,AdvPage::$advInfoDescription);
+        $I->seeElement(AdvPage::$advInfoGallery);
+        $I->click(AdvPage::$advPropsTab);
+        $I->see($this->getCategoryName(4), AdvPage::$advPropsTable);
+        $I->see($this->getGaragesCategoryTypeName(0), AdvPage::$advPropsTable);
+        $I->see($this->getRegionName(21), AdvPage::$advPropsTable);
+        $I->see($this->getCityName(6), AdvPage::$advPropsTable);
+        $I->see($this->getDistrictName(16), AdvPage::$advPropsTable);
+        $I->see($this->getStreetName(201), AdvPage::$advPropsTable);
+        $I->see(Garage::generalArea, AdvPage::$advPropsTable);
+        $I->see(Garage::roomCount, AdvPage::$advPropsTable);
+        $I->see(Garage::floorNumber, AdvPage::$advPropsTable);
+        $I->see(Garage::floor, AdvPage::$advPropsTable);
+        $I->see(Garage::buildYear, AdvPage::$advPropsTable);
+        $I->see($this->getHeatingsName(0), AdvPage::$advPropsTable);
+        $I->see($this->getParkingPlaceName(0), AdvPage::$advPropsTable);
+        $I->see($this->getTransportTypeName(0), AdvPage::$advPropsTable);
+        $I->see($this->getInspectionPitName(0), AdvPage::$advPropsTable);
+        $I->see($this->getGarageAdditionalsName(0), AdvPage::$advPropsTable);
+        $I->see($this->getCommunicationsName(0), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(0), AdvPage::$advPropsTable);
+
+    }
+
+    public function searchGarage1()
+    {
+        $I = $this;
+        $I->wantTo('Change operation type');
+        $I->amOnPage('/search');
+
+        $I->waitForElement(SearchPage::$operationType2);
+        $I->wait(1);
+        $I->click(SearchPage::$operationType2);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+//        $I->see(Flat::roomCount.' комнаты', SearchPage::$resultRoomCount);
+//        $I->see(Flat::generalArea. 'кв. метров', )
+//        $I->click(SearchPage::$resultPrice);
+    }
+    public function searchGarage2()
+    {
+        $I = $this;
+        $I->wantTo('Change district');
+        $I->wait(1);
+        $I->click(SearchPage::$operationType1);
+        $I->click(SearchPage::$districtField);
+        $I->fillField(SearchPage::$districtType, $this->getDistrictName(1));
+        $I->click(SearchPage::$district0);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+
+    }
+    public function searchGarage3()
+    {
+        $I = $this;
+        $I->wantTo('Change street');
+        $I->click(SearchPage::$districtField);
+        $I->fillField(SearchPage::$districtType, $this->getDistrictName(16));
+        $I->click(SearchPage::$district0);
+        $I->click(SearchPage::$streetField);
+        $I->fillField(SearchPage::$streetType, $this->getStreetName(202));
+        $I->click(SearchPage::$street0);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchGarage4()
+    {
+        $I = $this;
+        $I->wantTo('Change city');
+        $I->click(SearchPage::$streetField);
+        $I->fillField(SearchPage::$streetType, $this->getStreetName(201));
+        $I->click(SearchPage::$street0);
+        $I->click(SearchPage::$cityField);
+        $I->fillField(SearchPage::$cityType, $this->getCityName(1));
+        $I->click(SearchPage::$city0);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchGarage5()
+    {
+        $I = $this;
+        $I->wantTo('Change category');
+        $I->click(SearchPage::$cityField);
+        $I->fillField(SearchPage::$cityType, $this->getCityName(6));
+        $I->click(SearchPage::$city0);
+        $I->click(SearchPage::$districtField);
+        $I->fillField(SearchPage::$districtType, $this->getDistrictName(16));
+        $I->click(SearchPage::$district0);
+        $I->click(SearchPage::$streetField);
+        $I->fillField(SearchPage::$streetType, $this->getStreetName(201));
+        $I->click(SearchPage::$street0);
+        $I->click(SearchPage::$categoryField);
+        $I->click(SearchPage::$houseCategory);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+
+    }
+    public function searchGarage6()
+    {
+        $I = $this;
+        $I->wantTo('Change category type');
+
+        $I->click(SearchPage::$categoryField);
+        $I->click(SearchPage::$garageCategory);
+        $I->click(SearchPage::$additionalTab);
+        $I->click(SearchPage::$additional0);
+//        $I->click(SearchPage::$searchButton);
+        $I->click(SearchPage::$additionalTab);
+
+
+        $I->click(SearchPage::$categoryType);
+        $I->click(SearchPage::$garageCatType1);
+
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchGarage7()
+    {
+        $I = $this;
+        $I->wantTo('Change price');
+
+        $I->click(SearchPage::$categoryType);
+        $I->click(SearchPage::$garageCatType0);
+
+        $I->fillField(SearchPage::$priseFrom, Garage::priceGarageRent);
+        $I->fillField(SearchPage::$priseTo, Garage::priceGarageRent);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchGarage8()
+    {
+        $I = $this;
+        $I->wantTo('Change currency');
+        $I->fillField(SearchPage::$priseFrom, Garage::priceGarageSearch);
+        $I->fillField(SearchPage::$priseTo, Garage::priceGarageSearch);
+        $I->click(SearchPage::$currencyField);
+        $I->click(SearchPage::$currencyUA);
+        $I->click(SearchPage::$agencyField);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+    public function searchGarage9()
+    {
+        $I = $this;
+        $I->wantTo('Change currency');
+        $I->click(SearchPage::$currencyField);
+        $I->click(SearchPage::$currencyUS);
+        $I->click(SearchPage::$agencyField);
+        $I->fillField(SearchPage::$agencyType, 'dom13');
+        $I->click(SearchPage::$agency0);
+        $I->click(SearchPage::$agencyField);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchGarage10()
+    {
+        $I = $this;
+        $I->wantTo('Change build year');
+        $I->click(SearchPage::$agencyField);
+        $I->click(SearchPage::$agency0);
+        $I->click(SearchPage::$agencyField);
+        $I->click(SearchPage::$agencyField);
+        $I->fillField(SearchPage::$agencyType, User::$agencyUhomeName);
+        $I->click(SearchPage::$agency0);
+        $I->click(SearchPage::$agencyField);
+        $I->click(SearchPage::$characteristicsTab);
+        $I->fillField(SearchPage::$buildYearFrom, Garage::editBuildYear);
+        $I->fillField(SearchPage::$buildYearTo, Garage::editBuildYear);;
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+
+    public function searchGarage11()
+    {
+        $I = $this;
+        $I->wantTo('Change wall material');
+        $I->fillField(SearchPage::$buildYearFrom, Garage::buildYear);
+        $I->fillField(SearchPage::$buildYearTo, Garage::buildYear);
+        $I->click(SearchPage::$wallMaterialField);
+        $I->click(SearchPage::$wallMaterial2);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+
+    }
+
+    public function searchGarage12()
+    {
+        $I = $this;
+        $I->wantTo('Change transport type');
+        $I->click(SearchPage::$wallMaterialField);
+        $I->click(SearchPage::$wallMaterial1);
+        $I->click(SearchPage::$transportTypeField);
+        $I->click(SearchPage::$transportType2);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchGarage13()
+    {
+        $I = $this;
+        $I->wantTo('Change parkingPlace');
+        $I->click(SearchPage::$transportTypeField);
+        $I->click(SearchPage::$transportType1);
+        $I->click(SearchPage::$parkingPlaceField);
+        $I->click(SearchPage::$parkingPlace2);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchGarage14()
+    {
+        $I = $this;
+        $I->wantTo('Change Inspection pit');
+        $I->click(SearchPage::$parkingPlaceField);
+        $I->click(SearchPage::$parkingPlace1);
+        $I->click(SearchPage::$inspectionPitField);
+        $I->click(SearchPage::$inspectionPit2);
+
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchGarage15()
+    {
+        $I = $this;
+        $I->wantTo('Change heating');
+        $I->click(SearchPage::$inspectionPitField);
+        $I->click(SearchPage::$inspectionPit1);
+        $I->click(SearchPage::$heatingField);
+        $I->click(SearchPage::$heating2);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchGarage16()
+    {
+        $I = $this;
+        $I->wantTo('Change general area');
+        $I->click(SearchPage::$heatingField);
+        $I->click(SearchPage::$heating1);
+        $I->click(SearchPage::$areaTab);
+        $I->fillField(SearchPage::$generalAreaFrom, Garage::editGeneralArea);
+        $I->fillField(SearchPage::$generalAreaTo, Garage::editGeneralArea);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+
+    public function searchGarage17()
+    {
+        $I = $this;
+        $I->wantTo('Change area unit');
+        $I->fillField(SearchPage::$generalAreaFrom, Garage::generalArea);
+        $I->fillField(SearchPage::$generalAreaTo, Garage::generalArea);
+        $I->click(SearchPage::$areaUnitField);
+        $I->click(SearchPage::$areaUnit1);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchGarage18()
+    {
+        $I = $this;
+        $I->wantTo('Change room count');
+        $I->click(SearchPage::$areaUnitField);
+        $I->click(SearchPage::$areaUnit0);
+        $I->click(SearchPage::$floorsAndRoomsTab);
+        $I->fillField(SearchPage::$roomsCountFrom, Garage::editRoomCount);
+        $I->fillField(SearchPage::$roomsCountTo, Garage::editRoomCount);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+
+    public function searchGarage19()
+    {
+        $I = $this;
+        $I->wantTo('Change floor count');
+        $I->fillField(SearchPage::$roomsCountFrom, Garage::roomCount);
+        $I->fillField(SearchPage::$roomsCountTo, Garage::roomCount);
+
+        $I->fillField(SearchPage::$floorFrom, Garage::editFloor);
+        $I->fillField(SearchPage::$floorFrom, Garage::editFloor);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+
+    public function searchGarage20()
+    {
+        $I = $this;
+        $I->wantTo('Change floor number count');
+        $I->fillField(SearchPage::$floorFrom, Garage::floor);
+        $I->fillField(SearchPage::$floorFrom, Garage::floor);
+
+        $I->fillField(SearchPage::$floorNumberFrom, Garage::editFloorNumber);
+        $I->fillField(SearchPage::$floorNumberTo, Garage::editFloorNumber);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchGarage21()
+    {
+        $I = $this;
+        $I->wantTo('Change communications');
+        $I->fillField(SearchPage::$floorNumberFrom, Garage::floorNumber);
+        $I->fillField(SearchPage::$floorNumberTo, Garage::floorNumber);
+
+        $I->click(SearchPage::$communicationTab);
+        $I->click(SearchPage::$communication0);
+        $I->click(SearchPage::$communication1);
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchGarage22()
+    {
+        $I = $this;
+        $I->wantTo('Change additional');
+
+        $I->click(SearchPage::$communication0);
+        $I->click(SearchPage::$communication1);
+        $I->click(SearchPage::$additionalTab);
+        $I->click(SearchPage::$additional0);
+        $I->click(SearchPage::$additional1);
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+    public function searchGarage23()
+    {
+        $I = $this;
+        $I->wantTo('Change communications');
+        $I->click(SearchPage::$additional0);
+        $I->click(SearchPage::$additional1);
+        $I->click(SearchPage::$nearObjectsTab);
+        $I->click(SearchPage::$nearObject0);
+        $I->click(SearchPage::$nearObject1);
+
+
+        $I->click(SearchPage::$searchButton);
+
+        //--------------------------Search result------------------------------------------//
+        $I->wait(1);
+        $I->see('Oбъявлений: 0',SearchPage::$countSearchResult);
+        $I->dontSeeElement(SearchPage::$resultPrice);
+        $I->dontSeeElement(SearchPage::$resultAdvert);
+    }
+
 }

@@ -50,6 +50,7 @@ class webUS5a_searchAdvertsListResultCest
      *@before addApiHouseAdvert
      *@before addApiParcelAdvert
      *@before addApiCommercialAdvert
+     * @before addApiGarageAdvert
      *@before agencyLogin
      */
 
@@ -181,12 +182,48 @@ class webUS5a_searchAdvertsListResultCest
 
 
     }
-
-    //-------------------------Reset filter----------------//
-    public function resetFilter(\Step\Vpn\Search $I)
+    /**
+    *@before agencyLogin
+    */
+    public function searchGaragesAndCheckProperties(\Step\Vpn\Search $I)
     {
-        $I->checkResetFilter();
+
+        $I->searchGarage();
+        $I->checkGarageObjectPropertiesSearch();
+
+        $I->searchGarage1();
+        $I->searchGarage2();
+        $I->searchGarage3();
+        $I->searchGarage4();
+        $I->searchGarage5();
+        $I->searchGarage6();
+        $I->searchGarage7();
+        $I->searchGarage8();
+        $I->searchGarage9();
+        $I->searchGarage10();
+        $I->searchGarage11();
+        $I->searchGarage12();
+        $I->searchGarage13();
+        $I->searchGarage14();
+        $I->searchGarage15();
+        $I->searchGarage16();
+        $I->searchGarage17();
+        $I->searchGarage18();
+        $I->searchGarage19();
+        $I->searchGarage20();
+        $I->searchGarage21();
+        $I->searchGarage22();
+        $I->searchGarage23();
+//        $I->pauseExecution();
     }
+//
+//    //-------------------------Reset filter----------------//
+//    public function resetFilter(\Step\Vpn\Search $I)
+//    {
+//        $I->checkResetFilter();
+//    }
+
+
     /**
      *@before apiLogin
      */
@@ -196,6 +233,7 @@ class webUS5a_searchAdvertsListResultCest
         $I->apiDeleteHouseAdvert();
         $I->apiDeleteParcelAdvert();
         $I->apiDeleteCommercialAdvert();
+        $I->apiDeleteGarageAdvert();
 
     }
 }

@@ -30,6 +30,7 @@ class SearchPage
     public static $houseCategory = '.cc-category-name1';
     public static $parcelCategory = '.cc-category-name2';
     public static $commercialCategory = '.cc-category-name3';
+    public static $garageCategory = '.cc-category-name4';
 
     public static $categoryType = '[ng-model="ctrl.filters.categoryType"] span';
     public static $flatCatType0 = '.cc-category-type0';
@@ -56,6 +57,13 @@ class SearchPage
     public static $commercialCatType8 = '.cc-category-type8';
     public static $commercialCatType9 = '.cc-category-type9';
     public static $commercialCatType10 = '.cc-category-type10';
+
+    public static $garageCatType0 = '.cc-category-type0';
+    public static $garageCatType1 = '.cc-category-type1';
+    public static $garageCatType2 = '.cc-category-type2';
+    public static $garageCatType3 = '.cc-category-type3';
+    public static $garageCatType4 = '.cc-category-type4';
+    public static $garageCatType5 = '.cc-category-type5';
 
     public static $priseFrom = '[ng-model="ctrl.filters.minPrice"]';
     public static $priseTo = '[ng-model="ctrl.filters.maxPrice"]';
@@ -141,6 +149,28 @@ class SearchPage
     public static $waterHeating3 = '.cc-water-heating-type3';
     public static $waterHeating4 = '.cc-water-heating-type4';
     public static $waterHeating5 = '.cc-water-heating-type5';
+
+    public static $transportTypeField = '[ng-model="ctrl.filters.transportType"] span';
+    public static $transportType0 = '.cc-transport-type0';
+    public static $transportType1 = '.cc-transport-type1';
+    public static $transportType2 = '.cc-transport-type2';
+    public static $transportType3 = '.cc-transport-type3';
+    public static $transportType4 = '.cc-transport-type4';
+
+    public static $parkingPlaceField = '[ng-model="ctrl.filters.parkingPlace"] span';
+    public static $parkingPlace0 = '.cc-parking-place0';
+    public static $parkingPlace1 = '.cc-parking-place1';
+    public static $parkingPlace2 = '.cc-parking-place2';
+    public static $parkingPlace3 = '.cc-parking-place3';
+
+    public static $inspectionPitField = '[ng-model="ctrl.filters.inspectionPit"] span';
+    public static $inspectionPit0 = '.cc-inspection-pit0';
+    public static $inspectionPit1 = '.cc-inspection-pit1';
+    public static $inspectionPit2 = '.cc-inspection-pit2';
+    public static $inspectionPit3 = '.cc-inspection-pit3';
+    public static $inspectionPit4 = '.cc-inspection-pit4';
+
+
 
     public static $areaTab = '.cc-sidebar-area-size';
     public static $areaParcelTab = '.cc-sidebar-area-size';
