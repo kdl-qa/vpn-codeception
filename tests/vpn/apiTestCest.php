@@ -19,7 +19,9 @@ class apiTestCest
 //     */
     public function apiUsers(VpnTester $I)
     {
-        $I->getAppliancesName(0);
+        $I->getAllLists();
+        $I->getAppliancesName(3);
+        $I->getAppliances(1);
         $I->getActualCurrencyName(0);
         $I->getAreaUnitsName(0);
         $I->getBalconiesName(0);
@@ -40,7 +42,7 @@ class apiTestCest
 
 
 
-//        $I->getGarageNumbers(1);
+//        $I->getGarageNumbers();
         $I->getCategoryName(0);
         $I->getFlatCategoryTypeName(1);
         $I->getHouseCategoryTypeName(0);
@@ -50,13 +52,14 @@ class apiTestCest
         $I->getCityName(6);
         $I->getStreetName(328);
         $I->getDistrictName(9);
+        $I->getFlatAdditionals(1);
         $I->getFlatAdditionalsName(0);
         $I->getHouseAdditionalsName(0);
         $I->getParcelAdditionalsName(1);
-//        $I->getCommercialAdditionals(0);
-//        $I->getCommercialAdditionalsName(0);
-//        $I->getGarageAdditionals(1);
-//        $I->getGarageAdditionalsName(0);
+        $I->getCommercialAdditionals(0);
+        $I->getCommercialAdditionalsName(0);
+        $I->getGarageAdditionals(1);
+        $I->getGarageAdditionalsName(0);
 
 
 

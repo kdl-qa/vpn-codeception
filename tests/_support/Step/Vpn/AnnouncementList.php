@@ -75,20 +75,58 @@ class AnnouncementList extends \VpnTester
         $I->waitForElement(AnnouncementListPage::$groupNameField);
         $I->doubleClick(AnnouncementListPage::$groupNameField);
         $I->pressKey(AnnouncementListPage::$groupNameField, WebDriverKeys::DELETE);
-        $I->pauseExecution();
+        $I->wait(1);
         $I->fillField(AnnouncementListPage::$groupNameField, User::$editGroupName);
         $I->click(AnnouncementListPage::$clientNameField);
         $I->fillField(AnnouncementListPage::$clientNameType, 'asd');
         $I->click(AnnouncementListPage::$clientName0);
-        $I->pauseExecution();
+//        $I->pauseExecution();
         $I->click(AnnouncementListPage::$submitButton);
-        $I->waitForElement(AnnouncementListPage::$submitButton);
-        $I->click(AnnouncementListPage::$submitButton);
+        $I->waitForElement(AnnouncementListPage::$modalPopup);
+        $I->click(AnnouncementListPage::$goodButton);
         $I->wait(3);
-        $I->see(User::$groupName.User::$editGroupName,AnnouncementListPage::$groupTitle);
+        $I->see(User::$editGroupName,AnnouncementListPage::$groupTitle);
         $I->click(AnnouncementListPage::$showMore);
         $I->see('Интересных клиенту: 1', AnnouncementListPage::$groupInfLine);
         $I->see('Не интересных клиенту: 1', AnnouncementListPage::$groupInfLine);
+
+
+
+
+    }
+    public function editGroupResetInterest()
+    {
+        $I = $this;
+        $I->amOnPage(AnnouncementListPage::$groupListUrl);
+        $I->wait(2);
+        $I->click(AnnouncementListPage::$showMore);
+        $I->see('Интересных клиенту: 1', AnnouncementListPage::$groupInfLine);
+        $I->see('Не интересных клиенту: 1', AnnouncementListPage::$groupInfLine);
+        $I->click(AnnouncementListPage::$editGroupLink);
+        $I->click(AnnouncementListPage::$generalInfo);
+        $I->waitForElement(AnnouncementListPage::$groupNameField);
+        $I->doubleClick(AnnouncementListPage::$groupNameField);
+        $I->pressKey(AnnouncementListPage::$groupNameField, WebDriverKeys::DELETE);
+        $I->wait(1);
+        $I->fillField(AnnouncementListPage::$groupNameField, User::$editGroupName);
+        $I->click(AnnouncementListPage::$clientNameField);
+        $I->fillField(AnnouncementListPage::$clientNameType, 'asd');
+        $I->click(AnnouncementListPage::$clientName0);
+        $I->click(AnnouncementListPage::$clearInter);
+//        $I->pauseExecution();
+        $I->click(AnnouncementListPage::$submitButton);
+        $I->waitForElement(AnnouncementListPage::$modalPopup);
+        $I->click(AnnouncementListPage::$goodButton);
+        $I->wait(3);
+        $I->see(User::$editGroupName,AnnouncementListPage::$groupTitle);
+        $I->click(AnnouncementListPage::$showMore);
+        $a = file_get_contents(codecept_data_dir('advCount1.txt'));
+        $b = file_get_contents(codecept_data_dir('advCount2.txt'));
+        $count = array ($a,$b);
+        $c = array_sum($count);
+        $I->see('Всего объявлений: '.$c ,AnnouncementListPage::$groupInfLine);
+        $I->see('Интересных клиенту: 0', AnnouncementListPage::$groupInfLine);
+        $I->see('Не интересных клиенту: 0', AnnouncementListPage::$groupInfLine);
 
 
 
@@ -106,9 +144,58 @@ class AnnouncementList extends \VpnTester
         $I->click(AnnouncementListPage::$yesButton);
         $I->wait(2);
         $I->dontSeeElement(AnnouncementListPage::$showMore);
+        $I->dontSeeElement(AnnouncementListPage::$noGroupDisplayed);
+    }
+    public function deleteAdvert()
+    {
+        $I = $this;
+        $I->amOnPage(AnnouncementListPage::$groupListUrl);
+        $I->wait(2);
+        $I->click(AnnouncementListPage::$showMore);
+        $I->click(AnnouncementListPage::$editGroupLink);
+        $I->wait(2);
+        $I->click(AnnouncementListPage::$deleteAdv1);
+        $I->waitForElement(AnnouncementListPage::$modalPopup);
+        $I->click(AnnouncementListPage::$goodButton);
+        $I->wait(1);
+        $I->click(AnnouncementListPage::$deleteAdv1);
+        $I->waitForElement(AnnouncementListPage::$modalPopup);
+        $I->click(AnnouncementListPage::$goodButton);
+        $I->wait(1);
+        $I->click(AnnouncementListPage::$deleteAdv1);
+        $I->waitForElement(AnnouncementListPage::$modalPopup);
+        $I->click(AnnouncementListPage::$goodButton);
+        $I->wait(1);
+//        $I->dontSeeElement(AnnouncementListPage::$deleteAdv1);
+        $I->amOnPage(AnnouncementListPage::$groupListUrl);
+        $I->wait(2);
+        $I->click(AnnouncementListPage::$showMore);
+
+
+    }
+    public function checkAgencyAdvCount()
+    {
+        $I = $this;
+        $I->amOnPage(AnnouncementListPage::$groupListUrl);
+        $I->wait(2);
+        $I->click(AnnouncementListPage::$showMore);
+
+        $I->see('Всего объявлений: 0',AnnouncementListPage::$groupInfLine);
+    }
+    public function checkAgentAdvCount()
+    {
+        $I = $this;
+        $I->amOnPage(AnnouncementListPage::$groupListUrl);
+        $I->wait(2);
+        $I->click(AnnouncementListPage::$showMore);
+        $a = file_get_contents(codecept_data_dir('advCount1.txt'));
+        $b = file_get_contents(codecept_data_dir('advCount2.txt'));
+        $count = array ($a,$b);
+        $c = array_sum($count) - 3;
+        $I->see('Всего объявлений: '.$c,AnnouncementListPage::$groupInfLine);
     }
 
-    public function viewGroup()
+    public function viewAgencyGroup()
     {
         $I = $this;
         $I->amOnPage(AnnouncementListPage::$userGroupListUrl);
@@ -116,9 +203,34 @@ class AnnouncementList extends \VpnTester
         $I->click(AnnouncementListPage::$showMore);
         $I->click(AnnouncementListPage::$groupUrl);
         $I->wait(2);
-        $I->pauseExecution();
+//        $I->pauseExecution();
         $I->see(User::$agencyUhomeName, AnnouncementListPage::$agencyInfoField);
         $I->see(User::$agencyEmail, AnnouncementListPage::$agencyInfoField);
+        $I->seeElement(AnnouncementListPage::$image);
+        $I->seeElement(AnnouncementListPage::$basicInfo);
+
+        $I->click(AnnouncementListPage::$showMore1);
+        $I->seeElement(AnnouncementListPage::$address);
+        $I->seeElement(AnnouncementListPage::$mainProp);
+        $I->seeElement(AnnouncementListPage::$description);
+        $I->seeElement(AnnouncementListPage::$gallery);
+        $I->click(AnnouncementListPage::$showMore2);
+        $I->click(AnnouncementListPage::$interest1);
+        $I->click(AnnouncementListPage::$unInterest2);
+
+
+    }
+    public function viewAgentGroup()
+    {
+        $I = $this;
+        $I->amOnPage(AnnouncementListPage::$userGroupListUrl);
+        $I->wait(2);
+        $I->click(AnnouncementListPage::$showMore);
+        $I->click(AnnouncementListPage::$groupUrl);
+        $I->wait(2);
+//        $I->pauseExecution();
+        $I->see(User::$agentName, AnnouncementListPage::$agencyInfoField);
+        $I->see(User::$agentEmail, AnnouncementListPage::$agencyInfoField);
         $I->seeElement(AnnouncementListPage::$image);
         $I->seeElement(AnnouncementListPage::$basicInfo);
 

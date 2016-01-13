@@ -37,6 +37,12 @@ class webUS5a_searchAdvertsListResultCest
         $I->apiAdvertCommercialAddSearch();
         $I->apiAdminEditCommercialAdvertSearch();
     }
+    protected function addApiGarageAdvert(VpnTester $I)
+    {
+        $I->realtyGarageAddForSearch();
+        $I->apiAdvertGarageAddForSearch();
+        $I->apiAdminEditGarageAdvertSearch();
+    }
 
     /**
      *@before apiLogin

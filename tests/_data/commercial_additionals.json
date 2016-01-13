@@ -1,7 +1,1 @@
-<html>
-<head><title>502 Bad Gateway</title></head>
-<body bgcolor="white">
-<center><h1>502 Bad Gateway</h1></center>
-<hr><center>nginx</center>
-</body>
-</html>
+[{"id":"5668070bd69b5a624a8b4584","name":"Отдельный вход"},{"id":"5668070bd69b5a624a8b4578","name":"Отдельный заезд"},{"id":"5668070bd69b5a624a8b4567","name":"Лифт"},{"id":"5668070bd69b5a624a8b4585","name":"Торговое оборудование"},{"id":"5668070bd69b5a624a8b4571","name":"Счетчик на газ"},{"id":"5668070bd69b5a624a8b4572","name":"Счетчик на воду"},{"id":"5668070bd69b5a624a8b4573","name":"Счетчики на отопление"},{"id":"5668070bd69b5a624a8b4583","name":"Территория охраняется"}]

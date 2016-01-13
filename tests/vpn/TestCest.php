@@ -47,53 +47,56 @@ class TestCest
      */
     public function viewAdvert(\Step\Vpn\AnnouncementList $I)
     {
-        $I->viewGroup();
-
+        $I->viewAgencyGroup();
 
     }
+
     /**
      * @before agencyLogin
      */
-    public function editGroup(\Step\Vpn\AnnouncementList $I)
+    public function editDeleteAdv(\Step\Vpn\AnnouncementList $I)
     {
         $I->editGroupSaveInterest();
-        $I->pauseExecution();
-    }
-
-    /**
-     * @before agencyLogin
-     */
-    public function deleteGroup(\Step\Vpn\AnnouncementList $I)
-    {
+        $I->deleteAdvert();
         $I->deleteGroup();
     }
 
 
+    /**
+     * @before agentLogin
+     */
 
-//    /**
-//     * @before agentLogin
-//     */
-//
-//    public function createGroup(\Step\Vpn\AnnouncementList $I, \Step\Vpn\Search $search)
-//    {
-//        $I->createAnnouncementList();
-//        $search->searchFlatCategory();
-//        $I->addAdvertToGroupFromListResultSearch();
-//
-//        $search->mapSearchHouseCategory();
-//        $I->addAdvertToGroupFromListResultSearch();
-//
-//        $I->sendGroupToUser();
-//
+    public function createGroup(\Step\Vpn\AnnouncementList $I, \Step\Vpn\Search $search)
+    {
+        $I->createAnnouncementList();
+        $search->searchFlatCategory();
+        $I->addAdvertToGroupFromListResultSearch();
+
+        $search->mapSearchHouseCategory();
+        $I->addAdvertToGroupFromListResultSearch();
+
+        $I->sendGroupToUser();
+
 //        $I->pauseExecution();
-//    }
-//    /**
-//     * @before agentLogin
-//     */
-//    public function deleteAgentGroup(\Step\Vpn\AnnouncementList $I)
-//    {
-//        $I->deleteGroup();
-//    }
+    }
+
+    /**
+     * @before userLogin
+     */
+    public function viewAdverts(\Step\Vpn\AnnouncementList $I)
+    {
+        $I->viewAgentGroup();
+
+    }
+    /**
+     * @before agentLogin
+     */
+    public function deleteAgentGroup(\Step\Vpn\AnnouncementList $I)
+    {
+        $I->editGroupResetInterest();
+        $I->deleteAdvert();
+        $I->deleteGroup();
+    }
 
 
 

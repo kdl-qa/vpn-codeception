@@ -169,6 +169,226 @@ class Api extends \Codeception\Module
 
     /*================================================ API LISTS ==================================================*/
 
+    function getAllLists()
+    {
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/countries');
+        $country = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('countries.json'), $country);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/regions');
+        $regions = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('regions.json'), $regions);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/cities/' . $this->getRegion(21));
+        $cities = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('cities.json'), $cities);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+
+        $this->restModule->sendGET('/lists/districts/' . $this->getCity(6));
+        $districts = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('districts.json'), $districts);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/streets/' . $this->getCity(6));
+        $streets = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('streets.json'), $streets);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $flat = $this->getCategories(0);
+        $this->restModule->sendGET('/lists/category-types/' . $flat);
+        $cType = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('flat_types.json'), $cType);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $house = $this->getCategories(1);
+        $this->restModule->sendGET('/lists/category-types/' . $house);
+        $cType = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('house_types.json'), $cType);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $parcel = $this->getCategories(2);
+        $this->restModule->sendGET('/lists/category-types/' . $parcel);
+        $cType = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('parcel_types.json'), $cType);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $commerc = $this->getCategories(3);
+        $this->restModule->sendGET('/lists/category-types/' . $commerc);
+        $cType = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('commercial_types.json'), $cType);
+
+        $this->restModule->haveHttpHeader ('Content-Type', 'application/json');
+        $garage = $this->getCategories(4);
+        $this->restModule->sendGET('/lists/category-types/' . $garage);
+        $cType = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('garage_types.json'), $cType);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $flat = $this->getCategories(0);
+        $this->restModule->sendGET('/lists/additionals/' . $flat);
+        $flatAdditionals = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('flat_additionals.json'), $flatAdditionals);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $house = $this->getCategories(1);
+        $this->restModule->sendGET('/lists/additionals/' . $house);
+        $houseAdditionals = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('house_additionals.json'), $houseAdditionals);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $parcel = $this->getCategories(2);
+        $this->restModule->sendGET('/lists/additionals/' . $parcel);
+        $parcelAdditionals = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('parcel_additionals.json'), $parcelAdditionals);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $commercial = $this->getCategories(3);
+        $this->restModule->sendGET('/lists/additionals/' . $commercial);
+        $commercialAdditionals = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('commercial_additionals.json'), $commercialAdditionals);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $garage = $this->getCategories(4);
+        $this->restModule->sendGET('/lists/additionals/' . $garage);
+        $garageAdditionals = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('garage_additionals.json'), $garageAdditionals);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/appliances');
+        $appliances = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('appliances.json'), $appliances);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/actual-currency');
+        $actCurrency = $this->restModule->grabResponse();
+        $file = file_put_contents(codecept_data_dir('actual_currency.json'), $actCurrency);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/area-units');
+        $areaUnits = $this->restModule->grabResponse('$data.');
+        $file = file_put_contents(codecept_data_dir('area_units.json'), $areaUnits);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/balconies');
+        $balconies = $this->restModule->grabResponse();
+        $file = file_put_contents(codecept_data_dir('balconies.json'), $balconies);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/communications');
+        $communications = $this->restModule->grabResponse();
+        $file = file_put_contents(codecept_data_dir('communications.json'), $communications);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/currency');
+        $currency = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('currency.json'), $currency);
+
+        $streetId = $this->getStreet(0);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/house-numbers/' . $streetId);
+        $house_numbers = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('house_numbers.json'), $house_numbers);
+
+        $houseNumID = $this->getHouseNumbers(0);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/flat-numbers/' . $houseNumID);
+        $flat_numbers = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('flat_numbers.json'), $flat_numbers);
+
+        $garageNumID = $this->getHouseNumbers(0);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/garage-numbers/' . $garageNumID);
+        $garage_numbers = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('garage_numbers.json'), $garage_numbers);
+
+        $garageNumID = $this->getHouseNumbers(0);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/garage-numbers/' . $garageNumID);
+        $garage_numbers = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('garage_numbers.json'), $garage_numbers);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/furnitures');
+        $furnitures = $this->restModule->grabResponse();
+        $file = file_put_contents(codecept_data_dir('furnitures.json'), $furnitures);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/heatings');
+        $heatings = $this->restModule->grabResponse();
+        $file = file_put_contents(codecept_data_dir('heatings.json'), $heatings);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/market-types');
+        $mTypes = $this->restModule->grabResponse();
+        $file = file_put_contents(codecept_data_dir('market_types.json'), $mTypes);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/near-objects');
+        $nearObj = $this->restModule->grabResponse();
+        $file = file_put_contents(codecept_data_dir('near_objects.json'), $nearObj);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/operation-types');
+        $opTypes = $this->restModule->grabResponse();
+        $file = file_put_contents(codecept_data_dir('operation_types.json'), $opTypes);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/period');
+        $periods = $this->restModule->grabResponse();
+        $file = file_put_contents(codecept_data_dir('periods.json'), $periods);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/statuses');
+        $statuses = $this->restModule->grabResponse();
+        $file = file_put_contents(codecept_data_dir('statuses.json'), $statuses);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/repairs');
+        $repairs = $this->restModule->grabResponse();
+        $file = file_put_contents(codecept_data_dir('repairs.json'), $repairs);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/unpublish-reasons');
+        $unpubReason = $this->restModule->grabResponse();
+        $file = file_put_contents(codecept_data_dir('unpublish_reasons.json'), $unpubReason);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/wall-materials');
+        $wallMaterials = $this->restModule->grabResponse();
+        $file = file_put_contents(codecept_data_dir('wall_materials.json'), $wallMaterials);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/water-heatings');
+        $waterHeatings = $this->restModule->grabResponse();
+        $file = file_put_contents(codecept_data_dir('water_heatings.json'), $waterHeatings);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/wc');
+        $wc = $this->restModule->grabResponse();
+        $file = file_put_contents(codecept_data_dir('wc.json'), $wc);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/inspection-pit');
+        $inspection_list = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('inspectionPit_list.json'), $inspection_list);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/parking-place');
+        $parking_list = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('parkingPlace_list.json'), $parking_list);
+
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/lists/transport-type');
+        $transport_list = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('transport_list.json'), $transport_list);
+
+
+
+    }
     function getCountry()
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
@@ -659,6 +879,13 @@ class Api extends \Codeception\Module
         $this->debugSection('mTypeId', $mTypeId);
         return $mTypeId;
     }
+    function getMarketTypeName($id) //0..1
+    {
+        $market = file_get_contents(codecept_data_dir('market_types.json'));
+        $marketName = json_decode($market)[$id]->name;
+        $this->debugSection('MArket Name', $marketName);
+        return $marketName;
+    }
 
     function getNearObjects($id) //0..9
     {
@@ -887,9 +1114,60 @@ class Api extends \Codeception\Module
         file_put_contents(codecept_data_dir('agencies_list.json'), $agencies_list);
         $this->restModule->seeResponseCodeIS(200);
     }
+    function  getInspectionPit($id)
+    {
+        $this->restModule->sendGET('/lists/inspection-pit');
+        $inspection_list = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('inspectionPit_list.json'), $inspection_list);
+        $this->restModule->seeResponseCodeIS(200);
+        $inspectionId = json_decode($inspection_list)[$id]->id;
+        $this->debugSection('inspectionId', $inspectionId);
+        return $inspectionId;
+    }
+    function getInspectionPitName($id)
+    {
+        $inspection = file_get_contents(codecept_data_dir('inspectionPit_list.json'));
+        $inspectionName = json_decode($inspection)[$id]->name;
+        $this->debugSection('Inspection Pit', $inspectionName);
+        return $inspectionName;
+    }
+    function  getParkingPlace($id)
+    {
+        $this->restModule->sendGET('/lists/parking-place');
+        $parking_list = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('parkingPlace_list.json'), $parking_list);
+        $this->restModule->seeResponseCodeIS(200);
+        $parkingId = json_decode($parking_list)[$id]->id;
+        $this->debugSection('parkingId', $parkingId);
+        return $parkingId;
+    }
+    function getParkingPlaceName($id)
+    {
+        $parking = file_get_contents(codecept_data_dir('parkingPlace_list.json'));
+        $parkingName = json_decode($parking)[$id]->name;
+        $this->debugSection('Parking Place', $parkingName);
+        return $parkingName;
+    }
+    function  getTransportType($id)
+    {
+        $this->restModule->sendGET('/lists/transport-type');
+        $transport_list = $this->restModule->grabResponse();
+        file_put_contents(codecept_data_dir('transport_list.json'), $transport_list);
+        $this->restModule->seeResponseCodeIS(200);
+        $transportId = json_decode($transport_list)[$id]->id;
+        $this->debugSection('transportId', $transportId);
+        return $transportId;
+    }
+    function getTransportTypeName($id)
+    {
+        $transport = file_get_contents(codecept_data_dir('transport_list.json'));
+        $transportName = json_decode($transport)[$id]->name;
+        $this->debugSection('Transport Type', $transportName);
+        return $transportName;
+    }
 
 
-    /*======================================================== API REALTY ==================================*/
+    /*=================================== API REALTY ==================================*/
 
     /*=================================== COMMON =================================*/
 
@@ -2003,6 +2281,7 @@ class Api extends \Codeception\Module
             'floor' => Garage::floor,
             'floorNumber' => Garage::floorNumber,
             'heating' => $this->getHeatings(0),
+
 //            'inspectionPit'=>Garage::inspectionPit0,
 
 //            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(1), $this->getNearObjects(5)],
@@ -2041,9 +2320,9 @@ class Api extends \Codeception\Module
             'areaUnit' => $this->getAreaUnits(0),
             'floor' => Garage::floor,
             'floorNumber' => Garage::floorNumber,
-            'inspectionPit'=> '5680ece336107635f977b797',
-            'parkingPlace' => '5680ecef36107635f977b79a',
-            'transportType' =>'5680ed0136107635f977b7b6',
+            'inspectionPit'=> $this->getInspectionPit(0),
+            'parkingPlace' => $this->getParkingPlace(0),
+            'transportType' =>$this->getTransportType(0),
             'buildYear' => Garage::buildYear,
             'heating' => $this->getHeatings(1),
             'communication' => [
@@ -2086,14 +2365,14 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/garages/add', [
-            'category' => $this->getCategories(0),
-            'categoryType' => $this->getFlatCategoryTypes(0),
+            'category' => $this->getCategories(4),
+            'categoryType' => $this->getGaragesCategoryTypes(0),
             'region' => $this->getRegion(21),
             'city' => $this->getCity(6),
-            'district' => $this->getDistrict(7),
-            'street' => $this->getStreet(34),
+            'district' => $this->getDistrict(16),
+            'street' => $this->getStreet(201),
             'houseNumber' => Garage::houseNumber,
-            'flatNumber' => Garage::uniqueFlatNumber(),
+            'garageNumber' => Flat::uniqueFlatNumber(),
             'latitude' => Garage::searchLatitude,
             'longitude' => Garage::searchLongitude,
             'roomCount' => Garage::roomCount,
@@ -2103,18 +2382,19 @@ class Api extends \Codeception\Module
             'floor' => Garage::floor,
             'floorNumber' => Garage::floorNumber,
             'buildYear' => Garage::buildYear,
-            'wc' => $this->getWC(1),
-            'balcony' => $this->getBalconies(1),
-            'heating' => $this->getHeatings(1),
-            'waterHeating' => $this->getWaterHeatings(1),
+            'inspectionPit'=> $this->getInspectionPit(0),
+            'parkingPlace' => $this->getParkingPlace(0),
+            'transportType' =>$this->getTransportType(0),
+            'heating' => $this->getHeatings(0),
+            'communication' => [$this->getCommunications(0)],
             'nearObjects' => [$this->getNearObjects(0)]
 //            'schema' => $schema
         ]);
 
-        $realtyFlat = $this->restModule->grabResponse();
-        $realtyFlatId = json_decode($realtyFlat)->id;
-        file_put_contents(codecept_data_dir('realtyFlatId.json'), $realtyFlatId);
-        $this->debugSection('realtyFlatId', $realtyFlatId);
+        $realtyGarage = $this->restModule->grabResponse();
+        $realtyGarageId = json_decode($realtyGarage)->id;
+        file_put_contents(codecept_data_dir('realtyGarageId.json'), $realtyGarageId);
+        $this->debugSection('realtyGarageId', $realtyGarageId);
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
 
@@ -2150,8 +2430,8 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/garages/validate', [
-            'category' => $this->getCategories(0),
-            'categoryType' => $this->getFlatCategoryTypes(0),
+            'category' => $this->getCategories(4),
+            'categoryType' => $this->getGaragesCategoryTypes(0),
             'region' => $this->getRegion(21),
             'city' => $this->getCity(6),
             'district' => $this->getDistrict(16),
@@ -2168,9 +2448,9 @@ class Api extends \Codeception\Module
             'floorNumber' => Garage::floorNumber,
             'buildYear' => Garage::buildYear,
             'heating' => $this->getHeatings(1),
-            'inspectionPit'=> '5680ece336107635f977b797',
-            'parkingPlace' => '5680ecef36107635f977b79a',
-            'transportType' =>'5680ed0136107635f977b7b6',
+            'inspectionPit'=> $this->getInspectionPit(0),
+            'parkingPlace' => $this->getParkingPlace(0),
+            'transportType' =>$this->getTransportType(0),
             'communication' => [
                 $this->getCommunications(0),
                 $this->getCommunications(1),
@@ -2235,9 +2515,9 @@ class Api extends \Codeception\Module
             'floorNumber' => Garage::editFloorNumber,
             'buildYear' => Garage::editBuildYear,
             'heating' => $this->getHeatings(2),
-            'inspectionPit'=> '5680ece336107635f977b797',
-            'parkingPlace' => '5680ecef36107635f977b79a',
-            'transportType' =>'5680ed0136107635f977b7b6',
+            'inspectionPit'=> $this->getInspectionPit(1),
+            'parkingPlace' => $this->getParkingPlace(1),
+            'transportType' =>$this->getTransportType(1),
             'communication' => [
                 $this->getCommunications(0),
                 $this->getCommunications(1),
@@ -2615,6 +2895,84 @@ class Api extends \Codeception\Module
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
 
+
+    }
+
+    function apiGarageSearch()
+    {
+        $agencyID = json_decode(file_get_contents(codecept_data_dir() . 'agency_data.json'))->id;
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseContainsJson(array('id' => User::getGarageId()));
+        $search = $this->restModule->grabResponse();
+        $this->debugSection('realtyGarageId', $search);
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(22).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(5).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(17).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(202).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(1).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSell.'&priceTo='.Garage::priceGarageSell.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::editBuildYear.'&buildYearTo='.Garage::editBuildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(1).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(1).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::editGeneralArea.'&areaTo='.Garage::editGeneralArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::editRoomCount.'&roomCountTo='.Garage::editRoomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::editFloor.'&floorTo='.Garage::editFloor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::editFloorNumber.'&floorNumberFrom='.Garage::editFloorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(1).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(1).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(1).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(1).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(1).'&transportType='.$this->getTransportType(0));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
+
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(1));
+        $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
     }
 
@@ -3900,7 +4258,7 @@ class Api extends \Codeception\Module
             'commission' => Garage::commission,
             'availableFrom' => Garage::apiAvailableFrom,
 //            'repair' => $this->getRepairs(0),
-//            'ownerContacts' => Garage::ownerContacts,
+            'ownerContacts' => Garage::ownerContacts,
             'ownerName' => Garage::ownerName
         ]);
         $this->restModule->seeResponseCodeIs(201);
@@ -3957,18 +4315,13 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/garages/add/' . $realtyGarageId, [
             'operationType' => $this->getOperationType(0),
-            'description' => Flat::descriptionFlatSell,
-            'price' => Flat::priceFlatSearch,
+            'description' => Garage::descriptionGarageSell,
+            'price' => Garage::priceGarageSearch,
             'currency' => $this->getCurrency(0),
-            'commission' => Flat::commission,
+            'commission' => Garage::commission,
             'auction' => true,
-            'availableFrom' => Flat::apiAvailableFrom,
-            'marketType' => $this->getMarketType(0),
-            'repair' => $this->getRepairs(0),
-            'bedsCount' => Flat::beds,
-            'furniture' => [$this->getFurnitures(0)],
-            'appliances' => [$this->getAppliances(0)],
-            'additionally' => [$this->getFlatAdditionals(0)],
+            'availableFrom' => Garage::apiAvailableFrom,
+            'additionally' => [$this->getGarageAdditionals(0)],
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName,
             'videos' => [['imageSrc' => Flat::videoImage, 'url' => Flat::videoURL]],
@@ -4702,6 +5055,77 @@ class Api extends \Codeception\Module
         $this->debugSection('advertCommercialId', $advCommercialId);
     }
 
+    function apiAdminEditGarageAdvertComplex()
+    {
+//        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $agencyData = file_get_contents(codecept_data_dir('agency_data.json'));
+        $userId = json_decode($agencyData)->id;
+        $realtyGarageId = file_get_contents(codecept_data_dir('realtyGarageId.json'));
+        $advertGarageId = file_get_contents(codecept_data_dir('advertGarageId.json'));
+//        $images = file_get_contents(codecept_data_dir('images_id.json'));
+
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertGarageId, [
+            'type' => 'garages',
+            'status' => 1,
+            'userId' => $userId,
+            'realtyId' => $realtyGarageId,
+            'operationType' => $this->getOperationType(1),
+            'description' => Garage::editDescriptionGarageSell,
+            'price' => Garage::priceGarageRent,
+            'currency' => $this->getCurrency(0),
+            'auction' => true,
+            'commission' => Garage::editCommission,
+            'availableFrom' => Garage::apiAvailableFrom,
+            'additionally' => [$this->getGarageAdditionals(1)],
+            'communication' => [$this->getCommunications(1)],
+            'ownerContacts' => Flat::editOwnerContacts,
+            'ownerName' => Flat::editOwnerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+        $advertGarage = $this->restModule->grabResponse();
+        $advGarageId = json_decode($advertGarage)->id;
+        file_put_contents(codecept_data_dir('advertGarageId.json'), $advGarageId);
+        $this->debugSection('advertGarageId', $advGarageId);
+    }
+    function apiAdminEditGarageAdvertSearch()
+    {
+//        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $agencyData = file_get_contents(codecept_data_dir('agency_data.json'));
+        $userId = json_decode($agencyData)->id;
+        $realtyGarageId = file_get_contents(codecept_data_dir('realtyGarageId.json'));
+        $advertGarageId = file_get_contents(codecept_data_dir('advertGarageId.json'));
+//        $images = file_get_contents(codecept_data_dir('images_id.json'));
+
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertGarageId, [
+            'type' => 'garages',
+            'status' => 1,
+            'userId' => $userId,
+            'realtyId' => $realtyGarageId,
+            'operationType' => $this->getOperationType(0),
+            'description' => Garage::descriptionGarageSell,
+            'price' => Garage::priceGarageSearch,
+            'currency' => $this->getCurrency(0),
+            'auction' => true,
+            'commission' => Garage::commission,
+            'availableFrom' => Garage::apiAvailableFrom,
+            'additionally' => [$this->getGarageAdditionals(0)],
+            'communication' => [$this->getCommunications(0)],
+            'ownerContacts' => Flat::ownerContacts,
+            'ownerName' => Flat::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+        $advertGarage = $this->restModule->grabResponse();
+        $advGarageId = json_decode($advertGarage)->id;
+        file_put_contents(codecept_data_dir('advertGarageId.json'), $advGarageId);
+        $this->debugSection('advertGarageId', $advGarageId);
+    }
+
     /*================================================ Delete Advert ====================================*/
 
     function apiDeleteFlatAdvert()
@@ -4747,6 +5171,17 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', $adminToken);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendDELETE('/announcements/' . $advertCommercialId . '/delete');
+        $this->restModule->seeResponseIsJson();
+        $this->restModule->seeResponseCodeIs(200);
+
+    }
+    function apiDeleteGarageAdvert()
+    {
+//        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $advertGarageId = file_get_contents(codecept_data_dir('advertGarageId.json'));
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendDELETE('/announcements/' . $advertGarageId . '/delete');
         $this->restModule->seeResponseIsJson();
         $this->restModule->seeResponseCodeIs(200);
 

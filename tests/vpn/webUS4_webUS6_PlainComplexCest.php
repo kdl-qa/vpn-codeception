@@ -63,7 +63,6 @@ class webUS4_webUS6_PlainComplexCest
 
         $this->moderateAdv($admin);
         $this->open1stAdvert($list);
-
         $I->checkFlatPropertiesPlain();
     }
 

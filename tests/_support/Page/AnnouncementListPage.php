@@ -10,6 +10,7 @@ class AnnouncementListPage
     public static $clientNameType = '[ng-model="ctrl.group.user"] input';
     public static $clientName0 = '.cc-client-group-name0';
     public static $submitButton = '.buttonContainer';
+    public static $goodButton = '[ng-click="ctrl.apply()"]';
     public static $showMore = '.dottedLink';
     public static $groupTitle = '.title';
     public static $groupInfLine = '.newLine';
@@ -32,6 +33,7 @@ class AnnouncementListPage
     public static $selectGroupType = '[ng-model="ctrl.advGroup"] input';
     public static $selectGroup0 = '.cc-group-name0';
     public static $advGroupList = '.advGroupList';
+    public static $noGroupDisplayed = '.noDataToDisplay';
 
 
     //------------------------User---------------//
@@ -55,7 +57,9 @@ class AnnouncementListPage
 
     //--------------Edit group page---------------------//
     public static $generalInfo = '.editGroup.ng-scope li:nth-child(2) >a';
-    public static $deleteAdv = '.annFooter >a';
+    public static $deleteAdv1 = 'li:nth-child(1) div.annFooter a';
+    public static $deleteAdv2 = 'li:nth-child(2) div.annFooter a';
+    public static $deleteAdv3 = 'li:nth-child(3) div.annFooter a';
     public static $clearInter ='.cc-clear-favorites';
     public static $saveButton = '.blue';
 

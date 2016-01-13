@@ -151,6 +151,12 @@ class Search extends \VpnTester
         $I->seeElement(SearchPage::$addToGroup);
         $I->seeElement(SearchPage::$listAdvertButton);
         $I->seeElement(SearchPage::$mapAdvertButton);
+        $advCount = $I->grabMultiple(SearchPage::$countSearchResult);
+
+        file_put_contents(codecept_data_dir('advCount1.txt'), $advCount);
+        $advListCount = file_get_contents(codecept_data_dir('advCount1.txt'));
+        $adv = substr($advListCount, 21);
+        file_put_contents(codecept_data_dir('advCount1.txt'), $adv);
 
     }
 
@@ -3124,7 +3130,13 @@ class Search extends \VpnTester
         $I->click(SearchPage::$period1);
         $I->click(SearchPage::$searchButton);
         $I->wait(3);
-        $I->pauseExecution();
+
+        $advCount = $I->grabMultiple(SearchPage::$countSearchResult);
+        file_put_contents(codecept_data_dir('advCount2.txt'), $advCount);
+        $advListCount = file_get_contents(codecept_data_dir('advCount2.txt'));
+        $adv = substr($advListCount, 21);
+        file_put_contents(codecept_data_dir('advCount2.txt'), $adv);
+//        $I->pauseExecution();
     }
     public function mapSearchHouse1()
     {

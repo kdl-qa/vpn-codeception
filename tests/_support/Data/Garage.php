@@ -86,6 +86,7 @@ class Garage
     const editPriceGarageSearch = '35000';
     const editPriceGarageRent = '400'; //5000 грн
     const editGeneralArea = 55;
+    const editCommission = 2;
 
 
 }

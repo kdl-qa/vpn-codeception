@@ -122,6 +122,7 @@ class User
     static $agentPhone1 = '+380931213127';
     static $agentPass = '123456';
     static $agentEmail = 'rblkkk@yandex.ru';
+    static $agentName = 'Dom agent';
 
     // ---------------------------------------- Data to register agent by agency ----------------------------------
     static $editAgentFirstName = 'Edit-Alexey';
@@ -472,6 +473,10 @@ class User
     static function getCommercialId(){
         $commercialId = file_get_contents(codecept_data_dir('advertCommercialId.json'));
         return $commercialId;
+    }
+    static function getGarageId(){
+        $garageId = file_get_contents(codecept_data_dir('advertGarageId.json'));
+        return $garageId;
     }
 
     static function getCityId(){

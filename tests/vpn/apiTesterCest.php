@@ -22,20 +22,26 @@ class apiTesterCest
     }
 
     /**
-     * @before uploadImages
+
      *@before apiAgencyLogin
      * @before apiAdminLogin
+     *
      */
 
     public function apiAddGarageRealtyPlain (VpnTester $I)
     {
+
 //        $I->realtyGarageAddPlain();
+//        $I->realtyGarageEdit();
+//        $I->apiAdvertGarageAddPlain();
+//        $I->apiAdminEditGarageAdvertComplex();
+
         $I->apiAdvertGarageAddPlain();
 //        $I->apiAdvertGarageAddComplex();
 //        $I->realtyGarageCheck();
 //        $I->realtyGarageEdit();
-//        $I->pauseExecution();
-//        $I->realtyGarageValidate();
+        $I->realtyGarageValidate();
+        $I->pauseExecution();
 //        $I->realtyGarageDelete();
     }
 //    /**
