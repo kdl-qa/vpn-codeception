@@ -218,10 +218,10 @@ class webUS5a_searchAdvertsListResultCest
     }
 //
 //    //-------------------------Reset filter----------------//
-//    public function resetFilter(\Step\Vpn\Search $I)
-//    {
-//        $I->checkResetFilter();
-//    }
+    public function resetFilter(\Step\Vpn\Search $I)
+    {
+        $I->checkResetFilter();
+    }
 
 
     /**

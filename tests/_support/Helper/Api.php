@@ -1914,8 +1914,8 @@ class Api extends \Codeception\Module
 //            'district' => $this->getDistrict(7),
 //            'street' => $this->getStreet(32),
             'cadastralNumber' => Parcel::uniqueCadastralNumber(),
-//            'latitude' => Parcel::latitude,
-//            'longitude' => Parcel::longitude,
+            'latitude' => Parcel::latitude,
+            'longitude' => Parcel::longitude,
             'area' => Parcel::generalArea,
             'areaUnit' => $this->getAreaUnits(1),
 //            'communication' => [$this->getCommunications(0), $this->getCommunications(6)],
@@ -2993,7 +2993,7 @@ class Api extends \Codeception\Module
                 'category' => $this->getCategories(0),
                 'categoryType' => $this->getFlatCategoryTypes(0),
                 'currency' => $this->getCurrency(0),
-                'priceFrom' => Flat::priceFlatSearch,
+                'priceFrom' => Flat::priceFlatSell,
                 'priceTo' => Flat::priceFlatSearch,
                 'auction' => true,
                 'userIds'=> [$agencyID],
@@ -3039,12 +3039,12 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/profiles/searches/create', [
-            'name' => 'TestFlat',
+            'name' => 'TestFlatPlain',
             'searchCriteria' => [
                 'operationType'=> $this->getOperationType(0),
                 'region' => $this->getRegion(21),
                 'category' => $this->getCategories(0),
-//                'categoryType' => $this->getFlatCategoryTypes(0),
+                'categoryType' => $this->getFlatCategoryTypes(0),
             ]
         ]);
         $saveSearchFlat = $this->restModule->grabResponse();
@@ -3288,7 +3288,7 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/visit', [
-            'adverts' => ['567c1bb0d69b5a383e8b4567']
+            'adverts' => ['566e8fdfd69b5a68128b4567']
         ]);
 
         $this->restModule->seeResponseCodeIs(200);
@@ -4827,7 +4827,7 @@ class Api extends \Codeception\Module
         $advertFlat = $this->restModule->grabResponse();
         $advFlatId = json_decode($advertFlat)->id;
         file_put_contents(codecept_data_dir('advertParcelId.json'), $advFlatId);
-        $this->debugSection('advertParcelId', $advFlatId);
+        $this->debugSection('advertFlatId', $advFlatId);
 
     }
 
@@ -5080,6 +5080,39 @@ class Api extends \Codeception\Module
             'availableFrom' => Garage::apiAvailableFrom,
             'additionally' => [$this->getGarageAdditionals(1)],
             'communication' => [$this->getCommunications(1)],
+            'ownerContacts' => Flat::editOwnerContacts,
+            'ownerName' => Flat::editOwnerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+        $advertGarage = $this->restModule->grabResponse();
+        $advGarageId = json_decode($advertGarage)->id;
+        file_put_contents(codecept_data_dir('advertGarageId.json'), $advGarageId);
+        $this->debugSection('advertGarageId', $advGarageId);
+    }
+    function apiAdminEditGarageAdvertPlain()
+    {
+//        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $agencyData = file_get_contents(codecept_data_dir('agency_data.json'));
+        $userId = json_decode($agencyData)->id;
+        $realtyGarageId = file_get_contents(codecept_data_dir('realtyGarageId.json'));
+        $advertGarageId = file_get_contents(codecept_data_dir('advertGarageId.json'));
+//        $images = file_get_contents(codecept_data_dir('images_id.json'));
+
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertGarageId, [
+            'type' => 'garages',
+            'status' => 1,
+            'userId' => $userId,
+            'realtyId' => $realtyGarageId,
+            'operationType' => $this->getOperationType(0),
+            'description' => Garage::editDescriptionGarageSell,
+            'price' => Garage::priceGarageRent,
+            'currency' => $this->getCurrency(0),
+            'auction' => true,
+            'commission' => Garage::editCommission,
+            'availableFrom' => Garage::apiAvailableFrom,
             'ownerContacts' => Flat::editOwnerContacts,
             'ownerName' => Flat::editOwnerName,
         ]);

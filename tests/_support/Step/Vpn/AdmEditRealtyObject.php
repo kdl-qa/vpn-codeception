@@ -43,8 +43,8 @@ class AdmEditRealtyObject extends \VpnTester
         $I->fillField(AdmRealtyObject::$flat_number, Flat::uniqueFlatNumber());
 
         $I->fillField(AdmRealtyObject::$generalArea, Flat::editGeneralArea);
-        $I->click(AdmRealtyObject::$areaUnitField);
-        $I->click(AdmRealtyObject::$areaUnit0);
+//        $I->click(AdmRealtyObject::$areaUnitField);
+//        $I->click(AdmRealtyObject::$areaUnit0);
         $I->click(AdmRealtyObject::$wallMaterialField);
         $I->click(AdmRealtyObject::$wallMaterial0);
         $I->fillField(AdmRealtyObject::$roomСount, Flat::editRoomCount);

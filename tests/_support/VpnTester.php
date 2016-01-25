@@ -28,6 +28,8 @@ class VpnTester extends \Codeception\Actor
     protected $agencyChiefFName = 'Андрей';
     protected $agencyChiefLName = 'Сорокин';
     protected $agencyPass = 'L7KZXX';
+    protected $agencyEmail3 = "rblkkk@ukr.net";
+    protected $agencyPass3 = "123456";
 
 
 
@@ -58,6 +60,21 @@ class VpnTester extends \Codeception\Actor
         $this->click(Login::$submit);
         $this->wait(3);
         $this->seeElement("//img[@alt='$this->agencyChiefFName $this->agencyChiefLName']");
+        $this->saveSessionSnapshot('loginAgency');
+    }
+
+    function loginAgency1()
+    {
+//        if ($this->getScenario()->current('env') != 'firefox') {
+        if ($this->loadSessionSnapshot('loginAgency')) return;
+//        }
+        $this->amOnPage(Login::$URL);
+        $this->waitForElement(Login::$email);
+        $this->fillField(Login::$email, $this->agencyEmail3);
+        $this->fillField(Login::$pass, $this->agencyPass3);
+        $this->click(Login::$submit);
+        $this->wait(3);
+//        $this->seeElement("//img[@alt='$this->agencyChiefFName $this->agencyChiefLName']");
         $this->saveSessionSnapshot('loginAgency');
     }
 

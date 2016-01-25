@@ -377,7 +377,7 @@ class Search extends \VpnTester
         $I->click(SearchPage::$currencyField);
         $I->click(SearchPage::$currencyUS);
         $I->click(SearchPage::$agencyField);
-        $I->fillField(SearchPage::$agencyType, 'dom13');
+        $I->fillField(SearchPage::$agencyType, 'black');
         $I->click(SearchPage::$agency0);
         $I->click(SearchPage::$agencyField);
 
@@ -2659,7 +2659,7 @@ class Search extends \VpnTester
         $I->click(SearchPage::$currencyField);
         $I->click(SearchPage::$currencyUS);
         $I->click(SearchPage::$agencyField);
-        $I->fillField(SearchPage::$agencyType, 'dom13');
+        $I->fillField(SearchPage::$agencyType, 'black');
         $I->click(SearchPage::$agency0);
         $I->click(SearchPage::$agencyField);
 
@@ -3654,16 +3654,17 @@ class Search extends \VpnTester
 
         $I->click(SearchPage::$communicationTab);
         $I->click(SearchPage::$communication0);
-//        $I->click(SearchPage::$communication1);
+        $I->click(SearchPage::$communication1);
 
         $I->click(SearchPage::$additionalTab);
         $I->click(SearchPage::$additional0);
 
         $I->click(SearchPage::$nearObjectsTab);
         $I->click(SearchPage::$nearObject0);
-//        $I->click(SearchPage::$nearObject1);
+        $I->click(SearchPage::$nearObject1);
 
         $I->click(SearchPage::$searchButton);
+        $I->pauseExecution();
 
         //--------------------------Search result------------------------------------------//
 
@@ -4683,7 +4684,7 @@ class Search extends \VpnTester
         $I->click(SearchPage::$currencyField);
         $I->click(SearchPage::$currencyUS);
         $I->click(SearchPage::$agencyField);
-        $I->fillField(SearchPage::$agencyType, 'dom13');
+        $I->fillField(SearchPage::$agencyType, 'Domm');
         $I->click(SearchPage::$agency0);
         $I->click(SearchPage::$agencyField);
 

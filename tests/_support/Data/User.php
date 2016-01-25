@@ -122,7 +122,7 @@ class User
     static $agentPhone1 = '+380931213127';
     static $agentPass = '123456';
     static $agentEmail = 'rblkkk@yandex.ru';
-    static $agentName = 'Dom agent';
+    static $agentName = 'Domm Agent';
 
     // ---------------------------------------- Data to register agent by agency ----------------------------------
     static $editAgentFirstName = 'Edit-Alexey';

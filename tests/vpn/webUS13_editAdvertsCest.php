@@ -50,6 +50,13 @@ class webUS13_editAdvertsCest
         $api->apiAdvertCommercialAddPlain();
         $api->apiAdminEditCommercialAdvertPlain();
     }
+    protected function addGarageSaleAdvert($api)
+    {
+        $api->realtyGarageAddComplex();
+        $api->apiAdvertGarageAddPlain();
+        $api->apiAdminEditGarageAdvertPlain();
+
+    }
 
     protected function uploadImages(VpnTester $I)
     {
@@ -71,7 +78,7 @@ class webUS13_editAdvertsCest
         $I->openEditFlatPage();
         $I->editFlatAdvert();
         $I->fillInEditFlatAdvertCheckboxes();
-        $he->uploadHouseImage();
+        $he->uploadFlatImage();
         $he->clickIamOwnerLink();
         $he->clickCreateAdvertButton();
         $he->acceptModal();
@@ -158,5 +165,30 @@ class webUS13_editAdvertsCest
         $this->open1stAdvert($list);
 
         $I->checkEditedCommercialProperties();
+    }
+
+    /**
+     * @before uploadImages
+     * @before login
+     */
+    public function addEditCheckGarageSaleAdvert(VpnTester $api, \Step\Vpn\EditAdvert $I, \Step\Vpn\Advert $he, \Step\Vpn\AdminAdvert $admin, \Step\Vpn\UserAdvertsList $list)
+    {
+        $this->addGarageSaleAdvert($api);
+
+        $I->loginAgency();
+        $I->openEditGaragePage();
+        $I->editGarageAdvert();
+        $I->fillInEditGarageAdvertCheckboxes();
+        $he->uploadGarageImage();
+        $he->clickIamOwnerLink();
+        $he->clickCreateAdvertButton();
+        $he->acceptModal();
+
+        //todo: add admin function to do 2nd moderate (new functional)
+        $this->moderateAdv($admin);
+
+        $this->open1stAdvert($list);
+
+        $I->checkEditedGarageProperties();
     }
 }

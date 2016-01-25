@@ -1,6 +1,7 @@
 <?php
 namespace Step\Vpn;
 use Data\Commercial;
+use Data\Garage;
 use Data\Parcel;
 use Page\AddAdvert;
 use \Data\Flat;
@@ -45,6 +46,7 @@ class Advert extends \VpnTester
         $I->click(AddAdvert::$chooseStreet);
         $I->fillField(AddAdvert::$house_number,Flat::houseNumber);
         $I->fillField(AddAdvert::$flat_number,Flat::uniqueFlatNumber());
+        $I->seeElement(AddAdvert::$hideHouseNumberText);
         $I->click(AddAdvert::$buttonSubmit);
         $I->wait(2);
     }
@@ -55,8 +57,8 @@ class Advert extends \VpnTester
         $I->wantTo('Fill in Flat object properties Plain');
         $I->waitForElement(AddAdvert::$generalArea);
         $I->fillField(AddAdvert::$generalArea,Flat::generalArea);
-        $I->click(AddAdvert::$areaUnitField);
-        $I->click(AddAdvert::$areaUnit0);
+//        $I->click(AddAdvert::$areaUnitField);
+//        $I->click(AddAdvert::$areaUnit0);
         $I->click(AddAdvert::$wallMaterialField);
         $I->click(AddAdvert::$wallMaterial5);
 
@@ -74,8 +76,8 @@ class Advert extends \VpnTester
         $I->wantTo('Fill in Flat object properties Complex');
         $I->waitForElement(AddAdvert::$generalArea);
         $I->fillField(AddAdvert::$generalArea,Flat::generalArea);
-        $I->click(AddAdvert::$areaUnitField);
-        $I->click(AddAdvert::$areaUnit0);
+//        $I->click(AddAdvert::$areaUnitField);
+//        $I->click(AddAdvert::$areaUnit0);
         $I->click(AddAdvert::$wallMaterialField);
         $I->click(AddAdvert::$wallMaterial5);
         $I->click(AddAdvert::$roomСount);
@@ -249,11 +251,11 @@ class Advert extends \VpnTester
     {
         $I = $this;
         $I->wantTo('Upload Flat images');
-        $I->attachFile(AddAdvert::$galleryFile, '/img/flat_1.jpg');
+        $I->attachFile(AddAdvert::$galleryFile1, '/img/flat_1.jpg');
         $I->wait(1);
-        $I->attachFile(AddAdvert::$galleryFile, '/img/flat_2.jpg');
+        $I->attachFile(AddAdvert::$galleryFile1, '/img/flat_2.jpg');
         $I->wait(1);
-        $I->attachFile(AddAdvert::$galleryFile, '/img/flat_3.jpg');
+        $I->attachFile(AddAdvert::$galleryFile1, '/img/flat_3.jpg');
         $I->wait(1);
     }
 
@@ -400,14 +402,14 @@ class Advert extends \VpnTester
         $I->see($this->getHeatingsName(2),AddAdvert::$objectPropsTable);
         $I->see($this->getWaterHeatingsName(2),AddAdvert::$objectPropsTable);
 
-        $I->see($this->getCommercialAdditionalsName(0), AddAdvert::$objectPropsTable);
-        $I->see($this->getCommercialAdditionalsName(1), AddAdvert::$objectPropsTable);
-        $I->see($this->getCommercialAdditionalsName(2), AddAdvert::$objectPropsTable);
-        $I->see($this->getCommercialAdditionalsName(3), AddAdvert::$objectPropsTable);
-        $I->see($this->getCommercialAdditionalsName(4), AddAdvert::$objectPropsTable);
-        $I->see($this->getCommercialAdditionalsName(5), AddAdvert::$objectPropsTable);
-        $I->see($this->getCommercialAdditionalsName(6), AddAdvert::$objectPropsTable);
-        $I->see($this->getCommercialAdditionalsName(7), AddAdvert::$objectPropsTable);
+        $I->see($this->getCommunicationsName(0), AddAdvert::$objectPropsTable);
+        $I->see($this->getCommunicationsName(1), AddAdvert::$objectPropsTable);
+        $I->see($this->getCommunicationsName(2), AddAdvert::$objectPropsTable);
+        $I->see($this->getCommunicationsName(3), AddAdvert::$objectPropsTable);
+        $I->see($this->getCommunicationsName(4), AddAdvert::$objectPropsTable);
+        $I->see($this->getCommunicationsName(5), AddAdvert::$objectPropsTable);
+        $I->see($this->getCommunicationsName(6), AddAdvert::$objectPropsTable);
+        $I->see($this->getCommunicationsName(7), AddAdvert::$objectPropsTable);
         $I->see($this->getNearObjectsName(0), AddAdvert::$objectPropsTable);
         $I->see($this->getNearObjectsName(1), AddAdvert::$objectPropsTable);
         $I->see($this->getNearObjectsName(2), AddAdvert::$objectPropsTable);
@@ -500,9 +502,9 @@ class Advert extends \VpnTester
     public function uploadHouseImage()
     {
         $I = $this;
-        $I->attachFile(AddAdvert::$galleryFile, '/img/house_1.jpg');
+        $I->attachFile(AddAdvert::$galleryFile1, '/img/house_1.jpg');
         $I->wait(1);
-        $I->attachFile(AddAdvert::$galleryFile, '/img/house_2.jpg');
+        $I->attachFile(AddAdvert::$galleryFile1, '/img/house_2.jpg');
         $I->wait(1);
     }
 
@@ -679,9 +681,9 @@ class Advert extends \VpnTester
     public function uploadParcelImage()
     {
         $I = $this;
-        $I->attachFile(AddAdvert::$galleryFile, '/img/parcel_2.jpg');
+        $I->attachFile(AddAdvert::$galleryFile1, '/img/parcel_2.jpg');
         $I->wait(3);
-        $I->attachFile(AddAdvert::$galleryFile, '/img/parcel_1.jpg');
+        $I->attachFile(AddAdvert::$galleryFile1, '/img/parcel_1.jpg');
         $I->wait(4);
     }
 
@@ -865,12 +867,236 @@ class Advert extends \VpnTester
     public function uploadCommercialImage()
     {
         $I = $this;
-        $I->attachFile(AddAdvert::$galleryFile, '/img/commerc_1.jpg');
+        $I->attachFile(AddAdvert::$galleryFile1, '/img/commerc_1.jpg');
         $I->wait(1);
-        $I->attachFile(AddAdvert::$galleryFile, '/img/commerc_2.jpg');
+        $I->attachFile(AddAdvert::$galleryFile1, '/img/commerc_2.jpg');
         $I->wait(1);
-        $I->attachFile(AddAdvert::$galleryFile, '/img/commerc_3.jpg');
+        $I->attachFile(AddAdvert::$galleryFile1, '/img/commerc_3.jpg');
         $I->wait(1);
+    }
+
+    //**********************Garages*********************************//
+    public function fillInStandardGarageType()
+    {
+        $I = $this;
+        $I->wantTo('Fill in Garage category');
+        $I->amOnPage('/new-advert/step1');
+        $I->waitForElement(AddAdvert::$yandexMap);
+        $I->click(AddAdvert::$category);
+        $I->click(AddAdvert::$garageCategory);
+        $I->click(AddAdvert::$category_type);
+        $I->click(AddAdvert::$garageCatType0);
+    }
+
+    public function fillInGarageAddress()
+    {
+        $I = $this;
+        $I->wantTo('Fill in garage address');
+        $I->click(AddAdvert::$regionField);
+        $I->fillField(AddAdvert::$typeRegion, $this->getRegionName(21));
+        $I->click(AddAdvert::$region0);
+        $I->click(AddAdvert::$cityField);
+        $I->fillField(AddAdvert::$typeCity, $this->getCityName(6));
+        $I->click(AddAdvert::$chooseCity);
+        $I->click(AddAdvert::$district);
+        $I->fillField(AddAdvert::$typeDistrict, $this->getDistrictName(29));
+        $I->click(AddAdvert::$chooseDistrict);
+
+        $I->click(AddAdvert::$street);
+        $I->fillField(AddAdvert::$typeStreet, $this->getStreetName(334)); //Химиков проспект
+        $I->click(AddAdvert::$chooseStreet);
+        $I->fillField(AddAdvert::$house_number, Garage::houseNumber1);
+        $I->fillField(AddAdvert::$garage_number,Flat::uniqueFlatNumber());
+        $I->click(AddAdvert::$buttonSubmit);
+        $I->wait(2);
+    }
+
+    public function fillInGarageObjPropertiesPlain()
+    {
+        $I = $this;
+        $I->wantTo('Fill in Garage object properties Plain');
+        $I->waitForElement(AddAdvert::$generalArea);
+        $I->fillField(AddAdvert::$generalArea,Garage::generalArea);
+//        $I->click(AddAdvert::$areaUnitField);
+//        $I->click(AddAdvert::$areaUnit0);
+        $I->click(AddAdvert::$wallMaterialField);
+        $I->click(AddAdvert::$wallMaterial5);
+
+        $I->click(AddAdvert::$roomСount);
+        $I->fillField(AddAdvert::$roomСount,Garage::roomCount);
+        $I->fillField(AddAdvert::$floors,Garage::floor);
+        $I->fillField(AddAdvert::$floorNumber,Garage::floorNumber);
+        $I->click(AddAdvert::$step2_submit);
+        $I->wait(2);
+    }
+
+    public function fillInGarageObjPropertiesComplex()
+    {
+        $I = $this;
+        $I->wantTo('Fill in Garage object properties Complex');
+        $I->waitForElement(AddAdvert::$generalArea);
+        $I->fillField(AddAdvert::$generalArea,Garage::generalArea);
+//        $I->click(AddAdvert::$areaUnitField);
+//        $I->click(AddAdvert::$areaUnit0);
+        $I->click(AddAdvert::$wallMaterialField);
+        $I->click(AddAdvert::$wallMaterial5);
+        $I->click(AddAdvert::$roomСount);
+        $I->fillField(AddAdvert::$roomСount,Garage::roomCount);
+        $I->fillField(AddAdvert::$floors,Garage::floor);
+        $I->fillField(AddAdvert::$floorNumber,Garage::floorNumber);
+        $I->fillField(AddAdvert::$buildYear,Garage::buildYear);
+        $I->click(AddAdvert::$heatingField);
+        $I->click(AddAdvert::$heating1);
+        $I->click(AddAdvert::$transportTypeField);
+        $I->click(AddAdvert::$transportType1);
+        $I->click(AddAdvert::$parkingPlaceField);
+        $I->click(AddAdvert::$parkingPlace1);
+        $I->click(AddAdvert::$inspectionPitField);
+        $I->click(AddAdvert::$inspectionPit1);
+        $I->click(AddAdvert::$communication0);
+        $I->click(AddAdvert::$communication1);
+        $I->click(AddAdvert::$communication2);
+        $I->click(AddAdvert::$communication3);
+        $I->click(AddAdvert::$communication4);
+        $I->click(AddAdvert::$communication5);
+        $I->click(AddAdvert::$communication6);
+        $I->click(AddAdvert::$communication7);
+        $I->click(AddAdvert::$nearObject0);
+        $I->click(AddAdvert::$nearObject1);
+        $I->click(AddAdvert::$nearObject2);
+        $I->click(AddAdvert::$nearObject3);
+        $I->click(AddAdvert::$nearObject4);
+        $I->click(AddAdvert::$nearObject5);
+        $I->click(AddAdvert::$nearObject6);
+        $I->click(AddAdvert::$nearObject7);
+        $I->click(AddAdvert::$nearObject8);
+        $I->click(AddAdvert::$nearObject9);
+        $I->attachFile(AddAdvert::$schemaFile,'/img/schema_4.jpg'); //schema
+        $I->wait(2);
+        $I->click(AddAdvert::$step2_submit);
+        $I->wait(2);
+    }
+
+    public function checkGarageObjectPropertiesPlain()
+    {
+        $I = $this;
+        $I->wantTo('Check Garage object properties Plain');
+        $I->see($this->getCategoryName(4),AddAdvert::$objectPropsTable);
+        $I->see($this->getGaragesCategoryTypeName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getRegionName(21),AddAdvert::$objectPropsTable);
+        $I->see($this->getCityName(6),AddAdvert::$objectPropsTable);
+        $I->see($this->getDistrictName(29),AddAdvert::$objectPropsTable);
+        $I->see($this->getStreetName(334),AddAdvert::$objectPropsTable);
+        $I->see(Garage::houseNumber1,AddAdvert::$objectPropsTable);
+        $I->see(Flat::$currentFlatNumber,AddAdvert::$objectPropsTable);
+        $I->see(Garage::generalArea,AddAdvert::$objectPropsTable);
+        $I->see($this->getWallMaterialsName(5),AddAdvert::$objectPropsTable);
+        $I->see(Garage::roomCount,AddAdvert::$objectPropsTable);
+        $I->see(Garage::floor,AddAdvert::$objectPropsTable);
+        $I->see(Garage::floorNumber,AddAdvert::$objectPropsTable);
+        $I->see($this->getHeatingsName(0),AddAdvert::$objectPropsTable);
+
+    }
+
+    public function checkGarageObjectPropertiesComplex()
+    {
+        $I = $this;
+        $I->wantTo('Check Garage object properties Complex');
+        $I->see($this->getCategoryName(4),AddAdvert::$objectPropsTable);
+        $I->see($this->getGaragesCategoryTypeName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getRegionName(21),AddAdvert::$objectPropsTable);
+        $I->see($this->getCityName(6),AddAdvert::$objectPropsTable);
+        $I->see($this->getDistrictName(29),AddAdvert::$objectPropsTable);
+        $I->see($this->getStreetName(334),AddAdvert::$objectPropsTable);
+        $I->see(Garage::houseNumber1,AddAdvert::$objectPropsTable);
+        $I->see(Flat::$currentFlatNumber,AddAdvert::$objectPropsTable);
+        $I->see(Garage::generalArea,AddAdvert::$objectPropsTable);
+        $I->see($this->getWallMaterialsName(5),AddAdvert::$objectPropsTable);
+        $I->see(Garage::roomCount,AddAdvert::$objectPropsTable);
+        $I->see(Garage::floor,AddAdvert::$objectPropsTable);
+        $I->see(Garage::floorNumber,AddAdvert::$objectPropsTable);
+        $I->see($this->getHeatingsName(1),AddAdvert::$objectPropsTable);
+        $I->see($this->getTransportTypeName(1),AddAdvert::$objectPropsTable);
+        $I->see($this->getParkingPlaceName(1),AddAdvert::$objectPropsTable);
+        $I->see($this->getInspectionPitName(1),AddAdvert::$objectPropsTable);
+        $I->see($this->getCommunicationsName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getCommunicationsName(1),AddAdvert::$objectPropsTable);
+        $I->see($this->getCommunicationsName(2),AddAdvert::$objectPropsTable);
+        $I->see($this->getCommunicationsName(3),AddAdvert::$objectPropsTable);
+        $I->see($this->getCommunicationsName(4),AddAdvert::$objectPropsTable);
+        $I->see($this->getCommunicationsName(5),AddAdvert::$objectPropsTable);
+        $I->see($this->getCommunicationsName(6),AddAdvert::$objectPropsTable);
+        $I->see($this->getCommunicationsName(7),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(0),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(1),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(2),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(3),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(4),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(5),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(6),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(7),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(8),AddAdvert::$objectPropsTable);
+        $I->see($this->getNearObjectsName(9),AddAdvert::$objectPropsTable);
+
+    }
+
+    public function fillInGarageAdvertPropertiesPlain()
+    {
+        $I = $this;
+        $I->wantTo('Fill in Garage advert properties Plain');
+        $I->click(AddAdvert::$OTSell);
+        $I->fillField(AddAdvert::$advDescription, Garage::descriptionGarageSell);
+        $I->fillField(AddAdvert::$price, Garage::priceGarageSell);
+        $I->click(AddAdvert::$currencyField);
+        $I->click(AddAdvert::$currencyUS);
+        $I->fillField(AddAdvert::$commission, Garage::commission);
+    }
+
+    public function fillInGarageAdvertPropertiesComplex()
+    {
+        $I = $this;
+        $I->wantTo('Fill in Garage advert properties Complex');
+        $I->click(AddAdvert::$OTSell);
+        $I->fillField(AddAdvert::$advDescription, Garage::descriptionGarageSell);
+        $I->fillField(AddAdvert::$price, Garage::priceGarageSell);
+        $I->click(AddAdvert::$currencyField);
+        $I->click(AddAdvert::$currencyUS);
+        $I->click(AddAdvert::$auction);
+        $I->fillField(AddAdvert::$commission, Garage::commission);
+        $I->doubleClick(AddAdvert::$date);
+        $I->pressKey(AddAdvert::$date, WebDriverKeys::DELETE);
+        $I->fillField(AddAdvert::$date, Garage::date);
+        $I->click(AddAdvert::$monthField);
+        $I->click(AddAdvert::$month0);
+        $I->doubleClick(AddAdvert::$year);
+        $I->pressKey(AddAdvert::$year, WebDriverKeys::DELETE);
+        $I->fillField(AddAdvert::$year,  Garage::year);
+
+    }
+
+    public function fillInGarageAdvertCheckboxesComplex()
+    {
+        $I = $this;
+        $I->wantTo('Fill in Garage advert checkboxes Complex');
+
+        $I->click(AddAdvert::$additional0);
+        $I->click(AddAdvert::$additional1);
+        $I->click(AddAdvert::$additional2);
+        $I->click(AddAdvert::$additional3);
+        $I->click(AddAdvert::$additional4);
+        $I->click(AddAdvert::$additional5);
+
+    }
+
+    public function uploadGarageImage()
+    {
+        $I = $this;
+        $I->wantTo('Upload Garage images');
+        $I->attachFile(AddAdvert::$galleryFile1, '/img/garage_1.jpg');
+        $I->wait(1);
+        $I->attachFile(AddAdvert::$galleryFile1, '/img/garage_2.jpg');
+        $I->wait(1);
+
     }
 
 /*===================================Common======================================*/
@@ -924,6 +1150,7 @@ class Advert extends \VpnTester
         $I = $this;
         $I->click(AddAdvert::$buttonSubmit);
         $I->wait(3);
+
     }
 
 /*===================================== webUS-6 =======================================*/
@@ -943,7 +1170,8 @@ class Advert extends \VpnTester
         $I->seeElement(AdvPage::$advPropsLink);
         $I->see(Flat::descriptionFlatSell,AdvPage::$advInfoDescription);
         $I->seeElement(AdvPage::$advInfoGallery);
-        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+//        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+        $I->see($this->agencyEmail3, AdvPage::$advInfoContacts);
 //        $I->seeElement(AdvPage::$advInfoSocialButtons);
         $I->click(AdvPage::$advPropsTab);
         $I->see($this->getCategoryName(0), AdvPage::$advPropsTable);
@@ -980,7 +1208,8 @@ class Advert extends \VpnTester
         $I->seeElement(AdvPage::$advPropsLink);
         $I->see(Flat::descriptionFlatSell,AdvPage::$advInfoDescription);
         $I->seeElement(AdvPage::$advInfoGallery);
-        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+//        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+        $I->see($this->agencyEmail3, AdvPage::$advInfoContacts);
 //        $I->seeElement(AdvPage::$advInfoSocialButtons);
         $I->click(AdvPage::$advPropsTab);
         $I->see($this->getCategoryName(0), AdvPage::$advPropsTable);
@@ -988,7 +1217,7 @@ class Advert extends \VpnTester
         $I->see($this->getRegionName(21), AdvPage::$advPropsTable);
         $I->see($this->getCityName(6), AdvPage::$advPropsTable);
         $I->see($this->getDistrictName(0), AdvPage::$advPropsTable);
-        $I->see($this->getStreetName(328), AdvPage::$advPropsTable);
+        $I->see($this->getStreetName(144), AdvPage::$advPropsTable);
         $I->see(Flat::generalArea, AdvPage::$advPropsTable);
         $I->see(Flat::livingArea, AdvPage::$advPropsTable);
         $I->see(Flat::kitchenArea, AdvPage::$advPropsTable);
@@ -1056,7 +1285,8 @@ class Advert extends \VpnTester
         $I->seeElement(AdvPage::$advPropsLink);
         $I->see(House::descriptionHouseRent,AdvPage::$advInfoDescription);
         $I->seeElement(AdvPage::$advInfoGallery);
-        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+//        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+        $I->see($this->agencyEmail3, AdvPage::$advInfoContacts);
 //        $I->seeElement(AdvPage::$advInfoSocialButtons);
         $I->click(AdvPage::$advPropsTab);
         $I->see(House::category, AdvPage::$advPropsTable);
@@ -1090,7 +1320,8 @@ class Advert extends \VpnTester
         $I->seeElement(AdvPage::$advPropsLink);
         $I->see(House::descriptionHouseRent,AdvPage::$advInfoDescription);
         $I->seeElement(AdvPage::$advInfoGallery);
-        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+//        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+        $I->see($this->agencyEmail3, AdvPage::$advInfoContacts);
 //        $I->seeElement(AdvPage::$advInfoSocialButtons);
         $I->click(AdvPage::$advPropsTab);
         $I->see(House::category, AdvPage::$advPropsTable);
@@ -1111,25 +1342,25 @@ class Advert extends \VpnTester
         $I->see(Lists::waterHeat2, AdvPage::$advPropsTable);
         $I->see(Lists::repair0, AdvPage::$advPropsTable);
 
-        $I->see(Lists::nearObject0, AdvPage::$advPropsTable);
-        $I->see(Lists::nearObject1, AdvPage::$advPropsTable);
-        $I->see(Lists::nearObject2, AdvPage::$advPropsTable);
-        $I->see(Lists::nearObject3, AdvPage::$advPropsTable);
-        $I->see(Lists::nearObject4, AdvPage::$advPropsTable);
-        $I->see(Lists::nearObject5, AdvPage::$advPropsTable);
-        $I->see(Lists::nearObject6, AdvPage::$advPropsTable);
-        $I->see(Lists::nearObject7, AdvPage::$advPropsTable);
-        $I->see(Lists::nearObject8, AdvPage::$advPropsTable);
-        $I->see(Lists::nearObject9, AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(0), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(1), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(2), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(3), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(4), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(5), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(6), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(7), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(8), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(9), AdvPage::$advPropsTable);
 
-        $I->see(Lists::appliance0, AdvPage::$advPropsTable);
-        $I->see(Lists::appliance1, AdvPage::$advPropsTable);
-        $I->see(Lists::appliance2, AdvPage::$advPropsTable);
-        $I->see(Lists::appliance3, AdvPage::$advPropsTable);
-        $I->see(Lists::appliance4, AdvPage::$advPropsTable);
-        $I->see(Lists::appliance5, AdvPage::$advPropsTable);
-        $I->see(Lists::appliance6, AdvPage::$advPropsTable);
-        $I->see(Lists::appliance7, AdvPage::$advPropsTable);
+        $I->see($this->getAppliancesName(0), AdvPage::$advPropsTable);
+        $I->see($this->getAppliancesName(1), AdvPage::$advPropsTable);
+        $I->see($this->getAppliancesName(2), AdvPage::$advPropsTable);
+        $I->see($this->getAppliancesName(3), AdvPage::$advPropsTable);
+        $I->see($this->getAppliancesName(4), AdvPage::$advPropsTable);
+        $I->see($this->getAppliancesName(5), AdvPage::$advPropsTable);
+        $I->see($this->getAppliancesName(6), AdvPage::$advPropsTable);
+        $I->see($this->getAppliancesName(7), AdvPage::$advPropsTable);
 
         $I->see(Lists::additionalHouse0, AdvPage::$advPropsTable);
         $I->see(Lists::additionalHouse1, AdvPage::$advPropsTable);
@@ -1166,7 +1397,8 @@ class Advert extends \VpnTester
         $I->seeElement(AdvPage::$advPropsLink);
         $I->see(Parcel::descriptionParcelSell,AdvPage::$advInfoDescription);
         $I->seeElement(AdvPage::$advInfoGallery);
-        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+//        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+        $I->see($this->agencyEmail3, AdvPage::$advInfoContacts);
 //        $I->seeElement(AdvPage::$advInfoSocialButtons);
         $I->click(AdvPage::$advPropsTab);
         $I->see(Parcel::category, AdvPage::$advPropsTable);
@@ -1195,7 +1427,8 @@ class Advert extends \VpnTester
         $I->seeElement(AdvPage::$advPropsLink);
         $I->see(Parcel::descriptionParcelSell,AdvPage::$advInfoDescription);
         $I->seeElement(AdvPage::$advInfoGallery);
-        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+//        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+        $I->see($this->agencyEmail3, AdvPage::$advInfoContacts);
 //        $I->seeElement(AdvPage::$advInfoSocialButtons);
         $I->click(AdvPage::$advPropsTab);
         $I->see(Parcel::category, AdvPage::$advPropsTable);
@@ -1261,7 +1494,8 @@ class Advert extends \VpnTester
         $I->seeElement(AdvPage::$advPropsLink);
         $I->see(Commercial::descriptionCommercialSell,AdvPage::$advInfoDescription);
         $I->seeElement(AdvPage::$advInfoGallery);
-        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+//        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+        $I->see($this->agencyEmail3, AdvPage::$advInfoContacts);
 //        $I->seeElement(AdvPage::$advInfoSocialButtons);
         $I->click(AdvPage::$advPropsTab);
         $I->see(Commercial::category, AdvPage::$advPropsTable);
@@ -1298,7 +1532,8 @@ class Advert extends \VpnTester
         $I->seeElement(AdvPage::$advPropsLink);
         $I->see(Commercial::descriptionCommercialSell,AdvPage::$advInfoDescription);
         $I->seeElement(AdvPage::$advInfoGallery);
-        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+//        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+        $I->see($this->agencyEmail3, AdvPage::$advInfoContacts);
 //        $I->seeElement(AdvPage::$advInfoSocialButtons);
         $I->click(AdvPage::$advPropsTab);
         $I->see(Commercial::category, AdvPage::$advPropsTable);
@@ -1339,5 +1574,99 @@ class Advert extends \VpnTester
         $I->seeElement(AdvPage::$advSchemaImg);
     }
 
+    public function checkGaragePropertiesPlain() //webUS-6
+    {
+        $I = $this;
+//        $I->amOnPage()
+        $I->waitForElement(AdvPage::$advInfoGallery);
+//        $I->see(Flat::priceFlatSell, AdvPage::$advInfoPrice);
+        $I->see(Garage::commission, AdvPage::$advInfoPrice);
+        $I->see(Garage::generalArea, AdvPage::$advInfoMainProps);
+        $I->see($this->getTransportTypeName(0), AdvPage::$advInfoMainProps);
+        $I->see($this->getInspectionPitName(0), AdvPage::$advInfoMainProps);
+//        $I->see(Garage::floorNumber, AdvPage::$advInfoMainProps);
+//        $I->see(Garage::floor, AdvPage::$advInfoMainProps);
+        $I->seeElement(AdvPage::$advPropsLink);
+        $I->see(Garage::descriptionGarageSell,AdvPage::$advInfoDescription);
+        $I->seeElement(AdvPage::$advInfoGallery);
+//        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+        $I->see($this->agencyEmail3, AdvPage::$advInfoContacts);
+//        $I->seeElement(AdvPage::$advInfoSocialButtons);
+        $I->click(AdvPage::$advPropsTab);
+        $I->see($this->getCategoryName(4), AdvPage::$advPropsTable);
+        $I->see($this->getGaragesCategoryTypeName(0), AdvPage::$advPropsTable);
+        $I->see($this->getRegionName(21), AdvPage::$advPropsTable);
+        $I->see($this->getCityName(6), AdvPage::$advPropsTable);
+        $I->see($this->getDistrictName(29), AdvPage::$advPropsTable);
+        $I->see($this->getStreetName(334), AdvPage::$advPropsTable);
+        $I->see(Garage::generalArea, AdvPage::$advPropsTable);
+        $I->see(Garage::floorNumber, AdvPage::$advPropsTable);
+        $I->see(Garage::floor, AdvPage::$advPropsTable);
+        $I->see($this->getHeatingsName(0), AdvPage::$advPropsTable);
+        $I->dontSee(AdvPage::$advSchemaTab);
+    }
+
+    public function checkGaragePropertiesComplex() //webUS-6
+    {
+        $I = $this;
+//        $I->amOnPage()
+        $I->waitForElement(AdvPage::$advInfoGallery);
+//        $I->see(Flat::priceFlatSell, AdvPage::$advInfoPrice);
+        $I->see(Garage::commission, AdvPage::$advInfoPrice);
+        $I->see(Garage::availableFrom, AdvPage::$advInfoAvailableFrom);
+        $I->see(Garage::generalArea, AdvPage::$advInfoMainProps);
+        $I->see($this->getTransportTypeName(1), AdvPage::$advInfoMainProps);
+        $I->see($this->getInspectionPitName(1), AdvPage::$advInfoMainProps);
+        $I->seeElement(AdvPage::$advPropsLink);
+        $I->see(Garage::descriptionGarageSell,AdvPage::$advInfoDescription);
+        $I->seeElement(AdvPage::$advInfoGallery);
+//        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+        $I->see($this->agencyEmail3, AdvPage::$advInfoContacts);
+//        $I->seeElement(AdvPage::$advInfoSocialButtons);
+        $I->click(AdvPage::$advPropsTab);
+        $I->see($this->getCategoryName(4), AdvPage::$advPropsTable);
+        $I->see($this->getGaragesCategoryTypeName(0), AdvPage::$advPropsTable);
+        $I->see($this->getRegionName(21), AdvPage::$advPropsTable);
+        $I->see($this->getCityName(6), AdvPage::$advPropsTable);
+        $I->see($this->getDistrictName(29), AdvPage::$advPropsTable);
+        $I->see($this->getStreetName(334), AdvPage::$advPropsTable);
+        $I->see(Garage::generalArea, AdvPage::$advPropsTable);
+        $I->see(Garage::roomCount, AdvPage::$advPropsTable);
+        $I->see(Garage::floorNumber, AdvPage::$advPropsTable);
+        $I->see(Garage::floor, AdvPage::$advPropsTable);
+        $I->see(Garage::buildYear, AdvPage::$advPropsTable);
+        $I->see($this->getHeatingsName(1), AdvPage::$advPropsTable);
+        $I->see($this->getTransportTypeName(1), AdvPage::$advPropsTable);
+        $I->see($this->getParkingPlaceName(1), AdvPage::$advPropsTable);
+        $I->see($this->getInspectionPitName(1), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(0), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(1), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(2), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(3), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(4), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(5), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(6), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(7), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(8), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(9), AdvPage::$advPropsTable);
+        $I->see($this->getCommunicationsName(0), AdvPage::$advPropsTable);
+        $I->see($this->getCommunicationsName(1), AdvPage::$advPropsTable);
+        $I->see($this->getCommunicationsName(2), AdvPage::$advPropsTable);
+        $I->see($this->getCommunicationsName(3), AdvPage::$advPropsTable);
+        $I->see($this->getCommunicationsName(4), AdvPage::$advPropsTable);
+        $I->see($this->getCommunicationsName(5), AdvPage::$advPropsTable);
+        $I->see($this->getCommunicationsName(6), AdvPage::$advPropsTable);
+        $I->see($this->getCommunicationsName(7), AdvPage::$advPropsTable);
+        $I->see($this->getGarageAdditionalsName(0), AdvPage::$advPropsTable);
+        $I->see($this->getGarageAdditionalsName(1), AdvPage::$advPropsTable);
+        $I->see($this->getGarageAdditionalsName(2), AdvPage::$advPropsTable);
+        $I->see($this->getGarageAdditionalsName(3), AdvPage::$advPropsTable);
+        $I->see($this->getGarageAdditionalsName(4), AdvPage::$advPropsTable);
+        $I->see($this->getGarageAdditionalsName(5), AdvPage::$advPropsTable);
+
+        $I->click(AdvPage::$advSchemaTab);
+        $I->seeElement(AdvPage::$advSchemaImg);
+
+    }
 
 }

@@ -1,6 +1,7 @@
 <?php
 namespace Step\Vpn;
 use \Data\Flat;
+use Data\Garage;
 use \Data\House;
 use \Data\Parcel;
 use \Data\Commercial;
@@ -550,6 +551,117 @@ class EditAdvert extends \VpnTester
         $I->see(Lists::additionalCommercial7, AdvPage::$advPropsTable);
 
         $I->dontSee(AdvPage::$advSchemaTab);
+
+    }
+
+    public function openEditGaragePage()
+    {
+        $I=$this;
+        $advGarageId = file_get_contents(codecept_data_dir('advertGarageId.json'));
+        $I->amOnPage(AdvertsList::$URL .'/' .$advGarageId .'/edit');
+        $I->waitForElement(AdvertsList::$editAdvObjInfoTab);
+    }
+
+    public function editGarageAdvert()
+    {
+        $I=$this;
+        $I->click(AdvertsList::$editAdvTab);
+
+        $I->click(AddAdvert::$editOTRent);
+        $I->fillField(AddAdvert::$advDescription, Garage::editDescriptionGarageRent);
+        $I->fillField(AddAdvert::$price, Garage::editPriceGarageRent);
+        $I->click(AddAdvert::$currencyField);
+        $I->click(AddAdvert::$currencyUA);
+        $I->click(AddAdvert::$auction);
+        $I->doubleClick(AddAdvert::$date);
+        $I->pressKey(AddAdvert::$date, WebDriverKeys::DELETE);
+        $I->fillField(AddAdvert::$date, Garage::editDate);
+        $I->click(AddAdvert::$monthField);
+        $I->click(AddAdvert::$month11);
+        $I->doubleClick(AddAdvert::$year);
+        $I->pressKey(AddAdvert::$year, WebDriverKeys::DELETE);
+        $I->fillField(AddAdvert::$year, Garage::editYear);
+
+    }
+
+    public function fillInEditGarageAdvertCheckboxes()
+    {
+        $I = $this;
+
+
+        $I->click(AddAdvert::$additional0);
+        $I->click(AddAdvert::$additional1);
+        $I->click(AddAdvert::$additional2);
+        $I->click(AddAdvert::$additional3);
+        $I->click(AddAdvert::$additional4);
+        $I->click(AddAdvert::$additional5);
+
+    }
+
+
+    public function checkEditedGarageProperties() //webUS-6
+    {
+        $I = $this;
+//        $I->amOnPage();
+//        $I->click(AdvertsList::$advInfoTab);
+        $I->waitForElement(AdvPage::$advInfoGallery);
+//        $I->see(Flat::priceFlatSell, AdvPage::$advInfoPrice);
+        $I->see(Garage::editAvailableFrom, AdvPage::$advInfoAvailableFrom);
+        $I->see(Garage::generalArea, AdvPage::$advInfoMainProps);
+        $I->see($this->getTransportTypeName(0), AdvPage::$advInfoMainProps);
+        $I->see($this->getInspectionPitName(0), AdvPage::$advInfoMainProps);
+        $I->seeElement(AdvPage::$advPropsLink);
+        $I->see(Garage::editDescriptionGarageRent,AdvPage::$advInfoDescription);
+        $I->seeElement(AdvPage::$advInfoGallery);
+        $I->see($this->agencyEmail, AdvPage::$advInfoContacts);
+//        $I->seeElement(AdvPage::$advInfoSocialButtons);
+        $I->click(AdvPage::$advPropsTab);
+        $I->see($this->getCategoryName(4), AdvPage::$advPropsTable);
+        $I->see($this->getGaragesCategoryTypeName(1), AdvPage::$advPropsTable);
+        $I->see($this->getRegionName(21), AdvPage::$advPropsTable);
+        $I->see($this->getCityName(6), AdvPage::$advPropsTable);
+        $I->see($this->getDistrictName(16), AdvPage::$advPropsTable);
+        $I->see($this->getStreetName(201), AdvPage::$advPropsTable);
+        $I->see(Garage::generalArea, AdvPage::$advPropsTable);
+        $I->see(Garage::roomCount, AdvPage::$advPropsTable);
+        $I->see(Garage::floorNumber, AdvPage::$advPropsTable);
+        $I->see(Garage::floor, AdvPage::$advPropsTable);
+        $I->see(Garage::buildYear, AdvPage::$advPropsTable);
+        $I->see($this->getHeatingsName(1), AdvPage::$advPropsTable);
+        $I->see($this->getInspectionPitName(0), AdvPage::$advPropsTable);
+        $I->see($this->getParkingPlaceName(0), AdvPage::$advPropsTable);
+        $I->see($this->getTransportTypeName(0), AdvPage::$advPropsTable);
+
+        $I->see($this->getCommunicationsName(0), AdvPage::$advPropsTable);
+        $I->see($this->getCommunicationsName(1), AdvPage::$advPropsTable);
+        $I->see($this->getCommunicationsName(2), AdvPage::$advPropsTable);
+        $I->see($this->getCommunicationsName(3), AdvPage::$advPropsTable);
+        $I->see($this->getCommunicationsName(4), AdvPage::$advPropsTable);
+        $I->see($this->getCommunicationsName(5), AdvPage::$advPropsTable);
+        $I->see($this->getCommunicationsName(6), AdvPage::$advPropsTable);
+        $I->see($this->getCommunicationsName(7), AdvPage::$advPropsTable);
+
+        $I->see($this->getNearObjectsName(0), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(1), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(2), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(3), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(4), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(5), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(6), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(7), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(8), AdvPage::$advPropsTable);
+        $I->see($this->getNearObjectsName(9), AdvPage::$advPropsTable);
+
+        $I->see($this->getGarageAdditionalsName(0), AdvPage::$advPropsTable);
+        $I->see($this->getGarageAdditionalsName(1), AdvPage::$advPropsTable);
+        $I->see($this->getGarageAdditionalsName(2), AdvPage::$advPropsTable);
+        $I->see($this->getGarageAdditionalsName(3), AdvPage::$advPropsTable);
+        $I->see($this->getGarageAdditionalsName(4), AdvPage::$advPropsTable);
+        $I->see($this->getGarageAdditionalsName(5), AdvPage::$advPropsTable);
+
+
+        $I->click(AdvPage::$advSchemaTab);
+        $I->seeElement(AdvPage::$advSchemaImg);
 
     }
 

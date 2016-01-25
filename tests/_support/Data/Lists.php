@@ -64,7 +64,7 @@ class Lists
     const appliance0 = 'Кондиционер';
     const appliance1 = 'Холодильник';
     const appliance2 = 'Стиральная машина';
-    const appliance3 = 'Телефизор(ы)';
+    const appliance3 = 'Телевизор(ы)';
     const appliance4 = 'Телефон';
     const appliance5 = 'Утюг и гладильная доска';
     const appliance6 = 'Фен';
@@ -176,8 +176,8 @@ class Lists
     const wc1 = 'Совмещенный';
     const wc2 = 'Несколько санузлов';
 
-    const cityName = 'Лозивок';
-    const cityLocativeName = 'в Лозивке';
+    const cityName = 'Свидивок';
+    const cityLocativeName = 'в Свидивке';
     const editCityName = 'Выдубычи';
     const editCityLocativeName = 'в Выдубычах';
     const districtName = 'Центр';

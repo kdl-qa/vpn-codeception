@@ -22,7 +22,7 @@ class apiTesttCest
     {
             $I->realtyHouseAddSearch();
             $I->apiAdvertHouseAddSearch();
-           $I->apiAdminEditHouseAdvertSearch();
+            $I->apiAdminEditHouseAdvertSearch();
     }
 
     protected function addApiParcelAdvert(VpnTester $I)
@@ -86,18 +86,18 @@ class apiTesttCest
     {
         $I->apiGarageSearch();
     }
-    /**
-         *@before apiLogin
-         */
-    public function apiDeleteAdverts(VpnTester $I)
-    {
-        $I->apiDeleteFlatAdvert();
-        $I->apiDeleteHouseAdvert();
-        $I->apiDeleteParcelAdvert();
-        $I->apiDeleteCommercialAdvert();
-        $I->apiDeleteGarageAdvert();
-
-    }
+//    /**
+//         *@before apiLogin
+//         */
+//    public function apiDeleteAdverts(VpnTester $I)
+//    {
+//        $I->apiDeleteFlatAdvert();
+//        $I->apiDeleteHouseAdvert();
+//        $I->apiDeleteParcelAdvert();
+//        $I->apiDeleteCommercialAdvert();
+//        $I->apiDeleteGarageAdvert();
+//
+//    }
 
 
 

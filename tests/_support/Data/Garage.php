@@ -14,6 +14,7 @@ class Garage
     const city = 'Черкассы';
     const district = 'Оборонная';
     const street = 'Оборонная улица';
+    const houseNumber1 = 74;
     const houseNumber = 16;
     const garageNumber = 1;
     const parkingPlace = 2;
@@ -41,15 +42,12 @@ class Garage
     const periodDay = 'За сутки';
     const periodMonth = 'За месяц';
     const commission = '3';
-    const date = '31';
-    const month = 'Декабря';
-    const year = '2015';
+    const date = '01';
+    const month = 'Января';
+    const year = '2016';
     const availableFrom = '01.01.2016';
     const apiAvailableFrom = '2016-01-01';
-    const repair0 = 'Косметический';
-    const repair1 = 'Евроремонт';
-    const repair2 = 'Дизайнерский';
-    const repair3 = 'После строителей';
+
     const inspectionPit0 = 'Нет';
     const inspectionPit1 = '1';
     const inspectionPit2 = '2';
@@ -81,12 +79,17 @@ class Garage
     const editHeating = 'Нет';
     const editCommunication = 'Електричество';
     const editWaterHeating = 'Нет';
-    const editDescriptionGarageSell = 'Продается гараж в центре города. Квартира вложений не требует. Хорошая транспортная розвязка.';
+    const editDescriptionGarageSell = 'Продается гараж в центре города. Хорошая транспортная розвязка.';
+    const editDescriptionGarageRent = 'Сдается в аредну гараж. Хорошая звукоизоляция';
     const editPriceGarageSell = '7000';
     const editPriceGarageSearch = '35000';
     const editPriceGarageRent = '400'; //5000 грн
     const editGeneralArea = 55;
     const editCommission = 2;
+    const editDate = 15;
+    const editYear = 2010;
+    const editAvailableFrom = '15.12.2010';
+
 
 
 }

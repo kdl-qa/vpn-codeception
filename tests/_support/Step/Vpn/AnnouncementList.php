@@ -144,7 +144,7 @@ class AnnouncementList extends \VpnTester
         $I->click(AnnouncementListPage::$yesButton);
         $I->wait(2);
         $I->dontSeeElement(AnnouncementListPage::$showMore);
-        $I->dontSeeElement(AnnouncementListPage::$noGroupDisplayed);
+        $I->seeElement(AnnouncementListPage::$noGroupDisplayed);
     }
     public function deleteAdvert()
     {

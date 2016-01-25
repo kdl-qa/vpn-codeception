@@ -131,7 +131,7 @@ class AdminAdvert extends \VpnTester
         $I=$this;
         $advFlatId = file_get_contents(codecept_data_dir('advertFlatId.json'));
         $regionCities = file_get_contents(codecept_data_dir('cities.json'));
-        $cityLatinName = json_decode($regionCities)[4]->latinName;
+        $cityLatinName = json_decode($regionCities)[6]->latinName;
         $I->amOnPage('/'.$cityLatinName .'/flats/' .$advFlatId);
         $I->waitForElement(AdvPage::$advInfoGallery);
     }
@@ -140,6 +140,7 @@ class AdminAdvert extends \VpnTester
     {
         $I = $this;
         $I->waitForElement(AdvPage::$advInfoGallery);
+        $I->wait(1);
         $I->see(Flat::editAvailableFrom, AdvPage::$advInfoAvailableFrom);
         $I->see(Flat::generalArea, AdvPage::$advInfoMainProps);
         $I->see(Flat::roomCount, AdvPage::$advInfoMainProps);
@@ -320,7 +321,7 @@ class AdminAdvert extends \VpnTester
         $I=$this;
         $advHouseId = file_get_contents(codecept_data_dir('advertHouseId.json'));
         $regionCities = file_get_contents(codecept_data_dir('cities.json'));
-        $cityLatinName = json_decode($regionCities)[4]->latinName;
+        $cityLatinName = json_decode($regionCities)[6]->latinName;
         $I->amOnPage('/'.$cityLatinName .'/houses/' .$advHouseId);
         $I->waitForElement(AdvPage::$advInfoGallery);
     }
@@ -329,7 +330,7 @@ class AdminAdvert extends \VpnTester
     {
         $I = $this;
         $I->waitForElement(AdvPage::$advInfoGallery);
-
+        $I->wait(1);
         $I->see(House::editCommission, AdvPage::$advInfoPrice);
         $I->see(House::editAvailableFrom, AdvPage::$advInfoAvailableFrom);
         $I->see(House::generalArea, AdvPage::$advInfoMainProps);
@@ -477,7 +478,7 @@ class AdminAdvert extends \VpnTester
         $I=$this;
         $advParcelId = file_get_contents(codecept_data_dir('advertParcelId.json'));
 //        $regionCities = file_get_contents(codecept_data_dir('cities.json'));
-        $cityLatinName = json_decode(file_get_contents(codecept_data_dir('cities.json')))[4]->latinName;
+        $cityLatinName = json_decode(file_get_contents(codecept_data_dir('cities.json')))[6]->latinName;
         $I->amOnPage('/'.$cityLatinName .'/parcels/' .$advParcelId);
         $I->waitForElement(AdvPage::$advInfoGallery);
     }
@@ -486,7 +487,7 @@ class AdminAdvert extends \VpnTester
     {
         $I = $this;
         $I->waitForElement(AdvPage::$advInfoGallery);
-
+        $I->wait(1);
         $I->see(Parcel::editCommission, AdvPage::$advInfoPrice);
         $I->see(Parcel::editAvailableFrom, AdvPage::$advInfoAvailableFrom);
         $I->see(Parcel::generalArea, AdvPage::$advInfoMainProps);
@@ -619,7 +620,7 @@ class AdminAdvert extends \VpnTester
         $I=$this;
         $advCommercialId = file_get_contents(codecept_data_dir('advertCommercialId.json'));
 //        $regionCities = file_get_contents(codecept_data_dir('cities.json'));
-        $cityLatinName = json_decode(file_get_contents(codecept_data_dir('cities.json')))[4]->latinName;
+        $cityLatinName = json_decode(file_get_contents(codecept_data_dir('cities.json')))[6]->latinName;
         $I->amOnPage('/'.$cityLatinName .'/commercial-property/' .$advCommercialId);
         $I->waitForElement(AdvPage::$advInfoGallery);
     }
@@ -628,7 +629,7 @@ class AdminAdvert extends \VpnTester
     {
         $I = $this;
         $I->waitForElement(AdvPage::$advInfoGallery);
-
+        $I->wait(1);
         $I->see(Commercial::editCommission, AdvPage::$advInfoPrice);
         $I->see(Commercial::editAvailableFrom, AdvPage::$advInfoAvailableFrom);
         $I->see(Commercial::generalArea, AdvPage::$advInfoMainProps);

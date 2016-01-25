@@ -6,7 +6,7 @@ class webUS4_webUS6_PlainComplexCest
 {
     protected function loginAgency(VpnTester $I)
     {
-        $I->loginAgency();
+        $I->loginAgency1();
     }
 
     protected function moderateAdv($admin)
@@ -37,7 +37,7 @@ class webUS4_webUS6_PlainComplexCest
         $I->uploadFlatImage();
         $I->clickIamOwnerLink();
         $I->clickCreateAdvertButton();
-//        $I->acceptModal();
+        $I->acceptModal();
 
         $this->moderateAdv($admin);
         $this->open1stAdvert($list);
@@ -59,7 +59,7 @@ class webUS4_webUS6_PlainComplexCest
         $I->fillInFlatAdvertPropertiesPlain();
         $I->clickIamOwnerLink();
         $I->clickCreateAdvertButton();
-//        $I->acceptModal();
+        $I->acceptModal();
 
         $this->moderateAdv($admin);
         $this->open1stAdvert($list);
@@ -81,7 +81,7 @@ class webUS4_webUS6_PlainComplexCest
         $I->uploadHouseImage();
         $I->clickIamOwnerLink();
         $I->clickCreateAdvertButton();
-//        $I->acceptModal();
+        $I->acceptModal();
 
         $this->moderateAdv($admin);
         $this->open1stAdvert($list);
@@ -101,8 +101,9 @@ class webUS4_webUS6_PlainComplexCest
         $I->agreeObjectProperties();
         $I->fillInHouseAdvertPropertiesPlain();
         $I->clickIamOwnerLink();
+        $I->clickIamOwnerLink();
         $I->clickCreateAdvertButton();
-//        $I->acceptModal();
+        $I->acceptModal();
 
         $this->moderateAdv($admin);
         $this->open1stAdvert($list);
@@ -125,7 +126,7 @@ class webUS4_webUS6_PlainComplexCest
         $I->uploadCommercialImage();
         $I->clickIamOwnerLink();
         $I->clickCreateAdvertButton();
-//        $I->acceptModal();
+        $I->acceptModal();
 
         $this->moderateAdv($admin);
         $this->open1stAdvert($list);
@@ -146,7 +147,7 @@ class webUS4_webUS6_PlainComplexCest
         $I->fillInParcelAdvertPropertiesPlain();
         $I->clickIamOwnerLink();
         $I->clickCreateAdvertButton();
-//        $I->acceptModal();
+        $I->acceptModal();
 
         $this->moderateAdv($admin);
         $this->open1stAdvert($list);
@@ -169,7 +170,7 @@ class webUS4_webUS6_PlainComplexCest
         $I->uploadCommercialImage();
         $I->clickIamOwnerLink();
         $I->clickCreateAdvertButton();
-//        $I->acceptModal();
+        $I->acceptModal();
 
         $this->moderateAdv($admin);
         $this->open1stAdvert($list);
@@ -190,11 +191,58 @@ class webUS4_webUS6_PlainComplexCest
         $I->fillInCommercialAdvertPropertiesPlain();
         $I->clickIamOwnerLink();
         $I->clickCreateAdvertButton();
-//        $I->acceptModal();
+        $I->acceptModal();
 
         $this->moderateAdv($admin);
         $this->open1stAdvert($list);
 
         $I->checkCommercialPropertiesPlain();
     }
+    //*************************Garages*************************//
+
+    /**
+     * @before loginAgency
+     */
+    public function createModerateCheckGarageSaleComplex(\Step\Vpn\Advert $I, \Step\Vpn\AdminAdvert $admin, \Step\Vpn\UserAdvertsList $list)
+    {
+        $I->fillInStandardGarageType();
+        $I->fillInGarageAddress();
+        $I->fillInGarageObjPropertiesComplex();
+        $I->checkGarageObjectPropertiesComplex();
+        $I->agreeObjectProperties();
+        $I->fillInGarageAdvertPropertiesComplex();
+        $I->fillInGarageAdvertCheckboxesComplex();
+        $I->uploadGarageImage();
+        $I->clickIamOwnerLink();
+        $I->clickCreateAdvertButton();
+        $I->acceptModal();
+
+        $this->moderateAdv($admin);
+        $this->open1stAdvert($list);
+
+        $I->checkGaragePropertiesComplex();
+    }
+
+    /**
+     * @before loginAgency
+     */
+    public function createModerateCheckGarageSalePlain(\Step\Vpn\Advert $I, \Step\Vpn\AdminAdvert $admin, \Step\Vpn\UserAdvertsList $list)
+    {
+        $I->fillInStandardGarageType();
+        $I->fillInGarageAddress();
+        $I->fillInGarageObjPropertiesPlain();
+        $I->checkGarageObjectPropertiesPlain();
+        $I->agreeObjectProperties();
+        $I->fillInGarageAdvertPropertiesPlain();
+        $I->clickIamOwnerLink();
+        $I->clickCreateAdvertButton();
+        $I->acceptModal();
+
+        $this->moderateAdv($admin);
+        $this->open1stAdvert($list);
+
+        $I->checkGaragePropertiesPlain();
+    }
+
+
 }

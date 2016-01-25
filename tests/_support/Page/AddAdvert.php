@@ -15,6 +15,7 @@ class AddAdvert
     public static $houseCategory = '.cc-real-estate-category1';
     public static $parcelCategory = '.cc-real-estate-category2';
     public static $commercialCategory = '.cc-real-estate-category3';
+    public static $garageCategory = '.cc-real-estate-category4';
 
     public static $category_type = '[ng-model="ctrl.realty.categoryType"] span';
     public static $flatCatType0 = '.cc-real-estate-type0';
@@ -42,6 +43,13 @@ class AddAdvert
     public static $commercialCatType9 = '.cc-real-estate-type9';
     public static $commercialCatType10 = '.cc-real-estate-type10';
 
+    public static $garageCatType0 = '.cc-real-estate-type0';
+    public static $garageCatType1 = '.cc-real-estate-type1';
+    public static $garageCatType2 = '.cc-real-estate-type2';
+    public static $garageCatType3 = '.cc-real-estate-type3';
+    public static $garageCatType4 = '.cc-real-estate-type4';
+    public static $garageCatType5 = '.cc-real-estate-type5';
+
 
 
     public static $regionField = '[ng-model="ctrl.realty.address.region"] span';
@@ -64,7 +72,9 @@ class AddAdvert
     public static $flat_number = '#flatNumber';
     public static $house_number = '#houseNumber';
     public static $cadastr_number = '#cadastrNumber';
+    public static $garage_number = '#garageNumber';
 
+    public static $hideHouseNumberText = '.hide-flat-possibility';
 
     public static $buttonSubmit = "button.blue";
 
@@ -135,6 +145,24 @@ class AddAdvert
     public static $waterHeat2 = '.cc-water-heating-type2';
     public static $waterHeat3 = '.cc-water-heating-type3';
     public static $waterHeat4 = '.cc-water-heating-type4';
+
+    public static $transportTypeField = '[ng-model="ctrl.realty.description.transportType"] span';
+    public static $transportType0 = '.cc-transport-type0';
+    public static $transportType1 = '.cc-transport-type1';
+    public static $transportType2 = '.cc-transport-type2';
+    public static $transportType3 = '.cc-transport-type3';
+    public static $transportType4 = '.cc-transport-type4';
+
+    public static $parkingPlaceField = '[ng-model="ctrl.realty.description.parkingPlace"] span';
+    public static $parkingPlace0 = '.cc-parking-place0';
+    public static $parkingPlace1 = '.cc-parking-place1';
+    public static $parkingPlace2 = '.cc-parking-place2';
+
+    public static $inspectionPitField = '[ng-model="ctrl.realty.description.inspectionPit"] span';
+    public static $inspectionPit0 = '.cc-inspection-pit0';
+    public static $inspectionPit1 = '.cc-inspection-pit1';
+    public static $inspectionPit2 = '.cc-inspection-pit2';
+    public static $inspectionPit3 = '.cc-inspection-pit3';
 
     public static $communication0 = '.cc-realty-communications0';
     public static $communication1 = '.cc-realty-communications1';
@@ -268,6 +296,7 @@ class AddAdvert
 
     public static $schemaFile = '#image';
     public static $galleryFile = '#image';
+    public static $galleryFile1 = '[name=image]';
 
 
 

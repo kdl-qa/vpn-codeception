@@ -135,31 +135,31 @@ class webUS5b_searchAdvertsMapResultCest
 
     }
     //----------------Parcel-------------------------//
-//    /**
-//     *@before agencyLogin
-//     */
-//    public function mapSearchParcelAndCheckProperties(\Step\Vpn\Search $I)
-//    {
-//        $I->mapSearchParcel();
-//        $I->checkParcelObjectPropertiesSearch();
-//
-//        $I->mapSearchParcel1();
-//        $I->mapSearchParcel2();
-//        $I->mapSearchParcel3();
-//        $I->mapSearchParcel4();
-//        $I->mapSearchParcel5();
-//        $I->mapSearchParcel6();
-//        $I->mapSearchParcel7();
-//        $I->mapSearchParcel8();
-//        $I->mapSearchParcel9();
-//        $I->mapSearchParcel10();
-//        $I->mapSearchParcel11();
-//        $I->mapSearchParcel12();
-//        $I->mapSearchParcel13();
-//
-////        $I->pauseExecution();
-//
-//    }
+    /**
+     *@before agencyLogin
+     */
+    public function mapSearchParcelAndCheckProperties(\Step\Vpn\Search $I)
+    {
+        $I->mapSearchParcel();
+        $I->checkParcelObjectPropertiesSearch();
+
+        $I->mapSearchParcel1();
+        $I->mapSearchParcel2();
+        $I->mapSearchParcel3();
+        $I->mapSearchParcel4();
+        $I->mapSearchParcel5();
+        $I->mapSearchParcel6();
+        $I->mapSearchParcel7();
+        $I->mapSearchParcel8();
+        $I->mapSearchParcel9();
+        $I->mapSearchParcel10();
+        $I->mapSearchParcel11();
+        $I->mapSearchParcel12();
+        $I->mapSearchParcel13();
+
+//        $I->pauseExecution();
+
+    }
     /**
      *@before agencyLogin
      */
