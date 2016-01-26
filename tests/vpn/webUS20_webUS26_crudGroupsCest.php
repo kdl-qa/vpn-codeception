@@ -1,4 +1,5 @@
 <?php
+use Page\AnnouncementListPage;
 use \VpnTester;
 
 class webUS20_webUS26_crudGroupsCest
@@ -42,12 +43,26 @@ class webUS20_webUS26_crudGroupsCest
         $I->apiAdvertParcelAddSearch();
         $I->apiAdminEditParcelAdvertSearch();
     }
+    protected function addApiCommercialAdvert(VpnTester $I)
+    {
+        $I->realtyCommercialAddSearch();
+        $I->apiAdvertCommercialAddSearch();
+        $I->apiAdminEditCommercialAdvertSearch();
+    }
+    protected function addApiGarageAdvert(VpnTester $I)
+    {
+        $I->realtyGarageAddForSearch();
+        $I->apiAdvertGarageAddForSearch();
+        $I->apiAdminEditGarageAdvertSearch();
+    }
 
     /**
      *@before apiLogin
      *@before addApiFlatAdvert
      *@before addApiHouseAdvert
      *@before addApiParcelAdvert
+     *@before addApiCommercialAdvert
+     *@before addApiGarageAdvert
      *@before agencyLogin
      */
     public function createGroupByAgency(\Step\Vpn\AnnouncementList $I, \Step\Vpn\UserAdvertsList $list)
@@ -65,6 +80,14 @@ class webUS20_webUS26_crudGroupsCest
     $list->openThirdListAdvert();
     $I->addAdvertToGroupFromAdvPage();
 
+    $list->openUserAdvertsList();
+    $list->openFourthListAdvert();
+    $I->addAdvertToGroupFromAdvPage();
+
+    $list->openUserAdvertsList();
+    $list->openFifthListAdvert();
+    $I->addAdvertToGroupFromAdvPage();
+
 
     $I->sendGroupToUser();
 //        $I->pauseExecution();
@@ -74,9 +97,11 @@ class webUS20_webUS26_crudGroupsCest
     /**
      * @before userLogin
      */
-    public function viewAdvert(\Step\Vpn\AnnouncementList $I)
+    public function viewAdvert(\Step\Vpn\AnnouncementList $I, Step\Vpn\Search $S)
 {
-    $I->viewAgencyGroup();
+    $I->viewAgencyGroupAndCheckProperties();
+
+
 
 }
 
@@ -137,6 +162,8 @@ class webUS20_webUS26_crudGroupsCest
         $I->apiDeleteFlatAdvert();
         $I->apiDeleteHouseAdvert();
         $I->apiDeleteParcelAdvert();
+        $I->apiDeleteCommercialAdvert();
+        $I->apiDeleteGarageAdvert();
 
     }
 }

@@ -44,6 +44,9 @@ class AnnouncementListPage
     public static $agencyInfoField = '.info';
     public static $showMore1 = '.cc-advert-0 .dottedLink';
     public static $showMore2 = '.cc-advert-1 .dottedLink';
+    public static $showMore3 = '.cc-advert-2 .dottedLink';
+    public static $showMore4 = '.cc-advert-3 .dottedLink';
+    public static $showMore5 = '.cc-advert-4 .dottedLink';
     public static $interest1 = '.cc-interesting-0';
     public static $unInterest1 = '.cc-not-interesting-0';
     public static $interest2 = '.cc-interesting-1';
@@ -62,6 +65,11 @@ class AnnouncementListPage
     public static $deleteAdv3 = 'li:nth-child(3) div.annFooter a';
     public static $clearInter ='.cc-clear-favorites';
     public static $saveButton = '.blue';
+    public static $advPropsTab0 = '.cc-advert-0 [active="item.advert.charactersActive"]';
+    public static $advPropsTab1 = '.cc-advert-1 [active="item.advert.charactersActive"]';
+    public static $advPropsTab2 = '.cc-advert-2 [active="item.advert.charactersActive"]';
+    public static $advPropsTab3 = '.cc-advert-3 [active="item.advert.charactersActive"]';
+    public static $advPropsTab4 = '.cc-advert-4 [active="item.advert.charactersActive"]';
 
 
 

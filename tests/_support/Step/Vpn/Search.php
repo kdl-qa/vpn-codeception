@@ -158,6 +158,20 @@ class Search extends \VpnTester
         $advListCount = file_get_contents(codecept_data_dir('advCount1.txt'));
         $adv = substr($advListCount, 21);
         file_put_contents(codecept_data_dir('advCount1.txt'), $adv);
+        if ($adv < 25) {
+        }
+         elseif ($adv >=25 and $adv <= 48) {
+             $I->click(SearchPage::$searchMore);
+             $I->wait(1);
+             $I->executeJS('window.scrollTo(0,0);');
+         }
+        elseif ($adv >= 49 and $adv <= 71){
+            $I->click(SearchPage::$searchMore);
+            $I->wait(1);
+            $I->click(SearchPage::$searchMore);
+            $I->wait(1);
+            $I->executeJS('window.scrollTo(0,0);');
+        }
 
     }
 

@@ -25,14 +25,14 @@ class apiTestCest
      */
     public function apiUsers(VpnTester $I)
     {
-        $I->getAllLists();
+//        $I->getAllLists();
 //        $I->realtyGarageAddForSearch();
 //        $I->apiAdvertGarageAddForSearch();
 //        $I->apiAdminEditGarageAdvertSearch();
-//
-//        $I->realtyFlatAddForSearch();
-//        $I->apiAdvertFlatAddForSearch();
-//        $I->apiAdminEditFlatAdvertSearch();
+
+        $I->realtyFlatAddForSearch();
+        $I->apiAdvertFlatAddForSearch();
+        $I->apiAdminEditFlatAdvertSearch();
 
 //        $I->getStreetNameById(6,334);
 //        $I->realtyHouseAddSearch();

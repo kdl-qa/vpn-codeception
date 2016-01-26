@@ -11,7 +11,6 @@ class UserAdvertsList extends \VpnTester
         $I=$this;
         $I->amOnPage('/user/adverts');
         $I->wait(3);
-//        $I->see(Flat::category, 'html/body/div[1]/div[3]/div[2]/div/ul/li[1]/div[2]'); //Flat::categoryType1,Flat::city, Flat::street, Flat::houseNumber, Flat::flatNumber]);
     }
 
     public function openFirstListAdvert()
@@ -33,6 +32,20 @@ class UserAdvertsList extends \VpnTester
         $I  =$this;
         $I->waitForElement(AdvertsList::$firstListAdvert);
         $I->doubleClick(AdvertsList::$thirdListAdvertTitle);
+        $I->wait(3);
+    }
+    public function openFourthListAdvert()
+    {
+        $I  =$this;
+        $I->waitForElement(AdvertsList::$firstListAdvert);
+        $I->doubleClick(AdvertsList::$fourthListAdvertTitle);
+        $I->wait(3);
+    }
+    public function openFifthListAdvert()
+    {
+        $I  =$this;
+        $I->waitForElement(AdvertsList::$firstListAdvert);
+        $I->doubleClick(AdvertsList::$fifthListAdvertTitle);
         $I->wait(3);
     }
 

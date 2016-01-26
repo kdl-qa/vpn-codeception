@@ -317,6 +317,7 @@ class SearchPage
     public static $resultRoomCount = '[ng-if="item.realty.category.type != ctrl.const.realtyTypes.parcel"]';
     public static $resultAdvert = '.advertPreview';
     public static $countSearchResult = '.cc-advertisements-count';
+    public static $searchMore = '[ng-click="ctrl.more()"]';
 
 
 
