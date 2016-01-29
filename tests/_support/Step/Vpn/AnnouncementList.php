@@ -56,7 +56,7 @@ class AnnouncementList extends \VpnTester
         $I->amOnPage(AnnouncementListPage::$groupListUrl);
         $I->wait(2);
         $I->click(AnnouncementListPage::$showMore);
-//        $I->see('Всего объявлений: 3', AnnouncementListPage::$groupInfLine);
+//        $I->see(User::$allAdvertsText.'5', AnnouncementListPage::$groupInfLine);
         $I->see(User::$interestingText.'0', AnnouncementListPage::$groupInfLine);
         $I->see(User::$notInterestingText.'0', AnnouncementListPage::$groupInfLine);
         $I->click(AnnouncementListPage::$sendUrlLink);
@@ -214,6 +214,9 @@ class AnnouncementList extends \VpnTester
         $I->amOnPage(AnnouncementListPage::$userGroupListUrl);
         $I->wait(2);
         $I->click(AnnouncementListPage::$showMore);
+        $I->see(User::$allAdvertsText.'5', AnnouncementListPage::$groupInfLine);
+        $I->see(User::$interestingUserText.'0', AnnouncementListPage::$groupInfLine);
+        $I->see(User::$notInterestingUserText.'0', AnnouncementListPage::$groupInfLine);
         $I->click(AnnouncementListPage::$groupUrl);
         $I->wait(2);
 //        $I->pauseExecution();
@@ -389,6 +392,13 @@ class AnnouncementList extends \VpnTester
         $I->amOnPage(AnnouncementListPage::$userGroupListUrl);
         $I->wait(2);
         $I->click(AnnouncementListPage::$showMore);
+        $a = file_get_contents(codecept_data_dir('advCount1.txt'));
+        $b = file_get_contents(codecept_data_dir('advCount2.txt'));
+        $count = array ($a,$b);
+        $c = array_sum($count);
+        $I->see(User::$allAdvertsText.$c ,AnnouncementListPage::$groupInfLine);
+        $I->see(User::$interestingUserText.'0', AnnouncementListPage::$groupInfLine);
+        $I->see(User::$notInterestingUserText.'0', AnnouncementListPage::$groupInfLine);
         $I->click(AnnouncementListPage::$groupUrl);
         $I->wait(2);
 //        $I->pauseExecution();

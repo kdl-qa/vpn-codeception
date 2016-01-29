@@ -33,6 +33,7 @@ class User
 
     static $userEmail = 'rblkkk@mail.ru';
     static $userPass = '123456';
+    static $editUserPass = '1234567';
 
     //----------------------------------  Data to register agency ------------------------ //
 
@@ -176,7 +177,9 @@ class User
     // ------------------------------  Groups -------------------------------//
 
     static $interestingText = 'Интересных клиенту: ';
+    static $interestingUserText = 'Интересных: ';
     static $notInterestingText = 'Не интересных клиенту: ';
+    static $notInterestingUserText = 'Не интересных: ';
     static $allAdvertsText = 'Всего объявлений: ';
 
 

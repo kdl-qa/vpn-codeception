@@ -150,6 +150,29 @@ class EditProfile extends \VpnTester
         $this->seeInField(EditProfiles::$agencySocialTw,User::$agencySocialTw);
     }
 
+    function changePassword()
+    {
+        $I = $this;
+        $I->amOnPage(EditProfiles::$changePassUrl);
+        $I->waitForElement(EditProfiles::$submitButton);
+        $I->fillField(EditProfiles::$oldPasswordField, User::$userPass);
+        $I->fillField(EditProfiles::$newPasswordField, User::$editUserPass);
+        $I->fillField(EditProfiles::$confirmPasswordField, User::$editUserPass);
+        $I->click(EditProfiles::$submitButton);
+        $I->waitForElement(EditProfiles::$acceptEditAgencyProfileModal);
+        $I->click(EditProfiles::$goodButton);
+
+        $I->fillField(EditProfiles::$oldPasswordField, User::$editUserPass);
+        $I->fillField(EditProfiles::$newPasswordField, User::$userPass);
+        $I->fillField(EditProfiles::$confirmPasswordField, User::$userPass);
+        $I->click(EditProfiles::$submitButton);
+        $I->waitForElement(EditProfiles::$acceptEditAgencyProfileModal);
+        $I->click(EditProfiles::$goodButton);
+
+
+
+    }
+
     function seeInDescriptionField($about_text){
         codecept_debug($about_text);
         if($about_text == User::$agencyAboutNew) return;

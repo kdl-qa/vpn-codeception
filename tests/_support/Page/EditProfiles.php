@@ -51,7 +51,18 @@ class EditProfiles
     public static $agencyScheduleMondayToInput= " ";
 
 
+
     //-----------------------------------------------------------------------------------------------------------//
 
     public static $buttonBlue = ['css' => 'button.blue'];
+
+    //-----------------------Change Password-------------------------//
+
+    public static $changePassUrl = '/user/change-password';
+    public static $oldPasswordField = '#oldPass';
+    public static $newPasswordField = '#newPass';
+    public static $confirmPasswordField = '#confirm';
+    public static $submitButton = '.buttonBlock';
+    public static $goodButton = '[ng-click="ctrl.apply()"]';
+
 }

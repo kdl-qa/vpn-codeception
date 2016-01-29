@@ -52,29 +52,54 @@ class TestCest
         $I->apiAgencyLogin();
     }
     /**
-     * @before uploadImages
-     * @before login
+    *@before userLogin
      */
-    public function addEditCheckGarageSaleAdvert(VpnTester $api, \Step\Vpn\EditAdvert $I, \Step\Vpn\Advert $he, \Step\Vpn\AdminAdvert $admin, \Step\Vpn\UserAdvertsList $list)
+    public function changeUserPassword (\Step\Vpn\EditProfile $I)
     {
-        $this->addGarageSaleAdvert($api);
-
-        $I->loginAgency();
-        $I->openEditGaragePage();
-        $I->editGarageAdvert();
-        $I->fillInEditGarageAdvertCheckboxes();
-        $he->uploadGarageImage();
-        $he->clickIamOwnerLink();
-        $he->clickCreateAdvertButton();
-        $he->acceptModal();
-
-        //todo: add admin function to do 2nd moderate (new functional)
-        $this->moderateAdv($admin);
-
-        $this->open1stAdvert($list);
-
-        $I->checkEditedGarageProperties();
+        $I->changePassword();
     }
+    /**
+     *@before agentLogin
+     */
+    public function changeAgentPassword (\Step\Vpn\EditProfile $I)
+    {
+        $I->changePassword();
+    }
+    /**
+     *@before loginAgency
+     */
+    public function changeAgencyPassword (\Step\Vpn\EditProfile $I)
+    {
+        $I->changePassword();
+    }
+
+
+
+
+//    /**
+//     * @before uploadImages
+//     * @before login
+//     */
+//    public function addEditCheckGarageSaleAdvert(VpnTester $api, \Step\Vpn\EditAdvert $I, \Step\Vpn\Advert $he, \Step\Vpn\AdminAdvert $admin, \Step\Vpn\UserAdvertsList $list)
+//    {
+//        $this->addGarageSaleAdvert($api);
+//
+//        $I->loginAgency();
+//        $I->openEditGaragePage();
+//        $I->editGarageAdvert();
+//        $I->fillInEditGarageAdvertCheckboxes();
+//        $he->uploadGarageImage();
+//        $he->clickIamOwnerLink();
+//        $he->clickCreateAdvertButton();
+//        $he->acceptModal();
+//
+//        //todo: add admin function to do 2nd moderate (new functional)
+//        $this->moderateAdv($admin);
+//
+//        $this->open1stAdvert($list);
+//
+//        $I->checkEditedGarageProperties();
+//    }
 //    /**
 //     * @before loginAgency
 //     */
