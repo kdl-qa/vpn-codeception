@@ -187,6 +187,8 @@ class User
     static $rejectReason = 'Test Reject reason';
     static $unpublishDesc = 'Test unpublish description';
     static $activeStatus = 'Активно';
+    static $createAdvert = 'создал объявление';
+    static $createRealty = 'создал данный объект недвижимости';
 
     // ---------------------------------  Additional functions --------------------------------------------------- //
 

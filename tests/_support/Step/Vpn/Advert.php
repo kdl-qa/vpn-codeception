@@ -1744,6 +1744,11 @@ class Advert extends \VpnTester
         $I->see($this->getStatusesName(0), AdvPage::$status9);
         $I->click(AdvPage::$showMore10);
         $I->see(User::$activeStatus, AdvPage::$status10);
+        $I->click(AdvPage::$showMore11);
+        $I->see(User::$createAdvert, AdvPage::$details11);
+        $I->click(AdvPage::$showMore12);
+        $I->see(User::$createRealty , AdvPage::$details12);
+
 
 
     }

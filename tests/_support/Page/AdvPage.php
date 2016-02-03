@@ -63,8 +63,8 @@ class AdvPage
     public static $status10 = 'li:nth-child(11) .toUnpublish';
     public static $details10 = 'li:nth-child(11) .detailsInfo';
 
-    public static $details11 = 'li:nth-child(12) .detailsInfo';
-    public static $details12 = 'li:nth-child(13) .detailsInfo';
+    public static $details11 = 'li:nth-child(12) .detailsAction';
+    public static $details12 = 'li:nth-child(13) .detailsAction';
 
 
 

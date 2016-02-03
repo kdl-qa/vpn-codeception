@@ -13,6 +13,7 @@ class webUS7_realtyHistoryCest
     {
 //        $I->getAllLists();
         $I->realtyFlatAddForSearch();
+        $I->wait(1);
         $I->apiAdvertFlatAddForSearch();
         $I->apiAdminEditFlatAdvertChangeStatus($I);
 
@@ -21,6 +22,7 @@ class webUS7_realtyHistoryCest
     protected function addHouse (VpnTester $I)
     {
         $I->realtyHouseAddSearch();
+        $I->wait(1);
         $I->apiAdvertHouseAddSearch();
         $I->apiAdminEditHouseAdvertChangeStatus($I);
 
@@ -28,6 +30,7 @@ class webUS7_realtyHistoryCest
     protected function addParcel (VpnTester $I)
     {
         $I->realtyParcelAddSearch();
+        $I->wait(1);
         $I->apiAdvertParcelAddSearch();
         $I->apiAdminEditParcelAdvertChangeStatus($I);
     }
@@ -35,6 +38,7 @@ class webUS7_realtyHistoryCest
     protected function addCommercial (VpnTester $I)
     {
         $I->realtyCommercialAddSearch();
+        $I->wait(1);
         $I->apiAdvertCommercialAddSearch();
         $I->apiAdminEditCommercialAdvertChangeStatus($I);
     }
@@ -42,6 +46,7 @@ class webUS7_realtyHistoryCest
     protected function addGarage (VpnTester $I)
     {
         $I->realtyGarageAddForSearch();
+        $I->wait(1);
         $I->apiAdvertGarageAddForSearch();
         $I->apiAdminEditGarageAdvertChangeStatus($I);
     }
@@ -120,7 +125,7 @@ class webUS7_realtyHistoryCest
         $I->apiDeleteParcelAdvert();
         $I->apiDeleteCommercialAdvert();
         $I->apiDeleteGarageAdvert();
-        
+
 
     }
 
