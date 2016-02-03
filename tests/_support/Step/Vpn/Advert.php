@@ -3,6 +3,7 @@ namespace Step\Vpn;
 use Data\Commercial;
 use Data\Garage;
 use Data\Parcel;
+use Data\User;
 use Page\AddAdvert;
 use \Data\Flat;
 use \Data\House;
@@ -1668,5 +1669,85 @@ class Advert extends \VpnTester
         $I->seeElement(AdvPage::$advSchemaImg);
 
     }
+
+
+    //----------------------History---------------------------------//
+
+    public function flatHistoryUrl()
+    {
+        $I = $this;
+        $I->amOnPage('/'.$this->getCityLatinName(6).'/'.$this->getCategoryTypeName(0).'/'.User::getFlatId());
+    }
+
+    public function houseHistoryUrl()
+    {
+        $I = $this;
+        $I->amOnPage('/'.$this->getCityLatinName(6).'/'.$this->getCategoryTypeName(1).'/'.User::getHouseId());
+    }
+
+    public function parcelHistoryUrl()
+    {
+        $I = $this;
+        $I->amOnPage('/'.$this->getCityLatinName(6).'/'.$this->getCategoryTypeName(2).'/'.User::getParcelId());
+    }
+
+    public function commercialHistoryUrl()
+    {
+        $I = $this;
+        $I->amOnPage('/'.$this->getCityLatinName(6).'/'.$this->getCategoryTypeName(3).'/'.User::getCommercialId());
+    }
+
+    public function garageHistoryUrl()
+    {
+        $I = $this;
+        $I->amOnPage('/'.$this->getCityLatinName(6).'/'.$this->getCategoryTypeName(4).'/'.User::getGarageId());
+    }
+
+    public function realtyHistory()
+    {
+        $I = $this;
+        $I->waitForElementVisible(AdvPage::$advInfoContacts);
+        $I->click(AdvPage::$advInfoHistory);
+        $I->waitForElement(AdvPage::$showMore1);
+        $I->click(AdvPage::$showMore1);
+        $I->see($this->getStatusesName(1), AdvPage::$status1);
+        $I->click(AdvPage::$showMore2);
+        $I->see($this->getStatusesName(4), AdvPage::$status2);
+        $I->see($this->getUnpublishReasonsName(2),AdvPage::$details2);
+        $I->see(User::$unpublishDesc, AdvPage::$details2);
+        $I->click(AdvPage::$showMore3);
+        $I->see($this->getStatusesName(3), AdvPage::$status3);
+        $I->see($this->getUnpublishReasonsName(2),AdvPage::$details3);
+        $I->see(User::$unpublishDesc, AdvPage::$details3);
+        $I->click(AdvPage::$showMore4);
+        $I->see($this->getStatusesName(4), AdvPage::$status4);
+        $I->see($this->getUnpublishReasonsName(1),AdvPage::$details4);
+        $I->see(User::$unpublishDesc, AdvPage::$details4);
+        $I->click(AdvPage::$showMore5);
+        $I->see($this->getStatusesName(3), AdvPage::$status5);
+        $I->see($this->getUnpublishReasonsName(1),AdvPage::$details5);
+        $I->see(User::$unpublishDesc, AdvPage::$details5);
+        $I->click(AdvPage::$showMore6);
+        $I->see($this->getStatusesName(4), AdvPage::$status6);
+        $I->see($this->getUnpublishReasonsName(0),AdvPage::$details6);
+        $I->see(User::$unpublishDesc, AdvPage::$details6);
+        $I->see(Flat::priceFlatRent, AdvPage::$details6);
+        $I->click(AdvPage::$showMore7);
+        $I->see($this->getStatusesName(3), AdvPage::$status7);
+        $I->see($this->getUnpublishReasonsName(0),AdvPage::$details7);
+        $I->see(User::$unpublishDesc, AdvPage::$details7);
+        $I->see(Flat::priceFlatSell, AdvPage::$details7);
+        $I->click(AdvPage::$showMore8);
+        $I->see($this->getStatusesName(2), AdvPage::$status8);
+        $I->see(User::$rejectReason, AdvPage::$details8);
+        $I->click(AdvPage::$showMore9);
+        $I->see($this->getStatusesName(0), AdvPage::$status9);
+        $I->click(AdvPage::$showMore10);
+        $I->see(User::$activeStatus, AdvPage::$status10);
+
+
+    }
+
+
 
 }

@@ -420,6 +420,14 @@ class Api extends \Codeception\Module
         return $regionName;
     }
 
+    function getRegionId($id)
+    {
+        $region = file_get_contents(codecept_data_dir('regions.json'));
+        $regionId = json_decode($region)[$id]->id;
+        $this->debugSection('Region', $regionId);
+        return $regionId;
+    }
+
     function getCity($id)
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
@@ -436,6 +444,20 @@ class Api extends \Codeception\Module
         $city = file_get_contents(codecept_data_dir('cities.json'));
         $cityName = json_decode($city)[$id]->name;
         $this->debugSection('City Name', $cityName);
+        return $cityName;
+    }
+    function getCityId($id)
+    {
+        $city = file_get_contents(codecept_data_dir('cities.json'));
+        $cityId = json_decode($city)[$id]->id;
+        $this->debugSection('City Id', $cityId);
+        return $cityId;
+    }
+    function getCityLatinName($id)
+    {
+        $city = file_get_contents(codecept_data_dir('cities.json'));
+        $cityName = json_decode($city)[$id]->latinName;
+        $this->debugSection('City latin Name', $cityName);
         return $cityName;
     }
 
@@ -458,6 +480,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Districts Name', $districtName);
         return $districtName;
     }
+    function getDistrictId($id)
+    {
+        $district = file_get_contents(codecept_data_dir('districts.json'));
+        $districtId = json_decode($district)[$id]->id;
+        $this->debugSection('Districts id', $districtId);
+        return $districtId;
+    }
 
     function getStreet($id)
     {
@@ -477,6 +506,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Street Name', $streetName);
         return $streetName;
     }
+    function getStreetId($id)
+    {
+        $street = file_get_contents(codecept_data_dir('streets.json'));
+        $streetId = json_decode($street)[$id]->id;
+        $this->debugSection('Street Id', $streetId);
+        return $streetId;
+    }
 
     function getCategories($id) //0..3
     {
@@ -495,6 +531,20 @@ class Api extends \Codeception\Module
         $caregory = file_get_contents(codecept_data_dir('categories.json'));
         $caregoryName = json_decode($caregory)[$id]->name;
         $this->debugSection('Category Name', $caregoryName);
+        return $caregoryName;
+    }
+    function getCategoryId($id)
+    {
+        $caregory = file_get_contents(codecept_data_dir('categories.json'));
+        $caregoryId = json_decode($caregory)[$id]->id;
+        $this->debugSection('Category ID', $caregoryId);
+        return $caregoryId;
+    }
+    function getCategoryTypeName($id)
+    {
+        $caregory = file_get_contents(codecept_data_dir('categories.json'));
+        $caregoryName = json_decode($caregory)[$id]->type;
+        $this->debugSection('Category  Type Name', $caregoryName);
         return $caregoryName;
     }
 
@@ -517,6 +567,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Flat Category Type Name', $caregoryTypeName);
         return $caregoryTypeName;
     }
+    function getFlatCategoryTypeId($id) //0..1
+    {
+        $caregoryType = file_get_contents(codecept_data_dir('flat_types.json'));
+        $caregoryTypeId = json_decode($caregoryType)[$id]->id;
+        $this->debugSection('Flat Category Type Id', $caregoryTypeId);
+        return $caregoryTypeId;
+    }
 
     function getHouseCategoryTypes($id) //0..2
     {
@@ -536,6 +593,13 @@ class Api extends \Codeception\Module
         $caregoryTypeName = json_decode($caregoryType)[$id]->name;
         $this->debugSection('House Category Type Name', $caregoryTypeName);
         return $caregoryTypeName;
+    }
+    function getHouseCategoryTypeID($id) //0..2
+    {
+        $caregoryType = file_get_contents(codecept_data_dir('house_types.json'));
+        $caregoryTypeId = json_decode($caregoryType)[$id]->id;
+        $this->debugSection('House Category Type Name', $caregoryTypeId);
+        return $caregoryTypeId;
     }
 
     function getParcelCategoryTypes($id) //0..4
@@ -557,6 +621,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Parcel Category Type Name', $caregoryTypeName);
         return $caregoryTypeName;
     }
+    function getParcelCategoryTypeId($id) //0..4
+    {
+        $caregoryType = file_get_contents(codecept_data_dir('parcel_types.json'));
+        $caregoryTypeId = json_decode($caregoryType)[$id]->id;
+        $this->debugSection('Parcel Category Type Id', $caregoryTypeId);
+        return $caregoryTypeId;
+    }
 
     function getCommercialCategoryTypes($id) //0..10
     {
@@ -577,6 +648,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Commercial Category Type Name', $caregoryTypeName);
         return $caregoryTypeName;
     }
+    function getCommercialCategoryTypeId($id) //0..10
+    {
+        $caregoryType = file_get_contents(codecept_data_dir('commercial_types.json'));
+        $caregoryTypeId = json_decode($caregoryType)[$id]->id;
+        $this->debugSection('Commercial Category Type ID', $caregoryTypeId);
+        return $caregoryTypeId;
+    }
     function getGaragesCategoryTypes($id) //0..3
     {
         $this->restModule->haveHttpHeader ('Content-Type', 'application/json');
@@ -595,6 +673,13 @@ class Api extends \Codeception\Module
         $caregoryTypeName = json_decode($caregoryType)[$id]->name;
         $this->debugSection('Garages Category Type Name', $caregoryTypeName);
         return $caregoryTypeName;
+    }
+    function getGaragesCategoryTypeId($id) //0..3
+    {
+        $caregoryType = file_get_contents(codecept_data_dir('garage_types.json'));
+        $caregoryTypeId = json_decode($caregoryType)[$id]->id;
+        $this->debugSection('Garages Category Type ID', $caregoryTypeId);
+        return $caregoryTypeId;
     }
 
     function getFlatAdditionals($id) //0..15
@@ -615,6 +700,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Flat Additionals Name', $additionalName);
         return $additionalName;
     }
+    function getFlatAdditionalsId($id) //0..15
+    {
+        $additional = file_get_contents(codecept_data_dir('flat_additionals.json'));
+        $additionalId = json_decode($additional)[$id]->id;
+        $this->debugSection('Flat Additionals ID', $additionalId);
+        return $additionalId;
+    }
 
     function getHouseAdditionals($id) //0..15
     {
@@ -633,6 +725,13 @@ class Api extends \Codeception\Module
         $additionalName = json_decode($additional)[$id]->name;
         $this->debugSection('House Additionals Name', $additionalName);
         return $additionalName;
+    }
+    function getHouseAdditionalsId($id) //0..15
+    {
+        $additional = file_get_contents(codecept_data_dir('house_additionals.json'));
+        $additionalId = json_decode($additional)[$id]->id;
+        $this->debugSection('House Additionals ID', $additionalId);
+        return $additionalId;
     }
 
     function getParcelAdditionals($id) //0..11
@@ -653,6 +752,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Parcel Additionals Name', $additionalName);
         return $additionalName;
     }
+    function getParcelAdditionalsID($id) //0..11
+    {
+        $additional = file_get_contents(codecept_data_dir('parcel_additionals.json'));
+        $additionalId = json_decode($additional)[$id]->id;
+        $this->debugSection('Parcel Additionals ID', $additionalId);
+        return $additionalId;
+    }
 
     function getCommercialAdditionals($id) //0..7
     {
@@ -671,6 +777,13 @@ class Api extends \Codeception\Module
         $additionalName = json_decode($additional)[$id]->name;
         $this->debugSection('Commercial Additionals Name', $additionalName);
         return $additionalName;
+    }
+    function getCommercialAdditionalsId($id) //0..7
+    {
+        $additional = file_get_contents(codecept_data_dir('commercial_additionals.json'));
+        $additionalId = json_decode($additional)[$id]->id;
+        $this->debugSection('Commercial Additionals ID', $additionalId);
+        return $additionalId;
     }
 
     function getGarageAdditionals($id) //0..7
@@ -691,7 +804,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Garage Additionals Name', $additionalName);
         return $additionalName;
     }
-
+    function getGarageAdditionalsId($id) //0..7
+    {
+        $additional = file_get_contents(codecept_data_dir('garage_additionals.json'));
+        $additionalId = json_decode($additional)[$id]->id;
+        $this->debugSection('Garage Additionals ID', $additionalId);
+        return $additionalId;
+    }
 
     function getAppliances($id) //0..7
     {
@@ -709,6 +828,13 @@ class Api extends \Codeception\Module
         $appliancesName = json_decode($appliances)[$id]->name;
         $this->debugSection('Appliances Name', $appliancesName);
         return $appliancesName;
+    }
+    function getAppliancesId($id) //0..7
+    {
+        $appliances = file_get_contents(codecept_data_dir('appliances.json'));
+        $appliancesId = json_decode($appliances)[$id]->id;
+        $this->debugSection('Appliances Id', $appliancesId);
+        return $appliancesId;
     }
 
     function getActualCurrency()
@@ -743,6 +869,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Area Unit Name', $areaUnitsName);
         return $areaUnitsName;
     }
+    function getAreaUnitsId($id)
+    {
+        $areaUnits = file_get_contents(codecept_data_dir('area_units.json'));
+        $areaUnitsId = json_decode($areaUnits)[$id]->id;
+        $this->debugSection('Area Unit ID', $areaUnitsId);
+        return $areaUnitsId;
+    }
 
     function getBalconies($id) //0..3
     {
@@ -760,6 +893,13 @@ class Api extends \Codeception\Module
         $balconiesName = json_decode($balconies)[$id]->name;
         $this->debugSection('Balcony', $balconiesName);
         return $balconiesName;
+    }
+    function getBalconiesId($id)
+    {
+        $balconies = file_get_contents(codecept_data_dir('balconies.json'));
+        $balconiesId = json_decode($balconies)[$id]->id;
+        $this->debugSection('Balcony', $balconiesId);
+        return $balconiesId;
     }
 
     function getCommunications($id) //0..7
@@ -779,6 +919,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Communications Name', $communicationsName);
         return $communicationsName;
     }
+    function getCommunicationsId($id)
+    {
+        $communications = file_get_contents(codecept_data_dir('communications.json'));
+        $communicationsId = json_decode($communications)[$id]->id;
+        $this->debugSection('Communications ID', $communicationsId);
+        return $communicationsId;
+    }
 
     function getCurrency($id) //0..1
     {
@@ -796,6 +943,13 @@ class Api extends \Codeception\Module
         $currencyName = json_decode($currency)[$id]->name;
         $this->debugSection('Communications Name', $currencyName);
         return $currencyName;
+    }
+    function getCurrencyId($id)
+    {
+        $currency = file_get_contents(codecept_data_dir('currency.json'));
+        $currencyId = json_decode($currency)[$id]->id;
+        $this->debugSection('Communications Id', $currencyId);
+        return $currencyId;
     }
 
     function getHouseNumbers($id)
@@ -850,6 +1004,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Furnitures Name', $furnituresName);
         return $furnituresName;
     }
+    function getFurnituresId($id)
+    {
+        $furnitures = file_get_contents(codecept_data_dir('furnitures.json'));
+        $furnituresId = json_decode($furnitures)[$id]->id;
+        $this->debugSection('Furnitures ID', $furnituresId);
+        return $furnituresId;
+    }
 
     function getHeatings($id) //0..4
     {
@@ -868,6 +1029,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Heatings Name', $heatingsName);
         return $heatingsName;
     }
+    function getHeatingsId($id)
+    {
+        $heatings = file_get_contents(codecept_data_dir('heatings.json'));
+        $heatingsId = json_decode($heatings)[$id]->id;
+        $this->debugSection('Heatings Id', $heatingsId);
+        return $heatingsId;
+    }
 
     function getMarketType($id) //0..1
     {
@@ -883,8 +1051,15 @@ class Api extends \Codeception\Module
     {
         $market = file_get_contents(codecept_data_dir('market_types.json'));
         $marketName = json_decode($market)[$id]->name;
-        $this->debugSection('MArket Name', $marketName);
+        $this->debugSection('Market Name', $marketName);
         return $marketName;
+    }
+    function getMarketTypeId($id) //0..1
+    {
+        $market = file_get_contents(codecept_data_dir('market_types.json'));
+        $marketId = json_decode($market)[$id]->id;
+        $this->debugSection('Market Id', $marketId);
+        return $marketId;
     }
 
     function getNearObjects($id) //0..9
@@ -905,7 +1080,13 @@ class Api extends \Codeception\Module
         $this->debugSection('NearObjects Name', $nearObjName);
         return $nearObjName;
     }
-
+    function getNearObjectsId($id)
+    {
+        $nearObj = file_get_contents(codecept_data_dir('near_objects.json'));
+        $nearObjId = json_decode($nearObj)[$id]->id;
+        $this->debugSection('NearObjects ID', $nearObjId);
+        return $nearObjId;
+    }
 
     function getOperationType($id) //0..1
     {
@@ -923,6 +1104,13 @@ class Api extends \Codeception\Module
         $opTypesName = json_decode($opTypes)[$id]->name;
         $this->debugSection('OperationType Name', $opTypesName);
         return $opTypesName;
+    }
+    function getOperationTypeId($id)
+    {
+        $opTypes = file_get_contents(codecept_data_dir('operation_types.json'));
+        $opTypesId = json_decode($opTypes)[$id]->id;
+        $this->debugSection('OperationType Id', $opTypesId);
+        return $opTypesId;
     }
 
     function getPeriod($id) //0..1
@@ -942,6 +1130,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Period', $periodsName);
         return $periodsName;
     }
+    function getPeriodId($id)
+    {
+        $periods = file_get_contents(codecept_data_dir('periods.json'));
+        $periodsId = json_decode($periods)[$id]->id;
+        $this->debugSection('Period', $periodsId);
+        return $periodsId;
+    }
 
     function getStatuses($id) //0..4
     {
@@ -959,6 +1154,13 @@ class Api extends \Codeception\Module
         $statusesName = json_decode($statuses)[$id]->name;
         $this->debugSection('Status', $statusesName);
         return $statusesName;
+    }
+    function getStatusesId($id)
+    {
+        $statuses = file_get_contents(codecept_data_dir('statuses.json'));
+        $statusesId = json_decode($statuses)[$id]->id;
+        $this->debugSection('Status', $statusesId);
+        return $statusesId;
     }
 
     function getRepairs($id) //0..7
@@ -978,6 +1180,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Repairs Name', $repairsName);
         return $repairsName;
     }
+    function getRepairsId($id)
+    {
+        $repairs = file_get_contents(codecept_data_dir('repairs.json'));
+        $repairsId = json_decode($repairs)[$id]->id;
+        $this->debugSection('Repairs Id', $repairsId);
+        return $repairsId;
+    }
 
     function getUnpublishReasons($id) //0..1
     {
@@ -995,6 +1204,13 @@ class Api extends \Codeception\Module
         $unpubReasonName = json_decode($unpubReason)[$id]->name;
         $this->debugSection('Unpublish reason', $unpubReasonName);
         return $unpubReasonName;
+    }
+    function getUnpublishReasonsId($id)
+    {
+        $unpubReason = file_get_contents(codecept_data_dir('unpublish_reasons.json'));
+        $unpubReasonId = json_decode($unpubReason)[$id]->id;
+        $this->debugSection('Unpublish reason', $unpubReasonId);
+        return $unpubReasonId;
     }
 
     function getWallMaterials($id) //0..10
@@ -1014,6 +1230,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Wall material', $wallMaterialsName);
         return $wallMaterialsName;
     }
+    function getWallMaterialsId($id)
+    {
+        $wallMaterials = file_get_contents(codecept_data_dir('wall_materials.json'));
+        $wallMaterialsId = json_decode($wallMaterials)[$id]->id;
+        $this->debugSection('Wall material', $wallMaterialsId);
+        return $wallMaterialsId;
+    }
 
     function getWaterHeatings($id) //0..4
     {
@@ -1032,6 +1255,14 @@ class Api extends \Codeception\Module
         $this->debugSection('Water Heating', $waterHeatingsName);
         return $waterHeatingsName;
     }
+    function getWaterHeatingsId($id)
+    {
+        $waterHeatings = file_get_contents(codecept_data_dir('water_heatings.json'));
+        $waterHeatingsId = json_decode($waterHeatings)[$id]->id;
+        $this->debugSection('Water Heating', $waterHeatingsId);
+        return $waterHeatingsId;
+    }
+
     function getWC($id) //0..2
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
@@ -1046,8 +1277,15 @@ class Api extends \Codeception\Module
     {
         $wc = file_get_contents(codecept_data_dir('wc.json'));
         $wcName = json_decode($wc)[$id]->name;
-        $this->debugSection('Water Heating', $wcName);
+        $this->debugSection('WC', $wcName);
         return $wcName;
+    }
+    function getWcId($id)
+    {
+        $wc = file_get_contents(codecept_data_dir('wc.json'));
+        $wcId = json_decode($wc)[$id]->id;
+        $this->debugSection('WC', $wcId);
+        return $wcId;
     }
 
     function apiGetAgencyAnnouncementsList()
@@ -1131,6 +1369,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Inspection Pit', $inspectionName);
         return $inspectionName;
     }
+    function getInspectionPitId($id)
+    {
+        $inspection = file_get_contents(codecept_data_dir('inspectionPit_list.json'));
+        $inspectionId = json_decode($inspection)[$id]->id;
+        $this->debugSection('Inspection Pit', $inspectionId);
+        return $inspectionId;
+    }
     function  getParkingPlace($id)
     {
         $this->restModule->sendGET('/lists/parking-place');
@@ -1148,6 +1393,13 @@ class Api extends \Codeception\Module
         $this->debugSection('Parking Place', $parkingName);
         return $parkingName;
     }
+    function getParkingPlaceId($id)
+    {
+        $parking = file_get_contents(codecept_data_dir('parkingPlace_list.json'));
+        $parkingName = json_decode($parking)[$id]->id;
+        $this->debugSection('Parking Place', $parkingName);
+        return $parkingName;
+    }
     function  getTransportType($id)
     {
         $this->restModule->sendGET('/lists/transport-type');
@@ -1162,6 +1414,13 @@ class Api extends \Codeception\Module
     {
         $transport = file_get_contents(codecept_data_dir('transport_list.json'));
         $transportName = json_decode($transport)[$id]->name;
+        $this->debugSection('Transport Type', $transportName);
+        return $transportName;
+    }
+    function getTransportTypeId($id)
+    {
+        $transport = file_get_contents(codecept_data_dir('transport_list.json'));
+        $transportName = json_decode($transport)[$id]->id;
         $this->debugSection('Transport Type', $transportName);
         return $transportName;
     }
@@ -1406,30 +1665,30 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/flats/add', [
-            'category' => $this->getCategories(0),
-            'categoryType' => $this->getFlatCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(7),
-            'street' => $this->getStreet(34),
+            'category' => $this->getCategoryId(0),
+            'categoryType' => $this->getFlatCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(7),
+            'street' => $this->getStreetId(34),
             'houseNumber' => Flat::houseNumber,
             'flatNumber' => Flat::uniqueFlatNumber(),
             'latitude' => Flat::searchLatitude,
             'longitude' => Flat::searchLongitude,
             'roomCount' => Flat::roomCount,
-            'wallMaterial' => $this->getWallMaterials(0),
+            'wallMaterial' => $this->getWallMaterialsId(0),
             'area' => Flat::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'livingArea' => Flat::livingArea,
             'kitchenArea' => Flat::kitchenArea,
             'floor' => Flat::floorNumber,
             'floorNumber' => Flat::floors,
             'buildYear' => Flat::buildYear,
-            'wc' => $this->getWC(1),
-            'balcony' => $this->getBalconies(1),
-            'heating' => $this->getHeatings(1),
-            'waterHeating' => $this->getWaterHeatings(1),
-            'nearObjects' => [$this->getNearObjects(0)]
+            'wc' => $this->getWcId(1),
+            'balcony' => $this->getBalconiesId(1),
+            'heating' => $this->getHeatingsId(1),
+            'waterHeating' => $this->getWaterHeatingsId(1),
+            'nearObjects' => [$this->getNearObjectsId(0)]
 //            'schema' => $schema
         ]);
 
@@ -1702,32 +1961,32 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/houses/add', [
-            'category' => $this->getCategories(1),
-            'categoryType' => $this->getHouseCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(3),
-            'street' => $this->getStreet(52),
+            'category' => $this->getCategoryId(1),
+            'categoryType' => $this->getHouseCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(3),
+            'street' => $this->getStreetId(52),
             'houseNumber' => House::uniqueHouseNumber(),
             'latitude' => House::searchLatitude,
             'longitude' => House::searchLongitude,
             'roomCount' => House::roomCount,
-            'wallMaterial' => $this->getWallMaterials(10),
+            'wallMaterial' => $this->getWallMaterialsId(10),
             'area' => House::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'livingArea' => House::livingArea,
             'kitchenArea' => House::kitchenArea,
             'landArea' => House::landArea,
-            'landAreaUnit' => $this->getAreaUnits(1),
+            'landAreaUnit' => $this->getAreaUnitsId(1),
             'floorNumber' => House::floors,
             'buildYear' => House::buildYear,
-            'wc' => $this->getWC(0),
-            'heating' => $this->getHeatings(1),
-            'waterHeating' => $this->getWaterHeatings(1),
+            'wc' => $this->getWcId(0),
+            'heating' => $this->getHeatingsId(1),
+            'waterHeating' => $this->getWaterHeatingsId(1),
             'communication' => [
-                $this->getCommunications(0)],
+                $this->getCommunicationsId(0)],
             'nearObjects' => [
-                $this->getNearObjects(0)]
+                $this->getNearObjectsId(0)]
 //            'schema' => $schema
         ]);
 
@@ -1986,19 +2245,19 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/parcels/add', [
-            'category' => $this->getCategories(2),
-            'categoryType' => $this->getParcelCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(7),
-            'street' => $this->getStreet(32),
+            'category' => $this->getCategoryId(2),
+            'categoryType' => $this->getParcelCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(7),
+            'street' => $this->getStreetId(32),
             'cadastralNumber' => Parcel::uniqueCadastralNumber(),
             'latitude' => Parcel::searchLatitude,
             'longitude' => Parcel::searchLongitude,
             'area' => Parcel::generalArea,
-            'areaUnit' => $this->getAreaUnits(1),
-            'communication' => [$this->getCommunications(0)],
-            'nearObjects' => [$this->getNearObjects(0)],
+            'areaUnit' => $this->getAreaUnitsId(1),
+            'communication' => [$this->getCommunicationsId(0)],
+            'nearObjects' => [$this->getNearObjectsId(0)],
 //            'schema' => $schema
         ]);
 
@@ -2226,27 +2485,27 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/commercials/add', [
-            'category' => $this->getCategories(3),
-            'categoryType' => $this->getCommercialCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(7),
-            'street' => $this->getStreet(49),
+            'category' => $this->getCategoryId(3),
+            'categoryType' => $this->getCommercialCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(7),
+            'street' => $this->getStreetId(49),
             'houseNumber' => Commercial::uniqueCommercialNumber(),
             'latitude' => Commercial::searchLatitude,
             'longitude' => Commercial::searchLongitude,
             'area' => Commercial::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'effectiveArea' => Commercial::effectiveArea,
-            'wallMaterial' => $this->getWallMaterials(0),
+            'wallMaterial' => $this->getWallMaterialsId(0),
             'roomCount' => Commercial::roomCount,
             'floor' => Commercial::floorNumber,
             'floorNumber' => Commercial::floors,
             'buildYear' => Commercial::buildYear,
-            'wc' => $this->getWC(2),
-            'heating' => $this->getHeatings(2),
-            'waterHeating' => $this->getWaterHeatings(2),
-            'communication' => [$this->getCommunications(0)],
+            'wc' => $this->getWcId(2),
+            'heating' => $this->getHeatingsId(2),
+            'waterHeating' => $this->getWaterHeatingsId(2),
+            'communication' => [$this->getCommunicationsId(0)],
 //            'schema' => $schema
         ]);
 
@@ -2365,29 +2624,29 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/garages/add', [
-            'category' => $this->getCategories(4),
-            'categoryType' => $this->getGaragesCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(16),
-            'street' => $this->getStreet(201),
+            'category' => $this->getCategoryId(4),
+            'categoryType' => $this->getGaragesCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(16),
+            'street' => $this->getStreetId(201),
             'houseNumber' => Garage::houseNumber,
             'garageNumber' => Flat::uniqueFlatNumber(),
             'latitude' => Garage::latitude,
             'longitude' => Garage::longitude,
             'roomCount' => Garage::roomCount,
-            'wallMaterial' => $this->getWallMaterials(0),
+            'wallMaterial' => $this->getWallMaterialsId(0),
             'area' => Garage::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'floor' => Garage::floor,
             'floorNumber' => Garage::floorNumber,
             'buildYear' => Garage::buildYear,
-            'inspectionPit'=> $this->getInspectionPit(0),
-            'parkingPlace' => $this->getParkingPlace(0),
-            'transportType' =>$this->getTransportType(0),
-            'heating' => $this->getHeatings(0),
-            'communication' => [$this->getCommunications(0)],
-            'nearObjects' => [$this->getNearObjects(0)]
+            'inspectionPit'=> $this->getInspectionPitId(0),
+            'parkingPlace' => $this->getParkingPlaceId(0),
+            'transportType' =>$this->getTransportTypeId(0),
+            'heating' => $this->getHeatingsId(0),
+            'communication' => [$this->getCommunicationsId(0)],
+            'nearObjects' => [$this->getNearObjectsId(0)]
 //            'schema' => $schema
         ]);
 
@@ -3840,19 +4099,19 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/flats/add/' . $realtyFlatId, [
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => Flat::descriptionFlatSell,
             'price' => Flat::priceFlatSearch,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
             'commission' => Flat::commission,
             'auction' => true,
             'availableFrom' => Flat::apiAvailableFrom,
-            'marketType' => $this->getMarketType(0),
-            'repair' => $this->getRepairs(0),
+            'marketType' => $this->getMarketTypeId(0),
+            'repair' => $this->getRepairsId(0),
             'bedsCount' => Flat::beds,
-            'furniture' => [$this->getFurnitures(0)],
-            'appliances' => [$this->getAppliances(0)],
-            'additionally' => [$this->getFlatAdditionals(0)],
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getFlatAdditionalsId(0)],
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName,
             'videos' => [['imageSrc' => Flat::videoImage, 'url' => Flat::videoURL]],
@@ -3983,20 +4242,20 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/houses/add/' . $realtyHouseId, [
-            'operationType' => $this->getOperationType(1),
-            'period' => $this->getPeriod(1),
+            'operationType' => $this->getOperationTypeId(1),
+            'period' => $this->getPeriodId(1),
             'price' => House::priceHouseSearch,
-            'currency' => $this->getCurrency(1),
+            'currency' => $this->getCurrencyId(1),
             'commission' => House::commission,
             'availableFrom' => House::apiAvailableFrom,
             'ownerName' => House::ownerName,
             'ownerContacts' => House::ownerContacts,
             'description' => House::descriptionHouseSell,
             'auction' => true,
-            'repair' => $this->getRepairs(0),
-            'furniture' => [$this->getFurnitures(0)],
-            'appliances' => [$this->getAppliances(0)],
-            'additionally' => [$this->getHouseAdditionals(0)]
+            'repair' => $this->getRepairsId(0),
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getHouseAdditionalsId(0)]
         ]);
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
@@ -4097,14 +4356,14 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/parcels/add/' . $realtyParcelId, [
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => Parcel::descriptionParcelSell,
             'price' => Parcel::priceParcelSell,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
             'commission' => Parcel::commission,
             'auction' => true,
             'availableFrom' => Parcel::apiAvailableFrom,
-            'additionally' => [$this->getParcelAdditionals(0)],
+            'additionally' => [$this->getParcelAdditionalsId(0)],
             'ownerContacts' => Parcel::ownerContacts,
             'ownerName' => Parcel::ownerName,
 //            'images' => json_decode($images, true)
@@ -4210,16 +4469,16 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/commercials/add/' . $realtyCommercialId, [
-            'operationType' => $this->getOperationType(1),
+            'operationType' => $this->getOperationTypeId(1),
             'description' => Commercial::descriptionCommercialRent,
             'price' => Commercial::priceCommercialSearch,
-            'currency' => $this->getCurrency(1),
-            'period' => $this->getPeriod(0),
+            'currency' => $this->getCurrencyId(1),
+            'period' => $this->getPeriodId(0),
             'commission' => Commercial::commission,
             'auction' => true,
             'availableFrom' => Commercial::apiAvailableFrom,
-            'repair' => $this->getRepairs(0),
-            'additionally' => [$this->getCommercialAdditionals(0)],
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
             'ownerContacts' => Commercial::ownerContacts,
             'ownerName' => Commercial::ownerName,
 //            'images' => json_decode($images, true)
@@ -4314,14 +4573,14 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/garages/add/' . $realtyGarageId, [
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => Garage::descriptionGarageSell,
             'price' => Garage::priceGarageSearch,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
             'commission' => Garage::commission,
             'auction' => true,
             'availableFrom' => Garage::apiAvailableFrom,
-            'additionally' => [$this->getGarageAdditionals(0)],
+            'additionally' => [$this->getGarageAdditionalsId(0)],
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName,
             'videos' => [['imageSrc' => Flat::videoImage, 'url' => Flat::videoURL]],
@@ -4826,8 +5085,333 @@ class Api extends \Codeception\Module
         $this->restModule->seeResponseIsJson();
         $advertFlat = $this->restModule->grabResponse();
         $advFlatId = json_decode($advertFlat)->id;
-        file_put_contents(codecept_data_dir('advertParcelId.json'), $advFlatId);
+        file_put_contents(codecept_data_dir('advertFlatId.json'), $advFlatId);
         $this->debugSection('advertFlatId', $advFlatId);
+
+    }
+
+
+    function apiAdminEditFlatAdvertChangeStatus(\VpnTester $I)
+    {
+        $agencyData = file_get_contents(codecept_data_dir('agency_data.json'));
+        $userId = json_decode($agencyData)->id;
+        $realtyFlatId = file_get_contents(codecept_data_dir('realtyFlatId.json'));
+        $advertFlatId = file_get_contents(codecept_data_dir('advertFlatId.json'));
+        $houseNumber = file_get_contents(codecept_data_dir('house_number.txt'));
+        $flatNumber  = file_get_contents(codecept_data_dir('flat_number.txt'));
+
+
+
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/realties/flats/edit/' . $realtyFlatId, [
+            'status' => 1,
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(0),
+            'street' => $this->getStreetId(0),
+            'houseNumber' => $houseNumber,
+            'flatNumber' => $flatNumber,
+            'latitude' => Flat::editLatitude,
+            'longitude' => Flat::editLongitude,
+            'roomCount' => Flat::editRoomCount,
+            'wallMaterial' => $this->getWallMaterialsId(2),
+            'area' => Flat::editGeneralArea,
+            'areaUnit' => $this->getAreaUnitsId(0),
+            'livingArea' => Flat::editLivingArea,
+            'kitchenArea' => Flat::editKitchenArea,
+            'floor' => Flat::editFloorNumber,
+            'floorNumber' => Flat::editFloors,
+            'buildYear' => Flat::editBuildYear,
+            'wc' => $this->getWCId(2),
+            'balcony' => $this->getBalconiesId(2),
+            'heating' => $this->getHeatingsId(2),
+            'waterHeating' => $this->getWaterHeatingsId(2),
+            'nearObjects' => [
+                $this->getNearObjectsId(0),
+                $this->getNearObjectsId(1),
+                $this->getNearObjectsId(2),
+                $this->getNearObjectsId(3),
+                $this->getNearObjectsId(4),
+                $this->getNearObjectsId(5),
+                $this->getNearObjectsId(6),
+                $this->getNearObjectsId(7),
+                $this->getNearObjectsId(8),
+                $this->getNearObjectsId(9)
+            ],
+
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/realties/flats/edit/' . $realtyFlatId, [
+            'status' => 0,
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(0),
+            'street' => $this->getStreetId(0),
+            'houseNumber' => $houseNumber,
+            'flatNumber' => $flatNumber,
+            'latitude' => Flat::editLatitude,
+            'longitude' => Flat::editLongitude,
+            'roomCount' => Flat::editRoomCount,
+            'wallMaterial' => $this->getWallMaterialsId(2),
+            'area' => Flat::editGeneralArea,
+            'areaUnit' => $this->getAreaUnitsId(0),
+            'livingArea' => Flat::editLivingArea,
+            'kitchenArea' => Flat::editKitchenArea,
+            'floor' => Flat::editFloorNumber,
+            'floorNumber' => Flat::editFloors,
+            'buildYear' => Flat::editBuildYear,
+            'wc' => $this->getWCId(2),
+            'balcony' => $this->getBalconiesId(2),
+            'heating' => $this->getHeatingsId(2),
+            'waterHeating' => $this->getWaterHeatingsId(2),
+            'nearObjects' => [
+                $this->getNearObjectsId(0),
+                $this->getNearObjectsId(1),
+                $this->getNearObjectsId(2),
+                $this->getNearObjectsId(3),
+                $this->getNearObjectsId(4),
+                $this->getNearObjectsId(5),
+                $this->getNearObjectsId(6),
+                $this->getNearObjectsId(7),
+                $this->getNearObjectsId(8),
+                $this->getNearObjectsId(9)
+            ],
+
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertFlatId, [
+            'type' => 'flats',
+            'status' => 2,
+            'rejectionReason' => User::$rejectReason,
+            'userId' => $userId,
+            'realtyId' => $realtyFlatId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Flat::descriptionFlatSell,
+            'price' => Flat::priceFlatSearch,
+            'currency' => $this->getCurrencyId(0),
+            'auction' => true,
+            'commission' => Flat::commission,
+            'availableFrom' => Flat::apiAvailableFrom,
+            'marketType' => $this->getMarketTypeId(0),
+            'repair' => $this->getRepairsId(0),
+            'bedsCount' => Flat::beds,
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getFlatAdditionalsId(0)],
+            'ownerContacts' => Flat::ownerContacts,
+            'ownerName' => Flat::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertFlatId, [
+            'type' => 'flats',
+            'status' => 3,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatSell,
+            'unpublishReason' => $this->getUnpublishReasonsId(0),
+            'userId' => $userId,
+            'realtyId' => $realtyFlatId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Flat::descriptionFlatSell,
+            'price' => Flat::priceFlatSearch,
+            'currency' => $this->getCurrencyId(0),
+            'auction' => true,
+            'commission' => Flat::commission,
+            'availableFrom' => Flat::apiAvailableFrom,
+            'marketType' => $this->getMarketTypeId(0),
+            'repair' => $this->getRepairsId(0),
+            'bedsCount' => Flat::beds,
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getFlatAdditionalsId(0)],
+            'ownerContacts' => Flat::ownerContacts,
+            'ownerName' => Flat::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertFlatId, [
+            'type' => 'flats',
+            'status' => 4,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatRent,
+            'unpublishReason' => $this->getUnpublishReasonsId(0),
+            'userId' => $userId,
+            'realtyId' => $realtyFlatId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Flat::descriptionFlatSell,
+            'price' => Flat::priceFlatSearch,
+            'currency' => $this->getCurrencyId(0),
+            'auction' => true,
+            'commission' => Flat::commission,
+            'availableFrom' => Flat::apiAvailableFrom,
+            'marketType' => $this->getMarketTypeId(0),
+            'repair' => $this->getRepairsId(0),
+            'bedsCount' => Flat::beds,
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getFlatAdditionalsId(0)],
+            'ownerContacts' => Flat::ownerContacts,
+            'ownerName' => Flat::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertFlatId, [
+            'type' => 'flats',
+            'status' => 3,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatSell,
+            'unpublishReason' => $this->getUnpublishReasonsId(1),
+            'userId' => $userId,
+            'realtyId' => $realtyFlatId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Flat::descriptionFlatSell,
+            'price' => Flat::priceFlatSearch,
+            'currency' => $this->getCurrencyId(0),
+            'auction' => true,
+            'commission' => Flat::commission,
+            'availableFrom' => Flat::apiAvailableFrom,
+            'marketType' => $this->getMarketTypeId(0),
+            'repair' => $this->getRepairsId(0),
+            'bedsCount' => Flat::beds,
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getFlatAdditionalsId(0)],
+            'ownerContacts' => Flat::ownerContacts,
+            'ownerName' => Flat::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertFlatId, [
+            'type' => 'flats',
+            'status' => 4,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatRent,
+            'unpublishReason' => $this->getUnpublishReasonsId(1),
+            'userId' => $userId,
+            'realtyId' => $realtyFlatId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Flat::descriptionFlatSell,
+            'price' => Flat::priceFlatSearch,
+            'currency' => $this->getCurrencyId(0),
+            'auction' => true,
+            'commission' => Flat::commission,
+            'availableFrom' => Flat::apiAvailableFrom,
+            'marketType' => $this->getMarketTypeId(0),
+            'repair' => $this->getRepairsId(0),
+            'bedsCount' => Flat::beds,
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getFlatAdditionalsId(0)],
+            'ownerContacts' => Flat::ownerContacts,
+            'ownerName' => Flat::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertFlatId, [
+            'type' => 'flats',
+            'status' => 3,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishReason' => $this->getUnpublishReasonsId(2),
+            'userId' => $userId,
+            'realtyId' => $realtyFlatId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Flat::descriptionFlatSell,
+            'price' => Flat::priceFlatSearch,
+            'currency' => $this->getCurrencyId(0),
+            'auction' => true,
+            'commission' => Flat::commission,
+            'availableFrom' => Flat::apiAvailableFrom,
+            'marketType' => $this->getMarketTypeId(0),
+            'repair' => $this->getRepairsId(0),
+            'bedsCount' => Flat::beds,
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getFlatAdditionalsId(0)],
+            'ownerContacts' => Flat::ownerContacts,
+            'ownerName' => Flat::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertFlatId, [
+            'type' => 'flats',
+            'status' => 4,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishReason' => $this->getUnpublishReasonsId(2),
+            'userId' => $userId,
+            'realtyId' => $realtyFlatId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Flat::descriptionFlatSell,
+            'price' => Flat::priceFlatSearch,
+            'currency' => $this->getCurrencyId(0),
+            'auction' => true,
+            'commission' => Flat::commission,
+            'availableFrom' => Flat::apiAvailableFrom,
+            'marketType' => $this->getMarketTypeId(0),
+            'repair' => $this->getRepairsId(0),
+            'bedsCount' => Flat::beds,
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getFlatAdditionalsId(0)],
+            'ownerContacts' => Flat::ownerContacts,
+            'ownerName' => Flat::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertFlatId, [
+            'type' => 'flats',
+            'status' => 1,
+            'userId' => $userId,
+            'realtyId' => $realtyFlatId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Flat::descriptionFlatSell,
+            'price' => Flat::priceFlatSearch,
+            'currency' => $this->getCurrencyId(0),
+            'auction' => true,
+            'commission' => Flat::commission,
+            'availableFrom' => Flat::apiAvailableFrom,
+            'marketType' => $this->getMarketTypeId(0),
+            'repair' => $this->getRepairsId(0),
+            'bedsCount' => Flat::beds,
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getFlatAdditionalsId(0)],
+            'ownerContacts' => Flat::ownerContacts,
+            'ownerName' => Flat::ownerName,
+        ]);
+        $this->restModule->seeResponseIsJson();
+        $advertFlat = $this->restModule->grabResponse();
+        $advFlatId = json_decode($advertFlat)->id;
+        file_put_contents(codecept_data_dir('advertFlatId.json'), $advFlatId);
+        $this->debugSection('advertFlatId', $advFlatId);
+
 
     }
 
@@ -4867,7 +5451,7 @@ class Api extends \Codeception\Module
         $advertHouse = $this->restModule->grabResponse();
         $advHouseId = json_decode($advertHouse)->id;
         file_put_contents(codecept_data_dir('advertHouseId.json'), $advHouseId);
-        $this->debugSection('advertParcelId', $advHouseId);
+        $this->debugSection('advertHouseId', $advHouseId);
     }
 
     function apiAdminEditHouseAdvertSearch()
@@ -4912,6 +5496,323 @@ class Api extends \Codeception\Module
         $this->debugSection('advertHouseId', $advHouseId);
     }
 
+    function apiAdminEditHouseAdvertChangeStatus(\VpnTester $I)
+    {
+        $agencyData = file_get_contents(codecept_data_dir('agency_data.json'));
+        $userId = json_decode($agencyData)->id;
+        $realtyHouseId = file_get_contents(codecept_data_dir('realtyHouseId.json'));
+        $advertHouseId = file_get_contents(codecept_data_dir('advertHouseId.json'));
+        $houseNumber = file_get_contents(codecept_data_dir('house_number.txt'));
+
+
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/realties/houses/edit/' . $realtyHouseId, [
+            'status' => 1,
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'street' => $this->getStreetId(21),
+            'houseNumber' => $houseNumber,
+            'latitude' => House::editLatitude,
+            'longitude' => House::editLongitude,
+            'area' => House::generalArea,
+            'areaUnit' => $this->getAreaUnitsId(0),
+            'livingArea' => House::editLivingArea,
+            'kitchenArea' => House::editKitchenArea,
+            'landArea' => House::editLandArea,
+            'landAreaUnit' => $this->getAreaUnitsId(1),
+            'roomCount' => House::editRoomCount,
+            'wallMaterial' => $this->getWallMaterialsId(1),
+            'floorNumber' => House::editFloors,
+            'buildYear' => House::editBuildYear,
+            'wc' => $this->getWcId(1),
+            'heating' => $this->getHeatingsId(1),
+            'waterHeating' => $this->getWaterHeatingsId(1),
+            'communication' => [
+                $this->getCommunicationsId(0),
+                            ],
+            'nearObjects' => [
+                $this->getNearObjectsId(0),
+                             ],
+
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/realties/houses/edit/' . $realtyHouseId, [
+            'status' => 0,
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'street' => $this->getStreetId(21),
+            'houseNumber' => $houseNumber,
+            'latitude' => House::editLatitude,
+            'longitude' => House::editLongitude,
+            'area' => House::generalArea,
+            'areaUnit' => $this->getAreaUnitsId(0),
+            'livingArea' => House::editLivingArea,
+            'kitchenArea' => House::editKitchenArea,
+            'landArea' => House::editLandArea,
+            'landAreaUnit' => $this->getAreaUnitsId(1),
+            'roomCount' => House::editRoomCount,
+            'wallMaterial' => $this->getWallMaterialsId(1),
+            'floorNumber' => House::editFloors,
+            'buildYear' => House::editBuildYear,
+            'wc' => $this->getWcId(1),
+            'heating' => $this->getHeatingsId(1),
+            'waterHeating' => $this->getWaterHeatingsId(1),
+            'communication' => [
+                $this->getCommunicationsId(0),
+                            ],
+            'nearObjects' => [
+                $this->getNearObjectsId(0),
+
+            ],
+
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertHouseId, [
+            'type' => 'houses',
+            'status' => 2,
+            'userId' => $userId,
+            'realtyId' => $realtyHouseId,
+            'rejectionReason' => User::$rejectReason,
+            'operationType' => $this->getOperationTypeId(1),
+            'period' => $this->getPeriodId(1),
+            'price' => House::priceHouseSearch,
+            'currency' => $this->getCurrencyId(1),
+            'commission' => House::commission,
+            'availableFrom' => House::apiAvailableFrom,
+            'ownerName' => House::ownerName,
+            'ownerContacts' => House::ownerContacts,
+            'description' => House::descriptionHouseSell,
+            'auction' => true,
+            'repair' => $this->getRepairsId(0),
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getHouseAdditionalsId(0)],
+            'ownerContacts' => House::ownerContacts,
+            'ownerName' => House::ownerName
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertHouseId, [
+            'type' => 'houses',
+            'status' => 3,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatSell,
+            'unpublishReason' => $this->getUnpublishReasonsId(0),
+            'userId' => $userId,
+            'realtyId' => $realtyHouseId,
+            'operationType' => $this->getOperationTypeId(1),
+            'period' => $this->getPeriodId(1),
+            'price' => House::priceHouseSearch,
+            'currency' => $this->getCurrencyId(1),
+            'commission' => House::commission,
+            'availableFrom' => House::apiAvailableFrom,
+            'ownerName' => House::ownerName,
+            'ownerContacts' => House::ownerContacts,
+            'description' => House::descriptionHouseSell,
+            'auction' => true,
+            'repair' => $this->getRepairsId(0),
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getHouseAdditionalsId(0)],
+            'ownerContacts' => House::ownerContacts,
+            'ownerName' => House::ownerName
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertHouseId, [
+            'type' => 'houses',
+            'status' => 4,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatRent,
+            'unpublishReason' => $this->getUnpublishReasonsId(0),
+            'userId' => $userId,
+            'realtyId' => $realtyHouseId,
+            'operationType' => $this->getOperationTypeId(1),
+            'period' => $this->getPeriodId(1),
+            'price' => House::priceHouseSearch,
+            'currency' => $this->getCurrencyId(1),
+            'commission' => House::commission,
+            'availableFrom' => House::apiAvailableFrom,
+            'ownerName' => House::ownerName,
+            'ownerContacts' => House::ownerContacts,
+            'description' => House::descriptionHouseSell,
+            'auction' => true,
+            'repair' => $this->getRepairsId(0),
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getHouseAdditionalsId(0)],
+            'ownerContacts' => House::ownerContacts,
+            'ownerName' => House::ownerName
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertHouseId, [
+            'type' => 'houses',
+            'status' => 3,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatSell,
+            'unpublishReason' => $this->getUnpublishReasonsId(1),
+            'userId' => $userId,
+            'realtyId' => $realtyHouseId,
+            'operationType' => $this->getOperationTypeId(1),
+            'period' => $this->getPeriodId(1),
+            'price' => House::priceHouseSearch,
+            'currency' => $this->getCurrencyId(1),
+            'commission' => House::commission,
+            'availableFrom' => House::apiAvailableFrom,
+            'ownerName' => House::ownerName,
+            'ownerContacts' => House::ownerContacts,
+            'description' => House::descriptionHouseSell,
+            'auction' => true,
+            'repair' => $this->getRepairsId(0),
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getHouseAdditionalsId(0)],
+            'ownerContacts' => House::ownerContacts,
+            'ownerName' => House::ownerName
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertHouseId, [
+            'type' => 'houses',
+            'status' => 4,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatRent,
+            'unpublishReason' => $this->getUnpublishReasonsId(1),
+            'userId' => $userId,
+            'realtyId' => $realtyHouseId,
+            'operationType' => $this->getOperationTypeId(1),
+            'period' => $this->getPeriodId(1),
+            'price' => House::priceHouseSearch,
+            'currency' => $this->getCurrencyId(1),
+            'commission' => House::commission,
+            'availableFrom' => House::apiAvailableFrom,
+            'ownerName' => House::ownerName,
+            'ownerContacts' => House::ownerContacts,
+            'description' => House::descriptionHouseSell,
+            'auction' => true,
+            'repair' => $this->getRepairsId(0),
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getHouseAdditionalsId(0)],
+            'ownerContacts' => House::ownerContacts,
+            'ownerName' => House::ownerName
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertHouseId, [
+            'type' => 'houses',
+            'status' => 3,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishReason' => $this->getUnpublishReasonsId(2),
+            'userId' => $userId,
+            'realtyId' => $realtyHouseId,
+            'operationType' => $this->getOperationTypeId(1),
+            'period' => $this->getPeriodId(1),
+            'price' => House::priceHouseSearch,
+            'currency' => $this->getCurrencyId(1),
+            'commission' => House::commission,
+            'availableFrom' => House::apiAvailableFrom,
+            'ownerName' => House::ownerName,
+            'ownerContacts' => House::ownerContacts,
+            'description' => House::descriptionHouseSell,
+            'auction' => true,
+            'repair' => $this->getRepairsId(0),
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getHouseAdditionalsId(0)],
+            'ownerContacts' => House::ownerContacts,
+            'ownerName' => House::ownerName
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertHouseId, [
+            'type' => 'houses',
+            'status' => 4,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishReason' => $this->getUnpublishReasonsId(2),
+            'userId' => $userId,
+            'realtyId' => $realtyHouseId,
+            'operationType' => $this->getOperationTypeId(1),
+            'period' => $this->getPeriodId(1),
+            'price' => House::priceHouseSearch,
+            'currency' => $this->getCurrencyId(1),
+            'commission' => House::commission,
+            'availableFrom' => House::apiAvailableFrom,
+            'ownerName' => House::ownerName,
+            'ownerContacts' => House::ownerContacts,
+            'description' => House::descriptionHouseSell,
+            'auction' => true,
+            'repair' => $this->getRepairsId(0),
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getHouseAdditionalsId(0)],
+            'ownerContacts' => House::ownerContacts,
+            'ownerName' => House::ownerName
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+
+
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertHouseId, [
+            'type' => 'houses',
+            'status' => 1,
+            'userId' => $userId,
+            'realtyId' => $realtyHouseId,
+            'operationType' => $this->getOperationTypeId(1),
+            'period' => $this->getPeriodId(1),
+            'price' => House::priceHouseSearch,
+            'currency' => $this->getCurrencyId(1),
+            'commission' => House::commission,
+            'availableFrom' => House::apiAvailableFrom,
+            'ownerName' => House::ownerName,
+            'ownerContacts' => House::ownerContacts,
+            'description' => House::descriptionHouseSell,
+            'auction' => true,
+            'repair' => $this->getRepairsId(0),
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getHouseAdditionalsId(0)],
+            'ownerContacts' => House::ownerContacts,
+            'ownerName' => House::ownerName
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+        $advertHouse = $this->restModule->grabResponse();
+        $advHouseId = json_decode($advertHouse)->id;
+        file_put_contents(codecept_data_dir('advertHouseId.json'), $advHouseId);
+        $this->debugSection('advertHouseId', $advHouseId);
+
+
+    }
+
     function apiAdminEditParcelAdvertPlain()
 {
     $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
@@ -4928,10 +5829,10 @@ class Api extends \Codeception\Module
         'status' => 1,
         'userId' => $userId,
         'realtyId' => $realtyParcelId,
-        'operationType' => $this->getOperationType(0),
+        'operationType' => $this->getOperationTypeId(0),
         'description' => Parcel::descriptionParcelSell,
         'price' => Parcel::priceParcelSell,
-        'currency' => $this->getCurrency(0),
+        'currency' => $this->getCurrencyId(0),
         'auction' => true,
         'commission' => Parcel::commission,
         'availableFrom' => Parcel::apiAvailableFrom,
@@ -4964,14 +5865,14 @@ class Api extends \Codeception\Module
             'status' => 1,
             'userId' => $userId,
             'realtyId' => $realtyParcelId,
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => Parcel::descriptionParcelSell,
             'price' => Parcel::priceParcelSearch,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
             'auction' => true,
             'commission' => Parcel::commission,
             'availableFrom' => Parcel::apiAvailableFrom,
-            'additionally' => [$this->getParcelAdditionals(0)],
+            'additionally' => [$this->getParcelAdditionalsId(0)],
             'ownerContacts' => Parcel::ownerContacts,
             'ownerName' => Parcel::ownerName,
 //            'images' => json_decode($images, true)
@@ -4983,6 +5884,242 @@ class Api extends \Codeception\Module
         file_put_contents(codecept_data_dir('advertParcelId.json'), $advParcelId);
         $this->debugSection('advertParcelId', $advParcelId);
     }
+    function apiAdminEditParcelAdvertChangeStatus(\VpnTester $I)
+    {
+        $agencyData = file_get_contents(codecept_data_dir('agency_data.json'));
+        $userId = json_decode($agencyData)->id;
+        $realtyParcelId = file_get_contents(codecept_data_dir('realtyParcelId.json'));
+        $advertParcelId = file_get_contents(codecept_data_dir('advertParcelId.json'));
+        $cadastralNumber = file_get_contents(codecept_data_dir('cadastral_number1.txt'));
+
+
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/realties/parcels/edit/' . $realtyParcelId, [
+            'status' => 1,
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(7),
+            'street' => $this->getStreetId(25),
+            'cadastralNumber' => $cadastralNumber,
+            'latitude' => Parcel::editLatitude,
+            'longitude' => Parcel::editLongitude,
+            'area' => Parcel::editGeneralArea,
+            'areaUnit' => $this->getAreaUnitsId(2),
+            'communication' => [
+                $this->getCommunicationsId(0),
+            ],
+            'nearObjects' => [
+                $this->getNearObjectsId(0),
+            ],
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/realties/parcels/edit/' . $realtyParcelId, [
+            'status' => 0,
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(7),
+            'street' => $this->getStreetId(25),
+            'cadastralNumber' => $cadastralNumber,
+            'latitude' => Parcel::editLatitude,
+            'longitude' => Parcel::editLongitude,
+            'area' => Parcel::editGeneralArea,
+            'areaUnit' => $this->getAreaUnitsId(2),
+            'communication' => [
+                $this->getCommunicationsId(0),
+            ],
+            'nearObjects' => [
+                $this->getNearObjectsId(0),
+            ],
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertParcelId, [
+            'type' => 'parcels',
+            'status' => 2,
+            'rejectionReason' => User::$rejectReason,
+            'userId' => $userId,
+            'realtyId' => $realtyParcelId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Parcel::descriptionParcelSell,
+            'price' => Parcel::priceParcelSell,
+            'currency' => $this->getCurrencyId(0),
+            'auction' => true,
+            'commission' => Parcel::commission,
+            'availableFrom' => Parcel::apiAvailableFrom,
+            'ownerContacts' => Parcel::ownerContacts,
+            'ownerName' => Parcel::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertParcelId, [
+            'type' => 'parcels',
+            'status' => 3,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatSell,
+            'unpublishReason' => $this->getUnpublishReasonsId(0),
+            'userId' => $userId,
+            'realtyId' => $realtyParcelId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Parcel::descriptionParcelSell,
+            'price' => Parcel::priceParcelSell,
+            'currency' => $this->getCurrencyId(0),
+            'auction' => true,
+            'commission' => Parcel::commission,
+            'availableFrom' => Parcel::apiAvailableFrom,
+            'ownerContacts' => Parcel::ownerContacts,
+            'ownerName' => Parcel::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertParcelId, [
+            'type' => 'parcels',
+            'status' => 4,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatRent,
+            'unpublishReason' => $this->getUnpublishReasonsId(0),
+            'userId' => $userId,
+            'realtyId' => $realtyParcelId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Parcel::descriptionParcelSell,
+            'price' => Parcel::priceParcelSell,
+            'currency' => $this->getCurrencyId(0),
+            'auction' => true,
+            'commission' => Parcel::commission,
+            'availableFrom' => Parcel::apiAvailableFrom,
+            'ownerContacts' => Parcel::ownerContacts,
+            'ownerName' => Parcel::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertParcelId, [
+            'type' => 'parcels',
+            'status' => 3,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatSell,
+            'unpublishReason' => $this->getUnpublishReasonsId(1),
+            'userId' => $userId,
+            'realtyId' => $realtyParcelId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Parcel::descriptionParcelSell,
+            'price' => Parcel::priceParcelSell,
+            'currency' => $this->getCurrencyId(0),
+            'auction' => true,
+            'commission' => Parcel::commission,
+            'availableFrom' => Parcel::apiAvailableFrom,
+            'ownerContacts' => Parcel::ownerContacts,
+            'ownerName' => Parcel::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertParcelId, [
+            'type' => 'parcels',
+            'status' => 4,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatRent,
+            'unpublishReason' => $this->getUnpublishReasonsId(1),
+            'userId' => $userId,
+            'realtyId' => $realtyParcelId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Parcel::descriptionParcelSell,
+            'price' => Parcel::priceParcelSell,
+            'currency' => $this->getCurrencyId(0),
+            'auction' => true,
+            'commission' => Parcel::commission,
+            'availableFrom' => Parcel::apiAvailableFrom,
+            'ownerContacts' => Parcel::ownerContacts,
+            'ownerName' => Parcel::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertParcelId, [
+            'type' => 'parcels',
+            'status' => 3,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishReason' => $this->getUnpublishReasonsId(2),
+            'userId' => $userId,
+            'realtyId' => $realtyParcelId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Parcel::descriptionParcelSell,
+            'price' => Parcel::priceParcelSell,
+            'currency' => $this->getCurrencyId(0),
+            'auction' => true,
+            'commission' => Parcel::commission,
+            'availableFrom' => Parcel::apiAvailableFrom,
+            'ownerContacts' => Parcel::ownerContacts,
+            'ownerName' => Parcel::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertParcelId, [
+            'type' => 'parcels',
+            'status' => 4,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishReason' => $this->getUnpublishReasonsId(2),
+            'userId' => $userId,
+            'realtyId' => $realtyParcelId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Parcel::descriptionParcelSell,
+            'price' => Parcel::priceParcelSell,
+            'currency' => $this->getCurrencyId(0),
+            'auction' => true,
+            'commission' => Parcel::commission,
+            'availableFrom' => Parcel::apiAvailableFrom,
+            'ownerContacts' => Parcel::ownerContacts,
+            'ownerName' => Parcel::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertParcelId, [
+            'type' => 'parcels',
+            'status' => 1,
+            'userId' => $userId,
+            'realtyId' => $realtyParcelId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Parcel::descriptionParcelSell,
+            'price' => Parcel::priceParcelSell,
+            'currency' => $this->getCurrencyId(0),
+            'auction' => true,
+            'commission' => Parcel::commission,
+            'availableFrom' => Parcel::apiAvailableFrom,
+            'ownerContacts' => Parcel::ownerContacts,
+            'ownerName' => Parcel::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+        $advertParcel = $this->restModule->grabResponse();
+        $advertParcelId = json_decode($advertParcel)->id;
+        file_put_contents(codecept_data_dir('advertParcelId.json'), $advertParcelId);
+        $this->debugSection('advertParcelId', $advertParcelId);
+
+
+    }
+
 
     function apiAdminEditCommercialAdvertPlain()
     {
@@ -5000,10 +6137,10 @@ class Api extends \Codeception\Module
             'status' => 1,
             'userId' => $userId,
             'realtyId' => $realtyCommercialId,
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => Commercial::descriptionCommercialSell,
             'price' => Commercial::priceCommercialSell,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
             'auction' => true,
             'commission' => Commercial::commission,
             'availableFrom' => Commercial::apiAvailableFrom,
@@ -5034,16 +6171,16 @@ class Api extends \Codeception\Module
             'status' => 1,
             'userId' => $userId,
             'realtyId' => $realtyCommercialId,
-            'operationType' => $this->getOperationType(1),
+            'operationType' => $this->getOperationTypeId(1),
             'description' => Commercial::descriptionCommercialSell,
             'price' => Commercial::priceCommercialSearch,
-            'period' => $this->getPeriod(0),
-            'currency' => $this->getCurrency(1),
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
             'auction' => true,
             'commission' => Commercial::commission,
             'availableFrom' => Commercial::apiAvailableFrom,
-            'repair' => $this->getRepairs(0),
-            'additionally' => [$this->getCommercialAdditionals(0)],
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
             'ownerContacts' => Commercial::ownerContacts,
             'ownerName' => Commercial::ownerName,
         ]);
@@ -5053,6 +6190,280 @@ class Api extends \Codeception\Module
         $advCommercialId = json_decode($advertCommercial)->id;
         file_put_contents(codecept_data_dir('advertCommercialId.json'), $advCommercialId);
         $this->debugSection('advertCommercialId', $advCommercialId);
+    }
+
+    function apiAdminEditCommercialAdvertChangeStatus(\VpnTester $I)
+    {
+        $agencyData = file_get_contents(codecept_data_dir('agency_data.json'));
+        $userId = json_decode($agencyData)->id;
+        $realtyCommercialId = file_get_contents(codecept_data_dir('realtyCommercialId.json'));
+        $advertCommercialId = file_get_contents(codecept_data_dir('advertCommercialId.json'));
+        $houseNumber = file_get_contents(codecept_data_dir('commercial_number.txt'));
+
+
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/realties/commercials/edit/' . $realtyCommercialId, [
+            'status' => 1,
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(2),
+            'street' => $this->getStreetId(94),
+            'houseNumber' => $houseNumber,
+            'latitude' => Commercial::editLatitude,
+            'longitude' => Commercial::editLongitude,
+            'area' => Commercial::editGeneralArea,
+            'areaUnit' => $this->getAreaUnitsId(0),
+            'effectiveArea' => Commercial::editEffectiveArea,
+            'wallMaterial' => $this->getWallMaterialsId(1),
+            'roomCount' => Commercial::editRoomCount,
+            'floor' => Commercial::editFloorNumber,
+            'floorNumber' => Commercial::editFloor,
+            'buildYear' => Commercial::editBuildYear,
+            'wc' => $this->getWcId(1),
+            'heating' => $this->getHeatingsId(1),
+            'waterHeating' => $this->getWaterHeatingsId(1),
+            'communication' => [
+                $this->getCommunicationsId(0),
+            ],
+
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/realties/commercials/edit/' . $realtyCommercialId, [
+            'status' => 0,
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(2),
+            'street' => $this->getStreetId(94),
+            'houseNumber' => $houseNumber,
+            'latitude' => Commercial::editLatitude,
+            'longitude' => Commercial::editLongitude,
+            'area' => Commercial::editGeneralArea,
+            'areaUnit' => $this->getAreaUnitsId(0),
+            'effectiveArea' => Commercial::editEffectiveArea,
+            'wallMaterial' => $this->getWallMaterialsId(1),
+            'roomCount' => Commercial::editRoomCount,
+            'floor' => Commercial::editFloorNumber,
+            'floorNumber' => Commercial::editFloor,
+            'buildYear' => Commercial::editBuildYear,
+            'wc' => $this->getWcId(1),
+            'heating' => $this->getHeatingsId(1),
+            'waterHeating' => $this->getWaterHeatingsId(1),
+            'communication' => [
+                $this->getCommunicationsId(0),
+            ],
+
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertCommercialId, [
+            'type' => 'commercial-property',
+            'status' => 2,
+            'rejectionReason' => User::$rejectReason,
+            'userId' => $userId,
+            'realtyId' => $realtyCommercialId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialSell,
+            'price' => Commercial::priceCommercialSearch,
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
+            'auction' => true,
+            'commission' => Commercial::commission,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertCommercialId, [
+            'type' => 'commercial-property',
+            'status' => 3,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatSell,
+            'unpublishReason' => $this->getUnpublishReasonsId(0),
+            'userId' => $userId,
+            'realtyId' => $realtyCommercialId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialSell,
+            'price' => Commercial::priceCommercialSearch,
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
+            'auction' => true,
+            'commission' => Commercial::commission,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertCommercialId, [
+            'type' => 'commercial-property',
+            'status' => 4,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatRent,
+            'unpublishReason' => $this->getUnpublishReasonsId(0),
+            'userId' => $userId,
+            'realtyId' => $realtyCommercialId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialSell,
+            'price' => Commercial::priceCommercialSearch,
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
+            'auction' => true,
+            'commission' => Commercial::commission,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertCommercialId, [
+            'type' => 'commercial-property',
+            'status' => 3,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatSell,
+            'unpublishReason' => $this->getUnpublishReasonsId(1),
+            'userId' => $userId,
+            'realtyId' => $realtyCommercialId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialSell,
+            'price' => Commercial::priceCommercialSearch,
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
+            'auction' => true,
+            'commission' => Commercial::commission,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertCommercialId, [
+            'type' => 'commercial-property',
+            'status' => 4,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatRent,
+            'unpublishReason' => $this->getUnpublishReasonsId(1),
+            'userId' => $userId,
+            'realtyId' => $realtyCommercialId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialSell,
+            'price' => Commercial::priceCommercialSearch,
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
+            'auction' => true,
+            'commission' => Commercial::commission,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertCommercialId, [
+            'type' => 'commercial-property',
+            'status' => 3,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishReason' => $this->getUnpublishReasonsId(2),
+            'userId' => $userId,
+            'realtyId' => $realtyCommercialId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialSell,
+            'price' => Commercial::priceCommercialSearch,
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
+            'auction' => true,
+            'commission' => Commercial::commission,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertCommercialId, [
+            'type' => 'commercial-property',
+            'status' => 4,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishReason' => $this->getUnpublishReasonsId(2),
+            'userId' => $userId,
+            'realtyId' => $realtyCommercialId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialSell,
+            'price' => Commercial::priceCommercialSearch,
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
+            'auction' => true,
+            'commission' => Commercial::commission,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertCommercialId, [
+            'type' => 'commercial-property',
+            'status' => 1,
+            'userId' => $userId,
+            'realtyId' => $realtyCommercialId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialSell,
+            'price' => Commercial::priceCommercialSearch,
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
+            'auction' => true,
+            'commission' => Commercial::commission,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+        $advertCommercial = $this->restModule->grabResponse();
+        $advCommercialId = json_decode($advertCommercial)->id;
+        file_put_contents(codecept_data_dir('advertCommercialId.json'), $advCommercialId);
+        $this->debugSection('advertCommercialId', $advCommercialId);
+
+
     }
 
     function apiAdminEditGarageAdvertComplex()
@@ -5071,19 +6482,20 @@ class Api extends \Codeception\Module
             'status' => 1,
             'userId' => $userId,
             'realtyId' => $realtyGarageId,
-            'operationType' => $this->getOperationType(1),
+            'operationType' => $this->getOperationTypeId(1),
             'description' => Garage::editDescriptionGarageSell,
             'price' => Garage::priceGarageRent,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
             'auction' => true,
             'commission' => Garage::editCommission,
             'availableFrom' => Garage::apiAvailableFrom,
-            'additionally' => [$this->getGarageAdditionals(1)],
-            'communication' => [$this->getCommunications(1)],
+            'additionally' => [$this->getGarageAdditionalsId(1)],
+            'communication' => [$this->getCommunicationsId(1)],
             'ownerContacts' => Flat::editOwnerContacts,
             'ownerName' => Flat::editOwnerName,
         ]);
         $this->restModule->seeResponseCodeIs(200);
+
         $this->restModule->seeResponseIsJson();
         $advertGarage = $this->restModule->grabResponse();
         $advGarageId = json_decode($advertGarage)->id;
@@ -5106,10 +6518,10 @@ class Api extends \Codeception\Module
             'status' => 1,
             'userId' => $userId,
             'realtyId' => $realtyGarageId,
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => Garage::editDescriptionGarageSell,
             'price' => Garage::priceGarageRent,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
             'auction' => true,
             'commission' => Garage::editCommission,
             'availableFrom' => Garage::apiAvailableFrom,
@@ -5139,15 +6551,15 @@ class Api extends \Codeception\Module
             'status' => 1,
             'userId' => $userId,
             'realtyId' => $realtyGarageId,
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => Garage::descriptionGarageSell,
             'price' => Garage::priceGarageSearch,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
             'auction' => true,
             'commission' => Garage::commission,
             'availableFrom' => Garage::apiAvailableFrom,
-            'additionally' => [$this->getGarageAdditionals(0)],
-            'communication' => [$this->getCommunications(0)],
+            'additionally' => [$this->getGarageAdditionalsId(0)],
+            'communication' => [$this->getCommunicationsId(0)],
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName,
         ]);
@@ -5157,6 +6569,288 @@ class Api extends \Codeception\Module
         $advGarageId = json_decode($advertGarage)->id;
         file_put_contents(codecept_data_dir('advertGarageId.json'), $advGarageId);
         $this->debugSection('advertGarageId', $advGarageId);
+    }
+
+    function apiAdminEditGarageAdvertChangeStatus(\VpnTester $I)
+    {
+        $agencyData = file_get_contents(codecept_data_dir('agency_data.json'));
+        $userId = json_decode($agencyData)->id;
+        $realtyGarageId = file_get_contents(codecept_data_dir('realtyGarageId.json'));
+        $advertGarageId = file_get_contents(codecept_data_dir('advertGarageId.json'));
+        $houseNumber = file_get_contents(codecept_data_dir('house_number.txt'));
+        $flatNumber  = file_get_contents(codecept_data_dir('flat_number.txt'));
+
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/realties/garages/edit/' . $realtyGarageId, [
+            'status' => 1,
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(0),
+            'street' => $this->getStreetId(0),
+            'houseNumber' => $houseNumber,
+            'garageNumber' => $flatNumber,
+            'latitude' => Garage::editLatitude,
+            'longitude' => Garage::editLongitude,
+            'roomCount' => Garage::editRoomCount,
+            'wallMaterial' => $this->getWallMaterialsId(2),
+            'area' => Garage::editGeneralArea,
+            'areaUnit' => $this->getAreaUnitsId(0),
+            'floor' => Garage::editFloor,
+            'floorNumber' => Garage::editFloorNumber,
+            'buildYear' => Garage::editBuildYear,
+            'heating' => $this->getHeatingsId(2),
+            'inspectionPit'=> $this->getInspectionPitId(1),
+            'parkingPlace' => $this->getParkingPlaceId(1),
+            'transportType' =>$this->getTransportTypeId(1),
+            'communication' => [
+                $this->getCommunicationsId(0),
+            ],
+            'nearObjects' => [
+                $this->getNearObjectsId(0),
+            ],
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+
+        $this->restModule->sendPUT('/realties/garages/edit/' . $realtyGarageId, [
+            'status' => 0,
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(0),
+            'street' => $this->getStreetId(0),
+            'houseNumber' => $houseNumber,
+            'garageNumber' => $flatNumber,
+            'latitude' => Garage::editLatitude,
+            'longitude' => Garage::editLongitude,
+            'roomCount' => Garage::editRoomCount,
+            'wallMaterial' => $this->getWallMaterialsId(2),
+            'area' => Garage::editGeneralArea,
+            'areaUnit' => $this->getAreaUnitsId(0),
+            'floor' => Garage::editFloor,
+            'floorNumber' => Garage::editFloorNumber,
+            'buildYear' => Garage::editBuildYear,
+            'heating' => $this->getHeatingsId(2),
+            'inspectionPit'=> $this->getInspectionPitId(1),
+            'parkingPlace' => $this->getParkingPlaceId(1),
+            'transportType' =>$this->getTransportTypeId(1),
+            'communication' => [
+                $this->getCommunicationsId(0),
+            ],
+            'nearObjects' => [
+                $this->getNearObjectsId(0),
+            ],
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertGarageId, [
+            'type' => 'garages',
+            'status' => 2,
+            'rejectionReason' => User::$rejectReason,
+            'userId' => $userId,
+            'realtyId' => $realtyGarageId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialSell,
+            'price' => Commercial::priceCommercialSearch,
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
+            'auction' => true,
+            'commission' => Commercial::commission,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertGarageId, [
+            'type' => 'garages',
+            'status' => 3,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatSell,
+            'unpublishReason' => $this->getUnpublishReasonsId(0),
+            'userId' => $userId,
+            'realtyId' => $realtyGarageId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialSell,
+            'price' => Commercial::priceCommercialSearch,
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
+            'auction' => true,
+            'commission' => Commercial::commission,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertGarageId, [
+            'type' => 'garages',
+            'status' => 4,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatRent,
+            'unpublishReason' => $this->getUnpublishReasonsId(0),
+            'userId' => $userId,
+            'realtyId' => $realtyGarageId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialSell,
+            'price' => Commercial::priceCommercialSearch,
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
+            'auction' => true,
+            'commission' => Commercial::commission,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertGarageId, [
+            'type' => 'garages',
+            'status' => 3,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatSell,
+            'unpublishReason' => $this->getUnpublishReasonsId(1),
+            'userId' => $userId,
+            'realtyId' => $realtyGarageId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialSell,
+            'price' => Commercial::priceCommercialSearch,
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
+            'auction' => true,
+            'commission' => Commercial::commission,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertGarageId, [
+            'type' => 'garages',
+            'status' => 4,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishPrice' => Flat::priceFlatRent,
+            'unpublishReason' => $this->getUnpublishReasonsId(1),
+            'userId' => $userId,
+            'realtyId' => $realtyGarageId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialSell,
+            'price' => Commercial::priceCommercialSearch,
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
+            'auction' => true,
+            'commission' => Commercial::commission,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertGarageId, [
+            'type' => 'garages',
+            'status' => 3,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishReason' => $this->getUnpublishReasonsId(2),
+            'userId' => $userId,
+            'realtyId' => $realtyGarageId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialSell,
+            'price' => Commercial::priceCommercialSearch,
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
+            'auction' => true,
+            'commission' => Commercial::commission,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertGarageId, [
+            'type' => 'garages',
+            'status' => 4,
+            'unpublishCurrency' => $this->getCurrencyId(0),
+            'unpublishDescription'=> User::$unpublishDesc,
+            'unpublishReason' => $this->getUnpublishReasonsId(2),
+            'userId' => $userId,
+            'realtyId' => $realtyGarageId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialSell,
+            'price' => Commercial::priceCommercialSearch,
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
+            'auction' => true,
+            'commission' => Commercial::commission,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $I->wait(1);
+
+        $this->restModule->haveHttpHeader('token', User::getAdminToken());
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertGarageId, [
+            'type' => 'garages',
+            'status' => 1,
+            'userId' => $userId,
+            'realtyId' => $realtyGarageId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialSell,
+            'price' => Commercial::priceCommercialSearch,
+            'period' => $this->getPeriodId(0),
+            'currency' => $this->getCurrencyId(1),
+            'auction' => true,
+            'commission' => Commercial::commission,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [$this->getCommercialAdditionalsId(0)],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+        $advertGarage = $this->restModule->grabResponse();
+        $advGarageId = json_decode($advertGarage)->id;
+        file_put_contents(codecept_data_dir('advertGarageId.json'), $advGarageId);
+        $this->debugSection('advertGarageId', $advGarageId);
+
+
     }
 
     /*================================================ Delete Advert ====================================*/

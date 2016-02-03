@@ -87,6 +87,7 @@ class Parcel
 //        self::$currentCadastralNumber = $number;
         self::$currentCadastralNumber = preg_replace("/^(.{10})(.{2})(.{3})(.{4})$/","$1:$2:$3:$4", $number);
         file_put_contents(codecept_data_dir('cadastral_number.txt'), self::$currentCadastralNumber);
+        file_put_contents(codecept_data_dir('cadastral_number1.txt'), $number);
         return $number;
     }
 

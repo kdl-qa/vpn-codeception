@@ -182,6 +182,11 @@ class User
     static $notInterestingUserText = 'Не интересных: ';
     static $allAdvertsText = 'Всего объявлений: ';
 
+    //------------------------------------  Unpublish ------------------------//
+
+    static $rejectReason = 'Test Reject reason';
+    static $unpublishDesc = 'Test unpublish description';
+    static $activeStatus = 'Активно';
 
     // ---------------------------------  Additional functions --------------------------------------------------- //
 

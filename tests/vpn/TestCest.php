@@ -4,74 +4,120 @@
 class TestCest
 {
 
-    protected function agencyLogin(VpnTester $I)
-    {
-        $I->loginAgency();
-    }
-    protected function agentLogin(VpnTester $I)
-    {
-        $I->loginAgent1();
-    }
-    protected function userLogin(VpnTester $I)
-    {
-        $I->userLogin();
-    }
-
+//    protected function agencyLogin(VpnTester $I)
+//    {
+//        $I->loginAgency();
+//    }
+//    protected function agentLogin(VpnTester $I)
+//    {
+//        $I->loginAgent1();
+//    }
+//    protected function userLogin(VpnTester $I)
+//    {
+//        $I->userLogin();
+//    }
+//
     protected function loginAgency(VpnTester $I)
     {
         $I->loginAgency1();
     }
-
-    protected function moderateAdv($admin)
-    {
-        $admin->loginAdmin();
-        $admin->moderateAdvActive();
-    }
-
-    protected function open1stAdvert($list)
-    {
-        $list->openUserAdvertsList();
-        $list->openFirstListAdvert();
-    }
-    protected function addGarageSaleAdvert($api)
-    {
-        $api->realtyGarageAddComplex();
-        $api->apiAdvertGarageAddPlain();
-        $api->apiAdminEditGarageAdvertPlain();
-
-    }
-
-    protected function uploadImages(VpnTester $I)
-    {
-        $I->uploadAdvImages();
-        $I->uploadSchema();
-    }
+//
+//    protected function moderateAdv($admin)
+//    {
+//        $admin->loginAdmin();
+//        $admin->moderateAdvActive();
+//    }
+//
+//    protected function open1stAdvert($list)
+//    {
+//        $list->openUserAdvertsList();
+//        $list->openFirstListAdvert();
+//    }
+//    protected function addGarageSaleAdvert($api)
+//    {
+//        $api->realtyGarageAddComplex();
+//        $api->apiAdvertGarageAddPlain();
+//        $api->apiAdminEditGarageAdvertPlain();
+//
+//    }
+//
+//    protected function uploadImages(VpnTester $I)
+//    {
+//        $I->uploadAdvImages();
+//        $I->uploadSchema();
+//    }
     protected function login(VpnTester $I)
     {
         $I->apiAdminLogin();
         $I->apiAgencyLogin();
     }
-    /**
-    *@before userLogin
-     */
-    public function changeUserPassword (\Step\Vpn\EditProfile $I)
+    protected function addApiFlatAdvert(VpnTester $I)
     {
-        $I->changePassword();
+        $I->realtyFlatAddForSearch();
+        $I->apiAdvertFlatAddForSearch();
+        $I->apiAdminEditFlatAdvertStatus();
+
     }
-    /**
-     *@before agentLogin
-     */
-    public function changeAgentPassword (\Step\Vpn\EditProfile $I)
+
+
+    protected function addApiHouseAdvert(VpnTester $I)
     {
-        $I->changePassword();
+        $I->realtyHouseAddSearch();
+        $I->apiAdvertHouseAddSearch();
+        $I->apiAdminEditHouseAdvertSearch();
     }
-    /**
-     *@before loginAgency
-     */
-    public function changeAgencyPassword (\Step\Vpn\EditProfile $I)
+
+    protected function addApiParcelAdvert(VpnTester $I)
     {
-        $I->changePassword();
+        $I->realtyParcelAddSearch();
+        $I->apiAdvertParcelAddSearch();
+        $I->apiAdminEditParcelAdvertSearch();
     }
+
+    protected function addApiCommercialAdvert(VpnTester $I)
+    {
+        $I->realtyCommercialAddSearch();
+        $I->apiAdvertCommercialAddSearch();
+        $I->apiAdminEditCommercialAdvertSearch();
+    }
+    protected function addApiGarageAdvert(VpnTester $I)
+    {
+        $I->realtyGarageAddForSearch();
+        $I->apiAdvertGarageAddForSearch();
+        $I->apiAdminEditGarageAdvertSearch();
+    }
+
+    /**
+     * @before loginAgency
+     */
+
+    public function addAdvert(\Step\Vpn\Advert $I)
+    {
+        $I->realtyFlatHistory();
+        $I->pauseExecution();
+    }
+
+//    /**
+//    *@before userLogin
+//     */
+//    public function changeUserPassword (\Step\Vpn\EditProfile $I)
+//    {
+//        $I->changePassword();
+//    }
+//    /**
+//     *@before agentLogin
+//     */
+//    public function changeAgentPassword (\Step\Vpn\EditProfile $I)
+//    {
+//        $I->changePassword();
+//    }
+//    /**
+//     *@before loginAgency
+//     */
+//    public function changeAgencyPassword (\Step\Vpn\EditProfile $I)
+//    {
+//        $I->changePassword();
+//    }
 
 
 

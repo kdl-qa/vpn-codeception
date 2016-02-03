@@ -32,7 +32,7 @@ class apiTestCest
 
         $I->realtyFlatAddForSearch();
         $I->apiAdvertFlatAddForSearch();
-        $I->apiAdminEditFlatAdvertSearch();
+        $I->apiAdminEditFlatAdvertChangeStatus();
 
 //        $I->getStreetNameById(6,334);
 //        $I->realtyHouseAddSearch();
