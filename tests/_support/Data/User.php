@@ -17,6 +17,7 @@ class User
     static $agencyPass = 'L7KZXX';
     static $agencyEmail = 'support@uhome.ck.ua';
     static $agencyUhomeName = 'UHome';
+    static $agencyBossName = 'Андрей Сорокин';
 
     //----------------------------------  Data to login CUSTOM agency ------------------------ //
 

@@ -21,6 +21,7 @@ class AnnouncementList extends \VpnTester
         $I->amOnPage(AnnouncementListPage::$groupListUrl);
         $I->waitForElement(AnnouncementListPage::$createGroupButton);
         $I->click(AnnouncementListPage::$createGroupButton);
+        $I->waitForElement(AnnouncementListPage::$submitButton);
         $I->fillField(AnnouncementListPage::$groupNameField, User::$groupName);
         $I->click(AnnouncementListPage::$clientNameField);
         $I->fillField(AnnouncementListPage::$clientNameType, User::$userEmail);
@@ -112,7 +113,7 @@ class AnnouncementList extends \VpnTester
         $I->waitForElement(AnnouncementListPage::$groupNameField);
         $I->doubleClick(AnnouncementListPage::$groupNameField);
         $I->pressKey(AnnouncementListPage::$groupNameField, WebDriverKeys::DELETE);
-        $I->wait(1);
+        $I->wait(2);
         $I->fillField(AnnouncementListPage::$groupNameField, User::$editGroupName);
         $I->click(AnnouncementListPage::$clientNameField);
         $I->fillField(AnnouncementListPage::$clientNameType, 'asd');
@@ -214,9 +215,11 @@ class AnnouncementList extends \VpnTester
         $I->amOnPage(AnnouncementListPage::$userGroupListUrl);
         $I->wait(2);
         $I->click(AnnouncementListPage::$showMore);
+        $I->see(User::$groupName, AnnouncementListPage::$groupTitle);
         $I->see(User::$allAdvertsText.'5', AnnouncementListPage::$groupInfLine);
         $I->see(User::$interestingUserText.'0', AnnouncementListPage::$groupInfLine);
         $I->see(User::$notInterestingUserText.'0', AnnouncementListPage::$groupInfLine);
+        $I->see(User::$agencyBossName. ' ('.User::$agencyEmail.')');
         $I->click(AnnouncementListPage::$groupUrl);
         $I->wait(2);
 //        $I->pauseExecution();
@@ -396,9 +399,11 @@ class AnnouncementList extends \VpnTester
         $b = file_get_contents(codecept_data_dir('advCount2.txt'));
         $count = array ($a,$b);
         $c = array_sum($count);
+        $I->see(User::$groupName, AnnouncementListPage::$groupTitle);
         $I->see(User::$allAdvertsText.$c ,AnnouncementListPage::$groupInfLine);
         $I->see(User::$interestingUserText.'0', AnnouncementListPage::$groupInfLine);
         $I->see(User::$notInterestingUserText.'0', AnnouncementListPage::$groupInfLine);
+        $I->see(User::$agentName. ' ('.User::$agentEmail.')');
         $I->click(AnnouncementListPage::$groupUrl);
         $I->wait(2);
 //        $I->pauseExecution();

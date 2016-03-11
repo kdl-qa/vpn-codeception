@@ -15,10 +15,10 @@ class Flat
     const street = 'Крещатик улица';
     const houseNumber = 200;
     const generalArea = 58;
-    const latitude = 49.44314;
-    const longitude = 32.06470;
-    const searchLatitude = 49.491651;
-    const searchLongitude = 31.971656;
+    const latitude = "49.44314";
+    const longitude = "32.06470";
+    const searchLatitude = "49.491651";
+    const searchLongitude = "31.971656";
     const generalAreaUnit = 'Кв. метры';
     const wallMaterial = 'Силикатный кирпич';
     const roomCount = 2;

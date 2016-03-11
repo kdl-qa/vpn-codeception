@@ -36,18 +36,18 @@ class webUS5b_searchAdvertsMapResultCest
         $I->apiAdvertCommercialAddSearch();
         $I->apiAdminEditCommercialAdvertSearch();
     }
-    /**
-     *@before apiLogin
-     *@before addApiFlatAdvert
-     *@before addApiHouseAdvert
-     *@before addApiParcelAdvert
-     *@before addApiCommercialAdvert
-     *@before agencyLogin
-     */
-
 //    /**
+//     *@before apiLogin
+//     *@before addApiFlatAdvert
+//     *@before addApiHouseAdvert
+//     *@before addApiParcelAdvert
+//     *@before addApiCommercialAdvert
 //     *@before agencyLogin
 //     */
+
+    /**
+     *@before agencyLogin
+     */
 
     public function mapSearchFlatAndCheckProperties(\Step\Vpn\Search $I)
 
@@ -92,116 +92,116 @@ class webUS5b_searchAdvertsMapResultCest
 
 
     //--------------------House---------------------//
-    /**
-     *@before agencyLogin
-     */
-    public function mapSearchHouseAndCheckProperties(\Step\Vpn\Search $I)
-    {
-        $I->mapSearchHouse();
-        $I->checkHouseObjectPropertiesSearch();
-
+//    /**
+//     *@before agencyLogin
+//     */
+//    public function mapSearchHouseAndCheckProperties(\Step\Vpn\Search $I)
+//    {
+//        $I->mapSearchHouse();
+//        $I->checkHouseObjectPropertiesSearch();
 //
-        $I->mapSearchHouse1();
-        $I->mapSearchHouse2();
-        $I->mapSearchHouse3();
-        $I->mapSearchHouse4();
-        $I->mapSearchHouse5();
-        $I->mapSearchHouse6();
-        $I->mapSearchHouse7();
-        $I->mapSearchHouse8();
-        $I->mapSearchHouse9();
-        $I->mapSearchHouse10();
-        $I->mapSearchHouse11();
-        $I->mapSearchHouse12();
-        $I->mapSearchHouse13();
-        $I->mapSearchHouse14();
-        $I->mapSearchHouse15();
-        $I->mapSearchHouse16();
-        $I->mapSearchHouse17();
-        $I->mapSearchHouse18();
-        $I->mapSearchHouse19();
-        $I->mapSearchHouse20();
-        $I->mapSearchHouse21();
-        $I->mapSearchHouse22();
-        $I->mapSearchHouse23();
-        $I->mapSearchHouse24();
-        $I->mapSearchHouse25();
-        $I->mapSearchHouse26();
-        $I->mapSearchHouse27();
-        $I->mapSearchHouse28();
+////
+//        $I->mapSearchHouse1();
+//        $I->mapSearchHouse2();
+//        $I->mapSearchHouse3();
+//        $I->mapSearchHouse4();
+//        $I->mapSearchHouse5();
+//        $I->mapSearchHouse6();
+//        $I->mapSearchHouse7();
+//        $I->mapSearchHouse8();
+//        $I->mapSearchHouse9();
+//        $I->mapSearchHouse10();
+//        $I->mapSearchHouse11();
+//        $I->mapSearchHouse12();
+//        $I->mapSearchHouse13();
+//        $I->mapSearchHouse14();
+//        $I->mapSearchHouse15();
+//        $I->mapSearchHouse16();
+//        $I->mapSearchHouse17();
+//        $I->mapSearchHouse18();
+//        $I->mapSearchHouse19();
+//        $I->mapSearchHouse20();
+//        $I->mapSearchHouse21();
+//        $I->mapSearchHouse22();
+//        $I->mapSearchHouse23();
+//        $I->mapSearchHouse24();
+//        $I->mapSearchHouse25();
+//        $I->mapSearchHouse26();
+//        $I->mapSearchHouse27();
+//        $I->mapSearchHouse28();
+//
+////        $I->pauseExecution();
+//
+//
+//    }
+//    //----------------Parcel-------------------------//
+//    /**
+//     *@before agencyLogin
+//     */
+//    public function mapSearchParcelAndCheckProperties(\Step\Vpn\Search $I)
+//    {
+//        $I->mapSearchParcel();
+//        $I->checkParcelObjectPropertiesSearch();
+//
+//        $I->mapSearchParcel1();
+//        $I->mapSearchParcel2();
+//        $I->mapSearchParcel3();
+//        $I->mapSearchParcel4();
+//        $I->mapSearchParcel5();
+//        $I->mapSearchParcel6();
+//        $I->mapSearchParcel7();
+//        $I->mapSearchParcel8();
+//        $I->mapSearchParcel9();
+//        $I->mapSearchParcel10();
+//        $I->mapSearchParcel11();
+//        $I->mapSearchParcel12();
+//        $I->mapSearchParcel13();
+//
+////        $I->pauseExecution();
+//
+//    }
+//    /**
+//     *@before agencyLogin
+//     */
+//    public function searchCommercialAndCheckProperties(\Step\Vpn\Search $I)
+//    {
+//        $I->mapSearchCommercial();
+//        $I->checkCommercialObjectPropertiesSearch();
+//
+//        $I->mapSearchCommercial1();
+//        $I->mapSearchCommercial2();
+//        $I->mapSearchCommercial3();
+//        $I->mapSearchCommercial4();
+//        $I->mapSearchCommercial5();
+//        $I->mapSearchCommercial6();
+//        $I->mapSearchCommercial7();
+//        $I->mapSearchCommercial8();
+//        $I->mapSearchCommercial9();
+//        $I->mapSearchCommercial10();
+//        $I->mapSearchCommercial11();
+//        $I->mapSearchCommercial12();
+//        $I->mapSearchCommercial13();
+//        $I->mapSearchCommercial14();
+//        $I->mapSearchCommercial15();
+//        $I->mapSearchCommercial16();
+//        $I->mapSearchCommercial17();
+//        $I->mapSearchCommercial18();
+//        $I->mapSearchCommercial19();
+//        $I->mapSearchCommercial20();
+//        $I->mapSearchCommercial21();
+//        $I->mapSearchCommercial22();
+////        $I->pauseExecution();
+//    }
 
-//        $I->pauseExecution();
-
-
-    }
-    //----------------Parcel-------------------------//
-    /**
-     *@before agencyLogin
-     */
-    public function mapSearchParcelAndCheckProperties(\Step\Vpn\Search $I)
-    {
-        $I->mapSearchParcel();
-        $I->checkParcelObjectPropertiesSearch();
-
-        $I->mapSearchParcel1();
-        $I->mapSearchParcel2();
-        $I->mapSearchParcel3();
-        $I->mapSearchParcel4();
-        $I->mapSearchParcel5();
-        $I->mapSearchParcel6();
-        $I->mapSearchParcel7();
-        $I->mapSearchParcel8();
-        $I->mapSearchParcel9();
-        $I->mapSearchParcel10();
-        $I->mapSearchParcel11();
-        $I->mapSearchParcel12();
-        $I->mapSearchParcel13();
-
-//        $I->pauseExecution();
-
-    }
-    /**
-     *@before agencyLogin
-     */
-    public function searchCommercialAndCheckProperties(\Step\Vpn\Search $I)
-    {
-        $I->mapSearchCommercial();
-        $I->checkCommercialObjectPropertiesSearch();
-
-        $I->mapSearchCommercial1();
-        $I->mapSearchCommercial2();
-        $I->mapSearchCommercial3();
-        $I->mapSearchCommercial4();
-        $I->mapSearchCommercial5();
-        $I->mapSearchCommercial6();
-        $I->mapSearchCommercial7();
-        $I->mapSearchCommercial8();
-        $I->mapSearchCommercial9();
-        $I->mapSearchCommercial10();
-        $I->mapSearchCommercial11();
-        $I->mapSearchCommercial12();
-        $I->mapSearchCommercial13();
-        $I->mapSearchCommercial14();
-        $I->mapSearchCommercial15();
-        $I->mapSearchCommercial16();
-        $I->mapSearchCommercial17();
-        $I->mapSearchCommercial18();
-        $I->mapSearchCommercial19();
-        $I->mapSearchCommercial20();
-        $I->mapSearchCommercial21();
-        $I->mapSearchCommercial22();
-//        $I->pauseExecution();
-    }
-
-    /**
-     *@before apiLogin
-     */
-    public function apiDeleteAdverts(VpnTester $I)
-    {
-        $I->apiDeleteFlatAdvert();
-        $I->apiDeleteHouseAdvert();
-        $I->apiDeleteParcelAdvert();
-        $I->apiDeleteCommercialAdvert();
-
-    }
+//    /**
+//     *@before apiLogin
+//     */
+//    public function apiDeleteAdverts(VpnTester $I)
+//    {
+//        $I->apiDeleteFlatAdvert();
+//        $I->apiDeleteHouseAdvert();
+//        $I->apiDeleteParcelAdvert();
+//        $I->apiDeleteCommercialAdvert();
+//
+//    }
 }

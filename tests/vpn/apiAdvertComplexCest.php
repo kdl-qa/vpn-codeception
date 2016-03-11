@@ -1,12 +1,8 @@
 <?php
 use \VpnTester;
 
-class apiTestCest
+class apiAdvertComplexCest
 {
-    protected function uplCertificate(VpnTester $I)
-    {
-//        $I->uploadCertificates();
-    }
 
     protected function uploadFlatImages(VpnTester $I)
     {
@@ -49,7 +45,7 @@ class apiTestCest
     }
 
     /**
-    * @before uploadFlatImages
+     * @before uploadFlatImages
      *@before agencyLogin
      */
     public function addFlatComplex(VpnTester $I)
@@ -98,7 +94,6 @@ class apiTestCest
      */
     public function addGarageComplex(VpnTester $I)
     {
-
         $I->realtyGarageAddComplex();
         $I->apiAdvertGarageAddComplex();
         $I->apiAdminEditGarageAdvertComplex();

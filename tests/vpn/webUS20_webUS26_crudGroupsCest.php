@@ -56,65 +56,6 @@ class webUS20_webUS26_crudGroupsCest
         $I->apiAdminEditGarageAdvertSearch();
     }
 
-    /**
-     *@before apiLogin
-     *@before addApiFlatAdvert
-     *@before addApiHouseAdvert
-     *@before addApiParcelAdvert
-     *@before addApiCommercialAdvert
-     *@before addApiGarageAdvert
-     *@before agencyLogin
-     */
-    public function createGroupByAgency(\Step\Vpn\AnnouncementList $I, \Step\Vpn\UserAdvertsList $list)
-{
-    $I->createAnnouncementList();
-    $list->openUserAdvertsList();
-    $list->openFirstListAdvert();
-    $I->addAdvertToGroupFromAdvPage();
-
-    $list->openUserAdvertsList();
-    $list->openSecondListAdvert();
-    $I->addAdvertToGroupFromAdvPage();
-
-    $list->openUserAdvertsList();
-    $list->openThirdListAdvert();
-    $I->addAdvertToGroupFromAdvPage();
-
-    $list->openUserAdvertsList();
-    $list->openFourthListAdvert();
-    $I->addAdvertToGroupFromAdvPage();
-
-    $list->openUserAdvertsList();
-    $list->openFifthListAdvert();
-    $I->addAdvertToGroupFromAdvPage();
-
-
-    $I->sendGroupToUser();
-//        $I->pauseExecution();
-
-}
-
-    /**
-     * @before userLogin
-     */
-    public function viewAdvert(\Step\Vpn\AnnouncementList $I, Step\Vpn\Search $S)
-{
-    $I->viewAgencyGroupAndCheckProperties();
-
-
-
-}
-
-    /**
-     * @before agencyLogin
-     */
-    public function editDeleteAdv(\Step\Vpn\AnnouncementList $I)
-{
-    $I->editGroupSaveInterest();
-    $I->deleteAdvert();
-    $I->checkAgencyAdvCount();
-    $I->deleteGroup();
-}
 
 
     /**
@@ -154,6 +95,67 @@ class webUS20_webUS26_crudGroupsCest
     $I->checkAgentAdvCount();
     $I->deleteGroup();
     }
+
+    /**
+     *@before apiLogin
+     *@before addApiFlatAdvert
+     *@before addApiHouseAdvert
+     *@before addApiParcelAdvert
+     *@before addApiCommercialAdvert
+     *@before addApiGarageAdvert
+     *@before agencyLogin
+     */
+    public function createGroupByAgency(\Step\Vpn\AnnouncementList $I, \Step\Vpn\UserAdvertsList $list)
+    {
+        $I->createAnnouncementList();
+        $list->openUserAdvertsList();
+        $list->openFirstListAdvert();
+        $I->addAdvertToGroupFromAdvPage();
+
+        $list->openUserAdvertsList();
+        $list->openSecondListAdvert();
+        $I->addAdvertToGroupFromAdvPage();
+
+        $list->openUserAdvertsList();
+        $list->openThirdListAdvert();
+        $I->addAdvertToGroupFromAdvPage();
+
+        $list->openUserAdvertsList();
+        $list->openFourthListAdvert();
+        $I->addAdvertToGroupFromAdvPage();
+
+        $list->openUserAdvertsList();
+        $list->openFifthListAdvert();
+        $I->addAdvertToGroupFromAdvPage();
+
+
+        $I->sendGroupToUser();
+//        $I->pauseExecution();
+
+    }
+
+    /**
+     * @before userLogin
+     */
+    public function viewAdvert(\Step\Vpn\AnnouncementList $I, Step\Vpn\Search $S)
+    {
+        $I->viewAgencyGroupAndCheckProperties();
+
+
+
+    }
+
+    /**
+     * @before agencyLogin
+     */
+    public function editDeleteAdv(\Step\Vpn\AnnouncementList $I)
+    {
+        $I->editGroupSaveInterest();
+        $I->deleteAdvert();
+        $I->checkAgencyAdvCount();
+        $I->deleteGroup();
+    }
+
     /**
      *@before apiLogin
      */

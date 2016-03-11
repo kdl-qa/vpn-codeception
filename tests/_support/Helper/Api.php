@@ -198,61 +198,61 @@ class Api extends \Codeception\Module
         file_put_contents(codecept_data_dir('streets.json'), $streets);
 
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $flat = $this->getCategories(0);
+        $flat = $this->getCategory(0);
         $this->restModule->sendGET('/lists/category-types/' . $flat);
         $cType = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('flat_types.json'), $cType);
 
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $house = $this->getCategories(1);
+        $house = $this->getCategory(1);
         $this->restModule->sendGET('/lists/category-types/' . $house);
         $cType = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('house_types.json'), $cType);
 
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $parcel = $this->getCategories(2);
+        $parcel = $this->getCategory(2);
         $this->restModule->sendGET('/lists/category-types/' . $parcel);
         $cType = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('parcel_types.json'), $cType);
 
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $commerc = $this->getCategories(3);
+        $commerc = $this->getCategory(3);
         $this->restModule->sendGET('/lists/category-types/' . $commerc);
         $cType = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('commercial_types.json'), $cType);
 
         $this->restModule->haveHttpHeader ('Content-Type', 'application/json');
-        $garage = $this->getCategories(4);
+        $garage = $this->getCategory(4);
         $this->restModule->sendGET('/lists/category-types/' . $garage);
         $cType = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('garage_types.json'), $cType);
 
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $flat = $this->getCategories(0);
+        $flat = $this->getCategory(0);
         $this->restModule->sendGET('/lists/additionals/' . $flat);
         $flatAdditionals = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('flat_additionals.json'), $flatAdditionals);
 
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $house = $this->getCategories(1);
+        $house = $this->getCategory(1);
         $this->restModule->sendGET('/lists/additionals/' . $house);
         $houseAdditionals = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('house_additionals.json'), $houseAdditionals);
 
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $parcel = $this->getCategories(2);
+        $parcel = $this->getCategory(2);
         $this->restModule->sendGET('/lists/additionals/' . $parcel);
         $parcelAdditionals = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('parcel_additionals.json'), $parcelAdditionals);
 
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $commercial = $this->getCategories(3);
+        $commercial = $this->getCategory(3);
         $this->restModule->sendGET('/lists/additionals/' . $commercial);
         $commercialAdditionals = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('commercial_additionals.json'), $commercialAdditionals);
 
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $garage = $this->getCategories(4);
+        $garage = $this->getCategory(4);
         $this->restModule->sendGET('/lists/additionals/' . $garage);
         $garageAdditionals = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('garage_additionals.json'), $garageAdditionals);
@@ -287,7 +287,7 @@ class Api extends \Codeception\Module
         $currency = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('currency.json'), $currency);
 
-        $streetId = $this->getStreet(0);
+        $streetId = $this->getStreetId(0);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendGET('/lists/house-numbers/' . $streetId);
         $house_numbers = $this->restModule->grabResponse();
@@ -514,7 +514,7 @@ class Api extends \Codeception\Module
         return $streetId;
     }
 
-    function getCategories($id) //0..3
+    function getCategory($id) //0..3
     {
 
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
@@ -551,7 +551,7 @@ class Api extends \Codeception\Module
     function getFlatCategoryTypes($id) //0..1
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $flat = $this->getCategories(0);
+        $flat = $this->getCategory(0);
         $this->restModule->sendGET('/lists/category-types/' . $flat);
         $cType = $this->restModule->grabResponse();
         $this->debugSection('Flat Category Types', $cType);
@@ -575,18 +575,18 @@ class Api extends \Codeception\Module
         return $caregoryTypeId;
     }
 
-    function getHouseCategoryTypes($id) //0..2
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $house = $this->getCategories(1);
-        $this->restModule->sendGET('/lists/category-types/' . $house);
-        $cType = $this->restModule->grabResponse();
-        $this->debugSection('House Category Types', $cType);
-        $file = file_put_contents(codecept_data_dir('house_types.json'), $cType);
-        $houseCatId = json_decode($cType)[$id]->id;
-        $this->debugSection('houseCatId', $houseCatId);
-        return $houseCatId;
-    }
+//    function getHouseCategoryTypeId($id) //0..2
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $house = $this->getCategory(1);
+//        $this->restModule->sendGET('/lists/category-types/' . $house);
+//        $cType = $this->restModule->grabResponse();
+//        $this->debugSection('House Category Types', $cType);
+//        $file = file_put_contents(codecept_data_dir('house_types.json'), $cType);
+//        $houseCatId = json_decode($cType)[$id]->id;
+//        $this->debugSection('houseCatId', $houseCatId);
+//        return $houseCatId;
+//    }
     function getHouseCategoryTypeName($id) //0..2
     {
         $caregoryType = file_get_contents(codecept_data_dir('house_types.json'));
@@ -594,7 +594,7 @@ class Api extends \Codeception\Module
         $this->debugSection('House Category Type Name', $caregoryTypeName);
         return $caregoryTypeName;
     }
-    function getHouseCategoryTypeID($id) //0..2
+    function getHouseCategoryTypeId($id) //0..2
     {
         $caregoryType = file_get_contents(codecept_data_dir('house_types.json'));
         $caregoryTypeId = json_decode($caregoryType)[$id]->id;
@@ -602,18 +602,18 @@ class Api extends \Codeception\Module
         return $caregoryTypeId;
     }
 
-    function getParcelCategoryTypes($id) //0..4
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $parcel = $this->getCategories(2);
-        $this->restModule->sendGET('/lists/category-types/' . $parcel);
-        $cType = $this->restModule->grabResponse();
-        $this->debugSection('Parcel Category Types', $cType);
-        $file = file_put_contents(codecept_data_dir('parcel_types.json'), $cType);
-        $parcelCatId = json_decode($cType)[$id]->id;
-        $this->debugSection('parcelCatId', $parcelCatId);
-        return $parcelCatId;
-    }
+//    function getParcelCategoryTypeId($id) //0..4
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $parcel = $this->getCategoryId(2);
+//        $this->restModule->sendGET('/lists/category-types/' . $parcel);
+//        $cType = $this->restModule->grabResponse();
+//        $this->debugSection('Parcel Category Types', $cType);
+//        $file = file_put_contents(codecept_data_dir('parcel_types.json'), $cType);
+//        $parcelCatId = json_decode($cType)[$id]->id;
+//        $this->debugSection('parcelCatId', $parcelCatId);
+//        return $parcelCatId;
+//    }
     function getParcelCategoryTypeName($id) //0..4
     {
         $caregoryType = file_get_contents(codecept_data_dir('parcel_types.json'));
@@ -629,18 +629,18 @@ class Api extends \Codeception\Module
         return $caregoryTypeId;
     }
 
-    function getCommercialCategoryTypes($id) //0..10
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $commerc = $this->getCategories(3);
-        $this->restModule->sendGET('/lists/category-types/' . $commerc);
-        $cType = $this->restModule->grabResponse();
-        $this->debugSection('Commercial Category Types', $cType);
-        $file = file_put_contents(codecept_data_dir('commercial_types.json'), $cType);
-        $commercCatId = json_decode($cType)[$id]->id;
-        $this->debugSection('commercCatId', $commercCatId);
-        return $commercCatId;
-    }
+//    function getCommercialCategoryTypeId($id) //0..10
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $commerc = $this->getCategoryId(3);
+//        $this->restModule->sendGET('/lists/category-types/' . $commerc);
+//        $cType = $this->restModule->grabResponse();
+//        $this->debugSection('Commercial Category Types', $cType);
+//        $file = file_put_contents(codecept_data_dir('commercial_types.json'), $cType);
+//        $commercCatId = json_decode($cType)[$id]->id;
+//        $this->debugSection('commercCatId', $commercCatId);
+//        return $commercCatId;
+//    }
     function getCommercialCategoryTypeName($id) //0..10
     {
         $caregoryType = file_get_contents(codecept_data_dir('commercial_types.json'));
@@ -655,18 +655,18 @@ class Api extends \Codeception\Module
         $this->debugSection('Commercial Category Type ID', $caregoryTypeId);
         return $caregoryTypeId;
     }
-    function getGaragesCategoryTypes($id) //0..3
-    {
-        $this->restModule->haveHttpHeader ('Content-Type', 'application/json');
-        $garage = $this->getCategories(4);
-        $this->restModule->sendGET('/lists/category-types/' . $garage);
-        $cType = $this->restModule->grabResponse();
-        $this->debugSection('Garage Category Types', $cType);
-        file_put_contents(codecept_data_dir('garage_types.json'), $cType);
-        $garageCatId = json_decode($cType)[$id]->id;
-        $this->debugSection('garageCatId', $garageCatId);
-        return $garageCatId;
-    }
+//    function getGaragesCategoryTypeId($id) //0..3
+//    {
+//        $this->restModule->haveHttpHeader ('Content-Type', 'application/json');
+//        $garage = $this->getCategoryId(4);
+//        $this->restModule->sendGET('/lists/category-types/' . $garage);
+//        $cType = $this->restModule->grabResponse();
+//        $this->debugSection('Garage Category Types', $cType);
+//        file_put_contents(codecept_data_dir('garage_types.json'), $cType);
+//        $garageCatId = json_decode($cType)[$id]->id;
+//        $this->debugSection('garageCatId', $garageCatId);
+//        return $garageCatId;
+//    }
     function getGaragesCategoryTypeName($id) //0..3
     {
         $caregoryType = file_get_contents(codecept_data_dir('garage_types.json'));
@@ -682,17 +682,17 @@ class Api extends \Codeception\Module
         return $caregoryTypeId;
     }
 
-    function getFlatAdditionals($id) //0..15
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $flat = $this->getCategories(0);
-        $this->restModule->sendGET('/lists/additionals/' . $flat);
-        $flatAdditionals = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('flat_additionals.json'), $flatAdditionals);
-        $flatAdd = json_decode($flatAdditionals)[$id]->id;
-        $this->debugSection('flatAdd', $flatAdd);
-        return $flatAdd;
-    }
+//    function getFlatAdditionalsId($id) //0..15
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $flat = $this->getCategoryId(0);
+//        $this->restModule->sendGET('/lists/additionals/' . $flat);
+//        $flatAdditionals = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('flat_additionals.json'), $flatAdditionals);
+//        $flatAdd = json_decode($flatAdditionals)[$id]->id;
+//        $this->debugSection('flatAdd', $flatAdd);
+//        return $flatAdd;
+//    }
     function getFlatAdditionalsName($id) //0..15
     {
         $additional = file_get_contents(codecept_data_dir('flat_additionals.json'));
@@ -708,17 +708,17 @@ class Api extends \Codeception\Module
         return $additionalId;
     }
 
-    function getHouseAdditionals($id) //0..15
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $house = $this->getCategories(1);
-        $this->restModule->sendGET('/lists/additionals/' . $house);
-        $houseAdditionals = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('house_additionals.json'), $houseAdditionals);
-        $houseAdd = json_decode($houseAdditionals)[$id]->id;
-        $this->debugSection('houseAdd', $houseAdd);
-        return $houseAdd;
-    }
+//    function getHouseAdditionalsId($id) //0..15
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $house = $this->getCategoryId(1);
+//        $this->restModule->sendGET('/lists/additionals/' . $house);
+//        $houseAdditionals = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('house_additionals.json'), $houseAdditionals);
+//        $houseAdd = json_decode($houseAdditionals)[$id]->id;
+//        $this->debugSection('houseAdd', $houseAdd);
+//        return $houseAdd;
+//    }
     function getHouseAdditionalsName($id) //0..15
     {
         $additional = file_get_contents(codecept_data_dir('house_additionals.json'));
@@ -734,17 +734,17 @@ class Api extends \Codeception\Module
         return $additionalId;
     }
 
-    function getParcelAdditionals($id) //0..11
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $parcel = $this->getCategories(2);
-        $this->restModule->sendGET('/lists/additionals/' . $parcel);
-        $parcelAdditionals = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('parcel_additionals.json'), $parcelAdditionals);
-        $parcelAdd = json_decode($parcelAdditionals)[$id]->id;
-        $this->debugSection('parcelAdd', $parcelAdd);
-        return $parcelAdd;
-    }
+//    function getParcelAdditionalsID($id) //0..11
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $parcel = $this->getCategoryId(2);
+//        $this->restModule->sendGET('/lists/additionals/' . $parcel);
+//        $parcelAdditionals = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('parcel_additionals.json'), $parcelAdditionals);
+//        $parcelAdd = json_decode($parcelAdditionals)[$id]->id;
+//        $this->debugSection('parcelAdd', $parcelAdd);
+//        return $parcelAdd;
+//    }
     function getParcelAdditionalsName($id) //0..11
     {
         $additional = file_get_contents(codecept_data_dir('parcel_additionals.json'));
@@ -760,17 +760,17 @@ class Api extends \Codeception\Module
         return $additionalId;
     }
 
-    function getCommercialAdditionals($id) //0..7
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $commercial = $this->getCategories(3);
-        $this->restModule->sendGET('/lists/additionals/' . $commercial);
-        $commercialAdditionals = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('commercial_additionals.json'), $commercialAdditionals);
-        $commercialAdd = json_decode($commercialAdditionals)[$id]->id;
-        $this->debugSection('commercialAdd0', $commercialAdd);
-        return $commercialAdd;
-    }
+//    function getCommercialAdditionalsId($id) //0..7
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $commercial = $this->getCategoryId(3);
+//        $this->restModule->sendGET('/lists/additionals/' . $commercial);
+//        $commercialAdditionals = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('commercial_additionals.json'), $commercialAdditionals);
+//        $commercialAdd = json_decode($commercialAdditionals)[$id]->id;
+//        $this->debugSection('commercialAdd0', $commercialAdd);
+//        return $commercialAdd;
+//    }
     function getCommercialAdditionalsName($id) //0..7
     {
         $additional = file_get_contents(codecept_data_dir('commercial_additionals.json'));
@@ -786,17 +786,17 @@ class Api extends \Codeception\Module
         return $additionalId;
     }
 
-    function getGarageAdditionals($id) //0..7
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $garage = $this->getCategories(4);
-        $this->restModule->sendGET('/lists/additionals/' . $garage);
-        $garageAdditionals = $this->restModule->grabResponse();
-        file_put_contents(codecept_data_dir('garage_additionals.json'), $garageAdditionals);
-        $garageAdd = json_decode($garageAdditionals)[$id]->id;
-        $this->debugSection('Garage Add0', $garageAdd);
-        return $garageAdd;
-    }
+//    function getGarageAdditionalsId($id) //0..7
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $garage = $this->getCategoryId(4);
+//        $this->restModule->sendGET('/lists/additionals/' . $garage);
+//        $garageAdditionals = $this->restModule->grabResponse();
+//        file_put_contents(codecept_data_dir('garage_additionals.json'), $garageAdditionals);
+//        $garageAdd = json_decode($garageAdditionals)[$id]->id;
+//        $this->debugSection('Garage Add0', $garageAdd);
+//        return $garageAdd;
+//    }
     function getGarageAdditionalsName($id) //0..7
     {
         $additional = file_get_contents(codecept_data_dir('garage_additionals.json'));
@@ -812,16 +812,16 @@ class Api extends \Codeception\Module
         return $additionalId;
     }
 
-    function getAppliances($id) //0..7
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/appliances');
-        $appliances = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('appliances.json'), $appliances);
-        $appliancesId = json_decode($appliances)[$id]->id;
-        $this->debugSection('appliancesId', $appliancesId);
-        return $appliancesId;
-    }
+//    function getAppliancesId($id) //0..7
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/appliances');
+//        $appliances = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('appliances.json'), $appliances);
+//        $appliancesId = json_decode($appliances)[$id]->id;
+//        $this->debugSection('appliancesId', $appliancesId);
+//        return $appliancesId;
+//    }
     function getAppliancesName($id) //0..7
     {
         $appliances = file_get_contents(codecept_data_dir('appliances.json'));
@@ -852,16 +852,16 @@ class Api extends \Codeception\Module
         return $actualCurrencyName;
     }
 
-    function getAreaUnits($id) //0..2
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/area-units');
-        $areaUnits = $this->restModule->grabResponse('$data.');
-        $file = file_put_contents(codecept_data_dir('area_units.json'), $areaUnits);
-        $areaUnitId = json_decode($areaUnits)[$id]->id;
-        $this->debugSection('areaUnitId', $areaUnitId);
-        return $areaUnitId;
-    }
+//    function getAreaUnitsId($id) //0..2
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/area-units');
+//        $areaUnits = $this->restModule->grabResponse('$data.');
+//        $file = file_put_contents(codecept_data_dir('area_units.json'), $areaUnits);
+//        $areaUnitId = json_decode($areaUnits)[$id]->id;
+//        $this->debugSection('areaUnitId', $areaUnitId);
+//        return $areaUnitId;
+//    }
     function getAreaUnitsName($id)
     {
         $areaUnits = file_get_contents(codecept_data_dir('area_units.json'));
@@ -877,16 +877,16 @@ class Api extends \Codeception\Module
         return $areaUnitsId;
     }
 
-    function getBalconies($id) //0..3
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/balconies');
-        $balconies = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('balconies.json'), $balconies);
-        $balconyId = json_decode($balconies)[$id]->id;
-        $this->debugSection('balconyId0', $balconyId);
-        return $balconyId;
-    }
+//    function getBalconiesId($id) //0..3
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/balconies');
+//        $balconies = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('balconies.json'), $balconies);
+//        $balconyId = json_decode($balconies)[$id]->id;
+//        $this->debugSection('balconyId0', $balconyId);
+//        return $balconyId;
+//    }
     function getBalconiesName($id)
     {
         $balconies = file_get_contents(codecept_data_dir('balconies.json'));
@@ -902,16 +902,16 @@ class Api extends \Codeception\Module
         return $balconiesId;
     }
 
-    function getCommunications($id) //0..7
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/communications');
-        $communications = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('communications.json'), $communications);
-        $communicatId = json_decode($communications)[$id]->id;
-        $this->debugSection('communicatId', $communicatId);
-        return $communicatId;
-    }
+//    function getCommunicationsId($id) //0..7
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/communications');
+//        $communications = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('communications.json'), $communications);
+//        $communicatId = json_decode($communications)[$id]->id;
+//        $this->debugSection('communicatId', $communicatId);
+//        return $communicatId;
+//    }
     function getCommunicationsName($id)
     {
         $communications = file_get_contents(codecept_data_dir('communications.json'));
@@ -927,16 +927,16 @@ class Api extends \Codeception\Module
         return $communicationsId;
     }
 
-    function getCurrency($id) //0..1
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/currency');
-        $currency = $this->restModule->grabResponse();
-        file_put_contents(codecept_data_dir('currency.json'), $currency);
-        $currencyId = json_decode($currency)[$id]->id;
-        $this->debugSection('currencyId', $currencyId);
-        return $currencyId;
-    }
+//    function getCurrencyId($id) //0..1
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/currency');
+//        $currency = $this->restModule->grabResponse();
+//        file_put_contents(codecept_data_dir('currency.json'), $currency);
+//        $currencyId = json_decode($currency)[$id]->id;
+//        $this->debugSection('currencyId', $currencyId);
+//        return $currencyId;
+//    }
     function getCurrencyName($id)
     {
         $currency = file_get_contents(codecept_data_dir('currency.json'));
@@ -954,7 +954,7 @@ class Api extends \Codeception\Module
 
     function getHouseNumbers($id)
     {
-        $streetId = $this->getStreet(0);
+        $streetId = $this->getStreetId(0);
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendGET('/lists/house-numbers/' . $streetId);
         $house_numbers = $this->restModule->grabResponse();
@@ -987,16 +987,16 @@ class Api extends \Codeception\Module
         return $garageNumbersID;
     }
 
-    function getFurnitures($id) //0..7
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/furnitures');
-        $furnitures = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('furnitures.json'), $furnitures);
-        $furId = json_decode($furnitures)[$id]->id;
-        $this->debugSection('furId', $furId);
-        return $furId;
-    }
+//    function getFurnituresId($id) //0..7
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/furnitures');
+//        $furnitures = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('furnitures.json'), $furnitures);
+//        $furId = json_decode($furnitures)[$id]->id;
+//        $this->debugSection('furId', $furId);
+//        return $furId;
+//    }
     function getFurnituresName($id)
     {
         $furnitures = file_get_contents(codecept_data_dir('furnitures.json'));
@@ -1012,16 +1012,16 @@ class Api extends \Codeception\Module
         return $furnituresId;
     }
 
-    function getHeatings($id) //0..4
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/heatings');
-        $heatings = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('heatings.json'), $heatings);
-        $heatId = json_decode($heatings)[$id]->id;
-        $this->debugSection('heatId', $heatId);
-        return $heatId;
-    }
+//    function getHeatingsId($id) //0..4
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/heatings');
+//        $heatings = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('heatings.json'), $heatings);
+//        $heatId = json_decode($heatings)[$id]->id;
+//        $this->debugSection('heatId', $heatId);
+//        return $heatId;
+//    }
     function getHeatingsName($id)
     {
         $heatings = file_get_contents(codecept_data_dir('heatings.json'));
@@ -1037,16 +1037,16 @@ class Api extends \Codeception\Module
         return $heatingsId;
     }
 
-    function getMarketType($id) //0..1
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/market-types');
-        $mTypes = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('market_types.json'), $mTypes);
-        $mTypeId = json_decode($mTypes)[$id]->id;
-        $this->debugSection('mTypeId', $mTypeId);
-        return $mTypeId;
-    }
+//    function getMarketTypeId($id) //0..1
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/market-types');
+//        $mTypes = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('market_types.json'), $mTypes);
+//        $mTypeId = json_decode($mTypes)[$id]->id;
+//        $this->debugSection('mTypeId', $mTypeId);
+//        return $mTypeId;
+//    }
     function getMarketTypeName($id) //0..1
     {
         $market = file_get_contents(codecept_data_dir('market_types.json'));
@@ -1062,17 +1062,17 @@ class Api extends \Codeception\Module
         return $marketId;
     }
 
-    function getNearObjects($id) //0..9
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/near-objects');
-        $nearObj = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('near_objects.json'), $nearObj);
-        $nObjId = json_decode($nearObj)[$id]->id;
-        $this->debugSection('nObjId', $nObjId);
-        return $nObjId;
-
-    }
+//    function getNearObjectsId($id) //0..9
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/near-objects');
+//        $nearObj = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('near_objects.json'), $nearObj);
+//        $nObjId = json_decode($nearObj)[$id]->id;
+//        $this->debugSection('nObjId', $nObjId);
+//        return $nObjId;
+//
+//    }
     function getNearObjectsName($id)
     {
         $nearObj = file_get_contents(codecept_data_dir('near_objects.json'));
@@ -1088,16 +1088,16 @@ class Api extends \Codeception\Module
         return $nearObjId;
     }
 
-    function getOperationType($id) //0..1
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/operation-types');
-        $opTypes = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('operation_types.json'), $opTypes);
-        $opTypeId = json_decode($opTypes)[$id]->id;
-        $this->debugSection('opTypeId', $opTypeId);
-        return $opTypeId;
-    }
+//    function getOperationTypeId($id) //0..1
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/operation-types');
+//        $opTypes = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('operation_types.json'), $opTypes);
+//        $opTypeId = json_decode($opTypes)[$id]->id;
+//        $this->debugSection('opTypeId', $opTypeId);
+//        return $opTypeId;
+//    }
     function getOperationTypeName($id)
     {
         $opTypes = file_get_contents(codecept_data_dir('operation_types.json'));
@@ -1113,16 +1113,16 @@ class Api extends \Codeception\Module
         return $opTypesId;
     }
 
-    function getPeriod($id) //0..1
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/period');
-        $periods = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('periods.json'), $periods);
-        $periodId = json_decode($periods)[$id]->id;
-        $this->debugSection('periodId', $periodId);
-        return $periodId;
-    }
+//    function getPeriodId($id) //0..1
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/period');
+//        $periods = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('periods.json'), $periods);
+//        $periodId = json_decode($periods)[$id]->id;
+//        $this->debugSection('periodId', $periodId);
+//        return $periodId;
+//    }
     function getPeriodName($id)
     {
         $periods = file_get_contents(codecept_data_dir('periods.json'));
@@ -1138,16 +1138,16 @@ class Api extends \Codeception\Module
         return $periodsId;
     }
 
-    function getStatuses($id) //0..4
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/statuses');
-        $statuses = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('statuses.json'), $statuses);
-        $statusId = json_decode($statuses)[$id]->id;
-        $this->debugSection('statusId', $statusId);
-        return $statusId;
-    }
+//    function getStatusesId($id) //0..4
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/statuses');
+//        $statuses = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('statuses.json'), $statuses);
+//        $statusId = json_decode($statuses)[$id]->id;
+//        $this->debugSection('statusId', $statusId);
+//        return $statusId;
+//    }
     function getStatusesName($id)
     {
         $statuses = file_get_contents(codecept_data_dir('statuses.json'));
@@ -1163,16 +1163,16 @@ class Api extends \Codeception\Module
         return $statusesId;
     }
 
-    function getRepairs($id) //0..7
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/repairs');
-        $repairs = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('repairs.json'), $repairs);
-        $repairId = json_decode($repairs)[$id]->id;
-        $this->debugSection('repairId', $repairId);
-        return $repairId;
-    }
+//    function getRepairsId($id) //0..7
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/repairs');
+//        $repairs = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('repairs.json'), $repairs);
+//        $repairId = json_decode($repairs)[$id]->id;
+//        $this->debugSection('repairId', $repairId);
+//        return $repairId;
+//    }
     function getRepairsName($id)
     {
         $repairs = file_get_contents(codecept_data_dir('repairs.json'));
@@ -1188,16 +1188,16 @@ class Api extends \Codeception\Module
         return $repairsId;
     }
 
-    function getUnpublishReasons($id) //0..1
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/unpublish-reasons');
-        $unpubReason = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('unpublish_reasons.json'), $unpubReason);
-        $unpReasonId = json_decode($unpubReason)[$id]->id;
-        $this->debugSection('unpReasonId', $unpReasonId);
-        return $unpReasonId;
-    }
+//    function getUnpublishReasonsId($id) //0..1
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/unpublish-reasons');
+//        $unpubReason = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('unpublish_reasons.json'), $unpubReason);
+//        $unpReasonId = json_decode($unpubReason)[$id]->id;
+//        $this->debugSection('unpReasonId', $unpReasonId);
+//        return $unpReasonId;
+//    }
     function getUnpublishReasonsName($id)
     {
         $unpubReason = file_get_contents(codecept_data_dir('unpublish_reasons.json'));
@@ -1213,16 +1213,16 @@ class Api extends \Codeception\Module
         return $unpubReasonId;
     }
 
-    function getWallMaterials($id) //0..10
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/wall-materials');
-        $wallMaterials = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('wall_materials.json'), $wallMaterials);
-        $wMaterialId = json_decode($wallMaterials)[$id]->id;
-        $this->debugSection('wMaterialId', $wMaterialId);
-        return $wMaterialId;
-    }
+//    function getWallMaterialsId($id) //0..10
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/wall-materials');
+//        $wallMaterials = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('wall_materials.json'), $wallMaterials);
+//        $wMaterialId = json_decode($wallMaterials)[$id]->id;
+//        $this->debugSection('wMaterialId', $wMaterialId);
+//        return $wMaterialId;
+//    }
     function getWallMaterialsName($id)
     {
         $wallMaterials = file_get_contents(codecept_data_dir('wall_materials.json'));
@@ -1238,16 +1238,16 @@ class Api extends \Codeception\Module
         return $wallMaterialsId;
     }
 
-    function getWaterHeatings($id) //0..4
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/water-heatings');
-        $waterHeatings = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('water_heatings.json'), $waterHeatings);
-        $wHeatId = json_decode($waterHeatings)[$id]->id;
-        $this->debugSection('wHeatId', $wHeatId);
-        return $wHeatId;
-    }
+//    function getWaterHeatingsId($id) //0..4
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/water-heatings');
+//        $waterHeatings = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('water_heatings.json'), $waterHeatings);
+//        $wHeatId = json_decode($waterHeatings)[$id]->id;
+//        $this->debugSection('wHeatId', $wHeatId);
+//        return $wHeatId;
+//    }
     function getWaterHeatingsName($id)
     {
         $waterHeatings = file_get_contents(codecept_data_dir('water_heatings.json'));
@@ -1263,17 +1263,17 @@ class Api extends \Codeception\Module
         return $waterHeatingsId;
     }
 
-    function getWC($id) //0..2
-    {
-        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/lists/wc');
-        $wc = $this->restModule->grabResponse();
-        $file = file_put_contents(codecept_data_dir('wc.json'), $wc);
-        $wcId = json_decode($wc)[$id]->id;
-        $this->debugSection('wcId', $wcId);
-        return $wcId;
-    }
-    function getWCName($id)
+//    function getWcId($id) //0..2
+//    {
+//        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+//        $this->restModule->sendGET('/lists/wc');
+//        $wc = $this->restModule->grabResponse();
+//        $file = file_put_contents(codecept_data_dir('wc.json'), $wc);
+//        $wcId = json_decode($wc)[$id]->id;
+//        $this->debugSection('wcId', $wcId);
+//        return $wcId;
+//    }
+    function getWcName($id)
     {
         $wc = file_get_contents(codecept_data_dir('wc.json'));
         $wcName = json_decode($wc)[$id]->name;
@@ -1286,6 +1286,78 @@ class Api extends \Codeception\Module
         $wcId = json_decode($wc)[$id]->id;
         $this->debugSection('WC', $wcId);
         return $wcId;
+    }
+//    function  getInspectionPitId($id)
+//    {
+//        $this->restModule->sendGET('/lists/inspection-pit');
+//        $inspection_list = $this->restModule->grabResponse();
+//        file_put_contents(codecept_data_dir('inspectionPit_list.json'), $inspection_list);
+//        $this->restModule->seeResponseCodeIS(200);
+//        $inspectionId = json_decode($inspection_list)[$id]->id;
+//        $this->debugSection('inspectionId', $inspectionId);
+//        return $inspectionId;
+//    }
+    function getInspectionPitName($id)
+    {
+        $inspection = file_get_contents(codecept_data_dir('inspectionPit_list.json'));
+        $inspectionName = json_decode($inspection)[$id]->name;
+        $this->debugSection('Inspection Pit', $inspectionName);
+        return $inspectionName;
+    }
+    function getInspectionPitId($id)
+    {
+        $inspection = file_get_contents(codecept_data_dir('inspectionPit_list.json'));
+        $inspectionId = json_decode($inspection)[$id]->id;
+        $this->debugSection('Inspection Pit', $inspectionId);
+        return $inspectionId;
+    }
+//    function  getParkingPlaceId($id)
+//    {
+//        $this->restModule->sendGET('/lists/parking-place');
+//        $parking_list = $this->restModule->grabResponse();
+//        file_put_contents(codecept_data_dir('parkingPlace_list.json'), $parking_list);
+//        $this->restModule->seeResponseCodeIS(200);
+//        $parkingId = json_decode($parking_list)[$id]->id;
+//        $this->debugSection('parkingId', $parkingId);
+//        return $parkingId;
+//    }
+    function getParkingPlaceName($id)
+    {
+        $parking = file_get_contents(codecept_data_dir('parkingPlace_list.json'));
+        $parkingName = json_decode($parking)[$id]->name;
+        $this->debugSection('Parking Place', $parkingName);
+        return $parkingName;
+    }
+    function getParkingPlaceId($id)
+    {
+        $parking = file_get_contents(codecept_data_dir('parkingPlace_list.json'));
+        $parkingName = json_decode($parking)[$id]->id;
+        $this->debugSection('Parking Place', $parkingName);
+        return $parkingName;
+    }
+//    function  getTransportTypeId($id)
+//    {
+//        $this->restModule->sendGET('/lists/transport-type');
+//        $transport_list = $this->restModule->grabResponse();
+//        file_put_contents(codecept_data_dir('transport_list.json'), $transport_list);
+//        $this->restModule->seeResponseCodeIS(200);
+//        $transportId = json_decode($transport_list)[$id]->id;
+//        $this->debugSection('transportId', $transportId);
+//        return $transportId;
+//    }
+    function getTransportTypeName($id)
+    {
+        $transport = file_get_contents(codecept_data_dir('transport_list.json'));
+        $transportName = json_decode($transport)[$id]->name;
+        $this->debugSection('Transport Type', $transportName);
+        return $transportName;
+    }
+    function getTransportTypeId($id)
+    {
+        $transport = file_get_contents(codecept_data_dir('transport_list.json'));
+        $transportName = json_decode($transport)[$id]->id;
+        $this->debugSection('Transport Type', $transportName);
+        return $transportName;
     }
 
     function apiGetAgencyAnnouncementsList()
@@ -1345,85 +1417,14 @@ class Api extends \Codeception\Module
     function apiGetAgencies()
     {
         $agencyName = User::$agencyName;
-        $region = $this->getRegion(21);
-        $city = $this->getCity(6);
+        $region = $this->getRegionId(21);
+        $city = $this->getCityId(6);
         $this->restModule->sendGET('/users/agencies/search/1/24?city='.$city.'&name='.$agencyName.'&region='.$region.'');
         $agencies_list = $this->restModule->grabResponse();
         file_put_contents(codecept_data_dir('agencies_list.json'), $agencies_list);
         $this->restModule->seeResponseCodeIS(200);
     }
-    function  getInspectionPit($id)
-    {
-        $this->restModule->sendGET('/lists/inspection-pit');
-        $inspection_list = $this->restModule->grabResponse();
-        file_put_contents(codecept_data_dir('inspectionPit_list.json'), $inspection_list);
-        $this->restModule->seeResponseCodeIS(200);
-        $inspectionId = json_decode($inspection_list)[$id]->id;
-        $this->debugSection('inspectionId', $inspectionId);
-        return $inspectionId;
-    }
-    function getInspectionPitName($id)
-    {
-        $inspection = file_get_contents(codecept_data_dir('inspectionPit_list.json'));
-        $inspectionName = json_decode($inspection)[$id]->name;
-        $this->debugSection('Inspection Pit', $inspectionName);
-        return $inspectionName;
-    }
-    function getInspectionPitId($id)
-    {
-        $inspection = file_get_contents(codecept_data_dir('inspectionPit_list.json'));
-        $inspectionId = json_decode($inspection)[$id]->id;
-        $this->debugSection('Inspection Pit', $inspectionId);
-        return $inspectionId;
-    }
-    function  getParkingPlace($id)
-    {
-        $this->restModule->sendGET('/lists/parking-place');
-        $parking_list = $this->restModule->grabResponse();
-        file_put_contents(codecept_data_dir('parkingPlace_list.json'), $parking_list);
-        $this->restModule->seeResponseCodeIS(200);
-        $parkingId = json_decode($parking_list)[$id]->id;
-        $this->debugSection('parkingId', $parkingId);
-        return $parkingId;
-    }
-    function getParkingPlaceName($id)
-    {
-        $parking = file_get_contents(codecept_data_dir('parkingPlace_list.json'));
-        $parkingName = json_decode($parking)[$id]->name;
-        $this->debugSection('Parking Place', $parkingName);
-        return $parkingName;
-    }
-    function getParkingPlaceId($id)
-    {
-        $parking = file_get_contents(codecept_data_dir('parkingPlace_list.json'));
-        $parkingName = json_decode($parking)[$id]->id;
-        $this->debugSection('Parking Place', $parkingName);
-        return $parkingName;
-    }
-    function  getTransportType($id)
-    {
-        $this->restModule->sendGET('/lists/transport-type');
-        $transport_list = $this->restModule->grabResponse();
-        file_put_contents(codecept_data_dir('transport_list.json'), $transport_list);
-        $this->restModule->seeResponseCodeIS(200);
-        $transportId = json_decode($transport_list)[$id]->id;
-        $this->debugSection('transportId', $transportId);
-        return $transportId;
-    }
-    function getTransportTypeName($id)
-    {
-        $transport = file_get_contents(codecept_data_dir('transport_list.json'));
-        $transportName = json_decode($transport)[$id]->name;
-        $this->debugSection('Transport Type', $transportName);
-        return $transportName;
-    }
-    function getTransportTypeId($id)
-    {
-        $transport = file_get_contents(codecept_data_dir('transport_list.json'));
-        $transportName = json_decode($transport)[$id]->id;
-        $this->debugSection('Transport Type', $transportName);
-        return $transportName;
-    }
+   
 
 
     /*=================================== API REALTY ==================================*/
@@ -1542,12 +1543,12 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendGET('/realties/lists', [
-            'category' => $this->getCategories(0),
-            'categoryType' => $this->getFlatCategoryTypes(0),
+            'category' => $this->getCategoryId(0),
+            'categoryType' => $this->getFlatCategoryTypeId(0),
             'status' => 1,
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'street' => $this->getStreet(32),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'street' => $this->getStreetId(32),
             'author' => $agencyID
         ]);
         $this->restModule->seeResponseCodeIS(200);
@@ -1569,30 +1570,30 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/flats/add', [
-            'category' => $this->getCategories(0),
-            'categoryType' => $this->getFlatCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-//            'district' => $this->getDistrict(23),
-            'street' => $this->getStreet(0),
+            'category' => $this->getCategoryId(0),
+            'categoryType' => $this->getFlatCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+//            'district' => $this->getDistrictId(23),
+            'street' => $this->getStreetId(0),
             'houseNumber' => Flat::houseNumber,
             'flatNumber' => Flat::uniqueFlatNumber(),
             'latitude' => Flat::latitude,
             'longitude' => Flat::longitude,
             'roomCount' => Flat::roomCount,
-            'wallMaterial' => $this->getWallMaterials(0),
+            'wallMaterial' => $this->getWallMaterialsId(0),
             'area' => Flat::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
 //            'livingArea' => Flat::livingArea,
 //            'kitchenArea' => Flat::kitchenArea,
             'floor' => Flat::floors,
             'floorNumber' => Flat::floorNumber,
 //            'buildYear' => Flat::buildYear,
-            'wc' => $this->getWC(0),
-            'balcony' => $this->getBalconies(0),
-            'heating' => $this->getHeatings(0),
-            'waterHeating' => $this->getWaterHeatings(0),
-//            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(1), $this->getNearObjects(5)],
+            'wc' => $this->getWcId(0),
+            'balcony' => $this->getBalconiesId(0),
+            'heating' => $this->getHeatingsId(0),
+            'waterHeating' => $this->getWaterHeatingsId(0),
+//            'nearObjects' => [$this->getNearObjectsId(0), $this->getNearObjectsId(1), $this->getNearObjectsId(5)],
 //            'schema' => $schema
         ]);
 
@@ -1612,40 +1613,40 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/flats/add', [
-            'category' => $this->getCategories(0),
-            'categoryType' => $this->getFlatCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(7),
-            'street' => $this->getStreet(32),
+            'category' => $this->getCategoryId(0),
+            'categoryType' => $this->getFlatCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(7),
+            'street' => $this->getStreetId(32),
             'houseNumber' => Flat::houseNumber,
             'flatNumber' => Flat::uniqueFlatNumber(),
             'latitude' => Flat::latitude,
             'longitude' => Flat::longitude,
             'roomCount' => Flat::roomCount,
-            'wallMaterial' => $this->getWallMaterials(0),
+            'wallMaterial' => $this->getWallMaterialsId(0),
             'area' => Flat::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'livingArea' => Flat::livingArea,
             'kitchenArea' => Flat::kitchenArea,
             'floor' => Flat::floors,
             'floorNumber' => Flat::floorNumber,
             'buildYear' => Flat::buildYear,
-            'wc' => $this->getWC(1),
-            'balcony' => $this->getBalconies(1),
-            'heating' => $this->getHeatings(1),
-            'waterHeating' => $this->getWaterHeatings(1),
+            'wc' => $this->getWcId(1),
+            'balcony' => $this->getBalconiesId(1),
+            'heating' => $this->getHeatingsId(1),
+            'waterHeating' => $this->getWaterHeatingsId(1),
             'nearObjects' => [
-                $this->getNearObjects(0),
-                $this->getNearObjects(1),
-                $this->getNearObjects(2),
-                $this->getNearObjects(3),
-                $this->getNearObjects(4),
-                $this->getNearObjects(5),
-                $this->getNearObjects(6),
-                $this->getNearObjects(7),
-                $this->getNearObjects(8),
-                $this->getNearObjects(9)
+                $this->getNearObjectsId(0),
+                $this->getNearObjectsId(1),
+                $this->getNearObjectsId(2),
+                $this->getNearObjectsId(3),
+                $this->getNearObjectsId(4),
+                $this->getNearObjectsId(5),
+                $this->getNearObjectsId(6),
+                $this->getNearObjectsId(7),
+                $this->getNearObjectsId(8),
+                $this->getNearObjectsId(9)
             ],
             'schema' => $schema
         ]);
@@ -1708,11 +1709,11 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/flats/check', [
-            'category' => $this->getCategories(0),
-            'categoryType' => $this->getFlatCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'street' => $this->getStreet(0),
+            'category' => $this->getCategoryId(0),
+            'categoryType' => $this->getFlatCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'street' => $this->getStreetId(0),
             'houseNumber' => Flat::houseNumber,
             'flatNumber' => Flat::$currentFlatNumber
 //            'flatNumber' => $flatNumber
@@ -1731,30 +1732,30 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/flats/validate', [
-            'category' => $this->getCategories(0),
-            'categoryType' => $this->getFlatCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(23),
-            'street' => $this->getStreet(32),
+            'category' => $this->getCategoryId(0),
+            'categoryType' => $this->getFlatCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(23),
+            'street' => $this->getStreetId(32),
             'houseNumber' => Flat::houseNumber,
             'flatNumber' => Flat::uniqueFlatNumber(),
             'latitude' => Flat::latitude,
             'longitude' => Flat::longitude,
             'roomCount' => Flat::roomCount,
-            'wallMaterial' => $this->getWallMaterials(0),
+            'wallMaterial' => $this->getWallMaterialsId(0),
             'area' => Flat::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'livingArea' => Flat::livingArea,
             'kitchenArea' => Flat::kitchenArea,
             'floor' => Flat::floors,
             'floorNumber' => Flat::floorNumber,
             'buildYear' => Flat::buildYear,
-            'wc' => $this->getWC(1),
-            'balcony' => $this->getBalconies(1),
-            'heating' => $this->getHeatings(1),
-            'waterHeating' => $this->getWaterHeatings(1),
-            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(1)]
+            'wc' => $this->getWcId(1),
+            'balcony' => $this->getBalconiesId(1),
+            'heating' => $this->getHeatingsId(1),
+            'waterHeating' => $this->getWaterHeatingsId(1),
+            'nearObjects' => [$this->getNearObjectsId(0), $this->getNearObjectsId(1)]
 
         ]);
 
@@ -1798,38 +1799,38 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPUT('/realties/flats/edit/' . $realtyFlatID, [
             'status' => 1,
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(0),
-            'street' => $this->getStreet(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(0),
+            'street' => $this->getStreetId(0),
             'houseNumber' => House::uniqueHouseNumber(),
             'flatNumber' => Flat::uniqueFlatNumber(),
             'latitude' => Flat::editLatitude,
             'longitude' => Flat::editLongitude,
             'roomCount' => Flat::editRoomCount,
-            'wallMaterial' => $this->getWallMaterials(2),
+            'wallMaterial' => $this->getWallMaterialsId(2),
             'area' => Flat::editGeneralArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'livingArea' => Flat::editLivingArea,
             'kitchenArea' => Flat::editKitchenArea,
             'floor' => Flat::editFloorNumber,
             'floorNumber' => Flat::editFloors,
             'buildYear' => Flat::editBuildYear,
-            'wc' => $this->getWC(2),
-            'balcony' => $this->getBalconies(2),
-            'heating' => $this->getHeatings(2),
-            'waterHeating' => $this->getWaterHeatings(2),
+            'wc' => $this->getWcId(2),
+            'balcony' => $this->getBalconiesId(2),
+            'heating' => $this->getHeatingsId(2),
+            'waterHeating' => $this->getWaterHeatingsId(2),
             'nearObjects' => [
-                $this->getNearObjects(0),
-                $this->getNearObjects(1),
-                $this->getNearObjects(2),
-                $this->getNearObjects(3),
-                $this->getNearObjects(4),
-                $this->getNearObjects(5),
-                $this->getNearObjects(6),
-                $this->getNearObjects(7),
-                $this->getNearObjects(8),
-                $this->getNearObjects(9)
+                $this->getNearObjectsId(0),
+                $this->getNearObjectsId(1),
+                $this->getNearObjectsId(2),
+                $this->getNearObjectsId(3),
+                $this->getNearObjectsId(4),
+                $this->getNearObjectsId(5),
+                $this->getNearObjectsId(6),
+                $this->getNearObjectsId(7),
+                $this->getNearObjectsId(8),
+                $this->getNearObjectsId(9)
             ],
             'schema' => $schema
         ]);
@@ -1866,24 +1867,24 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/houses/add', [
-            'category' => $this->getCategories(1),
-            'categoryType' => $this->getHouseCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'street' => $this->getStreet(94),
+            'category' => $this->getCategoryId(1),
+            'categoryType' => $this->getHouseCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'street' => $this->getStreetId(94),
             'houseNumber' => House::uniqueHouseNumber(),
             'latitude' => House::latitude,
             'longitude' => House::longitude,
             'roomCount' => House::roomCount,
 //            'landArea' => House::landArea,
-            'landAreaUnit' => $this->getAreaUnits(0),
+            'landAreaUnit' => $this->getAreaUnitsId(0),
             'floorNumber' => House::floors,
-            'wallMaterial' => $this->getWallMaterials(10),
+            'wallMaterial' => $this->getWallMaterialsId(10),
             'area' => House::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
-            'wc' => $this->getWC(0),
-            'heating' => $this->getHeatings(0),
-            'waterHeating' => $this->getWaterHeatings(0)
+            'areaUnit' => $this->getAreaUnitsId(0),
+            'wc' => $this->getWcId(0),
+            'heating' => $this->getHeatingsId(0),
+            'waterHeating' => $this->getWaterHeatingsId(0)
         ]);
 
         $realtyHouse = $this->restModule->grabResponse();
@@ -1901,49 +1902,49 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/houses/add', [
-            'category' => $this->getCategories(1),
-            'categoryType' => $this->getHouseCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(2),
-            'street' => $this->getStreet(94),
+            'category' => $this->getCategoryId(1),
+            'categoryType' => $this->getHouseCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(2),
+            'street' => $this->getStreetId(94),
             'houseNumber' => House::uniqueHouseNumber(),
             'latitude' => House::latitude,
             'longitude' => House::longitude,
             'roomCount' => House::roomCount,
-            'wallMaterial' => $this->getWallMaterials(10),
+            'wallMaterial' => $this->getWallMaterialsId(10),
             'area' => House::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'livingArea' => House::livingArea,
             'kitchenArea' => House::kitchenArea,
             'landArea' => House::landArea,
-            'landAreaUnit' => $this->getAreaUnits(1),
+            'landAreaUnit' => $this->getAreaUnitsId(1),
             'floorNumber' => House::floors,
             'buildYear' => House::buildYear,
-            'wc' => $this->getWC(0),
-            'heating' => $this->getHeatings(1),
-            'waterHeating' => $this->getWaterHeatings(1),
+            'wc' => $this->getWcId(0),
+            'heating' => $this->getHeatingsId(1),
+            'waterHeating' => $this->getWaterHeatingsId(1),
             'communication' => [
-                $this->getCommunications(0),
-                $this->getCommunications(1),
-                $this->getCommunications(2),
-                $this->getCommunications(3),
-                $this->getCommunications(4),
-                $this->getCommunications(5),
-                $this->getCommunications(6),
-                $this->getCommunications(7)
+                $this->getCommunicationsId(0),
+                $this->getCommunicationsId(1),
+                $this->getCommunicationsId(2),
+                $this->getCommunicationsId(3),
+                $this->getCommunicationsId(4),
+                $this->getCommunicationsId(5),
+                $this->getCommunicationsId(6),
+                $this->getCommunicationsId(7)
             ],
             'nearObjects' => [
-                $this->getNearObjects(0),
-                $this->getNearObjects(1),
-                $this->getNearObjects(2),
-                $this->getNearObjects(3),
-                $this->getNearObjects(4),
-                $this->getNearObjects(5),
-                $this->getNearObjects(6),
-                $this->getNearObjects(7),
-                $this->getNearObjects(8),
-                $this->getNearObjects(9)
+                $this->getNearObjectsId(0),
+                $this->getNearObjectsId(1),
+                $this->getNearObjectsId(2),
+                $this->getNearObjectsId(3),
+                $this->getNearObjectsId(4),
+                $this->getNearObjectsId(5),
+                $this->getNearObjectsId(6),
+                $this->getNearObjectsId(7),
+                $this->getNearObjectsId(8),
+                $this->getNearObjectsId(9)
             ],
             'schema' => $schema
         ]);
@@ -2006,11 +2007,11 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/houses/check', [
-            'category' => $this->getCategories(1),
-            'categoryType' => $this->getHouseCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'street' => $this->getStreet(94),
+            'category' => $this->getCategoryId(1),
+            'categoryType' => $this->getHouseCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'street' => $this->getStreetId(94),
             'houseNumber' => House::$currentHouseNumber
         ]);
         $this->restModule->seeResponseCodeIs(200);
@@ -2024,30 +2025,30 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/houses/validate', [
-            'category' => $this->getCategories(1),
-            'categoryType' => $this->getHouseCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(2),
-            'street' => $this->getStreet(94),
+            'category' => $this->getCategoryId(1),
+            'categoryType' => $this->getHouseCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(2),
+            'street' => $this->getStreetId(94),
             'houseNumber' => House::uniqueHouseNumber(),
             'latitude' => House::latitude,
             'longitude' => House::longitude,
             'roomCount' => House::roomCount,
-            'wallMaterial' => $this->getWallMaterials(10),
+            'wallMaterial' => $this->getWallMaterialsId(10),
             'area' => House::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'livingArea' => House::livingArea,
             'kitchenArea' => House::kitchenArea,
             'landArea' => House::landArea,
-            'landAreaUnit' => $this->getAreaUnits(1),
+            'landAreaUnit' => $this->getAreaUnitsId(1),
             'floorNumber' => House::floors,
             'buildYear' => House::buildYear,
-            'wc' => $this->getWC(0),
-            'heating' => $this->getHeatings(1),
-            'waterHeating' => $this->getWaterHeatings(1),
-            'communication' => [$this->getCommunications(0), $this->getCommunications(1)],
-            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(1), $this->getNearObjects(2)]
+            'wc' => $this->getWcId(0),
+            'heating' => $this->getHeatingsId(1),
+            'waterHeating' => $this->getWaterHeatingsId(1),
+            'communication' => [$this->getCommunicationsId(0), $this->getCommunicationsId(1)],
+            'nearObjects' => [$this->getNearObjectsId(0), $this->getNearObjectsId(1), $this->getNearObjectsId(2)]
         ]);
 
         $this->restModule->seeResponseCodeIs(200);
@@ -2090,46 +2091,46 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPUT('/realties/houses/edit/' . $realtyHouseID, [
             'status' => 1,
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'street' => $this->getStreet(21),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'street' => $this->getStreetId(21),
             'houseNumber' => House::uniqueHouseNumber(),
             'latitude' => House::editLatitude,
             'longitude' => House::editLongitude,
             'area' => House::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'livingArea' => House::editLivingArea,
             'kitchenArea' => House::editKitchenArea,
             'landArea' => House::editLandArea,
-            'landAreaUnit' => $this->getAreaUnits(1),
+            'landAreaUnit' => $this->getAreaUnitsId(1),
             'roomCount' => House::editRoomCount,
-            'wallMaterial' => $this->getWallMaterials(1),
+            'wallMaterial' => $this->getWallMaterialsId(1),
             'floorNumber' => House::editFloors,
             'buildYear' => House::editBuildYear,
-            'wc' => $this->getWC(1),
-            'heating' => $this->getHeatings(1),
-            'waterHeating' => $this->getWaterHeatings(1),
+            'wc' => $this->getWcId(1),
+            'heating' => $this->getHeatingsId(1),
+            'waterHeating' => $this->getWaterHeatingsId(1),
             'communication' => [
-                $this->getCommunications(0),
-                $this->getCommunications(1),
-                $this->getCommunications(2),
-                $this->getCommunications(3),
-                $this->getCommunications(4),
-                $this->getCommunications(5),
-                $this->getCommunications(6),
-                $this->getCommunications(7)
+                $this->getCommunicationsId(0),
+                $this->getCommunicationsId(1),
+                $this->getCommunicationsId(2),
+                $this->getCommunicationsId(3),
+                $this->getCommunicationsId(4),
+                $this->getCommunicationsId(5),
+                $this->getCommunicationsId(6),
+                $this->getCommunicationsId(7)
             ],
             'nearObjects' => [
-                $this->getNearObjects(0),
-                $this->getNearObjects(1),
-                $this->getNearObjects(2),
-                $this->getNearObjects(3),
-                $this->getNearObjects(4),
-                $this->getNearObjects(5),
-                $this->getNearObjects(6),
-                $this->getNearObjects(7),
-                $this->getNearObjects(8),
-                $this->getNearObjects(9)
+                $this->getNearObjectsId(0),
+                $this->getNearObjectsId(1),
+                $this->getNearObjectsId(2),
+                $this->getNearObjectsId(3),
+                $this->getNearObjectsId(4),
+                $this->getNearObjectsId(5),
+                $this->getNearObjectsId(6),
+                $this->getNearObjectsId(7),
+                $this->getNearObjectsId(8),
+                $this->getNearObjectsId(9)
             ],
             'schema' => $schema
         ]);
@@ -2166,19 +2167,19 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/parcels/add', [
-            'category' => $this->getCategories(2),
-            'categoryType' => $this->getParcelCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-//            'district' => $this->getDistrict(7),
-//            'street' => $this->getStreet(32),
+            'category' => $this->getCategoryId(2),
+            'categoryType' => $this->getParcelCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+//            'district' => $this->getDistrictId(7),
+//            'street' => $this->getStreetId(32),
             'cadastralNumber' => Parcel::uniqueCadastralNumber(),
             'latitude' => Parcel::latitude,
             'longitude' => Parcel::longitude,
             'area' => Parcel::generalArea,
-            'areaUnit' => $this->getAreaUnits(1),
-//            'communication' => [$this->getCommunications(0), $this->getCommunications(6)],
-//            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(3)]
+            'areaUnit' => $this->getAreaUnitsId(1),
+//            'communication' => [$this->getCommunicationsId(0), $this->getCommunicationsId(6)],
+//            'nearObjects' => [$this->getNearObjectsId(0), $this->getNearObjectsId(3)]
         ]);
 
         $realtyParcel = $this->restModule->grabResponse();
@@ -2195,38 +2196,38 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/parcels/add', [
-            'category' => $this->getCategories(2),
-            'categoryType' => $this->getParcelCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(7),
-            'street' => $this->getStreet(32),
+            'category' => $this->getCategoryId(2),
+            'categoryType' => $this->getParcelCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(7),
+            'street' => $this->getStreetId(32),
             'cadastralNumber' => Parcel::uniqueCadastralNumber(),
             'latitude' => Parcel::latitude,
             'longitude' => Parcel::longitude,
             'area' => Parcel::generalArea,
-            'areaUnit' => $this->getAreaUnits(1),
+            'areaUnit' => $this->getAreaUnitsId(1),
             'communication' => [
-                $this->getCommunications(0),
-                $this->getCommunications(1),
-                $this->getCommunications(2),
-                $this->getCommunications(3),
-                $this->getCommunications(4),
-                $this->getCommunications(5),
-                $this->getCommunications(6),
-                $this->getCommunications(7)
+                $this->getCommunicationsId(0),
+                $this->getCommunicationsId(1),
+                $this->getCommunicationsId(2),
+                $this->getCommunicationsId(3),
+                $this->getCommunicationsId(4),
+                $this->getCommunicationsId(5),
+                $this->getCommunicationsId(6),
+                $this->getCommunicationsId(7)
             ],
             'nearObjects' => [
-                $this->getNearObjects(0),
-                $this->getNearObjects(1),
-                $this->getNearObjects(2),
-                $this->getNearObjects(3),
-                $this->getNearObjects(4),
-                $this->getNearObjects(5),
-                $this->getNearObjects(6),
-                $this->getNearObjects(7),
-                $this->getNearObjects(8),
-                $this->getNearObjects(9)
+                $this->getNearObjectsId(0),
+                $this->getNearObjectsId(1),
+                $this->getNearObjectsId(2),
+                $this->getNearObjectsId(3),
+                $this->getNearObjectsId(4),
+                $this->getNearObjectsId(5),
+                $this->getNearObjectsId(6),
+                $this->getNearObjectsId(7),
+                $this->getNearObjectsId(8),
+                $this->getNearObjectsId(9)
             ],
             'schema' => $schema
         ]);
@@ -2276,8 +2277,8 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/parcels/check', [
-            'category' => $this->getCategories(2),
-            'categoryType' => $this->getParcelCategoryTypes(0),
+            'category' => $this->getCategoryId(2),
+            'categoryType' => $this->getParcelCategoryTypeId(0),
 //            'cadastralNumber' => Parcel::$currentCadastralNumber
             'cadastralNumber' => $cadastrNumb
 
@@ -2294,19 +2295,19 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/parcels/validate', [
-            'category' => $this->getCategories(2),
-            'categoryType' => $this->getParcelCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(7),
-            'street' => $this->getStreet(32),
+            'category' => $this->getCategoryId(2),
+            'categoryType' => $this->getParcelCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(7),
+            'street' => $this->getStreetId(32),
             'cadastralNumber' => Parcel::uniqueCadastralNumber(),
             'latitude' => Parcel::latitude,
             'longitude' => Parcel::longitude,
             'area' => Parcel::generalArea,
-            'areaUnit' => $this->getAreaUnits(1),
-            'communication' => [$this->getCommunications(0), $this->getCommunications(1)],
-            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(1), $this->getNearObjects(2)]
+            'areaUnit' => $this->getAreaUnitsId(1),
+            'communication' => [$this->getCommunicationsId(0), $this->getCommunicationsId(1)],
+            'nearObjects' => [$this->getNearObjectsId(0), $this->getNearObjectsId(1), $this->getNearObjectsId(2)]
         ]);
         $this->restModule->seeResponseCodeIs(200);
         $this->restModule->seeResponseIsJson();
@@ -2337,36 +2338,36 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPUT('/realties/parcels/edit/' . $realtyParcelID, [
             'status' => 1,
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(7),
-            'street' => $this->getStreet(25),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(7),
+            'street' => $this->getStreetId(25),
             'cadastralNumber' => Parcel::uniqueCadastralNumber(),
             'latitude' => Parcel::editLatitude,
             'longitude' => Parcel::editLongitude,
             'area' => Parcel::editGeneralArea,
-            'areaUnit' => $this->getAreaUnits(2),
+            'areaUnit' => $this->getAreaUnitsId(2),
             'communication' => [
-                $this->getCommunications(0),
-                $this->getCommunications(1),
-                $this->getCommunications(2),
-                $this->getCommunications(3),
-                $this->getCommunications(4),
-                $this->getCommunications(5),
-                $this->getCommunications(6),
-                $this->getCommunications(7)
+                $this->getCommunicationsId(0),
+                $this->getCommunicationsId(1),
+                $this->getCommunicationsId(2),
+                $this->getCommunicationsId(3),
+                $this->getCommunicationsId(4),
+                $this->getCommunicationsId(5),
+                $this->getCommunicationsId(6),
+                $this->getCommunicationsId(7)
             ],
             'nearObjects' => [
-                $this->getNearObjects(0),
-                $this->getNearObjects(1),
-                $this->getNearObjects(2),
-                $this->getNearObjects(3),
-                $this->getNearObjects(4),
-                $this->getNearObjects(5),
-                $this->getNearObjects(6),
-                $this->getNearObjects(7),
-                $this->getNearObjects(8),
-                $this->getNearObjects(9)
+                $this->getNearObjectsId(0),
+                $this->getNearObjectsId(1),
+                $this->getNearObjectsId(2),
+                $this->getNearObjectsId(3),
+                $this->getNearObjectsId(4),
+                $this->getNearObjectsId(5),
+                $this->getNearObjectsId(6),
+                $this->getNearObjectsId(7),
+                $this->getNearObjectsId(8),
+                $this->getNearObjectsId(9)
             ],
             'schema' => $schema
         ]);
@@ -2403,25 +2404,25 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/commercials/add', [
-            'category' => $this->getCategories(3),
-            'categoryType' => $this->getCommercialCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(7),
-            'street' => $this->getStreet(97),
+            'category' => $this->getCategoryId(3),
+            'categoryType' => $this->getCommercialCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(7),
+            'street' => $this->getStreetId(97),
             'houseNumber' => Commercial::uniqueCommercialNumber(),
             'latitude' => Commercial::latitude,
             'longitude' => Commercial::longitude,
             'area' => Commercial::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'effectiveArea' => Commercial::effectiveArea,
-            'wallMaterial' => $this->getWallMaterials(0),
+            'wallMaterial' => $this->getWallMaterialsId(0),
             'roomCount' => Commercial::roomCount,
             'floor' => Commercial::floors,
             'floorNumber' => Commercial::floorNumber,
-            'wc' => $this->getWC(0),
-            'heating' => $this->getHeatings(0),
-            'waterHeating' => $this->getWaterHeatings(0),
+            'wc' => $this->getWcId(0),
+            'heating' => $this->getHeatingsId(0),
+            'waterHeating' => $this->getWaterHeatingsId(0),
         ]);
 
         $realtyCommercial = $this->restModule->grabResponse();
@@ -2438,35 +2439,35 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/commercials/add', [
-            'category' => $this->getCategories(3),
-            'categoryType' => $this->getCommercialCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(7),
-            'street' => $this->getStreet(39),
+            'category' => $this->getCategoryId(3),
+            'categoryType' => $this->getCommercialCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(7),
+            'street' => $this->getStreetId(39),
             'houseNumber' => Commercial::uniqueCommercialNumber(),
             'latitude' => Commercial::latitude,
             'longitude' => Commercial::longitude,
             'area' => Commercial::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'effectiveArea' => Commercial::effectiveArea,
-            'wallMaterial' => $this->getWallMaterials(0),
+            'wallMaterial' => $this->getWallMaterialsId(0),
             'roomCount' => Commercial::roomCount,
             'floor' => Commercial::floorNumber,
             'floorNumber' => Commercial::floors,
             'buildYear' => Commercial::buildYear,
-            'wc' => $this->getWC(2),
-            'heating' => $this->getHeatings(2),
-            'waterHeating' => $this->getWaterHeatings(2),
+            'wc' => $this->getWcId(2),
+            'heating' => $this->getHeatingsId(2),
+            'waterHeating' => $this->getWaterHeatingsId(2),
             'communication' => [
-                $this->getCommunications(0),
-                $this->getCommunications(1),
-                $this->getCommunications(2),
-                $this->getCommunications(3),
-                $this->getCommunications(4),
-                $this->getCommunications(5),
-                $this->getCommunications(6),
-                $this->getCommunications(7)
+                $this->getCommunicationsId(0),
+                $this->getCommunicationsId(1),
+                $this->getCommunicationsId(2),
+                $this->getCommunicationsId(3),
+                $this->getCommunicationsId(4),
+                $this->getCommunicationsId(5),
+                $this->getCommunicationsId(6),
+                $this->getCommunicationsId(7)
             ],
             'schema' => $schema
         ]);
@@ -2524,26 +2525,26 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/garages/add', [
-            'category' => $this->getCategories(4),
-            'categoryType' => $this->getGaragesCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'street' => $this->getStreet(201),
+            'category' => $this->getCategoryId(4),
+            'categoryType' => $this->getGaragesCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'street' => $this->getStreetId(201),
             'houseNumber' => Garage::houseNumber,
             'garageNumber' => Flat::uniqueFlatNumber(),
             'latitude' => Garage::latitude,
             'longitude' => Garage::longitude,
             'roomCount' => Garage::roomCount,
-            'wallMaterial' => $this->getWallMaterials(0),
+            'wallMaterial' => $this->getWallMaterialsId(0),
             'area' => Garage::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'floor' => Garage::floor,
             'floorNumber' => Garage::floorNumber,
-            'heating' => $this->getHeatings(0),
+            'heating' => $this->getHeatingsId(0),
 
 //            'inspectionPit'=>Garage::inspectionPit0,
 
-//            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(1), $this->getNearObjects(5)],
+//            'nearObjects' => [$this->getNearObjectsId(0), $this->getNearObjectsId(1), $this->getNearObjectsId(5)],
 //            'schema' => $schema
         ]);
 
@@ -2563,48 +2564,48 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/garages/add', [
-            'category' => $this->getCategories(4),
-            'categoryType' => $this->getGaragesCategoryTypes(1),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(16),
-            'street' => $this->getStreet(201),
+            'category' => $this->getCategoryId(4),
+            'categoryType' => $this->getGaragesCategoryTypeId(1),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(16),
+            'street' => $this->getStreetId(201),
             'houseNumber' => Garage::houseNumber,
             'garageNumber' => Flat::uniqueFlatNumber(),
             'latitude' => Garage::latitude,
             'longitude' => Garage::longitude,
             'roomCount' => Garage::roomCount,
-            'wallMaterial' => $this->getWallMaterials(0),
+            'wallMaterial' => $this->getWallMaterialsId(0),
             'area' => Garage::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'floor' => Garage::floor,
             'floorNumber' => Garage::floorNumber,
-            'inspectionPit'=> $this->getInspectionPit(0),
-            'parkingPlace' => $this->getParkingPlace(0),
-            'transportType' =>$this->getTransportType(0),
+            'inspectionPit'=> $this->getInspectionPitId(0),
+            'parkingPlace' => $this->getParkingPlaceId(0),
+            'transportType' =>$this->getTransportTypeId(0),
             'buildYear' => Garage::buildYear,
-            'heating' => $this->getHeatings(1),
+            'heating' => $this->getHeatingsId(1),
             'communication' => [
-                $this->getCommunications(0),
-                $this->getCommunications(1),
-                $this->getCommunications(2),
-                $this->getCommunications(3),
-                $this->getCommunications(4),
-                $this->getCommunications(5),
-                $this->getCommunications(6),
-                $this->getCommunications(7)
+                $this->getCommunicationsId(0),
+                $this->getCommunicationsId(1),
+                $this->getCommunicationsId(2),
+                $this->getCommunicationsId(3),
+                $this->getCommunicationsId(4),
+                $this->getCommunicationsId(5),
+                $this->getCommunicationsId(6),
+                $this->getCommunicationsId(7)
             ],
             'nearObjects' => [
-                $this->getNearObjects(0),
-                $this->getNearObjects(1),
-                $this->getNearObjects(2),
-                $this->getNearObjects(3),
-                $this->getNearObjects(4),
-                $this->getNearObjects(5),
-                $this->getNearObjects(6),
-                $this->getNearObjects(7),
-                $this->getNearObjects(8),
-                $this->getNearObjects(9)
+                $this->getNearObjectsId(0),
+                $this->getNearObjectsId(1),
+                $this->getNearObjectsId(2),
+                $this->getNearObjectsId(3),
+                $this->getNearObjectsId(4),
+                $this->getNearObjectsId(5),
+                $this->getNearObjectsId(6),
+                $this->getNearObjectsId(7),
+                $this->getNearObjectsId(8),
+                $this->getNearObjectsId(9)
             ],
             'schema' => $schema
         ]);
@@ -2666,11 +2667,11 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/garages/check', [
-            'category' => $this->getCategories(4),
-            'categoryType' => $this->getGaragesCategoryTypes(1),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'street' => $this->getStreet(201),
+            'category' => $this->getCategoryId(4),
+            'categoryType' => $this->getGaragesCategoryTypeId(1),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'street' => $this->getStreetId(201),
             'houseNumber' => Garage::houseNumber,
 //            'garageNumber' => Flat::$currentFlatNumber
             'garageNumber' => $flatNumber
@@ -2689,33 +2690,33 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/garages/validate', [
-            'category' => $this->getCategories(4),
-            'categoryType' => $this->getGaragesCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(16),
-            'street' => $this->getStreet(201),
+            'category' => $this->getCategoryId(4),
+            'categoryType' => $this->getGaragesCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(16),
+            'street' => $this->getStreetId(201),
             'houseNumber' => Garage::houseNumber,
             'garageNumber' => Flat::uniqueFlatNumber(),
             'latitude' => Garage::latitude,
             'longitude' => Garage::longitude,
             'roomCount' => Garage::roomCount,
-            'wallMaterial' => $this->getWallMaterials(0),
+            'wallMaterial' => $this->getWallMaterialsId(0),
             'area' => Garage::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'floor' => Garage::floor,
             'floorNumber' => Garage::floorNumber,
             'buildYear' => Garage::buildYear,
-            'heating' => $this->getHeatings(1),
-            'inspectionPit'=> $this->getInspectionPit(0),
-            'parkingPlace' => $this->getParkingPlace(0),
-            'transportType' =>$this->getTransportType(0),
+            'heating' => $this->getHeatingsId(1),
+            'inspectionPit'=> $this->getInspectionPitId(0),
+            'parkingPlace' => $this->getParkingPlaceId(0),
+            'transportType' =>$this->getTransportTypeId(0),
             'communication' => [
-                $this->getCommunications(0),
-                $this->getCommunications(1),
+                $this->getCommunicationsId(0),
+                $this->getCommunicationsId(1),
 
             ],
-            'nearObjects' => [$this->getNearObjects(0), $this->getNearObjects(1)]
+            'nearObjects' => [$this->getNearObjectsId(0), $this->getNearObjectsId(1)]
 
         ]);
 
@@ -2758,46 +2759,46 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPUT('/realties/garages/edit/' . $realtyGarageID, [
             'status' => 1,
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(0),
-            'street' => $this->getStreet(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(0),
+            'street' => $this->getStreetId(0),
             'houseNumber' => House::uniqueHouseNumber(),
             'garageNumber' => Flat::uniqueFlatNumber(),
             'latitude' => Garage::editLatitude,
             'longitude' => Garage::editLongitude,
             'roomCount' => Garage::editRoomCount,
-            'wallMaterial' => $this->getWallMaterials(2),
+            'wallMaterial' => $this->getWallMaterialsId(2),
             'area' => Garage::editGeneralArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'floor' => Garage::editFloor,
             'floorNumber' => Garage::editFloorNumber,
             'buildYear' => Garage::editBuildYear,
-            'heating' => $this->getHeatings(2),
-            'inspectionPit'=> $this->getInspectionPit(1),
-            'parkingPlace' => $this->getParkingPlace(1),
-            'transportType' =>$this->getTransportType(1),
+            'heating' => $this->getHeatingsId(2),
+            'inspectionPit'=> $this->getInspectionPitId(1),
+            'parkingPlace' => $this->getParkingPlaceId(1),
+            'transportType' =>$this->getTransportTypeId(1),
             'communication' => [
-                $this->getCommunications(0),
-                $this->getCommunications(1),
-                $this->getCommunications(2),
-                $this->getCommunications(3),
-                $this->getCommunications(4),
-                $this->getCommunications(5),
-                $this->getCommunications(6),
-                $this->getCommunications(7)
+                $this->getCommunicationsId(0),
+                $this->getCommunicationsId(1),
+                $this->getCommunicationsId(2),
+                $this->getCommunicationsId(3),
+                $this->getCommunicationsId(4),
+                $this->getCommunicationsId(5),
+                $this->getCommunicationsId(6),
+                $this->getCommunicationsId(7)
             ],
             'nearObjects' => [
-                $this->getNearObjects(0),
-                $this->getNearObjects(1),
-                $this->getNearObjects(2),
-                $this->getNearObjects(3),
-                $this->getNearObjects(4),
-                $this->getNearObjects(5),
-                $this->getNearObjects(6),
-                $this->getNearObjects(7),
-                $this->getNearObjects(8),
-                $this->getNearObjects(9)
+                $this->getNearObjectsId(0),
+                $this->getNearObjectsId(1),
+                $this->getNearObjectsId(2),
+                $this->getNearObjectsId(3),
+                $this->getNearObjectsId(4),
+                $this->getNearObjectsId(5),
+                $this->getNearObjectsId(6),
+                $this->getNearObjectsId(7),
+                $this->getNearObjectsId(8),
+                $this->getNearObjectsId(9)
             ],
             'schema' => $schema
         ]);
@@ -2832,97 +2833,97 @@ class Api extends \Codeception\Module
     {
         $agencyID = json_decode(file_get_contents(codecept_data_dir() . 'agency_data.json'))->id;
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&userIds[0]='.$agencyID.'&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&userIds[0]='.$agencyID.'&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->seeResponseCodeIs(200);
         $this->restModule->seeResponseContainsJson(array('id' => User::getFlatId()));
         $search = $this->restModule->grabResponse();
         $this->debugSection('realtyFlatId', $search);
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(22).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(22).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(5).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(5).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(8).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(8).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(35).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(35).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(1).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(1).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSell.'&priceTo='.Flat::priceFlatSell.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSell.'&priceTo='.Flat::priceFlatSell.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(1).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(1).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::editBuildYear.'&buildYearTo='.Flat::editBuildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::editBuildYear.'&buildYearTo='.Flat::editBuildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::editBeds.'&bedsCountTo='.Flat::editBeds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::editBeds.'&bedsCountTo='.Flat::editBeds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(1).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(1).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(1).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(1).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(2).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(2).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::editGeneralArea.'&areaTo='.Flat::editGeneralArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::editGeneralArea.'&areaTo='.Flat::editGeneralArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::editLivingArea.'&livingAreaTo='.Flat::editLivingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::editLivingArea.'&livingAreaTo='.Flat::editLivingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::editKitchenArea.'&kitchenAreaTo='.Flat::editKitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::editKitchenArea.'&kitchenAreaTo='.Flat::editKitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::editRoomCount.'&roomCountTo='.Flat::editRoomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::editRoomCount.'&roomCountTo='.Flat::editRoomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::editFloorNumber.'&floorTo='.Flat::editFloorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::editFloorNumber.'&floorTo='.Flat::editFloorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::editFloors.'&floorNumberFrom='.Flat::editFloors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::editFloors.'&floorNumberFrom='.Flat::editFloors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(1).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(1).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(1).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(1).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(1).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(1).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(34).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketType(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&balcony='.$this->getBalconies(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getFlatAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(1));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(34).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Flat::priceFlatSearch.'&priceTo='.Flat::priceFlatSearch.'&auction=true&marketType='.$this->getMarketTypeId(0).'&buildYearFrom='.Flat::buildYear.'&buildYearTo='.Flat::buildYear.'&bedsCountFrom='.Flat::beds.'&bedsCountTo='.Flat::beds.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&balcony='.$this->getBalconiesId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.Flat::generalArea.'&areaTo='.Flat::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.Flat::livingArea.'&livingAreaTo='.Flat::livingArea.'&kitchenAreaFrom='.Flat::kitchenArea.'&kitchenAreaTo='.Flat::kitchenArea.'&roomCountFrom='.Flat::roomCount.'&roomCountTo='.Flat::roomCount.'&floorFrom='.Flat::floorNumber.'&floorTo='.Flat::floorNumber.'&floorNumberTo='.Flat::floors.'&floorNumberFrom='.Flat::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getFlatAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(1));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getFlatId()));
 
     }
@@ -2931,84 +2932,84 @@ class Api extends \Codeception\Module
     {
         $agencyID = json_decode(file_get_contents(codecept_data_dir() . 'agency_data.json'))->id;
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->seeResponseCodeIs(200);
         $this->restModule->seeResponseContainsJson(array('id' => User::getHouseId()));
         $searchHouse = $this->restModule->grabResponse();
         $this->debugSection('Search', $searchHouse);
 
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(22).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(22).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(5).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(5).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(4).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(4).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(53).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(53).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(2).'&categoryType='.$this->getParcelCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(2).'&categoryType='.$this->getParcelCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(1).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(1).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.House::editPriceHouseRent.'&priceTo='.House::editPriceHouseRent.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.House::editPriceHouseRent.'&priceTo='.House::editPriceHouseRent.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(0).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(0).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::editBuildYear.'&buildYearTo='.House::editBuildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::editBuildYear.'&buildYearTo='.House::editBuildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(9).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(9).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(1).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(1).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::editGeneralArea.'&areaTo='.House::editGeneralArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::editGeneralArea.'&areaTo='.House::editGeneralArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&livingAreaFrom='.House::editLivingArea.'&livingAreaTo='.House::editLivingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&livingAreaFrom='.House::editLivingArea.'&livingAreaTo='.House::editLivingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::editKitchenArea.'&kitchenAreaTo='.House::editKitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::editKitchenArea.'&kitchenAreaTo='.House::editKitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::editRoomCount.'&roomCountTo='.House::editRoomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::editRoomCount.'&roomCountTo='.House::editRoomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->seeResponseContainsJson(array('total' => 0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::editFloors.'&floorNumberFrom='.House::editFloors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::editFloors.'&floorNumberFrom='.House::editFloors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(1).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(1).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(1).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(1).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(1).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(1).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(3).'&street='.$this->getStreet(52).'&category='.$this->getCategories(1).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriod(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterials(10).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(0).'&heating='.$this->getHeatings(1).'&waterHeating='.$this->getWaterHeatings(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnitures(0).'&appliances[0]='.$this->getAppliances(0).'&additionally[0]='.$this->getHouseAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(1));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(3).'&street='.$this->getStreetId(52).'&category='.$this->getCategoryId(1).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.House::priceHouseSearch.'&priceTo='.House::priceHouseSearch.'&period='.$this->getPeriodId(1).'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.House::buildYear.'&buildYearTo='.House::buildYear.'&wallMaterial='.$this->getWallMaterialsId(10).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(0).'&heating='.$this->getHeatingsId(1).'&waterHeating='.$this->getWaterHeatingsId(1).'&areaFrom='.House::generalArea.'&areaTo='.House::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&livingAreaFrom='.House::livingArea.'&livingAreaTo='.House::livingArea.'&kitchenAreaFrom='.House::kitchenArea.'&kitchenAreaTo='.House::kitchenArea.'&roomCountFrom='.House::roomCount.'&roomCountTo='.House::roomCount.'&floorNumberTo='.House::floors.'&floorNumberFrom='.House::floors.'&furniture[0]='.$this->getFurnituresId(0).'&appliances[0]='.$this->getAppliancesId(0).'&additionally[0]='.$this->getHouseAdditionalsId(0).'&nearObjects[0]='.$this->getNearObjectsId(1));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getHouseId()));
 
     }
@@ -3017,52 +3018,52 @@ class Api extends \Codeception\Module
     {
         $agencyID = json_decode(file_get_contents(codecept_data_dir() . 'agency_data.json'))->id;
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(32).'&category='.$this->getCategories(2).'&categoryType='.$this->getParcelCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getParcelAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(32).'&category='.$this->getCategoryId(2).'&categoryType='.$this->getParcelCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getParcelAdditionalsID(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->seeResponseCodeIs(200);
         $this->restModule->seeResponseContainsJson(array('id' => User::getParcelId()));
         $searchParcel = $this->restModule->grabResponse();
         $this->debugSection('Search', $searchParcel);
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(32).'&category='.$this->getCategories(2).'&categoryType='.$this->getParcelCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getParcelAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(32).'&category='.$this->getCategoryId(2).'&categoryType='.$this->getParcelCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getParcelAdditionalsID(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getParcelId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(22).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(32).'&category='.$this->getCategories(2).'&categoryType='.$this->getParcelCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getParcelAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(22).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(32).'&category='.$this->getCategoryId(2).'&categoryType='.$this->getParcelCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getParcelAdditionalsID(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getParcelId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(5).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(32).'&category='.$this->getCategories(2).'&categoryType='.$this->getParcelCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getParcelAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(5).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(32).'&category='.$this->getCategoryId(2).'&categoryType='.$this->getParcelCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getParcelAdditionalsID(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getParcelId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(4).'&street='.$this->getStreet(32).'&category='.$this->getCategories(2).'&categoryType='.$this->getParcelCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getParcelAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(4).'&street='.$this->getStreetId(32).'&category='.$this->getCategoryId(2).'&categoryType='.$this->getParcelCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getParcelAdditionalsID(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getParcelId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(37).'&category='.$this->getCategories(2).'&categoryType='.$this->getParcelCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getParcelAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(37).'&category='.$this->getCategoryId(2).'&categoryType='.$this->getParcelCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getParcelAdditionalsID(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getParcelId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(32).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getParcelAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(32).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getParcelAdditionalsID(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getParcelId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(32).'&category='.$this->getCategories(2).'&categoryType='.$this->getParcelCategoryTypes(1).'&currency='.$this->getCurrency(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getParcelAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(32).'&category='.$this->getCategoryId(2).'&categoryType='.$this->getParcelCategoryTypeId(1).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getParcelAdditionalsID(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getParcelId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(32).'&category='.$this->getCategories(2).'&categoryType='.$this->getParcelCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Parcel::editPriceParcelSell.'&priceTo='.Parcel::editPriceParcelSell.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getParcelAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(32).'&category='.$this->getCategoryId(2).'&categoryType='.$this->getParcelCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Parcel::editPriceParcelSell.'&priceTo='.Parcel::editPriceParcelSell.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getParcelAdditionalsID(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getParcelId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(32).'&category='.$this->getCategories(2).'&categoryType='.$this->getParcelCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]=56681324d69b5a3e1c8b456c&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getParcelAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(32).'&category='.$this->getCategoryId(2).'&categoryType='.$this->getParcelCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]=56681324d69b5a3e1c8b456c&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getParcelAdditionalsID(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getParcelId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(32).'&category='.$this->getCategories(2).'&categoryType='.$this->getParcelCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::editGeneralArea.'&areaTo='.Parcel::editGeneralArea.'&areaUnit='.$this->getAreaUnits(1).'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getParcelAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(32).'&category='.$this->getCategoryId(2).'&categoryType='.$this->getParcelCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::editGeneralArea.'&areaTo='.Parcel::editGeneralArea.'&areaUnit='.$this->getAreaUnitsId(1).'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getParcelAdditionalsID(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getParcelId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(32).'&category='.$this->getCategories(2).'&categoryType='.$this->getParcelCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getParcelAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(32).'&category='.$this->getCategoryId(2).'&categoryType='.$this->getParcelCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getParcelAdditionalsID(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getParcelId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(32).'&category='.$this->getCategories(2).'&categoryType='.$this->getParcelCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&communication[0]='.$this->getCommunications(1).'&additionally[0]='.$this->getParcelAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(32).'&category='.$this->getCategoryId(2).'&categoryType='.$this->getParcelCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&communication[0]='.$this->getCommunicationsId(1).'&additionally[0]='.$this->getParcelAdditionalsID(0).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getParcelId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(32).'&category='.$this->getCategories(2).'&categoryType='.$this->getParcelCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getParcelAdditionals(1).'&nearObjects[0]='.$this->getNearObjects(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(32).'&category='.$this->getCategoryId(2).'&categoryType='.$this->getParcelCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getParcelAdditionalsID(1).'&nearObjects[0]='.$this->getNearObjectsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getParcelId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(32).'&category='.$this->getCategories(2).'&categoryType='.$this->getParcelCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getParcelAdditionals(0).'&nearObjects[0]='.$this->getNearObjects(1));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(32).'&category='.$this->getCategoryId(2).'&categoryType='.$this->getParcelCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Parcel::priceParcelSearch.'&priceTo='.Parcel::priceParcelSearch.'&auction=true&userIds[0]='.$agencyID.'&areaFrom='.Parcel::generalArea.'&areaTo='.Parcel::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getParcelAdditionalsID(0).'&nearObjects[0]='.$this->getNearObjectsId(1));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getParcelId()));
 
 
@@ -3075,82 +3076,82 @@ class Api extends \Codeception\Module
     {
         $agencyID = json_decode(file_get_contents(codecept_data_dir() . 'agency_data.json'))->id;
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->seeResponseCodeIs(200);
         $this->restModule->seeResponseContainsJson(array('id' => User::getCommercialId()));
         $search = $this->restModule->grabResponse();
         $this->debugSection('Commercial', $search);
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(22).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(22).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(5).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(5).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(8).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(8).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(45).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(45).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(2).'&categoryType='.$this->getHouseCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(2).'&categoryType='.$this->getHouseCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(2).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(2).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSell.'&priceTo='.Commercial::priceCommercialSell.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSell.'&priceTo='.Commercial::priceCommercialSell.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(1).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(1).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]=56681324d69b5a3e1c8b456c&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]=56681324d69b5a3e1c8b456c&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::editBuildYear.'&buildYearTo='.Commercial::editBuildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::editBuildYear.'&buildYearTo='.Commercial::editBuildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(1).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(1).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(1).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(1).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(1).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(1).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(3).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(3).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(3).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(3).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::editGeneralArea.'&areaTo='.Commercial::editGeneralArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::editGeneralArea.'&areaTo='.Commercial::editGeneralArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::editRoomCount.'&roomCountTo='.Commercial::editRoomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::editRoomCount.'&roomCountTo='.Commercial::editRoomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::editFloorNumber.'&floorTo='.Commercial::editFloorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::editFloorNumber.'&floorTo='.Commercial::editFloorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::editFloor.'&floorNumberFrom='.Commercial::editFloor.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::editFloor.'&floorNumberFrom='.Commercial::editFloor.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(1).'&additionally[0]='.$this->getCommercialAdditionals(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(1).'&additionally[0]='.$this->getCommercialAdditionalsId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(7).'&street='.$this->getStreet(49).'&category='.$this->getCategories(3).'&categoryType='.$this->getCommercialCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriod(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&repair='.$this->getRepairs(0).'&wc='.$this->getWC(2).'&heating='.$this->getHeatings(2).'&waterHeating='.$this->getWaterHeatings(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunications(0).'&additionally[0]='.$this->getCommercialAdditionals(1));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(7).'&street='.$this->getStreetId(49).'&category='.$this->getCategoryId(3).'&categoryType='.$this->getCommercialCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Commercial::priceCommercialSearch.'&priceTo='.Commercial::priceCommercialSearch.'&auction=true&period='.$this->getPeriodId(0).'&userIds[0]='.$agencyID.'&buildYearFrom='.Commercial::buildYear.'&buildYearTo='.Commercial::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&repair='.$this->getRepairsId(0).'&wc='.$this->getWcId(2).'&heating='.$this->getHeatingsId(2).'&waterHeating='.$this->getWaterHeatingsId(2).'&areaFrom='.Commercial::generalArea.'&areaTo='.Commercial::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Commercial::roomCount.'&roomCountTo='.Commercial::roomCount.'&floorFrom='.Commercial::floorNumber.'&floorTo='.Commercial::floorNumber.'&floorNumberTo='.Commercial::floors.'&floorNumberFrom='.Commercial::floors.'&communication[0]='.$this->getCommunicationsId(0).'&additionally[0]='.$this->getCommercialAdditionalsId(1));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getCommercialId()));
 
 
@@ -3161,76 +3162,76 @@ class Api extends \Codeception\Module
     {
         $agencyID = json_decode(file_get_contents(codecept_data_dir() . 'agency_data.json'))->id;
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->seeResponseCodeIs(200);
         $this->restModule->seeResponseContainsJson(array('id' => User::getGarageId()));
         $search = $this->restModule->grabResponse();
         $this->debugSection('realtyGarageId', $search);
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(1).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(1).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(22).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(22).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(5).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(5).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(17).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(17).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(202).'&category='.$this->getCategories(0).'&categoryType='.$this->getFlatCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(202).'&category='.$this->getCategoryId(0).'&categoryType='.$this->getFlatCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(1).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(1).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(1).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(1).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSell.'&priceTo='.Garage::priceGarageSell.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSell.'&priceTo='.Garage::priceGarageSell.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::editBuildYear.'&buildYearTo='.Garage::editBuildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::editBuildYear.'&buildYearTo='.Garage::editBuildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(1).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(1).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(1).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(1).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::editGeneralArea.'&areaTo='.Garage::editGeneralArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::editGeneralArea.'&areaTo='.Garage::editGeneralArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(1).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(1).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::editRoomCount.'&roomCountTo='.Garage::editRoomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::editRoomCount.'&roomCountTo='.Garage::editRoomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::editFloor.'&floorTo='.Garage::editFloor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::editFloor.'&floorTo='.Garage::editFloor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::editFloorNumber.'&floorNumberFrom='.Garage::editFloorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::editFloorNumber.'&floorNumberFrom='.Garage::editFloorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(1).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(1).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(1).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(1).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(1).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(1).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(1).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(1).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(1).'&transportType='.$this->getTransportType(0));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(1).'&transportType='.$this->getTransportTypeId(0));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
-        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationType(0).'&region='.$this->getRegion(21).'&city='.$this->getCity(6).'&district='.$this->getDistrict(16).'&street='.$this->getStreet(201).'&category='.$this->getCategories(4).'&categoryType='.$this->getGaragesCategoryTypes(0).'&currency='.$this->getCurrency(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterials(0).'&heating='.$this->getHeatings(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnits(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionals(0).'&communication[0]='.$this->getCommunications(0).'&nearObjects[0]='.$this->getNearObjects(0).'&inspectionPit='.$this->getInspectionPit(0).'&parkingPlace='.$this->getParkingPlace(0).'&transportType='.$this->getTransportType(1));
+        $this->restModule->sendGET('/search/1/24/date?operationType='.$this->getOperationTypeId(0).'&region='.$this->getRegionId(21).'&city='.$this->getCityId(6).'&district='.$this->getDistrictId(16).'&street='.$this->getStreetId(201).'&category='.$this->getCategoryId(4).'&categoryType='.$this->getGaragesCategoryTypeId(0).'&currency='.$this->getCurrencyId(0).'&priceFrom='.Garage::priceGarageSearch.'&priceTo='.Garage::priceGarageSearch.'&auction=true&userIds[0]='.$agencyID.'&buildYearFrom='.Garage::buildYear.'&buildYearTo='.Garage::buildYear.'&wallMaterial='.$this->getWallMaterialsId(0).'&heating='.$this->getHeatingsId(0).'&areaFrom='.Garage::generalArea.'&areaTo='.Garage::generalArea.'&areaUnit='.$this->getAreaUnitsId(0).'&roomCountFrom='.Garage::roomCount.'&roomCountTo='.Garage::roomCount.'&floorFrom='.Garage::floor.'&floorTo='.Garage::floor.'&floorNumberTo='.Garage::floorNumber.'&floorNumberFrom='.Garage::floorNumber.'&additionally[0]='.$this->getGarageAdditionalsId(0).'&communication[0]='.$this->getCommunicationsId(0).'&nearObjects[0]='.$this->getNearObjectsId(0).'&inspectionPit='.$this->getInspectionPitId(0).'&parkingPlace='.$this->getParkingPlaceId(0).'&transportType='.$this->getTransportTypeId(1));
         $this->restModule->dontSeeResponseContainsJson(array('id' => User::getGarageId()));
 
     }
@@ -3244,32 +3245,34 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/profiles/searches/create', [
            'name' => 'TestFlat',
             'searchCriteria' => [
-                'operationType'=> $this->getOperationType(0),
-                'region' => $this->getRegion(21),
-                'city' => $this->getCity(6),
-                'district' => $this->getDistrict(7),
-                'street' => $this->getStreet(34),
-                'category' => $this->getCategories(0),
-                'categoryType' => $this->getFlatCategoryTypes(0),
-                'currency' => $this->getCurrency(0),
+                'operationType'=> $this->getOperationTypeId(0),
+                'region' => $this->getRegionId(21),
+                'city' => $this->getCityId(6),
+                'district' => $this->getDistrictId(7),
+                'street' => $this->getStreetId(34),
+                'coordinatesLatitude' => [Flat::latitude, Flat::searchLatitude, House::latitude],
+                'coordinatesLongitude' => [Flat::longitude, Flat::searchLongitude, House::longitude],
+                'category' => $this->getCategoryId(0),
+                'categoryType' => $this->getFlatCategoryTypeId(0),
+                'currency' => $this->getCurrencyId(0),
                 'priceFrom' => Flat::priceFlatSell,
                 'priceTo' => Flat::priceFlatSearch,
                 'auction' => true,
                 'userIds'=> [$agencyID],
-                'marketType'=> $this->getMarketType(0),
+                'marketType'=> $this->getMarketTypeId(0),
                 'buildYearFrom' => Flat::buildYear,
                 'buildYearTo' => Flat::buildYear,
                 'bedsCountFrom' => Flat::beds,
                 'bedsCountTo' => Flat::beds,
-                'wallMaterial' => $this->getWallMaterials(0),
-                'repair' => $this->getRepairs(0),
-                'wc' => $this->getWC(1),
-                'balcony' => $this->getBalconies(1),
-                'heating' => $this->getHeatings(1),
-                'waterHeating' => $this->getWaterHeatings(1),
+                'wallMaterial' => $this->getWallMaterialsId(0),
+                'repair' => $this->getRepairsId(0),
+                'wc' => $this->getWcId(1),
+                'balcony' => $this->getBalconiesId(1),
+                'heating' => $this->getHeatingsId(1),
+                'waterHeating' => $this->getWaterHeatingsId(1),
                 'areaFrom' => Flat::generalArea,
                 'areaTo' => Flat::generalArea,
-                'areaUnit' => $this->getAreaUnits(0),
+                'areaUnit' => $this->getAreaUnitsId(0),
                 'livingAreaFrom' => Flat::livingArea,
                 'livingAreaTo' => Flat::livingArea,
                 'kitchenAreaFrom' => Flat::kitchenArea,
@@ -3280,10 +3283,10 @@ class Api extends \Codeception\Module
                 'floorTo' => Flat::floorNumber,
                 'floorNumberTo' => Flat::floors,
                 'floorNumberFrom' => Flat::floors,
-                'furniture' => [$this->getFurnitures(0)],
-                'appliances' => [$this->getAppliances(0)],
-                'additionally' => [$this->getFlatAdditionals(0)],
-                'nearObjects' => [$this->getNearObjects(0)],
+                'furniture' => [$this->getFurnituresId(0)],
+                'appliances' => [$this->getAppliancesId(0)],
+                'additionally' => [$this->getFlatAdditionalsId(0)],
+                'nearObjects' => [$this->getNearObjectsId(0)],
             ]
         ]);
         $saveSearchFlat = $this->restModule->grabResponse();
@@ -3300,10 +3303,10 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/profiles/searches/create', [
             'name' => 'TestFlatPlain',
             'searchCriteria' => [
-                'operationType'=> $this->getOperationType(0),
-                'region' => $this->getRegion(21),
-                'category' => $this->getCategories(0),
-                'categoryType' => $this->getFlatCategoryTypes(0),
+                'operationType'=> $this->getOperationTypeId(0),
+                'region' => $this->getRegionId(21),
+                'category' => $this->getCategoryId(0),
+                'categoryType' => $this->getFlatCategoryTypeId(0),
             ]
         ]);
         $saveSearchFlat = $this->restModule->grabResponse();
@@ -3321,29 +3324,29 @@ class Api extends \Codeception\Module
             $this->restModule->sendPOST('/profiles/searches/create', [
                 'name' => 'TestHouse',
                 'searchCriteria' => [
-                    'operationType' => $this->getOperationType(1),
-                    'region' => $this->getRegion(21),
-                    'city' => $this->getCity(6),
-                    'district' => $this->getDistrict(3),
-                    'street' => $this->getStreet(52),
-                    'category' => $this->getCategories(1),
-                    'categoryType' => $this->getHouseCategoryTypes(0),
-                    'currency' => $this->getCurrency(1),
+                    'operationType' => $this->getOperationTypeId(1),
+                    'region' => $this->getRegionId(21),
+                    'city' => $this->getCityId(6),
+                    'district' => $this->getDistrictId(3),
+                    'street' => $this->getStreetId(52),
+                    'category' => $this->getCategoryId(1),
+                    'categoryType' => $this->getHouseCategoryTypeId(0),
+                    'currency' => $this->getCurrencyId(1),
                     'priceFrom' => House::priceHouseSearch,
                     'priceTo' => House::priceHouseSearch,
-                    'period' => $this->getPeriod(1),
+                    'period' => $this->getPeriodId(1),
                     'auction' =>true,
                     'userIds' => [$agencyID],
                     'buildYearFrom' => House::buildYear,
                     'buildYearTo' => House::buildYear,
-                    'wallMaterial' => $this->getWallMaterials(10),
-                    'repair' => $this->getRepairs(0),
-                    'wc' => $this->getWC(0),
-                    'heating' => $this->getHeatings(1),
-                    'waterHeating' => $this->getWaterHeatings(1),
+                    'wallMaterial' => $this->getWallMaterialsId(10),
+                    'repair' => $this->getRepairsId(0),
+                    'wc' => $this->getWcId(0),
+                    'heating' => $this->getHeatingsId(1),
+                    'waterHeating' => $this->getWaterHeatingsId(1),
                     'areaFrom' => House::generalArea,
                     'areaTo' => House::generalArea,
-                    'areaUnit' => $this->getAreaUnits(0),
+                    'areaUnit' => $this->getAreaUnitsId(0),
                     'livingAreaFrom' => House::livingArea,
                     'livingAreaTo' => House::livingArea,
                     'kitchenAreaFrom' => House::kitchenArea,
@@ -3352,10 +3355,10 @@ class Api extends \Codeception\Module
                     'roomCountTo' => House::roomCount,
                     'floorNumberTo' => House::floors,
                     'floorNumberFrom' => House::floors,
-                    'furniture' => [$this->getFurnitures(0)],
-                    'appliances' => [$this->getAppliances(0)],
-                    'additionally' => [$this->getHouseAdditionals(0)],
-                    'nearObjects' => [$this->getNearObjects(0)]
+                    'furniture' => [$this->getFurnituresId(0)],
+                    'appliances' => [$this->getAppliancesId(0)],
+                    'additionally' => [$this->getHouseAdditionalsId(0)],
+                    'nearObjects' => [$this->getNearObjectsId(0)]
 
                 ]
                 ]);
@@ -3374,24 +3377,24 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/profiles/searches/create', [
             'name' => 'TestParcel',
             'searchCriteria' => [
-                'operationType' => $this->getOperationType(0),
-                'region' => $this->getRegion(21),
-                'city' => $this->getCity(6),
-                'district' => $this->getDistrict(7),
-                'street' => $this->getStreet(32),
-                'category' => $this->getCategories(2),
-                'categoryType' => $this->getParcelCategoryTypes(0),
-                'currency' => $this->getCurrency(0),
+                'operationType' => $this->getOperationTypeId(0),
+                'region' => $this->getRegionId(21),
+                'city' => $this->getCityId(6),
+                'district' => $this->getDistrictId(7),
+                'street' => $this->getStreetId(32),
+                'category' => $this->getCategoryId(2),
+                'categoryType' => $this->getParcelCategoryTypeId(0),
+                'currency' => $this->getCurrencyId(0),
                 'priceFrom' => Parcel::priceParcelSearch,
                 'priceTo' => Parcel::priceParcelSearch,
                 'auction' => true,
                 'userIds' => [$agencyID],
                 'areaFrom' => Parcel::generalArea,
                 'areaTo' => Parcel::generalArea,
-                'areaUnit' => $this->getAreaUnits(1),
-                'communication' => [$this->getCommunications(0)],
-                'additionally' => [$this->getParcelAdditionals(0)],
-                'nearObjects' => [$this->getNearObjects(0)],
+                'areaUnit' => $this->getAreaUnitsId(1),
+                'communication' => [$this->getCommunicationsId(0)],
+                'additionally' => [$this->getParcelAdditionalsID(0)],
+                'nearObjects' => [$this->getNearObjectsId(0)],
                 ]
         ]);
         $saveSearchFlat = $this->restModule->grabResponse();
@@ -3409,37 +3412,37 @@ class Api extends \Codeception\Module
         $this->restModule->sendPOST('/profiles/searches/create', [
             'name' => 'TestCommercial',
             'searchCriteria' => [
-                'operationType' => $this->getOperationType(1),
-                'region' => $this->getRegion(21),
-                'city' => $this->getCity(6),
-                'district' => $this->getDistrict(7),
-                'street' => $this->getStreet(49),
-                'category' => $this->getCategories(3),
-                'categoryType' => $this->getCommercialCategoryTypes(0),
-                'currency' => $this->getCurrency(1),
+                'operationType' => $this->getOperationTypeId(1),
+                'region' => $this->getRegionId(21),
+                'city' => $this->getCityId(6),
+                'district' => $this->getDistrictId(7),
+                'street' => $this->getStreetId(49),
+                'category' => $this->getCategoryId(3),
+                'categoryType' => $this->getCommercialCategoryTypeId(0),
+                'currency' => $this->getCurrencyId(1),
                 'priceFrom' => Commercial::priceCommercialSearch,
                 'priceTo' => Commercial::priceCommercialSearch,
                 'auction' => true,
-                'period' => $this->getPeriod(0),
+                'period' => $this->getPeriodId(0),
                 'userIds' => [$agencyID],
                 'buildYearFrom' => Commercial::buildYear,
                 'buildYearTo' => Commercial::buildYear,
-                'wallMaterial' => $this->getWallMaterials(0),
-                'repair' => $this->getRepairs(0),
-                'wc' => $this->getWC(2),
-                'heating' => $this->getHeatings(2),
-                'waterHeating' => $this->getWaterHeatings(2),
+                'wallMaterial' => $this->getWallMaterialsId(0),
+                'repair' => $this->getRepairsId(0),
+                'wc' => $this->getWcId(2),
+                'heating' => $this->getHeatingsId(2),
+                'waterHeating' => $this->getWaterHeatingsId(2),
                 'areaFrom' => Commercial::generalArea,
                 'areaTo' => Commercial::generalArea,
-                'areaUnit' => $this->getAreaUnits(0),
+                'areaUnit' => $this->getAreaUnitsId(0),
                 'roomCountFrom' => Commercial::roomCount,
                 'roomCountTo' => Commercial::roomCount,
                 'floorFrom' => Commercial::floorNumber,
                 'floorTo' => Commercial::floorNumber,
                 'floorNumberTo' => Commercial::floors,
                 'floorNumberFrom' => Commercial::floors,
-                'communication' => [$this->getCommunications(0)],
-                'additionally' => [$this->getCommercialAdditionals(0)],
+                'communication' => [$this->getCommunicationsId(0)],
+                'additionally' => [$this->getCommercialAdditionalsId(0)],
             ]
         ]);
         $saveSearchFlat = $this->restModule->grabResponse();
@@ -3468,32 +3471,32 @@ class Api extends \Codeception\Module
         $this->restModule->sendPUT('/profiles/searches/'.$searchId.'/edit', [
             'name' => 'EditTestFlat',
             'searchCriteria' => [
-                'operationType'=> $this->getOperationType(0),
-                'region' => $this->getRegion(21),
-                'city' => $this->getCity(6),
-                'district' => $this->getDistrict(7),
-                'street' => $this->getStreet(34),
-                'category' => $this->getCategories(0),
-                'categoryType' => $this->getFlatCategoryTypes(0),
-                'currency' => $this->getCurrency(0),
+                'operationType'=> $this->getOperationTypeId(0),
+                'region' => $this->getRegionId(21),
+                'city' => $this->getCityId(6),
+                'district' => $this->getDistrictId(7),
+                'street' => $this->getStreetId(34),
+                'category' => $this->getCategoryId(0),
+                'categoryType' => $this->getFlatCategoryTypeId(0),
+                'currency' => $this->getCurrencyId(0),
                 'priceFrom' => Flat::priceFlatSearch,
                 'priceTo' => Flat::priceFlatSearch,
                 'auction' => true,
                 'userIds'=> [$agencyID],
-                'marketType'=> $this->getMarketType(0),
+                'marketType'=> $this->getMarketTypeId(0),
                 'buildYearFrom' => Flat::buildYear,
                 'buildYearTo' => Flat::buildYear,
                 'bedsCountFrom' => Flat::beds,
                 'bedsCountTo' => Flat::beds,
-                'wallMaterial' => $this->getWallMaterials(0),
-                'repair' => $this->getRepairs(0),
-                'wc' => $this->getWC(1),
-                'balcony' => $this->getBalconies(1),
-                'heating' => $this->getHeatings(1),
-                'waterHeating' => $this->getWaterHeatings(1),
+                'wallMaterial' => $this->getWallMaterialsId(0),
+                'repair' => $this->getRepairsId(0),
+                'wc' => $this->getWcId(1),
+                'balcony' => $this->getBalconiesId(1),
+                'heating' => $this->getHeatingsId(1),
+                'waterHeating' => $this->getWaterHeatingsId(1),
                 'areaFrom' => Flat::generalArea,
                 'areaTo' => Flat::generalArea,
-                'areaUnit' => $this->getAreaUnits(0),
+                'areaUnit' => $this->getAreaUnitsId(0),
                 'livingAreaFrom' => Flat::livingArea,
                 'livingAreaTo' => Flat::livingArea,
                 'kitchenAreaFrom' => Flat::kitchenArea,
@@ -3504,10 +3507,10 @@ class Api extends \Codeception\Module
                 'floorTo' => Flat::floorNumber,
                 'floorNumberTo' => Flat::floors,
                 'floorNumberFrom' => Flat::floors,
-                'furniture' => [$this->getFurnitures(0)],
-                'appliances' => [$this->getAppliances(0)],
-                'additionally' => [$this->getFlatAdditionals(0)],
-                'nearObjects' => [$this->getNearObjects(0)],
+                'furniture' => [$this->getFurnituresId(0)],
+                'appliances' => [$this->getAppliancesId(0)],
+                'additionally' => [$this->getFlatAdditionalsId(0)],
+                'nearObjects' => [$this->getNearObjectsId(0)],
                 ]
         ]);
         $this->restModule->seeResponseCodeIS(200);
@@ -3559,11 +3562,11 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/commercials/check', [
-            'category' => $this->getCategories(3),
-            'categoryType' => $this->getCommercialCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'street' => $this->getStreet(97),
+            'category' => $this->getCategoryId(3),
+            'categoryType' => $this->getCommercialCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'street' => $this->getStreetId(97),
             'houseNumber' => Commercial::$currentCommercialNumber
         ]);
         $this->restModule->seeResponseCodeIs(200);
@@ -3577,27 +3580,27 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/realties/commercials/validate', [
-            'category' => $this->getCategories(3),
-            'categoryType' => $this->getCommercialCategoryTypes(0),
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(22),
-            'street' => $this->getStreet(97),
+            'category' => $this->getCategoryId(3),
+            'categoryType' => $this->getCommercialCategoryTypeId(0),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(22),
+            'street' => $this->getStreetId(97),
             'houseNumber' => Commercial::uniqueCommercialNumber(),
             'latitude' => Commercial::latitude,
             'longitude' => Commercial::longitude,
             'area' => Commercial::generalArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'effectiveArea' => Commercial::effectiveArea,
-            'wallMaterial' => $this->getWallMaterials(0),
+            'wallMaterial' => $this->getWallMaterialsId(0),
             'roomCount' => Commercial::roomCount,
             'floor' => Commercial::floors,
             'floorNumber' => Commercial::floorNumber,
             'buildYear' => Commercial::buildYear,
-            'wc' => $this->getWC(2),
-            'heating' => $this->getHeatings(2),
-            'waterHeating' => $this->getWaterHeatings(2),
-            'communication' => [$this->getCommunications(0), $this->getCommunications(1), $this->getCommunications(2)]
+            'wc' => $this->getWcId(2),
+            'heating' => $this->getHeatingsId(2),
+            'waterHeating' => $this->getWaterHeatingsId(2),
+            'communication' => [$this->getCommunicationsId(0), $this->getCommunicationsId(1), $this->getCommunicationsId(2)]
         ]);
 
         $this->restModule->seeResponseCodeIs(200);
@@ -3637,33 +3640,33 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPUT('/realties/commercials/edit/' . $realtyCommercialID, [
             'status' => 1,
-            'region' => $this->getRegion(21),
-            'city' => $this->getCity(6),
-            'district' => $this->getDistrict(2),
-            'street' => $this->getStreet(94),
+            'region' => $this->getRegionId(21),
+            'city' => $this->getCityId(6),
+            'district' => $this->getDistrictId(2),
+            'street' => $this->getStreetId(94),
             'houseNumber' => Commercial::uniqueCommercialNumber(),
             'latitude' => Commercial::editLatitude,
             'longitude' => Commercial::editLongitude,
             'area' => Commercial::editGeneralArea,
-            'areaUnit' => $this->getAreaUnits(0),
+            'areaUnit' => $this->getAreaUnitsId(0),
             'effectiveArea' => Commercial::editEffectiveArea,
-            'wallMaterial' => $this->getWallMaterials(1),
+            'wallMaterial' => $this->getWallMaterialsId(1),
             'roomCount' => Commercial::editRoomCount,
             'floor' => Commercial::editFloorNumber,
             'floorNumber' => Commercial::editFloor,
             'buildYear' => Commercial::editBuildYear,
-            'wc' => $this->getWC(1),
-            'heating' => $this->getHeatings(1),
-            'waterHeating' => $this->getWaterHeatings(1),
+            'wc' => $this->getWcId(1),
+            'heating' => $this->getHeatingsId(1),
+            'waterHeating' => $this->getWaterHeatingsId(1),
             'communication' => [
-                $this->getCommunications(0),
-                $this->getCommunications(1),
-                $this->getCommunications(2),
-                $this->getCommunications(3),
-                $this->getCommunications(4),
-                $this->getCommunications(5),
-                $this->getCommunications(6),
-                $this->getCommunications(7)
+                $this->getCommunicationsId(0),
+                $this->getCommunicationsId(1),
+                $this->getCommunicationsId(2),
+                $this->getCommunicationsId(3),
+                $this->getCommunicationsId(4),
+                $this->getCommunicationsId(5),
+                $this->getCommunicationsId(6),
+                $this->getCommunicationsId(7)
             ],
             'schema' => $schema
         ]);
@@ -4003,14 +4006,14 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/flats/add/' . $realtyFlatId, [
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => Flat::descriptionFlatSell,
             'price' => Flat::priceFlatSell,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
             'commission' => Flat::commission,
             'availableFrom' => Flat::apiAvailableFrom,
-            'marketType' => $this->getMarketType(0),
-            'repair' => $this->getRepairs(0),
+            'marketType' => $this->getMarketTypeId(0),
+            'repair' => $this->getRepairsId(0),
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName
         ]);
@@ -4030,57 +4033,58 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/flats/add/' . $realtyFlatId, [
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => Flat::descriptionFlatSell,
             'price' => Flat::priceFlatSell,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
 //            'period' => ,
             'commission' => Flat::commission,
             'auction' => true,
             'availableFrom' => Flat::apiAvailableFrom,
-            'marketType' => $this->getMarketType(0),
-            'repair' => $this->getRepairs(0),
+            'marketType' => $this->getMarketTypeId(0),
+            'repair' => $this->getRepairsId(0),
             'bedsCount' => Flat::beds,
             'furniture' => [
-                $this->getFurnitures(0),
-                $this->getFurnitures(1),
-                $this->getFurnitures(2),
-                $this->getFurnitures(3),
-                $this->getFurnitures(4),
-                $this->getFurnitures(5),
-                $this->getFurnitures(6),
-                $this->getFurnitures(7)
+                $this->getFurnituresId(0),
+                $this->getFurnituresId(1),
+                $this->getFurnituresId(2),
+                $this->getFurnituresId(3),
+                $this->getFurnituresId(4),
+                $this->getFurnituresId(5),
+                $this->getFurnituresId(6),
+                $this->getFurnituresId(7)
             ],
             'appliances' => [
-                $this->getAppliances(0),
-                $this->getAppliances(1),
-                $this->getAppliances(2),
-                $this->getAppliances(3),
-                $this->getAppliances(4),
-                $this->getAppliances(5),
-                $this->getAppliances(6),
-                $this->getAppliances(7)
+                $this->getAppliancesId(0),
+                $this->getAppliancesId(1),
+                $this->getAppliancesId(2),
+                $this->getAppliancesId(3),
+                $this->getAppliancesId(4),
+                $this->getAppliancesId(5),
+                $this->getAppliancesId(6),
+                $this->getAppliancesId(7)
             ],
             'additionally' => [
-                $this->getFlatAdditionals(0),
-                $this->getFlatAdditionals(1),
-                $this->getFlatAdditionals(2),
-                $this->getFlatAdditionals(3),
-                $this->getFlatAdditionals(4),
-                $this->getFlatAdditionals(5),
-                $this->getFlatAdditionals(6),
-                $this->getFlatAdditionals(7),
-                $this->getFlatAdditionals(8),
-                $this->getFlatAdditionals(9),
-                $this->getFlatAdditionals(10),
-                $this->getFlatAdditionals(11),
-                $this->getFlatAdditionals(12),
-                $this->getFlatAdditionals(13),
-                $this->getFlatAdditionals(14),
-                $this->getFlatAdditionals(15)
+                $this->getFlatAdditionalsId(0),
+                $this->getFlatAdditionalsId(1),
+                $this->getFlatAdditionalsId(2),
+                $this->getFlatAdditionalsId(3),
+                $this->getFlatAdditionalsId(4),
+                $this->getFlatAdditionalsId(5),
+                $this->getFlatAdditionalsId(6),
+                $this->getFlatAdditionalsId(7),
+                $this->getFlatAdditionalsId(8),
+                $this->getFlatAdditionalsId(9),
+                $this->getFlatAdditionalsId(10),
+                $this->getFlatAdditionalsId(11),
+                $this->getFlatAdditionalsId(12),
+                $this->getFlatAdditionalsId(13),
+                $this->getFlatAdditionalsId(14),
+                $this->getFlatAdditionalsId(15)
             ],
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName,
+            'images' => json_decode($images, true),
             'videos' => [['imageSrc' => Flat::videoImage, 'url' => Flat::videoURL]],
 
         ]);
@@ -4149,10 +4153,10 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/houses/add/' . $realtyHouseId, [
-            'operationType' => $this->getOperationType(1),
-            'period' => $this->getPeriod(1),
+            'operationType' => $this->getOperationTypeId(1),
+            'period' => $this->getPeriodId(1),
             'price' => House::priceHouseRent,
-            'currency' => $this->getCurrency(1),
+            'currency' => $this->getCurrencyId(1),
             'commission' => House::commission,
             'availableFrom' => House::apiAvailableFrom,
             'ownerName' => House::ownerName,
@@ -4175,54 +4179,54 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/houses/add/' . $realtyHouseId, [
-            'operationType' => $this->getOperationType(1),
-            'period' => $this->getPeriod(1),
+            'operationType' => $this->getOperationTypeId(1),
+            'period' => $this->getPeriodId(1),
             'price' => House::priceHouseRent,
-            'currency' => $this->getCurrency(1),
+            'currency' => $this->getCurrencyId(1),
             'commission' => House::commission,
-            'availableFrom' => House::availableFrom,
+            'availableFrom' => House::apiAvailableFrom,
             'ownerName' => House::ownerName,
             'ownerContacts' => House::ownerContacts,
             'description' => House::descriptionHouseSell,
             'auction' => true,
-            'repair' => $this->getRepairs(0),
+            'repair' => $this->getRepairsId(0),
             'furniture' => [
-                $this->getFurnitures(0),
-                $this->getFurnitures(1),
-                $this->getFurnitures(2),
-                $this->getFurnitures(3),
-                $this->getFurnitures(4),
-                $this->getFurnitures(5),
-                $this->getFurnitures(6),
-                $this->getFurnitures(7)
+                $this->getFurnituresId(0),
+                $this->getFurnituresId(1),
+                $this->getFurnituresId(2),
+                $this->getFurnituresId(3),
+                $this->getFurnituresId(4),
+                $this->getFurnituresId(5),
+                $this->getFurnituresId(6),
+                $this->getFurnituresId(7)
             ],
             'appliances' => [
-                $this->getAppliances(0),
-                $this->getAppliances(1),
-                $this->getAppliances(2),
-                $this->getAppliances(3),
-                $this->getAppliances(4),
-                $this->getAppliances(5),
-                $this->getAppliances(6),
-                $this->getAppliances(7)
+                $this->getAppliancesId(0),
+                $this->getAppliancesId(1),
+                $this->getAppliancesId(2),
+                $this->getAppliancesId(3),
+                $this->getAppliancesId(4),
+                $this->getAppliancesId(5),
+                $this->getAppliancesId(6),
+                $this->getAppliancesId(7)
             ],
             'additionally' => [
-                $this->getHouseAdditionals(0),
-                $this->getHouseAdditionals(1),
-                $this->getHouseAdditionals(2),
-                $this->getHouseAdditionals(3),
-                $this->getHouseAdditionals(4),
-                $this->getHouseAdditionals(5),
-                $this->getHouseAdditionals(6),
-                $this->getHouseAdditionals(7),
-                $this->getHouseAdditionals(8),
-                $this->getHouseAdditionals(9),
-                $this->getHouseAdditionals(10),
-                $this->getHouseAdditionals(11),
-                $this->getHouseAdditionals(12),
-                $this->getHouseAdditionals(13),
-                $this->getHouseAdditionals(14),
-                $this->getHouseAdditionals(15)
+                $this->getHouseAdditionalsId(0),
+                $this->getHouseAdditionalsId(1),
+                $this->getHouseAdditionalsId(2),
+                $this->getHouseAdditionalsId(3),
+                $this->getHouseAdditionalsId(4),
+                $this->getHouseAdditionalsId(5),
+                $this->getHouseAdditionalsId(6),
+                $this->getHouseAdditionalsId(7),
+                $this->getHouseAdditionalsId(8),
+                $this->getHouseAdditionalsId(9),
+                $this->getHouseAdditionalsId(10),
+                $this->getHouseAdditionalsId(11),
+                $this->getHouseAdditionalsId(12),
+                $this->getHouseAdditionalsId(13),
+                $this->getHouseAdditionalsId(14),
+                $this->getHouseAdditionalsId(15)
             ],
             'images' => json_decode($images, true)
         ]);
@@ -4237,7 +4241,7 @@ class Api extends \Codeception\Module
     function apiAdvertHouseAddSearch()
     {
         $realtyHouseId = file_get_contents(codecept_data_dir('realtyHouseId.json'));
-//        $images = file_get_contents(codecept_data_dir('images_id.json'));
+        $images = file_get_contents(codecept_data_dir('images_id.json'));
 
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
@@ -4255,7 +4259,8 @@ class Api extends \Codeception\Module
             'repair' => $this->getRepairsId(0),
             'furniture' => [$this->getFurnituresId(0)],
             'appliances' => [$this->getAppliancesId(0)],
-            'additionally' => [$this->getHouseAdditionalsId(0)]
+            'additionally' => [$this->getHouseAdditionalsId(0)],
+//            'images' => json_decode($images, true)
         ]);
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
@@ -4285,10 +4290,10 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/parcels/add/' . $realtyParcelId, [
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => Parcel::descriptionParcelSell,
             'price' => Parcel::priceParcelSell,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
             'commission' => Parcel::commission,
             'availableFrom' => Parcel::apiAvailableFrom,
             'ownerContacts' => Parcel::ownerContacts,
@@ -4310,31 +4315,26 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/parcels/add/' . $realtyParcelId, [
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => Parcel::descriptionParcelSell,
             'price' => Parcel::priceParcelSell,
-            'currency' => $this->getCurrency(0),
-//            'period' => ,
+            'currency' => $this->getCurrencyId(0),
             'commission' => Parcel::commission,
             'auction' => true,
             'availableFrom' => Parcel::apiAvailableFrom,
             'additionally' => [
-                $this->getParcelAdditionals(0),
-                $this->getParcelAdditionals(1),
-                $this->getParcelAdditionals(2),
-                $this->getParcelAdditionals(3),
-                $this->getParcelAdditionals(4),
-                $this->getParcelAdditionals(5),
-                $this->getParcelAdditionals(6),
-                $this->getParcelAdditionals(7),
-                $this->getParcelAdditionals(8),
-                $this->getParcelAdditionals(9),
-                $this->getParcelAdditionals(10),
-                $this->getParcelAdditionals(11),
-                $this->getParcelAdditionals(12),
-                $this->getParcelAdditionals(13),
-                $this->getParcelAdditionals(14),
-                $this->getParcelAdditionals(15)
+                $this->getParcelAdditionalsID(0),
+                $this->getParcelAdditionalsID(1),
+                $this->getParcelAdditionalsID(2),
+                $this->getParcelAdditionalsID(3),
+                $this->getParcelAdditionalsID(4),
+                $this->getParcelAdditionalsID(5),
+                $this->getParcelAdditionalsID(6),
+                $this->getParcelAdditionalsID(7),
+                $this->getParcelAdditionalsID(8),
+                $this->getParcelAdditionalsID(9),
+                $this->getParcelAdditionalsID(10),
+                $this->getParcelAdditionalsID(11)
             ],
             'ownerContacts' => Parcel::ownerContacts,
             'ownerName' => Parcel::ownerName,
@@ -4363,7 +4363,7 @@ class Api extends \Codeception\Module
             'commission' => Parcel::commission,
             'auction' => true,
             'availableFrom' => Parcel::apiAvailableFrom,
-            'additionally' => [$this->getParcelAdditionalsId(0)],
+            'additionally' => [$this->getParcelAdditionalsID(0)],
             'ownerContacts' => Parcel::ownerContacts,
             'ownerName' => Parcel::ownerName,
 //            'images' => json_decode($images, true)
@@ -4396,13 +4396,13 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/commercials/add/' . $realtyCommercialId, [
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => Commercial::descriptionCommercialSell,
             'price' => Commercial::priceCommercialSell,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
             'commission' => Commercial::commission,
             'availableFrom' => Commercial::apiAvailableFrom,
-            'repair' => $this->getRepairs(0),
+            'repair' => $this->getRepairsId(0),
             'ownerContacts' => Commercial::ownerContacts,
             'ownerName' => Commercial::ownerName
         ]);
@@ -4422,32 +4422,24 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/commercials/add/' . $realtyCommercialId, [
-            'operationType' => $this->getOperationType(1),
+            'operationType' => $this->getOperationTypeId(1),
             'description' => Commercial::descriptionCommercialRent,
             'price' => Commercial::priceCommercialRent,
-            'currency' => $this->getCurrency(1),
-            'period' => $this->getPeriod(1),
+            'currency' => $this->getCurrencyId(1),
+            'period' => $this->getPeriodId(1),
             'commission' => Commercial::commission,
             'auction' => true,
             'availableFrom' => Commercial::apiAvailableFrom,
-            'repair' => $this->getRepairs(0),
+            'repair' => $this->getRepairsId(0),
             'additionally' => [
-                $this->getCommercialAdditionals(0),
-                $this->getCommercialAdditionals(1),
-                $this->getCommercialAdditionals(2),
-                $this->getCommercialAdditionals(3),
-                $this->getCommercialAdditionals(4),
-                $this->getCommercialAdditionals(5),
-                $this->getCommercialAdditionals(6),
-                $this->getCommercialAdditionals(7),
-                $this->getCommercialAdditionals(8),
-                $this->getCommercialAdditionals(9),
-                $this->getCommercialAdditionals(10),
-                $this->getCommercialAdditionals(11),
-                $this->getCommercialAdditionals(12),
-                $this->getCommercialAdditionals(13),
-                $this->getCommercialAdditionals(14),
-                $this->getCommercialAdditionals(15)
+                $this->getCommercialAdditionalsId(0),
+                $this->getCommercialAdditionalsId(1),
+                $this->getCommercialAdditionalsId(2),
+                $this->getCommercialAdditionalsId(3),
+                $this->getCommercialAdditionalsId(4),
+                $this->getCommercialAdditionalsId(5),
+                $this->getCommercialAdditionalsId(6),
+                $this->getCommercialAdditionalsId(7)
             ],
             'ownerContacts' => Commercial::ownerContacts,
             'ownerName' => Commercial::ownerName,
@@ -4510,13 +4502,13 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/garages/add/' . $realtyGarageId, [
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => Garage::descriptionGarageSell,
             'price' => Garage::priceGarageSell,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
             'commission' => Garage::commission,
             'availableFrom' => Garage::apiAvailableFrom,
-//            'repair' => $this->getRepairs(0),
+//            'repair' => $this->getRepairsId(0),
             'ownerContacts' => Garage::ownerContacts,
             'ownerName' => Garage::ownerName
         ]);
@@ -4536,21 +4528,21 @@ class Api extends \Codeception\Module
         $this->restModule->haveHttpHeader('token', User::getAgencyToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
         $this->restModule->sendPOST('/announcements/garages/add/' . $realtyGarageId, [
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => Garage::descriptionGarageSell,
             'price' => Garage::priceGarageSell,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
 //            'period' => ,
             'commission' => Garage::commission,
             'auction' => true,
             'availableFrom' => Garage::apiAvailableFrom,
             'additionally' => [
-                $this->getGarageAdditionals(0),
-                $this->getGarageAdditionals(1),
-                $this->getGarageAdditionals(2),
-                $this->getGarageAdditionals(3),
-                $this->getGarageAdditionals(4),
-                $this->getGarageAdditionals(5),
+                $this->getGarageAdditionalsId(0),
+                $this->getGarageAdditionalsId(1),
+                $this->getGarageAdditionalsId(2),
+                $this->getGarageAdditionalsId(3),
+                $this->getGarageAdditionalsId(4),
+                $this->getGarageAdditionalsId(5),
             ],
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName,
@@ -4686,7 +4678,7 @@ class Api extends \Codeception\Module
     {
         $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->sendPOST('/admin/lists/cities/add', [
-            'regionId' => $this->getRegion(23),
+            'regionId' => $this->getRegionId(23),
             'name' => Lists::cityName,
             'cityLocative' => Lists::cityLocativeName
         ]);
@@ -4791,7 +4783,7 @@ class Api extends \Codeception\Module
     {
         $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->sendPOST('/admin/lists/category-types/add', [
-            'categoryId' => $this->getCategories($id),
+            'categoryId' => $this->getCategoryId($id),
             'name' => Lists::categoryTypeName
         ]);
         $this->restModule->seeResponseCodeIs(200);
@@ -4957,15 +4949,15 @@ class Api extends \Codeception\Module
             'status' => 1,
             'userId' => $userId,
             'realtyId' => $realtyFlatId,
-            'operationType' => $this->getOperationType(1),
+            'operationType' => $this->getOperationTypeId(1),
             'description' => Flat::descriptionFlatSell,
             'price' => Flat::priceFlatSell,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
             'auction' => true,
             'commission' => Flat::commission,
             'availableFrom' => Flat::apiAvailableFrom,
-            'marketType' => $this->getMarketType(0),
-            'repair' => $this->getRepairs(0),
+            'marketType' => $this->getMarketTypeId(0),
+            'repair' => $this->getRepairsId(0),
             'bedsCount' => Flat::beds,
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName,
@@ -4992,53 +4984,53 @@ class Api extends \Codeception\Module
             'status' => 1,
             'userId' => $userId,
             'realtyId' => $realtyFlatId,
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => Flat::descriptionFlatSell,
             'price' => Flat::priceFlatSell,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
             'auction' => true,
             'commission' => Flat::commission,
             'availableFrom' => Flat::apiAvailableFrom,
-            'marketType' => $this->getMarketType(0),
-            'repair' => $this->getRepairs(0),
+            'marketType' => $this->getMarketTypeId(0),
+            'repair' => $this->getRepairsId(0),
             'bedsCount' => Flat::beds,
             'furniture' => [
-                $this->getFurnitures(0),
-                $this->getFurnitures(1),
-                $this->getFurnitures(2),
-                $this->getFurnitures(3),
-                $this->getFurnitures(4),
-                $this->getFurnitures(5),
-                $this->getFurnitures(6),
-                $this->getFurnitures(7)
+                $this->getFurnituresId(0),
+                $this->getFurnituresId(1),
+                $this->getFurnituresId(2),
+                $this->getFurnituresId(3),
+                $this->getFurnituresId(4),
+                $this->getFurnituresId(5),
+                $this->getFurnituresId(6),
+                $this->getFurnituresId(7)
             ],
             'appliances' => [
-                $this->getAppliances(0),
-                $this->getAppliances(1),
-                $this->getAppliances(2),
-                $this->getAppliances(3),
-                $this->getAppliances(4),
-                $this->getAppliances(5),
-                $this->getAppliances(6),
-                $this->getAppliances(7)
+                $this->getAppliancesId(0),
+                $this->getAppliancesId(1),
+                $this->getAppliancesId(2),
+                $this->getAppliancesId(3),
+                $this->getAppliancesId(4),
+                $this->getAppliancesId(5),
+                $this->getAppliancesId(6),
+                $this->getAppliancesId(7)
             ],
             'additionally' => [
-                $this->getFlatAdditionals(0),
-                $this->getFlatAdditionals(1),
-                $this->getFlatAdditionals(2),
-                $this->getFlatAdditionals(3),
-                $this->getFlatAdditionals(4),
-                $this->getFlatAdditionals(5),
-                $this->getFlatAdditionals(6),
-                $this->getFlatAdditionals(7),
-                $this->getFlatAdditionals(8),
-                $this->getFlatAdditionals(9),
-                $this->getFlatAdditionals(10),
-                $this->getFlatAdditionals(11),
-                $this->getFlatAdditionals(12),
-                $this->getFlatAdditionals(13),
-                $this->getFlatAdditionals(14),
-                $this->getFlatAdditionals(15)
+                $this->getFlatAdditionalsId(0),
+                $this->getFlatAdditionalsId(1),
+                $this->getFlatAdditionalsId(2),
+                $this->getFlatAdditionalsId(3),
+                $this->getFlatAdditionalsId(4),
+                $this->getFlatAdditionalsId(5),
+                $this->getFlatAdditionalsId(6),
+                $this->getFlatAdditionalsId(7),
+                $this->getFlatAdditionalsId(8),
+                $this->getFlatAdditionalsId(9),
+                $this->getFlatAdditionalsId(10),
+                $this->getFlatAdditionalsId(11),
+                $this->getFlatAdditionalsId(12),
+                $this->getFlatAdditionalsId(13),
+                $this->getFlatAdditionalsId(14),
+                $this->getFlatAdditionalsId(15)
             ],
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName,
@@ -5065,19 +5057,19 @@ class Api extends \Codeception\Module
             'status' => 1,
             'userId' => $userId,
             'realtyId' => $realtyFlatId,
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => Flat::descriptionFlatSell,
             'price' => Flat::priceFlatSearch,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
             'auction' => true,
             'commission' => Flat::commission,
             'availableFrom' => Flat::apiAvailableFrom,
-            'marketType' => $this->getMarketType(0),
-            'repair' => $this->getRepairs(0),
+            'marketType' => $this->getMarketTypeId(0),
+            'repair' => $this->getRepairsId(0),
             'bedsCount' => Flat::beds,
-            'furniture' => [$this->getFurnitures(0)],
-            'appliances' => [$this->getAppliances(0)],
-            'additionally' => [$this->getFlatAdditionals(0)],
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getFlatAdditionalsId(0)],
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName,
         ]);
@@ -5123,7 +5115,7 @@ class Api extends \Codeception\Module
             'floor' => Flat::editFloorNumber,
             'floorNumber' => Flat::editFloors,
             'buildYear' => Flat::editBuildYear,
-            'wc' => $this->getWCId(2),
+            'wc' => $this->getWcId(2),
             'balcony' => $this->getBalconiesId(2),
             'heating' => $this->getHeatingsId(2),
             'waterHeating' => $this->getWaterHeatingsId(2),
@@ -5165,7 +5157,7 @@ class Api extends \Codeception\Module
             'floor' => Flat::editFloorNumber,
             'floorNumber' => Flat::editFloors,
             'buildYear' => Flat::editBuildYear,
-            'wc' => $this->getWCId(2),
+            'wc' => $this->getWcId(2),
             'balcony' => $this->getBalconiesId(2),
             'heating' => $this->getHeatingsId(2),
             'waterHeating' => $this->getWaterHeatingsId(2),
@@ -5432,19 +5424,95 @@ class Api extends \Codeception\Module
             'status' => 1,
             'userId' => $userId,
             'realtyId' => $realtyHouseId,
-            'operationType' => $this->getOperationType(0),
+            'operationType' => $this->getOperationTypeId(0),
             'description' => House::descriptionHouseSell,
             'price' => House::priceHouseSell,
-            'currency' => $this->getCurrency(0),
+            'currency' => $this->getCurrencyId(0),
             'auction' => true,
             'commission' => House::commission,
             'availableFrom' => Flat::apiAvailableFrom,
-            'marketType' => $this->getMarketType(0),
-            'repair' => $this->getRepairs(0),
+            'marketType' => $this->getMarketTypeId(0),
+            'repair' => $this->getRepairsId(0),
             'bedsCount' => Flat::beds,
             'ownerContacts' => Flat::ownerContacts,
             'ownerName' => Flat::ownerName,
 //            'images' => json_decode($images, true)
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+        $advertHouse = $this->restModule->grabResponse();
+        $advHouseId = json_decode($advertHouse)->id;
+        file_put_contents(codecept_data_dir('advertHouseId.json'), $advHouseId);
+        $this->debugSection('advertHouseId', $advHouseId);
+    }
+
+    function apiAdminEditHouseAdvertComplex()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $agencyData = file_get_contents(codecept_data_dir('agency_data.json'));
+        $userId = json_decode($agencyData)->id;
+        $realtyHouseId = file_get_contents(codecept_data_dir('realtyHouseId.json'));
+        $advertHouseId = file_get_contents(codecept_data_dir('advertHouseId.json'));
+        $images = file_get_contents(codecept_data_dir('images_id.json'));
+
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertHouseId, [
+            'type' => 'houses',
+            'status' => 1,
+            'userId' => $userId,
+            'realtyId' => $realtyHouseId,
+            'operationType' => $this->getOperationTypeId(1),
+            'period' => $this->getPeriodId(1),
+            'price' => House::priceHouseSearch,
+            'currency' => $this->getCurrencyId(1),
+            'commission' => House::commission,
+            'availableFrom' => House::apiAvailableFrom,
+            'ownerName' => House::ownerName,
+            'ownerContacts' => House::ownerContacts,
+            'description' => House::descriptionHouseSell,
+            'auction' => true,
+            'furniture' => [
+                $this->getFurnituresId(0),
+                $this->getFurnituresId(1),
+                $this->getFurnituresId(2),
+                $this->getFurnituresId(3),
+                $this->getFurnituresId(4),
+                $this->getFurnituresId(5),
+                $this->getFurnituresId(6),
+                $this->getFurnituresId(7)
+            ],
+            'appliances' => [
+                $this->getAppliancesId(0),
+                $this->getAppliancesId(1),
+                $this->getAppliancesId(2),
+                $this->getAppliancesId(3),
+                $this->getAppliancesId(4),
+                $this->getAppliancesId(5),
+                $this->getAppliancesId(6),
+                $this->getAppliancesId(7)
+            ],
+            'additionally' => [
+                $this->getHouseAdditionalsId(0),
+                $this->getHouseAdditionalsId(1),
+                $this->getHouseAdditionalsId(2),
+                $this->getHouseAdditionalsId(3),
+                $this->getHouseAdditionalsId(4),
+                $this->getHouseAdditionalsId(5),
+                $this->getHouseAdditionalsId(6),
+                $this->getHouseAdditionalsId(7),
+                $this->getHouseAdditionalsId(8),
+                $this->getHouseAdditionalsId(9),
+                $this->getHouseAdditionalsId(10),
+                $this->getHouseAdditionalsId(11),
+                $this->getHouseAdditionalsId(12),
+                $this->getHouseAdditionalsId(13),
+                $this->getHouseAdditionalsId(14),
+                $this->getHouseAdditionalsId(15)
+            ],
+            'ownerContacts' => House::ownerContacts,
+            'ownerName' => House::ownerName,
+            'images' => json_decode($images, true)
         ]);
         $this->restModule->seeResponseCodeIs(200);
         $this->restModule->seeResponseIsJson();
@@ -5470,20 +5538,20 @@ class Api extends \Codeception\Module
             'status' => 1,
             'userId' => $userId,
             'realtyId' => $realtyHouseId,
-            'operationType' => $this->getOperationType(1),
-            'period' => $this->getPeriod(1),
+            'operationType' => $this->getOperationTypeId(1),
+            'period' => $this->getPeriodId(1),
             'price' => House::priceHouseSearch,
-            'currency' => $this->getCurrency(1),
+            'currency' => $this->getCurrencyId(1),
             'commission' => House::commission,
             'availableFrom' => House::apiAvailableFrom,
             'ownerName' => House::ownerName,
             'ownerContacts' => House::ownerContacts,
             'description' => House::descriptionHouseSell,
             'auction' => true,
-            'repair' => $this->getRepairs(0),
-            'furniture' => [$this->getFurnitures(0)],
-            'appliances' => [$this->getAppliances(0)],
-            'additionally' => [$this->getHouseAdditionals(0)],
+            'repair' => $this->getRepairsId(0),
+            'furniture' => [$this->getFurnituresId(0)],
+            'appliances' => [$this->getAppliancesId(0)],
+            'additionally' => [$this->getHouseAdditionalsId(0)],
             'ownerContacts' => House::ownerContacts,
             'ownerName' => House::ownerName
 //            'images' => json_decode($images, true)
@@ -5836,7 +5904,7 @@ class Api extends \Codeception\Module
         'auction' => true,
         'commission' => Parcel::commission,
         'availableFrom' => Parcel::apiAvailableFrom,
-//            'additionally' => [$this->getParcelAdditionals(0), $this->getParcelAdditionals(15)],
+//            'additionally' => [$this->getParcelAdditionalsID(0), $this->getParcelAdditionalsID(15)],
         'ownerContacts' => Parcel::ownerContacts,
         'ownerName' => Parcel::ownerName,
 //            'images' => json_decode($images, true)
@@ -5848,6 +5916,56 @@ class Api extends \Codeception\Module
     file_put_contents(codecept_data_dir('advertParcelId.json'), $advParcelId);
     $this->debugSection('advertParcelId', $advParcelId);
 }
+
+    function apiAdminEditParcelAdvertComplex()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $agencyData = file_get_contents(codecept_data_dir('agency_data.json'));
+        $userId = json_decode($agencyData)->id;
+        $realtyParcelId = file_get_contents(codecept_data_dir('realtyParcelId.json'));
+        $advertParcelId = file_get_contents(codecept_data_dir('advertParcelId.json'));
+        $images = file_get_contents(codecept_data_dir('images_id.json'));
+
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertParcelId, [
+            'type' => 'parcels',
+            'status' => 1,
+            'userId' => $userId,
+            'realtyId' => $realtyParcelId,
+            'operationType' => $this->getOperationTypeId(0),
+            'description' => Parcel::descriptionParcelSell,
+            'price' => Parcel::priceParcelSell,
+            'currency' => $this->getCurrencyId(0),
+//            'period' => ,
+            'commission' => Parcel::commission,
+            'auction' => true,
+            'availableFrom' => Parcel::apiAvailableFrom,
+            'additionally' => [
+                $this->getParcelAdditionalsID(0),
+                $this->getParcelAdditionalsID(1),
+                $this->getParcelAdditionalsID(2),
+                $this->getParcelAdditionalsID(3),
+                $this->getParcelAdditionalsID(4),
+                $this->getParcelAdditionalsID(5),
+                $this->getParcelAdditionalsID(6),
+                $this->getParcelAdditionalsID(7),
+                $this->getParcelAdditionalsID(8),
+                $this->getParcelAdditionalsID(9),
+                $this->getParcelAdditionalsID(10),
+                $this->getParcelAdditionalsID(11),
+            ],
+            'ownerContacts' => Parcel::ownerContacts,
+            'ownerName' => Parcel::ownerName,
+            'images' => json_decode($images, true)
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+        $advertParcel = $this->restModule->grabResponse();
+        $advParcelId = json_decode($advertParcel)->id;
+        file_put_contents(codecept_data_dir('advertParcelId.json'), $advParcelId);
+        $this->debugSection('advertParcelId', $advParcelId);
+    }
 
     function apiAdminEditParcelAdvertSearch()
     {
@@ -5872,7 +5990,7 @@ class Api extends \Codeception\Module
             'auction' => true,
             'commission' => Parcel::commission,
             'availableFrom' => Parcel::apiAvailableFrom,
-            'additionally' => [$this->getParcelAdditionalsId(0)],
+            'additionally' => [$this->getParcelAdditionalsID(0)],
             'ownerContacts' => Parcel::ownerContacts,
             'ownerName' => Parcel::ownerName,
 //            'images' => json_decode($images, true)
@@ -6152,6 +6270,53 @@ class Api extends \Codeception\Module
         $advertCommercial = $this->restModule->grabResponse();
         $advCommercialId = json_decode($advertCommercial)->id;
         file_put_contents(codecept_data_dir('advertCommercialId.json'), $advCommercialId);
+        $this->debugSection('advertCommercialId', $advCommercialId);
+    }
+
+    function apiAdminEditCommercialAdvertComplex()
+    {
+        $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
+        $agencyData = file_get_contents(codecept_data_dir('agency_data.json'));
+        $userId = json_decode($agencyData)->id;
+        $realtyCommercialId = file_get_contents(codecept_data_dir('realtyCommercialId.json'));
+        $advertCommercialId = file_get_contents(codecept_data_dir('advertCommercialId.json'));
+        $images = file_get_contents(codecept_data_dir('images_id.json'));
+
+        $this->restModule->haveHttpHeader('token', $adminToken);
+        $this->restModule->haveHttpHeader('Content-Type', 'application/json');
+        $this->restModule->sendPUT('/announcements/edit/' . $advertCommercialId, [
+            'type' => 'commercial-property',
+            'status' => 1,
+            'userId' => $userId,
+            'realtyId' => $realtyCommercialId,
+            'operationType' => $this->getOperationTypeId(1),
+            'description' => Commercial::descriptionCommercialRent,
+            'price' => Commercial::priceCommercialRent,
+            'currency' => $this->getCurrencyId(1),
+            'period' => $this->getPeriodId(1),
+            'commission' => Commercial::commission,
+            'auction' => true,
+            'availableFrom' => Commercial::apiAvailableFrom,
+            'repair' => $this->getRepairsId(0),
+            'additionally' => [
+                $this->getCommercialAdditionalsId(0),
+                $this->getCommercialAdditionalsId(1),
+                $this->getCommercialAdditionalsId(2),
+                $this->getCommercialAdditionalsId(3),
+                $this->getCommercialAdditionalsId(4),
+                $this->getCommercialAdditionalsId(5),
+                $this->getCommercialAdditionalsId(6),
+                $this->getCommercialAdditionalsId(7)
+            ],
+            'ownerContacts' => Commercial::ownerContacts,
+            'ownerName' => Commercial::ownerName,
+            'images' => json_decode($images, true)
+        ]);
+        $this->restModule->seeResponseCodeIs(200);
+        $this->restModule->seeResponseIsJson();
+        $advertCommercial = $this->restModule->grabResponse();
+        $advCommercialId = json_decode($advertCommercial)->id;
+        $file = file_put_contents(codecept_data_dir('advertCommercialId.json'), $advCommercialId);
         $this->debugSection('advertCommercialId', $advCommercialId);
     }
 
@@ -6473,7 +6638,7 @@ class Api extends \Codeception\Module
         $userId = json_decode($agencyData)->id;
         $realtyGarageId = file_get_contents(codecept_data_dir('realtyGarageId.json'));
         $advertGarageId = file_get_contents(codecept_data_dir('advertGarageId.json'));
-//        $images = file_get_contents(codecept_data_dir('images_id.json'));
+        $images = file_get_contents(codecept_data_dir('images_id.json'));
 
         $this->restModule->haveHttpHeader('token', User::getAdminToken());
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
@@ -6489,9 +6654,15 @@ class Api extends \Codeception\Module
             'auction' => true,
             'commission' => Garage::editCommission,
             'availableFrom' => Garage::apiAvailableFrom,
-            'additionally' => [$this->getGarageAdditionalsId(1)],
-            'communication' => [$this->getCommunicationsId(1)],
+            'additionally' => [
+                $this->getGarageAdditionalsId(0),
+                $this->getGarageAdditionalsId(1),
+                $this->getGarageAdditionalsId(2),
+                $this->getGarageAdditionalsId(3),
+                $this->getGarageAdditionalsId(4),
+                $this->getGarageAdditionalsId(5),],
             'ownerContacts' => Flat::editOwnerContacts,
+            'images' => json_decode($images, true),
             'ownerName' => Flat::editOwnerName,
         ]);
         $this->restModule->seeResponseCodeIs(200);
@@ -7086,11 +7257,25 @@ class Api extends \Codeception\Module
         $this->debugSection('certificateId', $certificate);
     }
 
-    function uploadSchema()
+    function uploadSchema($cat)
     {
         $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $this->restModule->haveHttpHeader('token', $agencyToken);
-        $this->restModule->sendPOST('/uploads/schema', [], ['file' => codecept_data_dir('/img/schema_1.jpg')]);
+        switch ($cat){
+            case 0:
+                $this->restModule->sendPOST('/uploads/schema', [], ['file' => codecept_data_dir('/img/schema_1.jpg')]);
+                break;
+            case 1:
+                $this->restModule->sendPOST('/uploads/schema', [], ['file' => codecept_data_dir('/img/schema_2.jpg')]);
+                break;
+            case 2:
+                $this->restModule->sendPOST('/uploads/schema', [], ['file' => codecept_data_dir('/img/schema_3.jpg')]);
+                break;
+            case 3:
+                $this->restModule->sendPOST('/uploads/schema', [], ['file' => codecept_data_dir('/img/schema_4.jpg')]);
+                break;
+
+        }
         $this->restModule->seeResponseCodeIs(201);
         $this->restModule->seeResponseIsJson();
         $objSchema = $this->restModule->grabResponse();
@@ -7099,46 +7284,171 @@ class Api extends \Codeception\Module
         $this->debugSection('schemaId', $schema);
     }
 
-    function uploadAdvImages()
+    function uploadAdvImages($cat)
     {
         $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
         $this->restModule->haveHttpHeader('token', $agencyToken);
-        $image1 = $this->restModule->sendPOST('/uploads/announcement-image', [],
-            ['file' => codecept_data_dir('/img/flat_1.jpg')]);
-        $this->restModule->seeResponseCodeIs(201);
-        $this->restModule->seeResponseIsJson();
-        $img1 = $this->restModule->grabResponse($image1);
-        $image2 = $this->restModule->sendPOST('/uploads/announcement-image', [],
-            ['file' => codecept_data_dir('/img/flat_2.jpg')]);
-        $this->restModule->seeResponseCodeIs(201);
-        $this->restModule->seeResponseIsJson();
-        $img2 = $this->restModule->grabResponse($image2);
+        switch($cat){
+            case 0:
+                $image1 = $this->restModule->sendPOST('/uploads/announcement-image', [],
+                    ['file' => codecept_data_dir('/img/flat_1.jpg')]);
+                $this->restModule->seeResponseCodeIs(201);
+                $this->restModule->seeResponseIsJson();
+                $img1 = $this->restModule->grabResponse($image1);
+                $image2 = $this->restModule->sendPOST('/uploads/announcement-image', [],
+                    ['file' => codecept_data_dir('/img/flat_2.jpg')]);
+                $this->restModule->seeResponseCodeIs(201);
+                $this->restModule->seeResponseIsJson();
+                $img2 = $this->restModule->grabResponse($image2);
 
-        $image3 = $this->restModule->sendPOST('/uploads/announcement-image', [],
-            ['file' => codecept_data_dir('/img/flat_3.jpg')]);
-        $this->restModule->seeResponseCodeIs(201);
-        $this->restModule->seeResponseIsJson();
-        $img3 = $this->restModule->grabResponse($image3);
+                $image3 = $this->restModule->sendPOST('/uploads/announcement-image', [],
+                    ['file' => codecept_data_dir('/img/flat_3.jpg')]);
+                $this->restModule->seeResponseCodeIs(201);
+                $this->restModule->seeResponseIsJson();
+                $img3 = $this->restModule->grabResponse($image3);
+                $images = [];
+
+                $image1 = new Images();
+                $image1->id = json_decode($img1)->id;
+                $image2 = new Images();
+                $image2->id = json_decode($img2)->id;
+                $image3 = new Images();
+                $image3->id = json_decode($img3)->id;
+
+                $images[] = $image1;
+                $images[] = $image2;
+                $images[] = $image3;
+                $file = file_put_contents(codecept_data_dir('images_id.json'), json_encode($images, JSON_UNESCAPED_SLASHES));
+                $this->debugSection('advertsID', $images);
+                break;
+            case 1:
+                $image1 = $this->restModule->sendPOST('/uploads/announcement-image', [],
+                    ['file' => codecept_data_dir('/img/house_1.jpg')]);
+                $this->restModule->seeResponseCodeIs(201);
+                $this->restModule->seeResponseIsJson();
+                $img1 = $this->restModule->grabResponse($image1);
+                $image2 = $this->restModule->sendPOST('/uploads/announcement-image', [],
+                    ['file' => codecept_data_dir('/img/house_2.jpg')]);
+                $this->restModule->seeResponseCodeIs(201);
+                $this->restModule->seeResponseIsJson();
+                $img2 = $this->restModule->grabResponse($image2);
+
+
+                $images = [];
+
+                $image1 = new Images();
+                $image1->id = json_decode($img1)->id;
+                $image2 = new Images();
+                $image2->id = json_decode($img2)->id;
+
+
+                $images[] = $image1;
+                $images[] = $image2;
+
+//        $advID = array('[{"id":"'.$advsId1.'"},{"id":"'.$advsId2.'"},{"id":"'.$advsId3.'"}]');
+                $file = file_put_contents(codecept_data_dir('images_id.json'), json_encode($images, JSON_UNESCAPED_SLASHES));
+                $this->debugSection('advertsID', $images);
+                break;
+            case 2:
+                $image1 = $this->restModule->sendPOST('/uploads/announcement-image', [],
+                    ['file' => codecept_data_dir('/img/parcel_1.jpg')]);
+                $this->restModule->seeResponseCodeIs(201);
+                $this->restModule->seeResponseIsJson();
+                $img1 = $this->restModule->grabResponse($image1);
+                $image2 = $this->restModule->sendPOST('/uploads/announcement-image', [],
+                    ['file' => codecept_data_dir('/img/parcel_2.jpg')]);
+                $this->restModule->seeResponseCodeIs(201);
+                $this->restModule->seeResponseIsJson();
+                $img2 = $this->restModule->grabResponse($image2);
+
+                $image3 = $this->restModule->sendPOST('/uploads/announcement-image', [],
+                    ['file' => codecept_data_dir('/img/parcel_3.jpg')]);
+                $this->restModule->seeResponseCodeIs(201);
+                $this->restModule->seeResponseIsJson();
+                $img3 = $this->restModule->grabResponse($image3);
+                $images = [];
+
+                $image1 = new Images();
+                $image1->id = json_decode($img1)->id;
+                $image2 = new Images();
+                $image2->id = json_decode($img2)->id;
+                $image3 = new Images();
+                $image3->id = json_decode($img3)->id;
+
+                $images[] = $image1;
+                $images[] = $image2;
+                $images[] = $image3;
+                $file = file_put_contents(codecept_data_dir('images_id.json'), json_encode($images, JSON_UNESCAPED_SLASHES));
+                $this->debugSection('advertsID', $images);
+                break;
+            case 3:
+                $image1 = $this->restModule->sendPOST('/uploads/announcement-image', [],
+                    ['file' => codecept_data_dir('/img/commerc_1.jpg')]);
+                $this->restModule->seeResponseCodeIs(201);
+                $this->restModule->seeResponseIsJson();
+                $img1 = $this->restModule->grabResponse($image1);
+                $image2 = $this->restModule->sendPOST('/uploads/announcement-image', [],
+                    ['file' => codecept_data_dir('/img/commerc_2.jpg')]);
+                $this->restModule->seeResponseCodeIs(201);
+                $this->restModule->seeResponseIsJson();
+                $img2 = $this->restModule->grabResponse($image2);
+
+                $image3 = $this->restModule->sendPOST('/uploads/announcement-image', [],
+                    ['file' => codecept_data_dir('/img/commerc_3.jpg')]);
+                $this->restModule->seeResponseCodeIs(201);
+                $this->restModule->seeResponseIsJson();
+                $img3 = $this->restModule->grabResponse($image3);
+                $images = [];
+
+                $image1 = new Images();
+                $image1->id = json_decode($img1)->id;
+                $image2 = new Images();
+                $image2->id = json_decode($img2)->id;
+                $image3 = new Images();
+                $image3->id = json_decode($img3)->id;
+
+                $images[] = $image1;
+                $images[] = $image2;
+                $images[] = $image3;
+                $file = file_put_contents(codecept_data_dir('images_id.json'), json_encode($images, JSON_UNESCAPED_SLASHES));
+                $this->debugSection('advertsID', $images);
+                break;
+            case 4:
+                $image1 = $this->restModule->sendPOST('/uploads/announcement-image', [],
+                    ['file' => codecept_data_dir('/img/garage_1.jpg')]);
+                $this->restModule->seeResponseCodeIs(201);
+                $this->restModule->seeResponseIsJson();
+                $img1 = $this->restModule->grabResponse($image1);
+                $image2 = $this->restModule->sendPOST('/uploads/announcement-image', [],
+                    ['file' => codecept_data_dir('/img/garage_2.jpg')]);
+                $this->restModule->seeResponseCodeIs(201);
+                $this->restModule->seeResponseIsJson();
+                $img2 = $this->restModule->grabResponse($image2);
+
+
+                $images = [];
+
+                $image1 = new Images();
+                $image1->id = json_decode($img1)->id;
+                $image2 = new Images();
+                $image2->id = json_decode($img2)->id;
+
+
+                $images[] = $image1;
+                $images[] = $image2;
+
+//        $advID = array('[{"id":"'.$advsId1.'"},{"id":"'.$advsId2.'"},{"id":"'.$advsId3.'"}]');
+                $file = file_put_contents(codecept_data_dir('images_id.json'), json_encode($images, JSON_UNESCAPED_SLASHES));
+                $this->debugSection('advertsID', $images);
+                break;
+        }
+//
 
 //        $advsId1 = json_decode($img1)->id;
 //        $advsId2 = json_decode($img2)->id;
 //        $advsId3 = json_decode($img3)->id;
 
-        $images = [];
 
-        $image1 = new Images();
-        $image1->id = json_decode($img1)->id;
-        $image2 = new Images();
-        $image2->id = json_decode($img2)->id;
-        $image3 = new Images();
-        $image3->id = json_decode($img3)->id;
-
-        $images[] = $image1;
-        $images[] = $image2;
-        $images[] = $image3;
-//        $advID = array('[{"id":"'.$advsId1.'"},{"id":"'.$advsId2.'"},{"id":"'.$advsId3.'"}]');
-        $file = file_put_contents(codecept_data_dir('images_id.json'), json_encode($images, JSON_UNESCAPED_SLASHES));
-        $this->debugSection('advertsID', $images);
     }
 
     /*==========================================================ADMIN API==============================================================*/
@@ -7158,12 +7468,12 @@ class Api extends \Codeception\Module
     function apiAdminRegistrationAgency()
     {
         $adminToken = file_get_contents(codecept_data_dir('admin_token.json'));
-        $agencyOfficeRegion0 = $this->getRegion(21);
-        $agencyOfficeCity0 = $this->getCity(6);
+        $agencyOfficeRegion0 = $this->getRegionId(21);
+        $agencyOfficeCity0 = $this->getCityId(6);
         $agencyOfficeAddress0 = $this->getStreetNameById(4,1);
 
-        $agencyOfficeRegion1 = $this->getRegion(21);
-        $agencyOfficeCity1 = $this->getCity(6);
+        $agencyOfficeRegion1 = $this->getRegionId(21);
+        $agencyOfficeCity1 = $this->getCityId(6);
         $agencyOfficeAddress1 = $this->getStreetNameById(4,1);
 
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
@@ -7638,12 +7948,12 @@ class Api extends \Codeception\Module
     function apiAgencyRegistration()
     {
 
-        $agencyOfficeRegion0 = $this->getRegion(21);
-        $agencyOfficeCity0 = $this->getCity(6);
+        $agencyOfficeRegion0 = $this->getRegionId(21);
+        $agencyOfficeCity0 = $this->getCityId(6);
         $agencyOfficeAddress0 = $this->getStreetNameById(4,1);
 
-        $agencyOfficeRegion1 = $this->getRegion(21);
-        $agencyOfficeCity1 = $this->getCity(6);
+        $agencyOfficeRegion1 = $this->getRegionId(21);
+        $agencyOfficeCity1 = $this->getCityId(6);
         $agencyOfficeAddress1 = $this->getStreetNameById(4,1);
 
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
@@ -7702,13 +8012,13 @@ class Api extends \Codeception\Module
     function apiEditAgency()
     {
         $agencyToken = file_get_contents(codecept_data_dir('agency_token.json'));
-        $agencyOfficeRegion0 = $this->getRegion(21);
-        $agencyOfficeCity0 = $this->getCity(3);
+        $agencyOfficeRegion0 = $this->getRegionId(21);
+        $agencyOfficeCity0 = $this->getCityId(3);
         $agencyOfficeAddress0 = $this->getStreetNameById(3,2);
         $agencyData = file_get_contents(codecept_data_dir('agency_data.json'));
         $userId = json_decode($agencyData)->id;
-        $agencyOfficeRegion1 = $this->getRegion(21);
-        $agencyOfficeCity1 = $this->getCity(3);
+        $agencyOfficeRegion1 = $this->getRegionId(21);
+        $agencyOfficeCity1 = $this->getCityId(3);
         $agencyOfficeAddress1 = $this->getStreetNameById(3,2);
 
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
@@ -7778,7 +8088,7 @@ class Api extends \Codeception\Module
     function getStreetNameById($cityId, $name)
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $city = $this->getCity($cityId);
+        $city = $this->getCityId($cityId);
         $this->restModule->sendGET('/lists/streets/' . $city);
         $streets = $this->restModule->grabResponse();
         $streetName = json_decode($streets)[$name]->name;
@@ -7790,7 +8100,7 @@ class Api extends \Codeception\Module
     function getDistrictNameById($cityId, $name)
     {
         $this->restModule->haveHttpHeader('Content-Type', 'application/json');
-        $city = $this->getCity($cityId);
+        $city = $this->getCityId($cityId);
         $this->restModule->sendGET('/lists/districts/' . $city);
         $streets = $this->restModule->grabResponse();
         $streetName = json_decode($streets)[$name]->name;

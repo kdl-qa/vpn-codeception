@@ -179,8 +179,9 @@ class Search extends \VpnTester
     {
         $I = $this;
 //        $I->amOnPage()
-        $I->wait(1);
+
         $I->waitForElement(AdvPage::$advInfoGallery);
+        $I->wait(1);
 //        $I->see(Flat::priceFlatSell, AdvPage::$advInfoPrice);
         $I->see(Flat::commission, AdvPage::$advInfoPrice);
         $I->see(Flat::generalArea, AdvPage::$advInfoMainProps);
@@ -2521,9 +2522,9 @@ class Search extends \VpnTester
         $I->amOnPage('/map');
 
         $I->waitForElement(SearchPage::$operationType2);
-        $I->wait(1);
+        $I->wait(2);
         $I->click(SearchPage::$operationType2);
-
+        $I->pauseExecution();
         $I->click(SearchPage::$searchButton);
 
         //--------------------------Search result------------------------------------------//
