@@ -56,46 +56,46 @@ class apiAdvertComplexCest
 
     }
 
-    /**
-     * @before uploadHouseImages
-     *@before agencyLogin
-     */
-    public function addHouseComplex(VpnTester $I)
-    {
-        $I->realtyHouseAddComplex();
-        $I->apiAdvertHouseAddComplex();
-        $I->apiAdminEditHouseAdvertComplex();
-    }
-
-    /**
-     * @before uploadParcelImages
-     *@before agencyLogin
-     */
-    public function addParcelComplex(VpnTester $I)
-    {
-        $I->realtyParcelAddComplex();
-        $I->apiAdvertParcelAddComplex();
-        $I->apiAdminEditParcelAdvertComplex();
-    }
-
-    /**
-     * @before uploadCommercialImages
-     *@before agencyLogin
-     */
-    public function addCommercialComplex(VpnTester $I)
-    {
-        $I->realtyCommercialAddComplex();
-        $I->apiAdvertCommercialAddComplex();
-        $I->apiAdminEditCommercialAdvertComplex();
-    }
-    /**
-     * @before uploadGarageImages
-     *@before agencyLogin
-     */
-    public function addGarageComplex(VpnTester $I)
-    {
-        $I->realtyGarageAddComplex();
-        $I->apiAdvertGarageAddComplex();
-        $I->apiAdminEditGarageAdvertComplex();
-    }
+//    /**
+//     * @before uploadHouseImages
+//     *@before agencyLogin
+//     */
+//    public function addHouseComplex(VpnTester $I)
+//    {
+//        $I->realtyHouseAddComplex();
+//        $I->apiAdvertHouseAddComplex();
+//        $I->apiAdminEditHouseAdvertComplex();
+//    }
+//
+//    /**
+//     * @before uploadParcelImages
+//     *@before agencyLogin
+//     */
+//    public function addParcelComplex(VpnTester $I)
+//    {
+//        $I->realtyParcelAddComplex();
+//        $I->apiAdvertParcelAddComplex();
+//        $I->apiAdminEditParcelAdvertComplex();
+//    }
+//
+//    /**
+//     * @before uploadCommercialImages
+//     *@before agencyLogin
+//     */
+//    public function addCommercialComplex(VpnTester $I)
+//    {
+//        $I->realtyCommercialAddComplex();
+//        $I->apiAdvertCommercialAddComplex();
+//        $I->apiAdminEditCommercialAdvertComplex();
+//    }
+//    /**
+//     * @before uploadGarageImages
+//     *@before agencyLogin
+//     */
+//    public function addGarageComplex(VpnTester $I)
+//    {
+//        $I->realtyGarageAddComplex();
+//        $I->apiAdvertGarageAddComplex();
+//        $I->apiAdminEditGarageAdvertComplex();
+//    }
 }

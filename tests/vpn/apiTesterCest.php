@@ -5,94 +5,75 @@
 class apiTesterCest
 {
 
-    protected function apiAdminLogin(VpnTester $I)
+    protected function apiLogin(VpnTester $I)
     {
-    $I->apiAdminLogin();
-    }
-
-    protected function apiAgencyLogin(VpnTester $I)
-    {
-        $I->apiAgencyLogin();
-    }
-
-    protected function uploadImages(VpnTester $I)
-    {
-        $I->uploadSchema();
-        $I->uploadAdvImages();
+//        $I->getAllLists();
+        $I->apiAdminLogin();
+        $I->apiAgencyLogin1();
     }
 
     /**
-    * @before uploadImages
-     *@before apiAgencyLogin
-     * @before apiAdminLogin
-     *
+     * @before apiLogin
      */
-
-    public function apiAddGarageRealtyPlain (VpnTester $I)
+    public function addApiFlatAdvert(VpnTester $I)
     {
+        $I->apiAgencySaveFlatSearch();
+//        $I->realtyFlatAddForSearch();
+//        $I->wait(2);
+//        $I->apiAdvertFlatAddForSearch();
+//        $I->wait(2);
+//        $I->apiAdminEditFlatAdvertSearch();
+//        $I->wait(2);
 
-        $I->realtyGarageAddPlain();
-        $I->realtyGarageEdit();
-//        $I->apiAdvertGarageAddPlain();
-//        $I->apiAdminEditGarageAdvertComplex();
     }
-    /**
-     * @before uploadImages
-     *@before apiAgencyLogin
-     * @before apiAdminLogin
-     *
-     */
-    public function apiAddFlatRealtyPlain (VpnTester $I)
-    {
-
-
-        $I->realtyFlatAddPlain();
-        $I->realtyFlatsEdit();
-//        $I->apiAdvertFlatAddPlain();
-//        $I->apiAdminEditFlatAdvertComplex();
-    }
-    /**
-     * @before uploadImages
-     *@before apiAgencyLogin
-     * @before apiAdminLogin
-     *
-     */
-    public function apiAddHouseRealtyPlai2n (VpnTester $I)
-    {
-
-        $I->realtyHouseAddPlain();
-        $I->realtyHousesEdit();
-//        $I->apiAdvertHouseAddComplex();
-//        $I->apiAdminEditHouseAdvertPlain();
-    }
-    /**
-     * @before uploadImages
-     *@before apiAgencyLogin
-     * @before apiAdminLogin
-     *
-     */
-    public function apiAddParcel1RealtyPlai3n (VpnTester $I)
-    {
-
-        $I->realtyParcelAddComplex();
-        $I->realtyParcelsEdit();
-//        $I->apiAdvertParcelAddPlain();
-//        $I->apiAdminEditParcelAdvertPlain();
-    }
-    /**
-     * @before uploadImages
-     *@before apiAgencyLogin
-     * @before apiAdminLogin
-     *
-     */
-    public function apiAddCommercial1RealtyPl4ain (VpnTester $I)
-    {
-
-        $I->realtyCommercialAddComplex();
-        $I->realtyCommercialsEdit();
-//        $I->apiAdvertCommercialAddPlain();
-//        $I->apiAdminEditCommercialAdvertPlain();
-    }
+//    /**
+//     * @before apiLogin
+//     */
+//    public function addApiHouseAdvert(VpnTester $I)
+//    {
+//        $I->realtyHouseAddSearch();
+//        $I->wait(2);
+//        $I->apiAdvertHouseAddSearch();
+//        $I->wait(2);
+//        $I->apiAdminEditHouseAdvertSearch();
+//        $I->wait(2);
+//    }
+//    /**
+//     * @before apiLogin
+//     */
+//    public function addApiParcelAdvert(VpnTester $I)
+//    {
+//        $I->realtyParcelAddSearch();
+//        $I->wait(2);
+//        $I->apiAdvertParcelAddSearch();
+//        $I->wait(2);
+//        $I->apiAdminEditParcelAdvertSearch();
+//        $I->wait(2);
+//    }
+//    /**
+//     * @before apiLogin
+//     */
+//    public function addApiCommercialAdvert(VpnTester $I)
+//    {
+//        $I->realtyCommercialAddSearch();
+//        $I->wait(2);
+//        $I->apiAdvertCommercialAddSearch();
+//        $I->wait(2);
+//        $I->apiAdminEditCommercialAdvertSearch();
+//        $I->wait(2);
+//    }
+//    /**
+//     * @before apiLogin
+//     */
+//    public function addApiGarageAdvert(VpnTester $I)
+//    {
+//        $I->realtyGarageAddForSearch();
+//        $I->wait(2);
+//        $I->apiAdvertGarageAddForSearch();
+//        $I->wait(2);
+//        $I->apiAdminEditGarageAdvertSearch();
+//        $I->wait(2);
+//    }
 
 
 }

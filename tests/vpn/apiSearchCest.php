@@ -6,6 +6,7 @@ class apiTesttCest
 {
     protected function apiLogin(VpnTester $I)
     {
+//        $I->getAllLists();
         $I->apiAdminLogin();
         $I->apiAgencyLogin();
     }
